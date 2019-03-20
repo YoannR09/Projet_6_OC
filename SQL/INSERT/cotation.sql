@@ -1,4 +1,4 @@
-INSERT INTO cotation ('niveau', 'valeur','couleur') VALUES
+INSERT INTO cotation (niveau, valeur,couleur) VALUES
 (1,'1a','rgb(255,85,220)'),
 (2,'1a+','rgb(246,68,211)'),
 (3,'1b','rgb(238,51,201)'),

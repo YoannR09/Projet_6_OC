@@ -1,6 +1,6 @@
 
 
-INSERT INTO departement (`id`, `numero`, `nom`,) VALUES
+INSERT INTO departement (id,numero,nom,region_id) VALUES
 (1, '01', 'Ain',10),
 (2, '02', 'Aisne',2),
 (3, '03', 'Allier',10),

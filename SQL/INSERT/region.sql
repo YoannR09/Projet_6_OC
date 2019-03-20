@@ -1,4 +1,4 @@
-INSERT INTO region (`id`, `nom`,) VALUES
+INSERT INTO region (id,nom) VALUES
 (1,'GRAND EST'),
 (2,'HAUTS-DE-FRANCE'),
 (3,'ÎLE-DE-FRANCE'),

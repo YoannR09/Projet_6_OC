@@ -1,4 +1,4 @@
-INSERT INTO type_de_roche ('id', 'type') VALUES
+INSERT INTO type_de_roche (id, type) VALUES
 (1,'Calcaire'),
 (2,'Grès'),
 (3,'Granite');

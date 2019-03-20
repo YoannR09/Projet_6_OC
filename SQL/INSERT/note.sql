@@ -1,4 +1,4 @@
-INSERT INTO note ('note', `site_id`,'topo_id','compte_id') VALUES
+INSERT INTO note (note, site_id,topo_id,compte_id) VALUES
 (7,2,null,1),
 (9,1,null,2),
 (7,2,null,1),

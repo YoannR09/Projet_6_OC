@@ -1,4 +1,4 @@
-INSERT INTO voie ('nom','hauteur','secteur_id','cotation_id') VALUES
+INSERT INTO voie (nom,hauteur,secteur_id,cotation_id) VALUES
 (null,30,1,42),
 ('Voie 2',25,1,23),
 (null,20,1,15),
