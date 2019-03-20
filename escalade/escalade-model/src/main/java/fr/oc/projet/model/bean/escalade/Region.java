@@ -5,7 +5,7 @@ public class Region {
     private     Integer     id;
     private     String      nom;
 
-    Region(){}
+    public Region(){}
 
     Region(Integer pId){id=pId;}
 

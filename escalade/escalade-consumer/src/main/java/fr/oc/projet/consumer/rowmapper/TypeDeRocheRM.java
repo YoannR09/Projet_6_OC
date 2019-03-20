@@ -3,9 +3,11 @@ package fr.oc.projet.consumer.rowmapper;
 import fr.oc.projet.model.bean.escalade.TypeDeRoche;
 import org.springframework.jdbc.core.RowMapper;
 
+import javax.inject.Named;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+@Named
 public class TypeDeRocheRM implements RowMapper<TypeDeRoche> {
 
     @Override

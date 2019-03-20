@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface NiveauAccesManager {
 
-    NiveauAcces getNiveauAcces(Integer niveau);
+    NiveauAcces getNiveauAcces(Integer pId);
 
     List<NiveauAcces> getListNiveauAcces();
 }

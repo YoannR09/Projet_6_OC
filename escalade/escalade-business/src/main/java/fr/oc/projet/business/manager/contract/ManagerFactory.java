@@ -1,8 +1,7 @@
 package fr.oc.projet.business.manager.contract;
 
-import fr.oc.projet.business.manager.contract.manager.CompteManager;
-import fr.oc.projet.business.manager.contract.manager.NiveauAccesManager;
-import fr.oc.projet.business.manager.contract.manager.TypeDeRocheManager;
+import fr.oc.projet.business.manager.contract.manager.*;
+import fr.oc.projet.model.bean.escalade.Cotation;
 
 public interface ManagerFactory {
 
@@ -11,4 +10,14 @@ public interface ManagerFactory {
     NiveauAccesManager getNiveauAccesManager();
 
     TypeDeRocheManager getTypeDeRocheManager();
+
+    TopoManager getTopoManager();
+
+    RegionManager getRegionManager();
+
+    DepartementManager getDepartementManager();
+
+    SiteManager getSiteManager();
+
+    CotationManager getCotationManager();
 }

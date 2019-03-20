@@ -5,9 +5,11 @@ import fr.oc.projet.model.bean.utilisateur.Compte;
 import org.springframework.jdbc.core.RowMapper;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+@Named
 public class CompteRM implements RowMapper<Compte> {
 
     @Inject

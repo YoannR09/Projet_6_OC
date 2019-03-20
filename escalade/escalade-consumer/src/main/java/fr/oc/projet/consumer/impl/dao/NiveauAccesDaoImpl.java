@@ -7,8 +7,10 @@ import fr.oc.projet.model.bean.utilisateur.NiveauAcces;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 import java.util.List;
 
+@Named
 public class NiveauAccesDaoImpl extends AbstractDaoImpl implements NiveauAccesDao {
 
     @Inject

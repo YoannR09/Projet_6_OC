@@ -6,8 +6,11 @@ import fr.oc.projet.model.bean.utilisateur.Compte;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 import java.util.List;
 
+
+@Named
 public class CompteDaoImpl extends AbstractDaoImpl implements CompteDao {
 
     @Inject

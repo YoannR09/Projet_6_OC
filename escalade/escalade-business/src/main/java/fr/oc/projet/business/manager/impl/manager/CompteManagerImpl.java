@@ -3,8 +3,10 @@ package fr.oc.projet.business.manager.impl.manager;
 import fr.oc.projet.business.manager.contract.manager.CompteManager;
 import fr.oc.projet.model.bean.utilisateur.Compte;
 
+import javax.inject.Named;
 import java.util.List;
 
+@Named
 public class CompteManagerImpl extends AbstractManagerImpl implements CompteManager {
 
     @Override

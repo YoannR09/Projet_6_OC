@@ -1,8 +1,6 @@
 package fr.oc.projet.consumer.contract;
 
-import fr.oc.projet.consumer.contract.dao.CompteDao;
-import fr.oc.projet.consumer.contract.dao.NiveauAccesDao;
-import fr.oc.projet.consumer.contract.dao.TypeDeRocheDao;
+import fr.oc.projet.consumer.contract.dao.*;
 
 public interface DAOFactory {
 
@@ -11,5 +9,15 @@ public interface DAOFactory {
     NiveauAccesDao getNiveauAccesDao();
 
     TypeDeRocheDao getTypeDeRocheDao();
+
+    TopoDao getTopoDao();
+
+    RegionDao getRegionDao();
+
+    DepartementDao getDepartementDao();
+
+    SiteDao getSiteDao();
+
+    CotationDao getCotationDao();
 
 }
