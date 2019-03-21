@@ -20,4 +20,18 @@ public interface DAOFactory {
 
     CotationDao getCotationDao();
 
+    MessageDao getMessageDao();
+
+    SecteurDao getSecteurDao();
+
+    VoieDao getVoieDao();
+
+    ReservationDao getReservationDao();
+
+    NoteDao getNoteDao();
+
+    CommentaireDao getCommentaireDao();
+
+    LikesDao getLikesDao();
+
 }

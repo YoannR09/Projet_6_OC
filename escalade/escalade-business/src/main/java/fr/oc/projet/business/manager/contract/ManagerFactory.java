@@ -1,7 +1,6 @@
 package fr.oc.projet.business.manager.contract;
 
 import fr.oc.projet.business.manager.contract.manager.*;
-import fr.oc.projet.model.bean.escalade.Cotation;
 
 public interface ManagerFactory {
 
@@ -20,4 +19,18 @@ public interface ManagerFactory {
     SiteManager getSiteManager();
 
     CotationManager getCotationManager();
+
+    MessageManager getMessageManager();
+
+    SecteurManager getSecteurManager();
+
+    VoieManager getVoieManager();
+
+    ReservationManager getReservationManager();
+
+    NoteManager getNoteManager();
+
+    CommentaireManager getCommentaireManager();
+
+    LikesManager getLikesManager();
 }

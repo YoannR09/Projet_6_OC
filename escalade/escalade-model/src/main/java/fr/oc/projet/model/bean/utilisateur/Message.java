@@ -5,14 +5,12 @@ import java.util.Date;
 public class Message {
 
     private     Integer     id;
-    private     Integer     objet;
+    private     String      objet;
     private     String      contenu;
     private     Date        date;
     private     Compte      auteur;
 
     public Message(){}
-
-    public Message(Integer pId){ id=pId;}
 
     public Integer getId() {
         return id;
@@ -22,11 +20,11 @@ public class Message {
         this.id = id;
     }
 
-    public Integer getObjet() {
+    public String getObjet() {
         return objet;
     }
 
-    public void setObjet(Integer objet) {
+    public void setObjet(String objet) {
         this.objet = objet;
     }
 

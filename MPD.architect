@@ -130,7 +130,7 @@
     <column id="COL35" populated="true" UUID="ba4ef2bf-5040-494e-834a-e04dd557659e" autoIncrement="false" autoIncrementSequenceName="image_image_de_presentation_seq" defaultValue="" name="image_de_presentation" nullable="0" physicalName="image_de_presentation" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="16" userDefinedTypeUUID="a26374aa-3026-4bb8-b564-eb2e186dfa5d" >
      <remarks></remarks>
     </column>
-    <column id="COL36" populated="true" UUID="1190e925-3ad7-4fde-a826-075e2c04d905" autoIncrement="false" autoIncrementSequenceName="image_spot_id_seq" defaultValue="" name="spot_id" nullable="1" physicalName="spot_id" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+    <column id="COL36" populated="true" UUID="1190e925-3ad7-4fde-a826-075e2c04d905" autoIncrement="false" autoIncrementSequenceName="image_spot_id_seq" defaultValue="" name="site_id" nullable="1" physicalName="site_id" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
      <remarks></remarks>
     </column>
     <column id="COL37" populated="true" UUID="002087a9-a14e-423e-a028-244fc4e423b3" autoIncrement="false" autoIncrementSequenceName="image_topo_id_seq" defaultValue="" name="topo_id" nullable="0" physicalName="topo_id" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
@@ -223,7 +223,7 @@
     <column id="COL61" populated="true" UUID="1d056f90-c7a8-472f-8054-79e9a08e7b2e" autoIncrement="false" autoIncrementSequenceName="commentaire_date_seq" defaultValue="" name="date" nullable="0" physicalName="date" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="91" userDefinedTypeUUID="ee349be3-6af2-46e1-b305-975f5354b009" >
      <remarks></remarks>
     </column>
-    <column id="COL62" populated="true" UUID="f626110b-4a8d-4fd4-bddb-cffa3a8775ef" autoIncrement="false" autoIncrementSequenceName="commentaire_spot_id_seq" defaultValue="" name="spot_id" nullable="1" physicalName="spot_id" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+    <column id="COL62" populated="true" UUID="f626110b-4a8d-4fd4-bddb-cffa3a8775ef" autoIncrement="false" autoIncrementSequenceName="commentaire_spot_id_seq" defaultValue="" name="site_id" nullable="1" physicalName="site_id" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
      <remarks></remarks>
     </column>
     <column id="COL63" populated="true" UUID="8c0eaa23-5934-4fd2-b6b1-ddf2f9ff4461" autoIncrement="false" autoIncrementSequenceName="commentaire_topo_id_seq" defaultValue="" name="topo_id" nullable="1" physicalName="topo_id" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >

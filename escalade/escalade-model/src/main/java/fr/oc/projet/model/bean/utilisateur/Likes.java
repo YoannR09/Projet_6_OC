@@ -7,7 +7,7 @@ public class Likes {
     private     Commentaire     commentaire;
     private     Compte          compte;
 
-    private Likes(){}
+    public Likes(){}
 
     private Likes(Integer pId){id=pId;}
 

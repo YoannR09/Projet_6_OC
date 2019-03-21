@@ -25,6 +25,20 @@ public class DAOFactoryImpl implements DAOFactory {
     private SiteDao siteDao;
     @Inject
     private CotationDao cotationDao;
+    @Inject
+    private MessageDao messageDao;
+    @Inject
+    private SecteurDao secteurDao;
+    @Inject
+    private VoieDao voieDao;
+    @Inject
+    private ReservationDao reservationDao;
+    @Inject
+    private NoteDao noteDao;
+    @Inject
+    private CommentaireDao commentaireDao;
+    @Inject
+    private LikesDao likesDao;
 
 
 
@@ -66,5 +80,40 @@ public class DAOFactoryImpl implements DAOFactory {
     @Override
     public CotationDao getCotationDao() {
         return this.cotationDao;
+    }
+
+    @Override
+    public MessageDao getMessageDao() {
+        return this.messageDao;
+    }
+
+    @Override
+    public SecteurDao getSecteurDao() {
+        return this.secteurDao;
+    }
+
+    @Override
+    public VoieDao getVoieDao() {
+        return this.voieDao;
+    }
+
+    @Override
+    public ReservationDao getReservationDao() {
+        return this.reservationDao;
+    }
+
+    @Override
+    public NoteDao getNoteDao() {
+        return null;
+    }
+
+    @Override
+    public CommentaireDao getCommentaireDao() {
+        return this.commentaireDao;
+    }
+
+    @Override
+    public LikesDao getLikesDao() {
+        return this.likesDao;
     }
 }

@@ -25,6 +25,20 @@ public class ManagerFactoryImpl implements ManagerFactory {
     private SiteManager siteManager;
     @Inject
     private CotationManager cotationManager;
+    @Inject
+    private MessageManager messageManager;
+    @Inject
+    private SecteurManager secteurManager;
+    @Inject
+    private VoieManager voieManager;
+    @Inject
+    private ReservationManager reservationManager;
+    @Inject
+    private NoteManager noteManager;
+    @Inject
+    private CommentaireManager commentaireManager;
+    @Inject
+    private LikesManager likesManager;
 
 
     @Override
@@ -65,5 +79,40 @@ public class ManagerFactoryImpl implements ManagerFactory {
     @Override
     public CotationManager getCotationManager() {
         return this.cotationManager;
+    }
+
+    @Override
+    public MessageManager getMessageManager() {
+        return this.messageManager;
+    }
+
+    @Override
+    public SecteurManager getSecteurManager() {
+        return this.secteurManager;
+    }
+
+    @Override
+    public VoieManager getVoieManager() {
+        return this.voieManager;
+    }
+
+    @Override
+    public ReservationManager getReservationManager() {
+        return this.reservationManager;
+    }
+
+    @Override
+    public NoteManager getNoteManager() {
+        return this.noteManager;
+    }
+
+    @Override
+    public CommentaireManager getCommentaireManager() {
+        return this.commentaireManager;
+    }
+
+    @Override
+    public LikesManager getLikesManager() {
+        return this.likesManager;
     }
 }
