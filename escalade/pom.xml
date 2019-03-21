@@ -74,7 +74,7 @@
               <dependency>
                   <groupId>junit</groupId>
                   <artifactId>junit</artifactId>
-                  <version>3.8.1</version>
+                  <version>4.12</version>
                   <scope>test</scope>
               </dependency>
               <dependency>
@@ -153,6 +153,19 @@
                   <version>${struts.version}</version>
                   <type>pom</type>
                   <scope>import</scope>
+              </dependency>
+
+              <dependency>
+                  <groupId>org.apache.commons</groupId>
+                  <artifactId>commons-dbcp2</artifactId>
+                  <version>2.1.1</version>
+              </dependency>
+
+              <dependency>
+                  <groupId>org.postgresql</groupId>
+                  <artifactId>postgresql</artifactId>
+                  <version>9.4.1212</version>
+                  <scope>runtime</scope>
               </dependency>
           </dependencies>
       </dependencyManagement>

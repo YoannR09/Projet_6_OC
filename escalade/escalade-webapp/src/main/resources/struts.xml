@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+
+    <package name="base" abstract="true" extends="struts-default">
+
+        <interceptors>
+            <interceptor name="auth" class="fr.oc.projet.webapp.interceptor.AuthInterceptor" />
+            <interceptor-stack name="authenticatedStack">
+                <interceptor-ref name="auth" />
+                <interceptor-ref name="defaultStack" />
+            </interceptor-stack>
+        </interceptors>
+
+        <global-results>
+            <result name="error-forbidden" type="httpheader">
+                <param name="error">403</param>
+            </result>
+            <result name="Exception" type="httpheader">
+                <param name="error">500</param>
+                <param name="parse">true</param>
+                <param name="errorMessage">%{exception}</param>
+            </result>
+            <result name="TechnicalException" type="httpheader">
+                <param name="error">500</param>
+                <param name="parse">true</param>
+                <param name="errorMessage">Erreur technique - %{exception.message}</param>
+            </result>
+            <result name="NotFoundException" type="httpheader">
+                <param name="error">404</param>
+                <param name="parse">true</param>
+                <param name="errorMessage">Objet introuvable - %{exception.message}</param>
+            </result>
+        </global-results>
+    </package>
+    <package name="public" extends="base">
+
+        <!-- Action "index" -->
+        <action name="index">
+            <result>/index.jsp</result>
+        </action>
+
+        <!-- Actions Login/Logout -->
+        <action name="login" class="fr.oc.projet.webapp.action.LoginAction" method="doLogin">
+
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack" />
+
+            <result name="input">/jsp/login.jsp</result>
+            <result name="success" type="redirectAction">index</result>
+        </action>
+
+        <!--
+    <action name="newUser"
+            class="org.example.palabres.webapp.action.LoginAction"
+            method="doCreate">
+
+        <result name="input">/jsp/newLogin.jsp</result>
+        <result name="success" type="redirectAction">
+            <param name="actionName">login</param>
+        </result>
+    </action>
+    -->
+
+        <action name="logout" class="fr.oc.projet.webapp.action.LoginAction" method="doLogout">
+            <result type="redirectAction">index</result>
+        </action>
+    </package>
+</struts>

@@ -18,7 +18,7 @@ public class CompteDaoImpl extends AbstractDaoImpl implements CompteDao {
 
     @Override
     public Compte getCompteViaPseudo(String pseudo) {
-        String vSQL = "SELECT * FROM compte WHERE pseudo ="+pseudo;
+        String vSQL = "SELECT * FROM compte WHERE pseudo = '"+pseudo+"'";
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
         Compte compte = vJdbcTemplate.queryForObject(vSQL,compteRM);
         return compte;

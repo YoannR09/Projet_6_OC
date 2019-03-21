@@ -12,5 +12,7 @@
     <context:component-scan base-package="fr.oc.projet"/>
 
     <!-- Inclusion d'autres fichiers de contexte Spring -->
-    <import resource="classpath:/" />
+    <import resource="classpath:/fr/oc/projet/webapp/webappContext.xml" />
+    <import resource="classpath:/fr/oc/projet/consumer/consumerContext.xml"/>
+    <import resource="classpath:/fr/oc/projet/business/businessContext.xml"/>
 </beans>
