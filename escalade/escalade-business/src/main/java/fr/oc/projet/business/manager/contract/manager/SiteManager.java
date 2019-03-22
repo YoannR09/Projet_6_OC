@@ -10,5 +10,7 @@ public interface SiteManager {
 
     Site getSiteViaNom(String nom);
 
-    List<Site> getListSite();
+    List<Site> getListSiteValide();
+
+    List<Site> getListSiteNonValide();
 }

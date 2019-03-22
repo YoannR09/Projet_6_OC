@@ -13,7 +13,6 @@
                 <interceptor-ref name="defaultStack" />
             </interceptor-stack>
         </interceptors>
-
         <global-results>
             <result name="error-forbidden" type="httpheader">
                 <param name="error">403</param>
@@ -52,6 +51,18 @@
 
             <result name="input">/jsp/login.jsp</result>
             <result name="success" type="redirectAction">index</result>
+        </action>
+
+        <action name="site_valide_list"
+                class="fr.oc.projet.webapp.action.GestionSiteAction"
+                method="doListSiteValide">
+            <result name="success">/jsp/site/list.jsp</result>
+        </action>
+
+        <action name="topo_valide_list"
+                class="fr.oc.projet.webapp.action.GestionTopoAction"
+                method="doListTopoValide">
+            <result name="success">/jsp/topo/list.jsp</result>
         </action>
 
         <!--

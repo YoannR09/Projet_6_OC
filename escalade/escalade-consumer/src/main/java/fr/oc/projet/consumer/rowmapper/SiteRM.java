@@ -1,9 +1,6 @@
 package fr.oc.projet.consumer.rowmapper;
 
-import fr.oc.projet.consumer.contract.dao.CompteDao;
-import fr.oc.projet.consumer.contract.dao.DepartementDao;
-import fr.oc.projet.consumer.contract.dao.TopoDao;
-import fr.oc.projet.consumer.contract.dao.TypeDeRocheDao;
+import fr.oc.projet.consumer.contract.dao.*;
 import fr.oc.projet.model.bean.escalade.Site;
 import org.springframework.jdbc.core.RowMapper;
 
@@ -23,6 +20,10 @@ public class SiteRM implements RowMapper<Site> {
     DepartementDao departementDao;
     @Inject
     CompteDao compteDao;
+    @Inject
+    CotationDao cotationDao;
+    @Inject
+    NoteDao noteDao;
 
 
 
@@ -39,7 +40,9 @@ public class SiteRM implements RowMapper<Site> {
         site.setEditeur(compteDao.getCompte(resultSet.getInt("responsable_id")));
         site.setTopo(topoDao.getTopo(resultSet.getInt("topo_id")));
         site.setTypeDeRoche(typeDeRocheDao.getTypeDeRoche(resultSet.getInt("type_de_roche_id")));
-
+        site.setCotationMin(cotationDao.getCotationMinSite(site.getId()));
+        site.setCotationMax(cotationDao.getCotationMaxSite(site.getId()));
+        site.setNote(9);
         return site;
     }
 }

@@ -34,8 +34,16 @@ public class SiteDaoImpl extends AbstractDaoImpl implements SiteDao {
     }
 
     @Override
-    public List<Site> getListSite() {
-        String vSQL = "SELECT * FROM site";
+    public List<Site> getListSiteValide() {
+        String vSQL = "SELECT * FROM site WHERE valide = TRUE";
+        JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
+        List<Site> vList = vJdbcTemplate.query(vSQL,siteRM);
+        return vList;
+    }
+
+    @Override
+    public List<Site> getListSiteNonValide() {
+        String vSQL = "SELECT * FROM site WHERE valide = FALSE";
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
         List<Site> vList = vJdbcTemplate.query(vSQL,siteRM);
         return vList;

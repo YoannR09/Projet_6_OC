@@ -9,4 +9,8 @@ public interface CotationDao {
     Cotation getCotation(Integer pId);
 
     List<Cotation> getListCotation();
+
+    Cotation getCotationMaxSite(Integer siteId);
+
+    Cotation getCotationMinSite(Integer siteId);
 }

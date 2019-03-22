@@ -1,6 +1,7 @@
 package fr.oc.projet.model.bean.escalade;
 
 import fr.oc.projet.model.bean.utilisateur.Compte;
+import fr.oc.projet.model.bean.utilisateur.Note;
 
 import java.util.Date;
 
@@ -16,6 +17,9 @@ public class Site {
     private     Departement         departement;
     private     TypeDeRoche         typeDeRoche;
     private     Compte              editeur;
+    private     Cotation            cotationMax;
+    private     Cotation            cotationMin;
+    private     Integer             note;
 
     public Site(){}
 
@@ -99,5 +103,29 @@ public class Site {
 
     public void setEditeur(Compte editeur) {
         this.editeur = editeur;
+    }
+
+    public Cotation getCotationMax() {
+        return cotationMax;
+    }
+
+    public void setCotationMax(Cotation cotationMax) {
+        this.cotationMax = cotationMax;
+    }
+
+    public Cotation getCotationMin() {
+        return cotationMin;
+    }
+
+    public void setCotationMin(Cotation cotationMin) {
+        this.cotationMin = cotationMin;
+    }
+
+    public Integer getNote() {
+        return note;
+    }
+
+    public void setNote(Integer note) {
+        this.note = note;
     }
 }

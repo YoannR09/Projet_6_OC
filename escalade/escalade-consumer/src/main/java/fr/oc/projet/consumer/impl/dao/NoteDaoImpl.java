@@ -52,7 +52,7 @@ public class NoteDaoImpl extends AbstractDaoImpl implements NoteDao {
 
     @Override
     public float getNoteSite(Integer siteId) {
-        String vSQL = "SELECT * FROM note WHERE site_id ="+siteId;
+        String vSQL = "SELECT * FROM note WHERE site_id = "+siteId;
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
         List<Note> vListSite = vJdbcTemplate.query(vSQL,noteRM);
         float notes = 0;
@@ -60,6 +60,7 @@ public class NoteDaoImpl extends AbstractDaoImpl implements NoteDao {
         for(i=0;i<vListSite.size();i++){
             notes = (notes + vListSite.get(i).getNote());
         }
+
         notes = (notes/i);
         return notes;
     }

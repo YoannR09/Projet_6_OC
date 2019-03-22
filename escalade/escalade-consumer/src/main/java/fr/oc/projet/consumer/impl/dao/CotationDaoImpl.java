@@ -32,4 +32,31 @@ public class CotationDaoImpl extends AbstractDaoImpl implements CotationDao {
         List<Cotation> vList = vJdbcTemplate.query(vSQL,cotationRM);
         return vList;
     }
+
+    @Override
+    public Cotation getCotationMaxSite(Integer siteId) {
+        String vSQL = "SELECT * FROM secteur,voie,cotation" +
+                " WHERE site_id = "+siteId+
+                "  AND secteur.id = site_id"+
+                "  AND voie.secteur_id = secteur.id"+
+                "  AND cotation.id = voie.cotation_id";
+        JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
+        List<Cotation> vList = vJdbcTemplate.query(vSQL,cotationRM);
+        int i = vList.size();
+        Cotation cotation = vList.get(i-1);
+        return cotation;
+    }
+
+    @Override
+    public Cotation getCotationMinSite(Integer siteId) {
+        String vSQL = "SELECT * FROM secteur,voie,cotation" +
+                " WHERE site_id = "+siteId+
+                "  AND secteur.id = site_id"+
+                "  AND voie.secteur_id = secteur.id"+
+                "  AND cotation.id = voie.cotation_id";
+        JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
+        List<Cotation> vList = vJdbcTemplate.query(vSQL,cotationRM);
+        Cotation cotation = vList.get(0);
+        return cotation;
+    }
 }

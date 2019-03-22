@@ -13,6 +13,11 @@
             display: flex;
             justify-content: space-around;
         }
+        html, body {
+            width: 100%;
+            height: 100%;
+            background-image: url("/image/fond.png");
+        }
     </style>
 </head>
 <body>
