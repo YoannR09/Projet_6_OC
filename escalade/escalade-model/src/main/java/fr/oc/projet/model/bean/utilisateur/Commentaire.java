@@ -15,6 +15,7 @@ public class Commentaire {
     private        Topo         topo;
     private        Secteur      secteur;
     private        Compte       auteur;
+    private        Likes        likes;
 
     public Commentaire(){}
 
@@ -74,5 +75,13 @@ public class Commentaire {
 
     public void setAuteur(Compte auteur) {
         this.auteur = auteur;
+    }
+
+    public Likes getLikes() {
+        return likes;
+    }
+
+    public void setLikes(Likes likes) {
+        this.likes = likes;
     }
 }

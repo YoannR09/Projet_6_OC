@@ -25,7 +25,7 @@ public class LikesDaoImpl extends AbstractDaoImpl implements LikesDao {
 
     @Override
     public Boolean getLikeStatut(Integer comId, Integer compteId) {
-        String vSQL = "SELECT * FROM likes WHERE commentaire_id ="+comId+"AND compte_id ="+compteId;
+        String vSQL = "SELECT * FROM likes WHERE commentaire_id ="+comId+" AND compte_id ="+compteId;
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
         Likes likes = vJdbcTemplate.queryForObject(vSQL,likesRM);
         return likes.getStatut();

@@ -24,6 +24,10 @@ public class SiteRM implements RowMapper<Site> {
     CotationDao cotationDao;
     @Inject
     NoteDao noteDao;
+    @Inject
+    VoieDao voieDao;
+    @Inject
+    SecteurDao secteurDao;
 
 
 
@@ -42,7 +46,9 @@ public class SiteRM implements RowMapper<Site> {
         site.setTypeDeRoche(typeDeRocheDao.getTypeDeRoche(resultSet.getInt("type_de_roche_id")));
         site.setCotationMin(cotationDao.getCotationMinSite(site.getId()));
         site.setCotationMax(cotationDao.getCotationMaxSite(site.getId()));
-        site.setNote(9);
+        site.setNote(7);
+        site.setNombreVoie(voieDao.getCountVoieSite(resultSet.getInt("id")));
+        site.setNombreSecteur(secteurDao.getCountSecteurSite(resultSet.getInt("id")));
         return site;
     }
 }

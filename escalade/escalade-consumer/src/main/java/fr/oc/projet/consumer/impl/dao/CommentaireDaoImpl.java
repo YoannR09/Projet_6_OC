@@ -42,7 +42,7 @@ public class CommentaireDaoImpl extends AbstractDaoImpl implements CommentaireDa
 
     @Override
     public List<Commentaire> getListCommentaireSite(Integer siteId) {
-        String vSQL = "SELECT * FROM commentaire WHERE site_id ="+siteId;
+        String vSQL = "SELECT * FROM commentaire WHERE spot_id = "+siteId;
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
         List<Commentaire> vList = vJdbcTemplate.query(vSQL,commentaireRM);
         return vList;

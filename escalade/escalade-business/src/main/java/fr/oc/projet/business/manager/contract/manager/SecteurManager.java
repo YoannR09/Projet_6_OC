@@ -9,4 +9,6 @@ public interface SecteurManager {
     Secteur getSecteur(Integer pId);
 
     List<Secteur> getListSecteur();
+
+    List<Secteur> getListSecteurSite(Integer siteId);
 }

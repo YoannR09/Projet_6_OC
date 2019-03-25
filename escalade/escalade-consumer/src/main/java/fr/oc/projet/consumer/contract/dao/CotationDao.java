@@ -13,4 +13,10 @@ public interface CotationDao {
     Cotation getCotationMaxSite(Integer siteId);
 
     Cotation getCotationMinSite(Integer siteId);
+
+    Cotation getCotationMaxSecteur(Integer secteurId);
+
+    Cotation getCotationMinSecteur(Integer secteurId);
+
+
 }

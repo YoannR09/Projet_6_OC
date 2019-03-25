@@ -34,7 +34,7 @@ public class CompteDaoImpl extends AbstractDaoImpl implements CompteDao {
 
     @Override
     public List<Compte> getListCompte() {
-        String vSQL = "SELECT * FROM compte WHERE";
+        String vSQL = "SELECT * FROM compte ";
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
         List<Compte> vList = vJdbcTemplate.query(vSQL,compteRM);
         return vList;

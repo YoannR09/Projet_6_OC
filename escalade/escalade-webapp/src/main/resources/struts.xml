@@ -59,11 +59,31 @@
             <result name="success">/jsp/site/list.jsp</result>
         </action>
 
+        <action name="listSecteur"
+                class="fr.oc.projet.webapp.action.GestionSiteAction"
+                method="doSecteurList">
+            <result name="success">/jsp/site/secteur.jsp</result>
+        </action>
+
         <action name="topo_valide_list"
                 class="fr.oc.projet.webapp.action.GestionTopoAction"
                 method="doListTopoValide">
             <result name="success">/jsp/topo/list.jsp</result>
         </action>
+
+        <action name="site_detail"
+                class="fr.oc.projet.webapp.action.GestionSiteAction"
+                method="doDetailSite">
+
+            <interceptor-ref name="store">
+                <param name="operationMode">RETRIEVE</param>
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack" />
+
+            <result name="success">/jsp/site/detail.jsp</result>
+        </action>
+
+
 
         <!--
     <action name="newUser"

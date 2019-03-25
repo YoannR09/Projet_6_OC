@@ -20,6 +20,8 @@ public class Site {
     private     Cotation            cotationMax;
     private     Cotation            cotationMin;
     private     Integer             note;
+    private     Integer             nombreVoie;
+    private     Integer             nombreSecteur;
 
     public Site(){}
 
@@ -127,5 +129,21 @@ public class Site {
 
     public void setNote(Integer note) {
         this.note = note;
+    }
+
+    public Integer getNombreVoie() {
+        return nombreVoie;
+    }
+
+    public void setNombreVoie(Integer nombreVoie) {
+        this.nombreVoie = nombreVoie;
+    }
+
+    public Integer getNombreSecteur() {
+        return nombreSecteur;
+    }
+
+    public void setNombreSecteur(Integer nombreSecteur) {
+        this.nombreSecteur = nombreSecteur;
     }
 }

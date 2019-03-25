@@ -1,9 +1,6 @@
 package fr.oc.projet.consumer.rowmapper;
 
-import fr.oc.projet.consumer.contract.dao.CompteDao;
-import fr.oc.projet.consumer.contract.dao.SecteurDao;
-import fr.oc.projet.consumer.contract.dao.SiteDao;
-import fr.oc.projet.consumer.contract.dao.TopoDao;
+import fr.oc.projet.consumer.contract.dao.*;
 import fr.oc.projet.model.bean.utilisateur.Commentaire;
 import org.springframework.jdbc.core.RowMapper;
 
@@ -23,6 +20,8 @@ public class CommentaireRM implements RowMapper<Commentaire> {
     SecteurDao secteurDao;
     @Inject
     CompteDao compteDao;
+    @Inject
+    LikesDao likesDao;
 
 
     @Override
@@ -32,9 +31,15 @@ public class CommentaireRM implements RowMapper<Commentaire> {
         commentaire.setContenu(resultSet.getString("contenu"));
         commentaire.setDate(resultSet.getDate("date"));
         commentaire.setAuteur(compteDao.getCompte(resultSet.getInt("compte_id")));
-        commentaire.setSecteur(secteurDao.getSecteur(resultSet.getInt("secteur_id")));
-        commentaire.setSite(siteDao.getSite(resultSet.getInt("site_id")));
-        commentaire.setTopo(topoDao.getTopo(resultSet.getInt("topo_id")));
+        if(resultSet.getInt("secteur_id") != 0){
+            commentaire.setSecteur(secteurDao.getSecteur(resultSet.getInt("secteur_id")));
+        }
+        if(resultSet.getInt("spot_id") != 0){
+            commentaire.setSite(siteDao.getSite(resultSet.getInt("spot_id")));
+        }
+        if(resultSet.getInt("topo_id") != 0){
+            commentaire.setTopo(topoDao.getTopo(resultSet.getInt("topo_id")));
+        }
         return commentaire;
     }
 }

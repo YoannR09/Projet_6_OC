@@ -32,4 +32,21 @@ public class SecteurDaoImpl extends AbstractDaoImpl implements SecteurDao {
         List<Secteur> vList = vJdbcTemplate.query(vSQL,secteurRM);
         return vList;
     }
+
+    @Override
+    public List<Secteur> getListSecteurSite(Integer siteId) {
+        String vSQL = "SELECT * FROM secteur WHERE site_id ="+siteId;
+        JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
+        List<Secteur> vList = vJdbcTemplate.query(vSQL,secteurRM);
+        return vList;
+    }
+
+    @Override
+    public Integer getCountSecteurSite(Integer siteId) {
+        JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
+        int vNbrSecteur = vJdbcTemplate.queryForObject(
+                "SELECT COUNT(*) FROM public.secteur WHERE site_id ="+siteId,
+                Integer.class);
+        return vNbrSecteur;
+    }
 }

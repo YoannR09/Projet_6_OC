@@ -15,16 +15,9 @@
             height: 100%;
             background-image: url("/image/qbkls.png");
         }
-        #page
-        {
-            background-image: url("/image/qbkls.png");
-            display: flex;
-            justify-content: center;
-        }
         #bloc
         {
             margin: 20px;
-            width: 500px;
         }
         #divImage
         {
@@ -33,8 +26,7 @@
         }
         #partieDroite
         {
-            margin: 20px;
-            height: 500px;
+            float: right;
         }
         #divCota
         {
@@ -47,10 +39,13 @@
         }
         span
         {
-            width: 10px ;
             border-radius: 25px;
             border: 1px black solid;
             padding: 15px;
+        }
+        #vil,#dep,#typ,#not,#nvo,#nse
+        {
+            font-size: 0.6em;
         }
 
     </style>
@@ -59,41 +54,54 @@
 <header>
     <%@ include file="/_include/header.jsp"%>
 </header>
-<div id="page" class="col-lg-12 col-md-12 col-sm-12">
-
-<div id="partieGauche"  class="col-lg-7 col-md-7 col-sm-7">
-        <s:iterator value="listSite">
-                <div class="card text-white bg-dark mb-4"  id="bloc">
-                    <div class="card-header "><s:property value="nom"/><p id="editeur">Editeur : <s:property value="editeur.pseudo"/></p></div>
-                    <div class="card-body" style="display: flex;">
-                        <div id="divImage" class="col-lg-4 col-md-4 col-sm-4"></div>
-                        <div id="divInfos" class="col-lg-5 col-md-5 col-sm-5">
-
-                            <p><s:property value="ville"/></p>
-                            <p><s:property value="departement.nom"/></p>
-                            <p>Roche : <s:property value="typeDeRoche.type"/></p>
-                            <p>Note : <s:property value="note"/> / 10</p>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-sm-4" id="divCota">
-                            <div >
-                            Min : <span style="background-color:<s:property value="cotationMin.couleur"/>;" ><s:property value="cotationMin.valeur"/></span>
-                            </div>
-                            <div style="margin-top: 30px;">
-                            Max : <span style="background-color:<s:property value="cotationMax.couleur"/>;"><s:property value="cotationMax.valeur"/></span>
-                            </div>
-                            <s:a action="site_valide_list" class="btn btn-info" style="margin-top:40px;"><s:param name="nomSite" value="nom" /> Voir </s:a>
-                        </div>
-                    </div>
-                </div>
-        </s:iterator>
-</div>
+<div id="page">
     <div id="partieDroite"  class="col-lg-3 col-md-3 col-sm-3">
-        <div class="card text-white bg-dark mb-4"  id="Recherche">
+        <div class="card text-white bg-dark mb-4"  id="recherche">
             <div class="card-header "></div>
             <div class="card-body" style="display: flex">
             </div>
         </div>
     </div>
+
+<div id="partieGauche"  class="col-lg-7 col-md-7 col-sm-12">
+        <s:iterator value="listSite">
+                <div class="card text-white bg-dark "  id="bloc">
+                    <div class="card-header "><s:property value="nom"/><p id="editeur">Editeur : <s:property value="editeur.pseudo"/></p></div>
+                    <div class="card-body" style="display: flex;">
+                        <div id="divImage" class="col-lg-4 col-md-4 col-sm-0 col-xs-0">
+
+
+                        </div>
+                        <div id="divInfos" class="col-lg-3 col-md-3 col-sm-4">
+
+                            <br/>
+                            <p id="vil">Ville : <s:property value="ville"/></p>
+                            <p id="dep">Departement : <s:property value="departement.nom"/></p>
+                            <p id="typ">Roche : <s:property value="typeDeRoche.type"/></p>
+                            <p id="not">Note : <s:property value="note"/> / 10</p>
+
+                        </div>
+                        <div  class="col-lg-3 col-md-3 col-sm-4">
+
+                            <br/>
+                            <p id="nvo">Nombre de voie : <s:property value="nombreVoie"/></p>
+                            <p id="nse">Nombre de secteur : <s:property value="nombreSecteur"/></p>
+
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4" id="divCota">
+                            <div >
+                            <span style="background-color:<s:property value="cotationMin.couleur"/>;font-size: 0.7em;" ><s:property value="cotationMin.valeur"/></span>
+                            </div>
+                            <div style="margin-top: 30px;">
+                            <span style="background-color:<s:property value="cotationMax.couleur"/>;font-size: 0.7em;"><s:property value="cotationMax.valeur"/></span>
+                            </div>
+                            <s:a action="site_detail" class="btn btn-info" style="margin-top:40px;"><s:param name="idSite" value="id" /> Voir </s:a>
+                        </div>
+                    </div>
+                </div>
+        </s:iterator>
+</div>
+
 </div>
 </body>
 </html>

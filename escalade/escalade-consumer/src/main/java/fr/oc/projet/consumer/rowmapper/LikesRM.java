@@ -2,6 +2,7 @@ package fr.oc.projet.consumer.rowmapper;
 
 import fr.oc.projet.consumer.contract.dao.CommentaireDao;
 import fr.oc.projet.consumer.contract.dao.CompteDao;
+import fr.oc.projet.consumer.contract.dao.LikesDao;
 import fr.oc.projet.model.bean.utilisateur.Likes;
 import org.springframework.jdbc.core.RowMapper;
 
