@@ -55,7 +55,7 @@ public class VoieDaoImpl extends AbstractDaoImpl implements VoieDao {
 
     @Override
     public Integer getHauteurMaxSecteur(Integer secteurId) {
-        String vSQL = "SELECT * FROM voie WHERE secteur_id ="+secteurId;
+        String vSQL = "SELECT * FROM voie WHERE secteur_id = "+secteurId;
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
         List<Voie> vList = vJdbcTemplate.query(vSQL,voieRM);
         Voie voie = vList.get(0);
@@ -64,7 +64,7 @@ public class VoieDaoImpl extends AbstractDaoImpl implements VoieDao {
 
     @Override
     public Integer getHauteurMinSecteur(Integer secteurId) {
-        String vSQL = "SELECT * FROM voie WHERE secteur_id ="+secteurId;
+        String vSQL = "SELECT * FROM voie WHERE secteur_id = "+secteurId;
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
         List<Voie> vList = vJdbcTemplate.query(vSQL,voieRM);
         int i = vList.size();

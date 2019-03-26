@@ -13,8 +13,6 @@ public class Secteur {
 
     public Secteur(){}
 
-    public Secteur(Integer pId){id=pId;}
-
     public Integer getId() {
         return id;
     }

@@ -32,9 +32,9 @@
     <div style="margin: 10px;border-bottom: 1px solid black ;">
     <s:property value="nom"/>
         / Nombre de voie : <s:property value="nombreVoie"/>
-        / Cotations : <s:property value="cotationMin.valeur"/> à <s:property value="cotationMax.valeur"/><s:a action="site_detail" style="float:right">
+        / Cotations : <s:property value="cotationMin.valeur"/> à <s:property value="cotationMax.valeur"/>
         / Hauteur : <s:property value="hauteurMin"/> à <s:property value="hauteurMax"/>
-        <s:param name="idSecteur" value="id" /> Voir </s:a>
+        <s:a action="site_detail"  style="float:right"><s:param name="idSecteur" value="id" /> Voir </s:a>
     </div>
 </s:iterator>
 

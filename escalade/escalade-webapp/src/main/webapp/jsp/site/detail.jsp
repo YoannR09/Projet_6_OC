@@ -20,11 +20,8 @@
     }
     #cadreImage
     {
-        height: 300px;
-        background-color: gray;
-        border-color: black;
-        border-style: solid;
-        border-width: 0px 1px 1px 1px;
+        height: 400px;
+
     }
     #cadreInfos
     {
@@ -32,7 +29,7 @@
         text-align: center;
         border-color: black;
         border-style: solid;
-        border-width: 0px 1px 0px 1px;
+        border-width: 0px 0px 0px 1px;
 
     }
     span
@@ -74,24 +71,25 @@
 
 <div id="page">
 
-    <div class="col-lg-9 col-md-9 col-sm-9">
-        <div class="col-lg-12 col-md-12 col-sm-12" id="cadreImage">
-
+    <div class="col-lg-9 col-md-9 col-sm-9" style="color: white; margin-top: 20px;">
+        <div class="col-lg-12 col-md-12 col-sm-12" id="cadreImage" style="background-color:rgba(0,0,0,0.8);padding-top: 10px">
+            <img src="./image/toulon3.jpg"
+                 width="100%" height="100%" id="img" style="border: 1px black solid;" />
         </div>
-        <div class="col-lg-12 col-md-12 col-sm-12" id="cadreInfos">
+        <div class="col-lg-12 col-md-12 col-sm-12" id="cadreInfos" style="background-color:rgba(0,0,0,0.8);">
             <h2><s:property value="site.nom"/></h2>
             <br/><s:property value="site.description"/>
 
             <h4>Localisation</h4>
 
             <p><span>Region : <s:property value="site.departement.region.nom"/></span>
-                <span> Département : <s:property value="site.departement.nom"/> </span>
+                <span>Département : <s:property value="site.departement.nom"/> </span>
                 <span>Ville : <s:property value="site.ville"/></span> </p>
 
 
         </div>
 
-        <div class="col-lg-12 col-md-12 col-sm-12" id="cadreCommentaire">
+        <div class="col-lg-12 col-md-12 col-sm-12" id="cadreCommentaire" style="background-color:rgba(0,0,0,0.8);">
             <s:iterator value="listCommentaire">
                 <div id="commentaire">
                     <s:property value="auteur.pseudo"/>
@@ -102,16 +100,39 @@
                 </div>
             </s:iterator>
         </div>
-        <div class="col-lg-12 col-md-12 col-sm-12" id="cadreBouton">
+        <div class="col-lg-12 col-md-12 col-sm-12" id="cadreBouton" style="background-color:rgba(0,0,0,0.8);">
             <button type="button" class="btn btn-outline-info" id="btnCom">Voir les commentaires</button>
             <s:a action="listSecteur" class="btn btn-outline-info"><s:param name="idSite" value="site.id" />Liste des secteurs</s:a>
-            <button type="button" class="btn btn-outline-info" id="btnSecteur">Evaluer ce site</button>
+            <button type="button" class="btn btn-outline-info" id="btnSecteur" data-toggle="modal" data-target="#exampleModalCenter">Evaluer ce site</button>
         </div>
         <div class="col-lg-12 col-md-12 col-sm-12" id="cadreSecteur">
 
         </div>
 
         <div id="bottom"></div>
+
+        <!--------------------------------- Pop-up ------------------------------------>
+
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document" style="width: 20%">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Evaluer le site</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" style="display: flex;justify-content: center">
+                        <input type="number" id="tentacles" name="tentacles" style="margin: 5px"
+                               min="1" max="10">  <span>/ 10</span>
+                    </div>
+                    <div class="modal-footer" style="display: flex;justify-content: space-around">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                        <button type="button" class="btn btn-primary">Valider</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
 </div>

@@ -49,7 +49,7 @@
             </interceptor-ref>
             <interceptor-ref name="defaultStack" />
 
-            <result name="input">/jsp/login.jsp</result>
+            <result name="input">/jsp/login/login.jsp</result>
             <result name="success" type="redirectAction">index</result>
         </action>
 
