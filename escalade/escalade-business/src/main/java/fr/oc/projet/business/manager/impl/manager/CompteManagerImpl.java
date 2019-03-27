@@ -24,4 +24,9 @@ public class CompteManagerImpl extends AbstractManagerImpl implements CompteMana
     public List<Compte> getListCompte() {
         return getDaoFactory().getCompteDao().getListCompte();
     }
+
+    @Override
+    public void addCompte(Compte compte) {
+        getDaoFactory().getCompteDao().addCompte(compte);
+    }
 }

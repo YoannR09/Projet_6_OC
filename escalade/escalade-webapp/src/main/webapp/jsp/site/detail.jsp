@@ -17,6 +17,7 @@
     #page {
         display: flex;
         justify-content: space-around;
+        text-shadow: 0px 0px 15px rgba(0, 0, 0, 1);
     }
     #cadreImage
     {
@@ -66,6 +67,7 @@
         font-size: 0.7em;
     }
 
+
 </style>
 
 
@@ -113,7 +115,7 @@
 
         <!--------------------------------- Pop-up ------------------------------------>
 
-        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="color: black">
             <div class="modal-dialog modal-dialog-centered" role="document" style="width: 20%">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -154,7 +156,6 @@
 
         });
     });
-
 </script>
 </body>
 </html>

@@ -64,7 +64,7 @@
         </div>
     </div>
 
-<div id="partieGauche"  class="col-lg-7 col-md-7 col-sm-12">
+<div id="partieGauche"  class="col-lg-7 col-md-10 col-sm-12">
         <s:iterator value="listSite">
                 <div class="card text-white "  id="bloc">
                     <div class="card-header "><s:property value="nom"/><p id="editeur">Editeur : <s:property value="editeur.pseudo"/></p></div>

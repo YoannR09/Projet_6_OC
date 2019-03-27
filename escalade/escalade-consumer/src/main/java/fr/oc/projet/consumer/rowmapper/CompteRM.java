@@ -25,8 +25,8 @@ public class CompteRM implements RowMapper<Compte> {
         compte.setNom(resultSet.getString("nom"));
         compte.setPrenom(resultSet.getString("prenom"));
         compte.setEmail(resultSet.getString("email"));
-        compte.setMotDePasse(resultSet.getString("mot_de_passe"));
-        compte.setNumeroDeTelephone(resultSet.getString("numero_de_telephone"));
+        compte.setPassword(resultSet.getString("mot_de_passe"));
+        compte.setNumero(resultSet.getString("numero_de_telephone"));
         compte.setNiveauAcces(niveauAccesDaoImpl.getNiveauAcces(resultSet.getInt("niveau_acces_id")));
         return compte;
     }

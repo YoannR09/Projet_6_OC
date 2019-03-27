@@ -59,7 +59,7 @@
 
 <div id="partieGauche"  class="col-lg-7 col-md-7 col-sm-7">
         <s:iterator value="listTopo">
-                <div class="card text-white bg-dark mb-4"  id="bloc">
+                <div class="card text-white mb-4" id="bloc" style="background-color:rgba(0,0,0,0.8)">
                     <div class="card-header "><s:property value="nom"/><span id="editeur">Editeur : <s:property value="responsable.pseudo"/></span></div>
                     <div class="card-body" style="display: flex">
                         <div id="divImage" class="col-lg-4 col-md-4 col-sm-4">

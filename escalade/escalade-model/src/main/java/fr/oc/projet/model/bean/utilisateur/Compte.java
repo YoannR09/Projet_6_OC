@@ -6,9 +6,10 @@ public class Compte {
     private     String          pseudo;
     private     String          nom;
     private     String          prenom;
-    private     String          motDePasse;
+    private     String          password;
     private     String          email;
-    private     String          numeroDeTelephone;
+    private     String          numero;
+    private     Integer         niveau;
     private     NiveauAcces     niveauAcces;
 
     public Compte(){}
@@ -46,12 +47,12 @@ public class Compte {
         this.prenom = prenom;
     }
 
-    public String getMotDePasse() {
-        return motDePasse;
+    public String getPassword() {
+        return password;
     }
 
-    public void setMotDePasse(String motDePasse) {
-        this.motDePasse = motDePasse;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getEmail() {
@@ -62,12 +63,12 @@ public class Compte {
         this.email = email;
     }
 
-    public String getNumeroDeTelephone() {
-        return numeroDeTelephone;
+    public String getNumero() {
+        return numero;
     }
 
-    public void setNumeroDeTelephone(String numeroDeTelephone) {
-        this.numeroDeTelephone = numeroDeTelephone;
+    public void setNumero(String numero) {
+        this.numero = numero;
     }
 
     public NiveauAcces getNiveauAcces() {
@@ -76,5 +77,13 @@ public class Compte {
 
     public void setNiveauAcces(NiveauAcces niveauAcces) {
         this.niveauAcces = niveauAcces;
+    }
+
+    public Integer getNiveau() {
+        return niveau;
+    }
+
+    public void setNiveau(Integer niveau) {
+        this.niveau = niveau;
     }
 }

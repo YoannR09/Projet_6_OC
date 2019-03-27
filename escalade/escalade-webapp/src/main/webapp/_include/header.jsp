@@ -18,6 +18,17 @@
             <li class="nav-item">
                 <s:a action="topo_valide_list" class="nav-link">Topo</s:a>
             </li>
+            <li class="nav-item">
+                <s:a action="participer" class="nav-link">Participer</s:a>
+            </li>
+            <li class="nav-item">
+                <s:a action="topo_valide_list" class="nav-link">Nous contacter</s:a>
+            </li>
+            <s:if test="%{#session.niveau == 2}">
+                <li class="nav-item">
+                    <s:a action="participer" style="color:deepskyblue"  class="nav-link">Gestion</s:a>
+                </li>
+            </s:if>
         </ul>
         <form class="form-inline my-2 my-lg-0" style="color: white" >
             <s:if test="#session.user">
@@ -25,8 +36,8 @@
                 <s:a action="logout" class="nav-link">Deconnexion</s:a>
             </s:if>
             <s:else>
-                <s:a action="login" class="nav-link">Connexion</s:a> /
-                <s:a action="" class="nav-link">S'inscrire</s:a>
+                <s:a action="login" style="color:lightgray" class="nav-link">Connexion</s:a> /
+                <s:a action="newUser" style="color:lightgray" class="nav-link">S'inscrire</s:a>
             </s:else>
 
         </form>

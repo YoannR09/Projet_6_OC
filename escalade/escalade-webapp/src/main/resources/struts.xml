@@ -85,20 +85,52 @@
 
 
 
-        <!--
     <action name="newUser"
-            class="org.example.palabres.webapp.action.LoginAction"
+            class="fr.oc.projet.webapp.action.LoginAction"
             method="doCreate">
 
-        <result name="input">/jsp/newLogin.jsp</result>
+        <result name="input">/jsp/login/newUser.jsp</result>
         <result name="success" type="redirectAction">
             <param name="actionName">login</param>
         </result>
     </action>
-    -->
+
 
         <action name="logout" class="fr.oc.projet.webapp.action.LoginAction" method="doLogout">
             <result type="redirectAction">index</result>
         </action>
     </package>
+
+    <package name="private" extends="base">
+
+        <default-interceptor-ref name="authenticatedStack" />
+
+
+        <action name="participer" class="fr.oc.projet.webapp.action.GestionParticiper"
+                method="doCreate">
+            <result name="input">/jsp/participer/participer.jsp</result>
+        </action>
+
+        <action name="addSite"
+                class="fr.oc.projet.webapp.action.GestionParticiper"
+                method="doCreate">
+
+            <result name="input">/jsp/participer/participer.jsp</result>
+            <result name="success" type="redirectAction">
+            </result>
+
+        </action>
+
+        <action name="addTopo"
+                class="fr.oc.projet.webapp.action.GestionParticiper"
+                method="doCreate">
+
+            <result name="input">/jsp/participer/participer.jsp</result>
+            <result name="success" type="redirectAction">
+            </result>
+
+        </action>
+
+    </package>
+
 </struts>

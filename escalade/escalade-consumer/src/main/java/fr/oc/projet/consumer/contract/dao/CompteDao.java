@@ -11,4 +11,6 @@ public interface CompteDao {
     Compte getCompte(Integer pId);
 
     List<Compte> getListCompte();
+
+    void addCompte(Compte compte);
 }

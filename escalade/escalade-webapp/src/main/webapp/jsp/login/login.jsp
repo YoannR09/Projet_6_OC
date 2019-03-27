@@ -23,6 +23,7 @@
         #page {
             display: flex;
             justify-content: space-around;
+            text-shadow: 0px 0px 15px rgba(0, 0, 0, 1);
         }
 
         .blocInfo{
