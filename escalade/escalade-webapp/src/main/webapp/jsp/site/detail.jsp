@@ -79,7 +79,7 @@
                  width="100%" height="100%" id="img" style="border: 1px black solid;" />
         </div>
         <div class="col-lg-12 col-md-12 col-sm-12" id="cadreInfos" style="background-color:rgba(0,0,0,0.8);">
-            <h2><s:property value="site.nom"/></h2>
+            <h2 id="nomSite"><s:property value="site.nom"/></h2>
             <br/><s:property value="site.description"/>
 
             <h4>Localisation</h4>
@@ -92,15 +92,9 @@
         </div>
 
         <div class="col-lg-12 col-md-12 col-sm-12" id="cadreCommentaire" style="background-color:rgba(0,0,0,0.8);">
-            <s:iterator value="listCommentaire">
-                <div id="commentaire">
-                    <s:property value="auteur.pseudo"/>
-                    <span class='badge badge-info' style='padding :10px;margin-bottom: 15px;'><s:property value="contenu"/></span>
-                    <span id="date"><s:property value="date"/></span>
-                    <s:property value="session.user"/>
-                    <s:if test="%{#session.user == #likes.compte.pseudo}">Test OK</s:if>
+                <div id="listCommentaire" style="background-color:rgba(0,0,0,0.8);">
+
                 </div>
-            </s:iterator>
         </div>
         <div class="col-lg-12 col-md-12 col-sm-12" id="cadreBouton" style="background-color:rgba(0,0,0,0.8);">
             <button type="button" class="btn btn-outline-info" id="btnCom">Voir les commentaires</button>
@@ -143,6 +137,9 @@
 <script>
     $(function() {
 
+        reloadListCommentaire();
+        setInterval(reloadListCommentaire, 5000);
+
         $('#cadreCommentaire').hide();
         $('#cadreSecteur').hide();
 
@@ -156,6 +153,37 @@
 
         });
     });
+    function reloadListCommentaire() {
+        // URL de l'action AJAX
+        var url = "<s:url action="ajax_getListCommentaire"/>";
+
+        var nomSite =$("#nomSite").text();
+
+        var params = {
+            nomSite: nomSite
+        };
+
+        // Action AJAX en POST
+        jQuery.post(
+            url,
+            params,
+            function (data) {
+                var $listCommentaire = jQuery("#listCommentaire");
+                $listCommentaire.empty();
+                jQuery.each(data, function (key, val) {
+                    $listMessage.append(
+                        jQuery("<br /><span class='badge badge-info' style='padding :10px;margin-bottom: 15px;'>").append(val.auteur)
+                    );
+                    $listCommentaire.append(
+                        jQuery("<span class='badge badge-light' style='padding :10px;margin-bottom: 15px;'>")
+                            .append(val.contenu)
+                    );
+                });
+            })
+            .fail(function () {
+                alert("Erreur !!");
+            });
+    }
 </script>
 </body>
 </html>

@@ -12,6 +12,7 @@ public class Topo {
     private     Date        date;
     private     Boolean     valide;
     private     Compte      responsable;
+    private     Integer     responsableId;
 
     public Topo(){}
 
@@ -63,5 +64,13 @@ public class Topo {
 
     public void setResponsable(Compte responsable) {
         this.responsable = responsable;
+    }
+
+    public Integer getResponsableId() {
+        return responsableId;
+    }
+
+    public void setResponsableId(Integer responsableId) {
+        this.responsableId = responsableId;
     }
 }

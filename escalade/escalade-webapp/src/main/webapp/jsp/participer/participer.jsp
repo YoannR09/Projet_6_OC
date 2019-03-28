@@ -76,9 +76,18 @@
     #partieDroite
     {
         float: right;
-        margin-top: 20px;
+        margin-top: 30px;
     }
     #inputNom,#inputDescri
+    {
+        margin: 10px;
+    }
+    label
+    {
+        color: white;
+    }
+    #selectTopo,#selectType,#selectDepartement,#textNom,#textDescri,#textVille,
+    #textDescriTopo,#textNomTopo,#fileProfil,#fileProfilTopo
     {
         margin: 10px;
     }
@@ -97,23 +106,16 @@
         </div>
         <div class="col-lg-12 col-md-12 col-sm-12" id="addSite" >
             <h3>Créer un site d'escalade</h3>
-            <div id="partieDroite"  class="col-lg-4 col-md-4 col-sm-4 ">
-                <div class="card text-white bg-dark mb-4"  id="recherche" style="background-color:rgba(0,0,0,0.8)">
-                    <div class="card-header "></div>
-                    <div class="card-body" style="display: flex">
-                    </div>
-                </div>
-            </div>
-                <s:form action="" id="formulaire">
-                <div class="form-row"  id="cadreDiv" style="display: flex; justify-content: space-around; margin-top: 20px">
-                    <div class="form-group col-md-8">
-                        <label for="inputNom">Nom</label>
-                        <input name="nom" type="text" class="form-control" id="inputNom" placeholder="nom" required>
-                        <label for="inputDescri">Description</label>
-                        <textarea class="form-control" id="inputDescri" rows="3"></textarea>
-                        <label for="test">Description</label>
-                        <s:textfield name="contenuMessage" class="form-control" placeholder="Ecrivez votre message..."/>
-                                <s:select id="selectVersion"  class="form-control" list="listType" listValue="type"/>
+                <s:form action="addSite" id="formulaire" style="margin-left:10%;" enctype="multipart/form-data">
+                <div class="form-row"  id="cadreDiv" style="display: flex; justify-content: space-around;">
+                    <div class="form-group col-md-8" style="color: white">
+                        <s:textfield id="textNom" name="nom" class="form-control" placeholder="Nom du site" label="Nom du site "/>
+                        <s:textfield id="textDescri" name="description" class="form-control" placeholder="Entrez votre description" label="Description "/>
+                        <s:select id="selectType" name="type" class="form-control" list="listType" listValue="type" label="Type de roche"/>
+                        <s:select id="selectDepartement" name="departement" class="form-control" list="listDepartement" listValue="nom" label="Departement "/>
+                        <s:textfield id="textVille" name="ville" class="form-control" placeholder="Nom de la ville" label="Ville "/>
+                        <s:select id="selectTopo" name="topo" class="form-control" list="listTopo" listValue="nom" label="Topo "/>
+                        <s:file id="fileProfil" name="photoPrincipale"  label="Image principale " style="color:white"/>
 
                     </div>
                     <div class="form-group col-md-6">
@@ -125,35 +127,19 @@
             </div>
             <div class="col-lg-12 col-md-12 col-sm-12" id="addTopo" >
                 <h3>Créer un topo d'escalade</h3>
-                <s:form action="newUser">
+                <s:form action="addTopo" id="formulaire" style="margin-left:10%;">
                     <div class="form-row"  id="cadreDiv" style="display: flex; justify-content: space-around;">
-                        <div class="form-group col-md-4">
-                            <label for="inputPseudo">Pseudo</label>
-                            <input name="pseudo" type="pseudo" class="form-control" id="inputPseudo" placeholder="Pseudo" required>
-                        </div>
-                    </div>
-                    <div class="form-row" id="cadreDiv" style="display: flex; justify-content: space-around" >
-                        <div class="form-group col-md-5">
-                            <label for="inputPass">Password</label>
-                            <input name="password" type="password" class="form-control" id="inputPass" placeholder="Password" required>
-                        </div>
-                        <div class="form-group col-md-5">
-                            <label for="inputPassConf">Confirmer le mot de passe</label>
-                            <input name="passwordConf" type="password" class="form-control" id="inputPassConf" placeholder="Password" required>
-                        </div>
-                    </div>
-                    <div class="form-row" id="cadreDiv" style="display: flex; justify-content: space-around;">
-                        <div class="form-group col-md-6">
-                            <label for="inputPass">Email</label>
-                            <input name="email" type="text" class="form-control" id="inputEmail" placeholder="Email" required>
+                        <div class="form-group col-md-8">
+                            <s:textfield id="textNomTopo" name="nom" class="form-control" placeholder="Nom du topo" label="Nom "/>
+                            <s:textfield id="textDescriTopo" name="description"  class="form-control" placeholder="Entrez votre description" label="Description "/>
+                            <s:file id="fileProfilTopo" name="photoPrincipale"  label="Image principale " style="color:white"/>
+                            <s:param name="pseudo" value="#session.user"/>
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="inputPassConf">Confirmer l'email</label>
-                            <input name="emailConf" type="text" class="form-control" id="inputEmailConf" placeholder="Email" required>
                         </div>
-                    </div>
 
-                    <s:submit value="Valider" id="btn" class="btn btn-info"/>
+                        <s:submit value="Valider" id="btn" class="btn btn-info"/>
+                    </div>
                 </s:form>
             </div>
         </div>
@@ -180,7 +166,6 @@
                 $('#addSite').hide();
 
             });
-
         });
     </script>
 </body>

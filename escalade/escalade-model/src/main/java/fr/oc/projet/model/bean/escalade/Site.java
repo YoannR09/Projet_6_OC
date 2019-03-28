@@ -5,6 +5,10 @@ import fr.oc.projet.model.bean.utilisateur.Note;
 
 import java.util.Date;
 
+
+/**
+ * Classe bean qui gère un site d'escalade.
+ */
 public class Site {
 
     private     Integer             id;
@@ -22,6 +26,10 @@ public class Site {
     private     Integer             note;
     private     Integer             nombreVoie;
     private     Integer             nombreSecteur;
+    private     Integer             editeurId;
+    private     Integer             typeId;
+    private     Integer             departementId;
+    private     Integer             topoId;
 
     public Site(){}
 
@@ -145,5 +153,37 @@ public class Site {
 
     public void setNombreSecteur(Integer nombreSecteur) {
         this.nombreSecteur = nombreSecteur;
+    }
+
+    public Integer getEditeurId() {
+        return editeurId;
+    }
+
+    public void setEditeurId(Integer editeurId) {
+        this.editeurId = editeurId;
+    }
+
+    public Integer getTypeId() {
+        return typeId;
+    }
+
+    public void setTypeId(Integer typeId) {
+        this.typeId = typeId;
+    }
+
+    public Integer getDepartementId() {
+        return departementId;
+    }
+
+    public void setDepartementId(Integer departementId) {
+        this.departementId = departementId;
+    }
+
+    public Integer getTopoId() {
+        return topoId;
+    }
+
+    public void setTopoId(Integer topoId) {
+        this.topoId = topoId;
     }
 }

@@ -11,4 +11,6 @@ public interface TopoDao {
     Topo getTopoViaNom(String nom);
 
     List<Topo> getListTopo();
+
+    void addTopo(Topo topo);
 }

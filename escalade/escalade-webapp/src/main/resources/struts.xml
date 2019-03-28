@@ -117,6 +117,7 @@
 
             <result name="input">/jsp/participer/participer.jsp</result>
             <result name="success" type="redirectAction">
+
             </result>
 
         </action>
@@ -129,6 +130,18 @@
             <result name="success" type="redirectAction">
             </result>
 
+        </action>
+
+    </package>
+
+    <package name="ajax" extends="base, json-default">
+        <!-- Action renvoyant la liste des channels -->
+        <action name="ajax_getListCommentaire"
+                class="fr.oc.projet.webapp.action.AjaxAction"
+                method="doAjaxGetListCommentaire">
+            <result name="success" type="json">
+                <param name="root">listCommentaire</param>
+            </result>
         </action>
 
     </package>

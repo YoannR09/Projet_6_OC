@@ -45,7 +45,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
             compte = managerFactory.getCompteManager().getCompteViaPseudo(pseudo);
             if(password.equals(compte.getPassword())){
                 this.session.put("user", compte);
-                System.out.println(compte.getNiveauAcces().getNiveau());
+                this.session.put("pseudo", compte.getPseudo());
                 this.session.put("niveau", compte.getNiveauAcces().getNiveau());
                 vResult = ActionSupport.SUCCESS;
             }
@@ -59,6 +59,8 @@ public class LoginAction extends ActionSupport implements SessionAware {
      */
     public String doLogout() throws NotFoundException {
         this.session.remove("user");
+        this.session.remove("pseudo");
+        this.session.remove("niveau");
         return ActionSupport.SUCCESS;
     }
 
