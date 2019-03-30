@@ -64,8 +64,8 @@
         </div>
 
     <div id="textDescri" class="col-lg-12 col-md-12 col-sm-12"style="background-color:rgba(0,0,0,0.8);padding-top: 10px;text-align: center" >
-        <p>Bienvenue sur mon site communautaire dédié à l'escalade.</p>
-        <p>Vous pouvez y trouver des sites et topos disponibles dans vos regions/departement</p>
+        <p>Bienvenue sur mon site communautaire dedie à l'escalade.</p>
+        <p>Vous pouvez y trouver des sites et topos disponibles dans votre region/departement</p>
     </div>
 </div>
 

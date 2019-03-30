@@ -2,6 +2,7 @@ package fr.oc.projet.business.manager.impl.manager;
 
 import fr.oc.projet.business.manager.contract.manager.SecteurManager;
 import fr.oc.projet.model.bean.escalade.Secteur;
+import fr.oc.projet.model.bean.escalade.Site;
 
 import javax.inject.Named;
 import java.util.List;
@@ -23,5 +24,9 @@ public class SecteurManagerImpl extends AbstractManagerImpl implements SecteurMa
     @Override
     public List<Secteur> getListSecteurSite(Integer siteId) {
         return getDaoFactory().getSecteurDao().getListSecteurSite(siteId);
+    }
+    @Override
+    public void addSecteur(Secteur secteur) {
+        getDaoFactory().getSecteurDao().addSecteur(secteur);
     }
 }

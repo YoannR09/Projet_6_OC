@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <nav class="navbar navbar-expand-lg navbar-dark " style="background-color:rgba(0,0,0,0.8);">
-    <s:a action="home" class="navbar-brand">Mon site d'escalade</s:a>
+    <s:a action="index" class="navbar-brand">Mon site d'escalade</s:a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -22,11 +22,11 @@
                 <s:a action="participer" class="nav-link">Participer</s:a>
             </li>
             <li class="nav-item">
-                <s:a action="topo_valide_list" class="nav-link">Nous contacter</s:a>
+                <s:a action="contact" class="nav-link">Nous contacter</s:a>
             </li>
             <s:if test="%{#session.niveau == 2}">
                 <li class="nav-item">
-                    <s:a action="participer" style="color:deepskyblue"  class="nav-link">Gestion</s:a>
+                    <s:a action="gestion" style="color:deepskyblue"  class="nav-link">Gestion</s:a>
                 </li>
             </s:if>
         </ul>

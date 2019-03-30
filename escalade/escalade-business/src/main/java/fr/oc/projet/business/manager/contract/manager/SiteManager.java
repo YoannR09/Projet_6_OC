@@ -13,4 +13,6 @@ public interface SiteManager {
     List<Site> getListSiteValide();
 
     List<Site> getListSiteNonValide();
+
+    void addSite(Site site);
 }

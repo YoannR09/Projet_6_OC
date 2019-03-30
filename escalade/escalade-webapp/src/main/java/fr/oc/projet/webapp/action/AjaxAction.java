@@ -2,7 +2,9 @@ package fr.oc.projet.webapp.action;
 
 import com.opensymphony.xwork2.ActionSupport;
 import fr.oc.projet.business.manager.contract.ManagerFactory;
+import fr.oc.projet.model.bean.escalade.Secteur;
 import fr.oc.projet.model.bean.escalade.Site;
+import fr.oc.projet.model.bean.escalade.Topo;
 import fr.oc.projet.model.bean.utilisateur.Commentaire;
 import javassist.NotFoundException;
 
@@ -16,7 +18,12 @@ public class AjaxAction extends ActionSupport {
 
     private List<Commentaire>   listCommentaire;
     private Site                site;
+    private List<Secteur>       listSecteur;
     private String              nomSite;
+    private String              nomSecteur;
+    private String              nom;
+    private Topo                topo;
+    private String              nomTopo;
 
     public List<Commentaire> getListCommentaire() {
         return listCommentaire;
@@ -42,16 +49,96 @@ public class AjaxAction extends ActionSupport {
         this.nomSite = nomSite;
     }
 
+    public List<Secteur> getListSecteur() {
+        return listSecteur;
+    }
+
+    public void setListSecteur(List<Secteur> listSecteur) {
+        this.listSecteur = listSecteur;
+    }
+
+    public String getNomSecteur() {
+        return nomSecteur;
+    }
+
+    public void setNomSecteur(String nomSecteur) {
+        this.nomSecteur = nomSecteur;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public Topo getTopo() {
+        return topo;
+    }
+
+    public void setTopo(Topo topo) {
+        this.topo = topo;
+    }
+
+    public String getNomTopo() {
+        return nomTopo;
+    }
+
+    public void setNomTopo(String nomTopo) {
+        this.nomTopo = nomTopo;
+    }
+
     /**
-     * Action "AJAX" renvoyant la liste des messages d'un channel.
+     * Action "AJAX" renvoyant la liste des commentaires d'un site/topo ou secteur.
      * @return success
      */
     public String doAjaxGetListCommentaire() { // throws NotFoundException, TechnicalException {
         String vResult = ActionSupport.SUCCESS;
         try {
 
+            if(nomSite != null){
+                site = managerFactory.getSiteManager().getSiteViaNom(nomSite);
+                listCommentaire = managerFactory.getCommentaireManager().getListCommentaireSite(site.getId());
+            }else{
+                topo = managerFactory.getTopoManager().getTopoViaNom(nomTopo);
+                listCommentaire = managerFactory.getCommentaireManager().getListCommentaireTopo(topo.getId());
+            }
+
+
+        }  catch (Exception e) {
+            e.printStackTrace();
+        }
+        return vResult;
+    }
+    public String doAjaxGetListSecteur() { // throws NotFoundException, TechnicalException {
+        String vResult = ActionSupport.SUCCESS;
+        try {
+
             site = managerFactory.getSiteManager().getSiteViaNom(nomSite);
-            listCommentaire = managerFactory.getCommentaireManager().getListCommentaireSite(site.getId());
+            listSecteur = managerFactory.getSecteurManager().getListSecteurSite(site.getId());
+
+        }  catch (Exception e) {
+            e.printStackTrace();
+        }
+        return vResult;
+    }
+
+    public String doAjaxAddSecteur(){
+        String vResult = ActionSupport.SUCCESS;
+
+        try {
+
+            site = managerFactory.getSiteManager().getSiteViaNom(nomSite);
+
+            Secteur secteur = new Secteur();
+            secteur.setNom(nom);
+            secteur.setSiteId(site.getId());
+
+            managerFactory.getSecteurManager().addSecteur(secteur);
+
+            listSecteur = managerFactory.getSecteurManager().getListSecteurSite(site.getId());
+
 
         }  catch (Exception e) {
             e.printStackTrace();

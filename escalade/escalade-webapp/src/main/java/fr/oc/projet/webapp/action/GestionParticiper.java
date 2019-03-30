@@ -17,6 +17,7 @@ public class GestionParticiper extends ActionSupport {
     private      List<Departement>       listDepartement;
     private      List<Region>            listRegion;
     private      List<Topo>              listTopo;
+    private      List<Secteur>           listSecteur;
     private      String                  nom;
     private      String                  ville;
     private      String                  description;
@@ -25,8 +26,17 @@ public class GestionParticiper extends ActionSupport {
     private      Region                  region;
     private      Departement             departement;
     private      Topo                    topo;
+    private      Site                    site;
+    private      String                  nomSecteur;
+    private      String                  nomSite;
 
 
+    /**
+     * Méthode pour créer un topo ou un site d'escalade
+     * Si ville est null on sait que ce n'est pas un topo.
+     * Si nom est null c'est que l'utilisateur vient d'ouvrir cette page.
+     * @return
+     */
     public String doCreate() {
 
         // Par défaut, le result est "input"
@@ -54,6 +64,7 @@ public class GestionParticiper extends ActionSupport {
             site.setDate(new Date());
             site.setTopoId(topo.getId());
 
+            managerFactory.getSiteManager().addSite(site);
         }
 
         listType = managerFactory.getTypeDeRocheManager().getListTypeDeRoche();
@@ -62,6 +73,14 @@ public class GestionParticiper extends ActionSupport {
 
 
         return vResult;
+    }
+
+    public String doAddListVoie(){
+
+            System.out.println("nom du site : "+nomSite);
+            site = managerFactory.getSiteManager().getSiteViaNom(nomSite);
+
+        return ActionSupport.SUCCESS;
     }
 
     public List<TypeDeRoche> getListType() {
@@ -158,5 +177,37 @@ public class GestionParticiper extends ActionSupport {
 
     public void setTopo(Topo topo) {
         this.topo = topo;
+    }
+
+    public String getNomSecteur() {
+        return nomSecteur;
+    }
+
+    public void setNomSecteur(String nomSecteur) {
+        this.nomSecteur = nomSecteur;
+    }
+
+    public List<Secteur> getListSecteur() {
+        return listSecteur;
+    }
+
+    public void setListSecteur(List<Secteur> listSecteur) {
+        this.listSecteur = listSecteur;
+    }
+
+    public String getNomSite() {
+        return nomSite;
+    }
+
+    public void setNomSite(String nomSite) {
+        this.nomSite = nomSite;
+    }
+
+    public Site getSite() {
+        return site;
+    }
+
+    public void setSite(Site site) {
+        this.site = site;
     }
 }

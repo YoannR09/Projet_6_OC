@@ -64,13 +64,19 @@ public class LoginAction extends ActionSupport implements SessionAware {
         return ActionSupport.SUCCESS;
     }
 
+    /**
+     * Action de la créatio d'un compte niveau visiteur.
+     * @return
+     */
     public String doCreate(){
         // Par défaut, le result est "input"
         String vResult = ActionSupport.INPUT;
 
         // Si pseudo est null c'est qu'on vient d'arriver dans le formulaire.
         if(pseudo != null) {
+            // On regarde si le mot de passe est bien confirmé une deuxième fois
             if (password.equals(passwordConf)) {
+                // On regarde si l'email est bien confirmé une deuxième fois
                 if (email.equals(emailConf)) {
                     Compte compte = new Compte();
 
@@ -83,6 +89,8 @@ public class LoginAction extends ActionSupport implements SessionAware {
                     compte.setNiveau(1);
 
                     managerFactory.getCompteManager().addCompte(compte);
+
+                    vResult = ActionSupport.SUCCESS;
                 }
             }
         }

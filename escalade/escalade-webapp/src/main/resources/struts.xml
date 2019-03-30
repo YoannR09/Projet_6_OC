@@ -75,12 +75,14 @@
                 class="fr.oc.projet.webapp.action.GestionSiteAction"
                 method="doDetailSite">
 
-            <interceptor-ref name="store">
-                <param name="operationMode">RETRIEVE</param>
-            </interceptor-ref>
-            <interceptor-ref name="defaultStack" />
-
             <result name="success">/jsp/site/detail.jsp</result>
+        </action>
+
+        <action name="topo_detail"
+                class="fr.oc.projet.webapp.action.GestionTopoAction"
+                method="doDetailTopo">
+
+            <result name="success">/jsp/topo/detail.jsp</result>
         </action>
 
 
@@ -115,11 +117,31 @@
                 class="fr.oc.projet.webapp.action.GestionParticiper"
                 method="doCreate">
 
-            <result name="input">/jsp/participer/participer.jsp</result>
+            <result name="input">/jsp/participer/addSecteur.jsp</result>
             <result name="success" type="redirectAction">
 
             </result>
 
+        </action>
+
+        <action name="contact">
+            <result>/jsp/participer/contact.jsp</result>
+        </action>
+
+        <action name="addVoie"
+                class="fr.oc.projet.webapp.action.GestionParticiper"
+                method="doAddListVoie">
+
+            <interceptor-ref name="store">
+                <param name="operationMode">RETRIEVE</param>
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack" />
+
+            <result name="success">/jsp/participer/addVoie.jsp</result>
+        </action>
+
+        <action name="gestion">
+            <result>/jsp/gestion/gestion.jsp</result>
         </action>
 
         <action name="addTopo"
@@ -131,16 +153,31 @@
             </result>
 
         </action>
-
     </package>
 
     <package name="ajax" extends="base, json-default">
-        <!-- Action renvoyant la liste des channels -->
+        <!-- Action renvoyant la liste des commentaires d'un site -->
         <action name="ajax_getListCommentaire"
                 class="fr.oc.projet.webapp.action.AjaxAction"
                 method="doAjaxGetListCommentaire">
             <result name="success" type="json">
                 <param name="root">listCommentaire</param>
+            </result>
+        </action>
+
+        <!-- Action renvoyant la liste des secteurs d'un site -->
+        <action name="ajax_getListSecteur"
+                class="fr.oc.projet.webapp.action.AjaxAction"
+                method="doAjaxGetListSecteur">
+            <result name="success" type="json">
+                <param name="root">listSecteur</param>
+            </result>
+        </action>
+        <action name="ajax_addSecteur"
+                class="fr.oc.projet.webapp.action.AjaxAction"
+                method="doAjaxAddSecteur">
+            <result name="success" type="json">
+                <param name="root">listSecteur</param>
             </result>
         </action>
 

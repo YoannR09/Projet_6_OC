@@ -29,4 +29,9 @@ public class SiteManagerImpl extends AbstractManagerImpl implements SiteManager 
     public List<Site> getListSiteNonValide() {
         return getDaoFactory().getSiteDao().getListSiteNonValide();
     }
+
+    @Override
+    public void addSite(Site site) {
+        getDaoFactory().getSiteDao().addSite(site);
+    }
 }

@@ -30,7 +30,7 @@ public class TopoDaoImpl extends AbstractDaoImpl implements TopoDao {
 
     @Override
     public Topo getTopoViaNom(String nom) {
-        String vSQL = "SELECT * FROM topo WHERE nom ="+nom;
+        String vSQL = "SELECT * FROM topo WHERE nom = '"+nom+"'";
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
         Topo topo = vJdbcTemplate.queryForObject(vSQL,topoRM);
         return topo;

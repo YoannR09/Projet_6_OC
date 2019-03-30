@@ -3,10 +3,14 @@ package fr.oc.projet.consumer.impl.dao;
 import fr.oc.projet.consumer.contract.dao.CompteDao;
 import fr.oc.projet.consumer.rowmapper.CompteRM;
 import fr.oc.projet.model.bean.utilisateur.Compte;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.sql.Types;
 import java.util.List;
 
 /**
@@ -67,7 +71,7 @@ public class CompteDaoImpl extends AbstractDaoImpl implements CompteDao {
      */
     @Override
     public void addCompte(Compte compte) {
-        /*
+
         String vSQL = "INSERT INTO compte (pseudo, nom, prenom, mot_de_passe, email, numero_de_telephone, niveau_acces_id)" +
                 " VALUES (:pseudo, :nom, :prenom, :password, :email, :numero, :niveau)";
         NamedParameterJdbcTemplate vJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
@@ -83,11 +87,10 @@ public class CompteDaoImpl extends AbstractDaoImpl implements CompteDao {
 
         try {
             vJdbcTemplate.update(vSQL, vParams);
-            System.out.println("Compte ajouté : "+vParams.getValue("pseudo"));
-            System.out.println("Le mot de passe est : "+vParams.getValue("password"));
         } catch (DuplicateKeyException vEx) {
+            vEx.printStackTrace();
         }
-         */
+
     }
 
 }

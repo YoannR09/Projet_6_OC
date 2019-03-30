@@ -62,7 +62,6 @@ public class GestionSiteAction extends ActionSupport {
 
     public String doSecteurList(){
 
-        System.out.println(idSite);
             listSecteur = managerFactory.getSecteurManager().getListSecteurSite(idSite);
 
         return ActionSupport.SUCCESS;

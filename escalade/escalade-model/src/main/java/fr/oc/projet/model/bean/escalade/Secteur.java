@@ -10,6 +10,7 @@ public class Secteur {
     private     Cotation    cotationMin;
     private     Integer     hauteurMin;
     private     Integer     hauteurMax;
+    private     Integer     siteId;
 
     public Secteur(){}
 
@@ -75,5 +76,13 @@ public class Secteur {
 
     public void setHauteurMax(Integer hauteurMax) {
         this.hauteurMax = hauteurMax;
+    }
+
+    public Integer getSiteId() {
+        return siteId;
+    }
+
+    public void setSiteId(Integer siteId) {
+        this.siteId = siteId;
     }
 }

@@ -79,15 +79,8 @@
                  width="100%" height="100%" id="img" style="border: 1px black solid;" />
         </div>
         <div class="col-lg-12 col-md-12 col-sm-12" id="cadreInfos" style="background-color:rgba(0,0,0,0.8);">
-            <h2 id="nomSite"><s:property value="site.nom"/></h2>
-            <br/><s:property value="site.description"/>
-
-            <h4>Localisation</h4>
-
-            <p><span>Region : <s:property value="site.departement.region.nom"/></span>
-                <span>Département : <s:property value="site.departement.nom"/> </span>
-                <span>Ville : <s:property value="site.ville"/></span> </p>
-
+            <h2 id="nomTopo"><s:property value="topo.nom"/></h2>
+            <br/><s:property value="topo.description"/>
 
         </div>
 
@@ -95,11 +88,11 @@
             <a href="#" class="btn btn-sm btn-info " id="slideTop" style="width: 100% ; margin: auto; border-radius: 10%"></a>
             <div id="listCommentaire">
 
-                </div>
+            </div>
         </div>
         <div class="col-lg-12 col-md-12 col-sm-12" id="cadreBouton" style="background-color:rgba(0,0,0,0.8);">
             <button type="button" class="btn btn-outline-info" id="btnCom">Voir les commentaires</button>
-            <s:a action="listSecteur" class="btn btn-outline-info"><s:param name="idSite" value="site.id" />Liste des secteurs</s:a>
+            <s:a action="listSecteur" class="btn btn-outline-info"><s:param name="idSite" value="site.id" />Voir les créneaux disponibles</s:a>
             <button type="button" class="btn btn-outline-info" id="btnSecteur" data-toggle="modal" data-target="#exampleModalCenter">Evaluer ce site</button>
         </div>
 
@@ -163,10 +156,10 @@
         // URL de l'action AJAX
         var url = "<s:url action="ajax_getListCommentaire"/>";
 
-        var nomSite =$("#nomSite").text();
+        var nomTopo =$("#nomTopo").text();
 
         var params = {
-            nomSite: nomSite
+            nomTopo: nomTopo
         };
 
         // Action AJAX en POST

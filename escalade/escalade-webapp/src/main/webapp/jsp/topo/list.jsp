@@ -69,7 +69,7 @@
                             <s:property value="description"/>
                         </div>
                         <div class="col-lg-2 col-md-2 col-sm-2" id="divCota">
-                            <s:a action="site_valide_list" class="btn btn-info" id="btnVoir"><s:param name="nomSite" value="nom" /> Voir </s:a>
+                            <s:a action="topo_detail" class="btn btn-info" id="btnVoir"><s:param name="idTopo" value="id" /> Voir </s:a>
                         </div>
                     </div>
                 </div>
