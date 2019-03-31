@@ -11,4 +11,8 @@ public interface TopoManager {
     Topo getTopoViaNom(String nom);
 
     List<Topo> getListTopo();
+
+    List<Topo> getListTopoValide();
+
+    List<Topo> getListTopoNonValide();
 }

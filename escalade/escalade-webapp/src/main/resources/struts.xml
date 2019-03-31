@@ -78,6 +78,8 @@
             <result name="success">/jsp/site/detail.jsp</result>
         </action>
 
+
+
         <action name="topo_detail"
                 class="fr.oc.projet.webapp.action.GestionTopoAction"
                 method="doDetailTopo">
@@ -152,6 +154,25 @@
             <result name="success" type="redirectAction">
             </result>
 
+        </action>
+
+        <action name="message_detail"
+                class="fr.oc.projet.webapp.action.GestionSiteWebAction"
+                method="doDetailMessage">
+
+            <result name="success">/jsp/gestion/detailMessage.jsp</result>
+        </action>
+
+        <action name="listMessage"
+                class="fr.oc.projet.webapp.action.GestionSiteWebAction"
+                method="doListMessage">
+            <result name="success">/jsp/gestion/message.jsp</result>
+        </action>
+
+        <action name="moderation"
+                class="fr.oc.projet.webapp.action.GestionSiteWebAction"
+                method="doModeration">
+            <result name="success">/jsp/gestion/moderer.jsp</result>
         </action>
     </package>
 

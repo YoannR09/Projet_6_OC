@@ -8,67 +8,73 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <style type="text/css">
+        html, body {
+            width: 100%;
+            height: 100%;
+            background-image: url("./image/gplay.png");
+        }
+        #page {
+            display: flex;
+            justify-content: space-around;
+            text-shadow: 0px 0px 15px rgba(0, 0, 0, 1);
+        }
+        #cadreImage
+        {
+            height: 400px;
+
+        }
+        #cadreInfos
+        {
+            height: 300px;
+            text-align: center;
+            border-color: black;
+            border-style: solid;
+            border-width: 0px 0px 0px 1px;
+
+        }
+        span
+        {
+            margin: 15px;
+        }
+        h4
+        {
+            margin: 20px;
+        }
+        #cadreBouton
+        {
+            display: flex;
+            justify-content: space-around;
+            border-color: black;
+            border-style: solid;
+            border-width: 0px 1px 1px 1px;
+        }
+        .btn
+        {
+            margin: 15px;
+        }
+        #cadreCommentaire
+        {
+            background-color: white;
+            border-color: black;
+            border-style: solid;
+            border-width: 0px 1px 0px 1px;
+        }
+        #date
+        {
+            float: right;
+            font-style: italic;
+            font-size: 0.7em;
+        }
+
+
+    </style>
+
     <%@ include file="/_include/head.jsp"%>
 </head>
 <body>
 
 <%@ include file="/_include/header.jsp"%>
-<style type="text/css">
-    #page {
-        display: flex;
-        justify-content: space-around;
-        text-shadow: 0px 0px 15px rgba(0, 0, 0, 1);
-    }
-    #cadreImage
-    {
-        height: 400px;
-
-    }
-    #cadreInfos
-    {
-        height: 300px;
-        text-align: center;
-        border-color: black;
-        border-style: solid;
-        border-width: 0px 0px 0px 1px;
-
-    }
-    span
-    {
-        margin: 15px;
-    }
-    h4
-    {
-        margin: 20px;
-    }
-    #cadreBouton
-    {
-        display: flex;
-        justify-content: space-around;
-        border-color: black;
-        border-style: solid;
-        border-width: 0px 1px 1px 1px;
-    }
-    .btn
-    {
-        margin: 15px;
-    }
-    #cadreCommentaire
-    {
-        background-color: white;
-        border-color: black;
-        border-style: solid;
-        border-width: 0px 1px 0px 1px;
-    }
-    #date
-    {
-        float: right;
-        font-style: italic;
-        font-size: 0.7em;
-    }
-
-
-</style>
 
 
 <div id="page">

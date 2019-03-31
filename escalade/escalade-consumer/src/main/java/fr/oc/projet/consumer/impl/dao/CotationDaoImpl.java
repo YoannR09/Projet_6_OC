@@ -37,9 +37,10 @@ public class CotationDaoImpl extends AbstractDaoImpl implements CotationDao {
     public Cotation getCotationMaxSite(Integer siteId) {
         String vSQL = "SELECT * FROM secteur,voie,cotation" +
                 " WHERE site_id = "+siteId+
-                "  AND secteur.id = site_id"+
+                "  AND secteur.site_id = site_id"+
                 "  AND voie.secteur_id = secteur.id"+
-                "  AND cotation.id = voie.cotation_id";
+                "  AND cotation.id = voie.cotation_id" +
+                " ORDER BY niveau ASC";
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
         List<Cotation> vList = vJdbcTemplate.query(vSQL,cotationRM);
         int i = vList.size();
@@ -51,9 +52,10 @@ public class CotationDaoImpl extends AbstractDaoImpl implements CotationDao {
     public Cotation getCotationMinSite(Integer siteId) {
         String vSQL = "SELECT * FROM secteur,voie,cotation" +
                 " WHERE site_id = "+siteId+
-                "  AND secteur.id = site_id"+
+                "  AND secteur.site_id = site_id"+
                 "  AND voie.secteur_id = secteur.id"+
-                "  AND cotation.id = voie.cotation_id";
+                "  AND cotation.id = voie.cotation_id" +
+                " ORDER BY niveau ASC";
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
         List<Cotation> vList = vJdbcTemplate.query(vSQL,cotationRM);
         Cotation cotation = vList.get(0);
@@ -65,7 +67,8 @@ public class CotationDaoImpl extends AbstractDaoImpl implements CotationDao {
         String vSQL = "SELECT * FROM voie,cotation" +
                 " WHERE secteur_id = "+secteurId+
                 "  AND voie.secteur_id = secteur_id"+
-                "  AND cotation.id = voie.cotation_id";
+                "  AND cotation.id = voie.cotation_id" +
+                " ORDER BY niveau ASC";
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
         List<Cotation> vList = vJdbcTemplate.query(vSQL,cotationRM);
         int i = vList.size();
@@ -78,7 +81,8 @@ public class CotationDaoImpl extends AbstractDaoImpl implements CotationDao {
         String vSQL = "SELECT * FROM voie,cotation" +
                 " WHERE secteur_id = "+secteurId+
                 "  AND voie.secteur_id = secteur_id"+
-                "  AND cotation.id = voie.cotation_id";
+                "  AND cotation.id = voie.cotation_id" +
+                " ORDER BY niveau ASC";
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
         List<Cotation> vList = vJdbcTemplate.query(vSQL,cotationRM);
         Cotation cotation = vList.get(0);

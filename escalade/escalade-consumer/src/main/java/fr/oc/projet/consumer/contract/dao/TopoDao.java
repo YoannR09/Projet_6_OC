@@ -12,5 +12,9 @@ public interface TopoDao {
 
     List<Topo> getListTopo();
 
+    List<Topo> getListTopoValide();
+
+    List<Topo> getListTopoNonValide();
+
     void addTopo(Topo topo);
 }

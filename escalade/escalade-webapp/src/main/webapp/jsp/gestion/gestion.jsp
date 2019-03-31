@@ -69,8 +69,8 @@
 <div id="page">
 
     <div class="col-lg-4 col-md-4 col-sm-4" id="blocBtn" style="">
-        <s:a action="listSecteur" class="btn btn-outline-info">Liste des sites/topos à moderer</s:a>
-        <s:a action="listSecteur" class="btn btn-outline-info">Messages des utilisateurs</s:a>
+        <s:a action="moderation" class="btn btn-outline-info">Liste des sites/topos à moderer</s:a>
+        <s:a action="listMessage" class="btn btn-outline-info">Messages des utilisateurs</s:a>
     </div>
 
 </div>

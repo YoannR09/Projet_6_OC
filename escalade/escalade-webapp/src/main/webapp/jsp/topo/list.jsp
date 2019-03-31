@@ -13,7 +13,7 @@
         html, body {
             width: 100%;
             height: 100%;
-            background-image: url("/image/qbkls.png");
+            background-image: url("./image/gplay.png");
         }
         #page
         {
@@ -24,7 +24,7 @@
         #bloc
         {
             margin: 20px;
-            width: 500px;
+            width: 200px;
         }
         #divImage
         {
@@ -57,26 +57,24 @@
 </header>
 <div id="page" class="col-lg-12 col-md-12 col-sm-12">
 
-<div id="partieGauche"  class="col-lg-7 col-md-7 col-sm-7">
+<div id="partieGauche"  class="col-lg-7 col-md-7 col-sm-7" style="display: flex;justify-content: space-around">
         <s:iterator value="listTopo">
                 <div class="card text-white mb-4" id="bloc" style="background-color:rgba(0,0,0,0.8)">
-                    <div class="card-header "><s:property value="nom"/><span id="editeur">Editeur : <s:property value="responsable.pseudo"/></span></div>
-                    <div class="card-body" style="display: flex">
-                        <div id="divImage" class="col-lg-4 col-md-4 col-sm-4">
-
+                    <div class="card-header " style="text-align: center"><s:property value="nom"/></div>
+                    <div class="card-body" >
+                        <div id="divImage" class="col-lg-12 col-md-12 col-sm-12">
+                            <img src="./image/topo1.jpg"
+                                 width="100%" height="100%" id="img" style="border: 1px black solid;" />
                         </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6">
-                            <s:property value="description"/>
-                        </div>
-                        <div class="col-lg-2 col-md-2 col-sm-2" id="divCota">
-                            <s:a action="topo_detail" class="btn btn-info" id="btnVoir"><s:param name="idTopo" value="id" /> Voir </s:a>
-                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <s:a action="topo_detail" class="btn btn-info" id="btnVoir" style="width:100%"><s:param name="idTopo" value="id" /> Voir </s:a>
                     </div>
                 </div>
         </s:iterator>
 </div>
     <div id="partieDroite"  class="col-lg-3 col-md-3 col-sm-3">
-        <div class="card text-white bg-dark mb-4"  id="recherche">
+        <div class="card text-white mb-4"  id="recherche">
             <div class="card-header"></div>
             <div class="card-body" style="display: flex">
             </div>

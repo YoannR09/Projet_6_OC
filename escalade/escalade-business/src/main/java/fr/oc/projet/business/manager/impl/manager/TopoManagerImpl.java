@@ -24,4 +24,14 @@ public class TopoManagerImpl extends AbstractManagerImpl implements TopoManager 
     public List<Topo> getListTopo() {
         return getDaoFactory().getTopoDao().getListTopo();
     }
+
+    @Override
+    public List<Topo> getListTopoValide() {
+        return getDaoFactory().getTopoDao().getListTopoValide();
+    }
+
+    @Override
+    public List<Topo> getListTopoNonValide() {
+        return getDaoFactory().getTopoDao().getListTopoNonValide();
+    }
 }

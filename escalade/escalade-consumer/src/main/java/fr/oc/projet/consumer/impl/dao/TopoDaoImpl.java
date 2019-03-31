@@ -2,6 +2,7 @@ package fr.oc.projet.consumer.impl.dao;
 
 import fr.oc.projet.consumer.contract.dao.TopoDao;
 import fr.oc.projet.consumer.rowmapper.TopoRM;
+import fr.oc.projet.model.bean.escalade.Site;
 import fr.oc.projet.model.bean.escalade.Topo;
 import fr.oc.projet.model.bean.utilisateur.NiveauAcces;
 import org.springframework.dao.DuplicateKeyException;
@@ -39,6 +40,22 @@ public class TopoDaoImpl extends AbstractDaoImpl implements TopoDao {
     @Override
     public List<Topo> getListTopo() {
         String vSQL = "SELECT * FROM topo";
+        JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
+        List<Topo> vList = vJdbcTemplate.query(vSQL,topoRM);
+        return vList;
+    }
+
+    @Override
+    public List<Topo> getListTopoValide() {
+        String vSQL = "SELECT * FROM topo WHERE valide = TRUE";
+        JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
+        List<Topo> vList = vJdbcTemplate.query(vSQL,topoRM);
+        return vList;
+    }
+
+    @Override
+    public List<Topo> getListTopoNonValide() {
+        String vSQL = "SELECT * FROM topo WHERE valide = FALSE";
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
         List<Topo> vList = vJdbcTemplate.query(vSQL,topoRM);
         return vList;
