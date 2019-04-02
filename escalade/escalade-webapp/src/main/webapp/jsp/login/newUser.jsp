@@ -37,12 +37,12 @@
 </header>
 
 <div id="page">
-    <div class="card text-white mb-3" style=" ;background-color:rgba(0,0,0,0.8)"
+    <div class="card text-white mb-3" style=" ;background-color:rgba(0,0,0,0.7)"
          id="card">
 
         <div class="card-header"><h3>S'inscrire</h3></div>
         <div class="card-body" id="mid">
-            <s:form action="newUser">
+            <s:form action="newUser" enctype="multipart/form-data">
                 <div class="form-row"  id="cadreDiv" style="display: flex; justify-content: space-around;">
                     <div class="form-group col-md-4">
                         <label for="inputPseudo">Pseudo</label>
@@ -68,6 +68,7 @@
                         <label for="inputPassConf">Confirmer l'email</label>
                         <input name="emailConf" type="text" class="form-control" id="inputEmailConf" placeholder="Email" required>
                     </div>
+                    <input type = "file" name = "myFile" />
                 </div>
 
                 <h3 style="margin: 10px;text-decoration: underline;">Informations personnelles</h3>

@@ -55,7 +55,7 @@
         margin-top: 20px;
         display: flex;
         justify-content: space-around;
-        background-color:rgba(0,0,0,0.8);
+        background-color:rgba(0,0,0,0.7);
     }
     .btn
     {

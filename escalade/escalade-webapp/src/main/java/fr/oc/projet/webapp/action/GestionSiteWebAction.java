@@ -2,6 +2,7 @@ package fr.oc.projet.webapp.action;
 
 import com.opensymphony.xwork2.ActionSupport;
 import fr.oc.projet.business.manager.contract.ManagerFactory;
+import fr.oc.projet.model.bean.escalade.Secteur;
 import fr.oc.projet.model.bean.escalade.Site;
 import fr.oc.projet.model.bean.escalade.Topo;
 import fr.oc.projet.model.bean.utilisateur.Message;
@@ -23,8 +24,11 @@ public class GestionSiteWebAction extends ActionSupport {
     private List<Message> messageList;
     private List<Topo>    topoList;
     private List<Site>    siteList;
+    private List<Secteur> secteurList;
     private Integer       idMessage;
     private Message       message;
+    private Site          site;
+    private Integer       idSite;
 
 
     /**
@@ -61,6 +65,14 @@ public class GestionSiteWebAction extends ActionSupport {
     public String doDetailMessage(){
 
         message = managerFactory.getMessageManager().getMessage(idMessage);
+
+        return ActionSupport.SUCCESS;
+    }
+
+    public String doModerationSite(){
+
+        site = managerFactory.getSiteManager().getSite(idSite);
+        secteurList = managerFactory.getSecteurManager().getListSecteurSite(idSite);
 
         return ActionSupport.SUCCESS;
     }
@@ -104,6 +116,30 @@ public class GestionSiteWebAction extends ActionSupport {
 
     public void setMessage(Message message) {
         this.message = message;
+    }
+
+    public Site getSite() {
+        return site;
+    }
+
+    public void setSite(Site site) {
+        this.site = site;
+    }
+
+    public Integer getIdSite() {
+        return idSite;
+    }
+
+    public void setIdSite(Integer idSite) {
+        this.idSite = idSite;
+    }
+
+    public List<Secteur> getSecteurList() {
+        return secteurList;
+    }
+
+    public void setSecteurList(List<Secteur> secteurList) {
+        this.secteurList = secteurList;
     }
 }
 

@@ -8,7 +8,7 @@ public interface ReservationDao {
 
     Reservation getReservation(Integer pId);
 
-    Reservation getReservationTopo(Integer topoId);
+    List<Reservation> getReservationTopo(Integer topoId);
 
     List<Reservation> getListReservation();
 }

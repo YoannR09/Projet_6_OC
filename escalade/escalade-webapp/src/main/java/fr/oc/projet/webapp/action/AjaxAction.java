@@ -2,6 +2,7 @@ package fr.oc.projet.webapp.action;
 
 import com.opensymphony.xwork2.ActionSupport;
 import fr.oc.projet.business.manager.contract.ManagerFactory;
+import fr.oc.projet.model.bean.Count;
 import fr.oc.projet.model.bean.escalade.Secteur;
 import fr.oc.projet.model.bean.escalade.Site;
 import fr.oc.projet.model.bean.escalade.Topo;
@@ -16,14 +17,76 @@ public class AjaxAction extends ActionSupport {
     @Inject
     private ManagerFactory managerFactory;
 
-    private List<Commentaire>   listCommentaire;
-    private Site                site;
-    private List<Secteur>       listSecteur;
-    private String              nomSite;
-    private String              nomSecteur;
-    private String              nom;
-    private Topo                topo;
-    private String              nomTopo;
+    private     List<Commentaire>       listCommentaire;
+    private     Site                    site;
+    private     List<Secteur>           listSecteur;
+    private     String                  nomSite;
+    private     String                  nomSecteur;
+    private     String                  nom;
+    private     Topo                    topo;
+    private     String                  nomTopo;
+    private     Count                   nbreSite;
+    private     Count                   nbreTopo;
+
+
+
+    /**
+     * Action "AJAX" renvoyant la liste des commentaires d'un site/topo ou secteur.
+     * @return success
+     */
+    public String doAjaxGetListCommentaire() { // throws NotFoundException, TechnicalException {
+        String vResult = ActionSupport.SUCCESS;
+        try {
+
+            if(nomSite != null){
+                site = managerFactory.getSiteManager().getSiteViaNom(nomSite);
+                listCommentaire = managerFactory.getCommentaireManager().getListCommentaireSite(site.getId());
+            }else{
+                topo = managerFactory.getTopoManager().getTopoViaNom(nomTopo);
+                listCommentaire = managerFactory.getCommentaireManager().getListCommentaireTopo(topo.getId());
+            }
+
+
+        }  catch (Exception e) {
+            e.printStackTrace();
+        }
+        return vResult;
+    }
+    public String doAjaxGetListSecteur() { // throws NotFoundException, TechnicalException {
+        String vResult = ActionSupport.SUCCESS;
+        try {
+
+            site = managerFactory.getSiteManager().getSiteViaNom(nomSite);
+            listSecteur = managerFactory.getSecteurManager().getListSecteurSite(site.getId());
+
+        }  catch (Exception e) {
+            e.printStackTrace();
+        }
+        return vResult;
+    }
+
+    public String doAjaxAddSecteur(){
+        String vResult = ActionSupport.SUCCESS;
+
+        try {
+
+            site = managerFactory.getSiteManager().getSiteViaNom(nomSite);
+
+            Secteur secteur = new Secteur();
+            secteur.setNom(nom);
+            secteur.setSiteId(site.getId());
+
+            managerFactory.getSecteurManager().addSecteur(secteur);
+
+            listSecteur = managerFactory.getSecteurManager().getListSecteurSite(site.getId());
+
+
+        }  catch (Exception e) {
+            e.printStackTrace();
+        }
+        return vResult;
+    }
+
 
     public List<Commentaire> getListCommentaire() {
         return listCommentaire;
@@ -89,60 +152,19 @@ public class AjaxAction extends ActionSupport {
         this.nomTopo = nomTopo;
     }
 
-    /**
-     * Action "AJAX" renvoyant la liste des commentaires d'un site/topo ou secteur.
-     * @return success
-     */
-    public String doAjaxGetListCommentaire() { // throws NotFoundException, TechnicalException {
-        String vResult = ActionSupport.SUCCESS;
-        try {
-
-            if(nomSite != null){
-                site = managerFactory.getSiteManager().getSiteViaNom(nomSite);
-                listCommentaire = managerFactory.getCommentaireManager().getListCommentaireSite(site.getId());
-            }else{
-                topo = managerFactory.getTopoManager().getTopoViaNom(nomTopo);
-                listCommentaire = managerFactory.getCommentaireManager().getListCommentaireTopo(topo.getId());
-            }
-
-
-        }  catch (Exception e) {
-            e.printStackTrace();
-        }
-        return vResult;
-    }
-    public String doAjaxGetListSecteur() { // throws NotFoundException, TechnicalException {
-        String vResult = ActionSupport.SUCCESS;
-        try {
-
-            site = managerFactory.getSiteManager().getSiteViaNom(nomSite);
-            listSecteur = managerFactory.getSecteurManager().getListSecteurSite(site.getId());
-
-        }  catch (Exception e) {
-            e.printStackTrace();
-        }
-        return vResult;
+    public Count getNbreSite() {
+        return nbreSite;
     }
 
-    public String doAjaxAddSecteur(){
-        String vResult = ActionSupport.SUCCESS;
+    public void setNbreSite(Count nbreSite) {
+        this.nbreSite = nbreSite;
+    }
 
-        try {
+    public Count getNbreTopo() {
+        return nbreTopo;
+    }
 
-            site = managerFactory.getSiteManager().getSiteViaNom(nomSite);
-
-            Secteur secteur = new Secteur();
-            secteur.setNom(nom);
-            secteur.setSiteId(site.getId());
-
-            managerFactory.getSecteurManager().addSecteur(secteur);
-
-            listSecteur = managerFactory.getSecteurManager().getListSecteurSite(site.getId());
-
-
-        }  catch (Exception e) {
-            e.printStackTrace();
-        }
-        return vResult;
+    public void setNbreTopo(Count nbreTopo) {
+        this.nbreTopo = nbreTopo;
     }
 }

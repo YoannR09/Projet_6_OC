@@ -1,5 +1,6 @@
 package fr.oc.projet.consumer.contract.dao;
 
+import fr.oc.projet.model.bean.Count;
 import fr.oc.projet.model.bean.escalade.Topo;
 
 import java.util.List;
@@ -17,4 +18,6 @@ public interface TopoDao {
     List<Topo> getListTopoNonValide();
 
     void addTopo(Topo topo);
+
+    int getCountTopo();
 }

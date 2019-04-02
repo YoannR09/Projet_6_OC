@@ -14,7 +14,7 @@ public class ReservationManagerImpl extends AbstractManagerImpl implements Reser
     }
 
     @Override
-    public Reservation getReservationTopo(Integer topoId) {
+    public List<Reservation> getReservationTopo(Integer topoId) {
         return getDaoFactory().getReservationDao().getReservationTopo(topoId);
     }
 

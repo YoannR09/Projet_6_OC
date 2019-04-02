@@ -51,7 +51,7 @@
 <div id="page">
 
     <div class="col-lg-9 col-md-9 col-sm-9" style="color: white; margin-top: 20px;">
-        <div class="col-lg-12 col-md-12 col-sm-12" id="cadreInfos" style="background-color:rgba(0,0,0,0.8);display: flex;justify-content: space-around">
+        <div class="col-lg-12 col-md-12 col-sm-12" id="cadreInfos" style="background-color:rgba(0,0,0,0.7);display: flex;justify-content: space-around">
             <div class="col-lg-6 col-md-6 col-sm-6">
                 <h2 id="nomSite" style="padding: 20px"><s:property value="nom"/></h2>
             </div>
@@ -59,7 +59,7 @@
                 <button type="button" class="btn btn-outline-info" id="btnSecteur" style="float: right" data-toggle="modal" data-target="#exampleModalCenter">Ajouter un secteur</button>
             </div>
         </div>
-        <div class="col-lg-12 col-md-12 col-sm-12" id="cadreSecteur" style="background-color:rgba(0,0,0,0.8);">
+        <div class="col-lg-12 col-md-12 col-sm-12" id="cadreSecteur" style="background-color:rgba(0,0,0,0.7);">
             <h5 style="text-align: center">Liste des secteurs du site</h5>
             <div class="col-lg-12 col-md-12 col-sm-12" style="text-align: center">
                 <span class='badge badge-light' style='padding :10px;margin-bottom: 15px;'>Nom du secteur</span>

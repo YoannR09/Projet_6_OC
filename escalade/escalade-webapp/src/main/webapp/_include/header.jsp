@@ -5,7 +5,7 @@
   Time: 17:38
   To change this template use File | Settings | File Templates.
 --%>
-<nav class="navbar navbar-expand-lg navbar-dark " style="background-color:rgba(0,0,0,0.8);">
+<nav class="navbar navbar-expand-lg navbar-dark " style="background-color:rgba(0,0,0,0.7);">
     <s:a action="index" class="navbar-brand">Mon site d'escalade</s:a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>

@@ -94,13 +94,27 @@
         <div class="col-lg-12 col-md-12 col-sm-12" id="cadreCommentaire" style="background-color:rgba(0,0,0,0.7);">
             <a href="#" class="btn btn-sm btn-info " id="slideTop" style="width: 100% ; margin: auto; border-radius: 10%"></a>
             <div id="listCommentaire">
+                <s:iterator value="secteurList">
 
-                </div>
+                    <br/>
+                    <div  style="display: flex;justify-content: space-around">
+                        <span class='badge badge-info' style='padding-top:11px; width: 200px'> <s:property value="nom"/></span>
+                        <span class='badge badge-light' style='padding-top:11px;'> Nombre de voies : <s:property value="nombreVoie"/></span>
+                        <span class='badge badge-light' style='padding-top:11px;'> Cotations : <s:property value="cotationMin.valeur"/> à <s:property value="cotationMax.valeur"/></span>
+                        <span class='badge badge-light' style='padding-top:11px;'>- Hauteur : <s:property value="hauteurMin"/> à <s:property value="hauteurMax"/></span>
+                        <s:a action="site_detail" class="btn btn-outline-info" style="float:right;margin-top:13px"><s:param name="idSecteur" value="id" /> Voir </s:a>
+
+                    </div>
+                    <div style='width: 100%;height: 5px; border-bottom : 1px solid lightgray; border-radius: 40%'>
+                    </div>
+                </s:iterator>
+
+            </div>
         </div>
         <div class="col-lg-12 col-md-12 col-sm-12" id="cadreBouton" style="background-color:rgba(0,0,0,0.7);">
-            <button type="button" class="btn btn-outline-info" id="btnCom">Voir les commentaires</button>
-            <s:a action="listSecteur" class="btn btn-outline-info"><s:param name="idSite" value="site.id" />Liste des secteurs</s:a>
-            <button type="button" class="btn btn-outline-info" id="btnSecteur" data-toggle="modal" data-target="#exampleModalCenter">Evaluer ce site</button>
+            <s:a action="" class="btn btn-outline-danger"><s:param name="idSite" value="site.id" />Refuser</s:a>
+            <button type="button" class="btn btn-outline-info" id="btnCom">Voir les secteurs</button>
+            <button type="button" class="btn btn-outline-success" id="btnSecteur" data-toggle="modal" data-target="#exampleModalCenter">Valider</button>
         </div>
 
         <!--------------------------------- Pop-up ------------------------------------>
@@ -133,9 +147,6 @@
 <script>
     $(function() {
 
-        reloadListCommentaire();
-        setInterval(reloadListCommentaire, 5000);
-
         $('#cadreCommentaire').hide();
         $('#cadreSecteur').hide();
 
@@ -159,47 +170,6 @@
 
         });
     });
-    function reloadListCommentaire() {
-        // URL de l'action AJAX
-        var url = "<s:url action="ajax_getListCommentaire"/>";
-
-        var nomSite =$("#nomSite").text();
-
-        var params = {
-            nomSite: nomSite
-        };
-
-        // Action AJAX en POST
-        jQuery.post(
-            url,
-            params,
-            function (data) {
-                var $listCommentaire = jQuery("#listCommentaire");
-                $listCommentaire.empty();
-                jQuery.each(data, function (key, val) {
-                    $listCommentaire.append(
-                        jQuery("<span class='badge badge-info' style='padding :10px;margin-bottom: 15px;width: 15%;'>")
-                            .append(val.auteur.pseudo)
-                    );
-                    $listCommentaire.append(
-                        jQuery("<span class='badge badge-light' style='padding :10px;margin-bottom: 15px;width: 60%;height: 70px;text-align: left'>")
-                            .append(val.contenu)
-                    );
-
-                    $listCommentaire.append(
-                        jQuery("<span class='badge badge-light' style='margin-bottom: 15px;'>")
-                            .append(val.date)
-                    );
-
-                    $listCommentaire.append(
-                        jQuery("<div style='width: 100%;height: 5px; border-bottom : 1px solid lightgray; border-radius: 40%'>")
-                    );
-                });
-            })
-            .fail(function () {
-                alert("Erreur !!");
-            });
-    }
 </script>
 </body>
 </html>

@@ -70,7 +70,7 @@
     {
         color: white;
         margin-top: 40px;
-        background-color:rgba(0,0,0,0.8);
+        background-color:rgba(0,0,0,0.7);
         text-align: center;
     }
     #partieDroite
@@ -115,7 +115,7 @@
                     <span class='badge badge-light' style='padding-top:11px;'>Cotations : <s:property value="cotationMin.valeur"/> à <s:property value="cotationMax.valeur"/></span>
                     <span class='badge badge-light' style='padding-top:11px;'><s:property value="date"/></span>
                     <span class='badge badge-light' style='padding-top:11px; width: 200px'><s:property value="editeur.pseudo"/></span>
-                    <s:a action="site_detail" class="btn btn-outline-info" style="float:right;margin-top:13px"><s:param name="idSecteur" value="id" /> Voir </s:a>
+                    <s:a action="moderer_site" class="btn btn-outline-info" style="float:right;margin-top:13px"><s:param name="idSite" value="id" /> Voir </s:a>
 
                 </div>
                 <div style='width: 100%;height: 5px; border-bottom : 1px solid lightgray; border-radius: 40%'>

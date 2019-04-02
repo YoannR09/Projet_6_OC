@@ -25,8 +25,10 @@ public class ReservationRM implements RowMapper<Reservation> {
         reservation.setId(resultSet.getInt("id"));
         reservation.setMatin(resultSet.getBoolean("matin"));
         reservation.setApresMidi(resultSet.getBoolean("apres_midi"));
+        reservation.setDate(resultSet.getDate("date"));
         reservation.setCompte(compteDao.getCompte(resultSet.getInt("compte_id")));
         reservation.setTopo(topoDao.getTopo(resultSet.getInt("topo_id")));
+
         return reservation;
     }
 }

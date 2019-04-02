@@ -57,14 +57,14 @@
 <div id="page">
 
     <div class="col-lg-9 col-md-9 col-sm-9" style="color: white; margin-top: 20px;">
-        <div class="col-lg-12 col-md-12 col-sm-12" id="cadreInfos" style="background-color:rgba(0,0,0,0.8);padding-top: 10px">
+        <div class="col-lg-12 col-md-12 col-sm-12" id="cadreInfos" style="background-color:rgba(0,0,0,0.7);padding-top: 10px">
             <h4>Envoyez nous votre message</h4>
             <span style="font-size: 0.7em;">Par email : rocheyoann@outlook.fr</span>
         </div>
-        <div class="col-lg-12 col-md-12 col-sm-12" id="cadreMessage" style="background-color:rgba(0,0,0,0.8);padding-top: 10px">
+        <div class="col-lg-12 col-md-12 col-sm-12" id="cadreMessage" style="background-color:rgba(0,0,0,0.7);padding-top: 10px">
             <s:textarea id="messageText" name="message" class="form-control" placeholder="Entrez votre message..." label="Votre message "/>
         </div>
-        <div class="col-lg-12 col-md-12 col-sm-12" id="cadreBtn" style="background-color:rgba(0,0,0,0.8);padding-top: 10px;display: flex;justify-content: flex-end">
+        <div class="col-lg-12 col-md-12 col-sm-12" id="cadreBtn" style="background-color:rgba(0,0,0,0.7);padding-top: 10px;display: flex;justify-content: flex-end">
             <s:a action="addVoie" class="btn btn-outline-info" style="margin-bottom:15px;"><s:param name="nomSite" value="nom" /> Envoyer </s:a>
         </div>
     </div>

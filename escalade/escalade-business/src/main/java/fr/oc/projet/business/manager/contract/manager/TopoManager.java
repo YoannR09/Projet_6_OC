@@ -1,5 +1,6 @@
 package fr.oc.projet.business.manager.contract.manager;
 
+import fr.oc.projet.model.bean.Count;
 import fr.oc.projet.model.bean.escalade.Topo;
 
 import java.util.List;
@@ -15,4 +16,6 @@ public interface TopoManager {
     List<Topo> getListTopoValide();
 
     List<Topo> getListTopoNonValide();
+
+    int getCountTopo();
 }

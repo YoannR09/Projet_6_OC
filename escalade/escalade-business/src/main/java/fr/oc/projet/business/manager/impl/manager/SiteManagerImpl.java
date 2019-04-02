@@ -1,6 +1,7 @@
 package fr.oc.projet.business.manager.impl.manager;
 
 import fr.oc.projet.business.manager.contract.manager.SiteManager;
+import fr.oc.projet.model.bean.Count;
 import fr.oc.projet.model.bean.escalade.Site;
 
 import javax.inject.Named;
@@ -33,5 +34,10 @@ public class SiteManagerImpl extends AbstractManagerImpl implements SiteManager 
     @Override
     public void addSite(Site site) {
         getDaoFactory().getSiteDao().addSite(site);
+    }
+
+    @Override
+    public int getCountSite() {
+        return getDaoFactory().getSiteDao().getCountSite();
     }
 }

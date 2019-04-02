@@ -6,10 +6,13 @@ import fr.oc.projet.model.bean.utilisateur.Compte;
 import fr.oc.projet.model.bean.utilisateur.NiveauAcces;
 import javassist.NotFoundException;
 import jdk.jfr.Name;
+import org.apache.commons.io.FileUtils;
 import org.apache.struts2.interceptor.SessionAware;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.io.File;
+import java.io.IOException;
 import java.util.Map;
 
 public class LoginAction extends ActionSupport implements SessionAware {
@@ -18,7 +21,6 @@ public class LoginAction extends ActionSupport implements SessionAware {
     private ManagerFactory managerFactory;
 
     // ==================== Attributs ====================
-    // ----- Paramètres en entrée
     private        Compte         compte;
     private        NiveauAcces    niveauAcces;
     private        String         nom;
@@ -29,6 +31,10 @@ public class LoginAction extends ActionSupport implements SessionAware {
     private        String         email;
     private        String         emailConf;
     private        String         numero;
+    private        File           myFile;
+    private        String         myFileContentType;
+    private        String         myFileFileName;
+    private        String         destPath;
 
     // ----- Eléments Struts
     private Map<String, Object> session;
@@ -78,6 +84,8 @@ public class LoginAction extends ActionSupport implements SessionAware {
             if (password.equals(passwordConf)) {
                 // On regarde si l'email est bien confirmé une deuxième fois
                 if (email.equals(emailConf)) {
+
+
                     Compte compte = new Compte();
 
                     compte.setPseudo(pseudo);
@@ -89,6 +97,20 @@ public class LoginAction extends ActionSupport implements SessionAware {
                     compte.setNiveau(1);
 
                     managerFactory.getCompteManager().addCompte(compte);
+
+                    destPath = "C:/Users/El-ra/Documents/Projet_6_OC/escalade/escalade-webapp/src/main/webapp/image/"+compte.getPseudo()+"/";
+
+                    try {
+                        System.out.println("Src File name: " + myFile);
+                        System.out.println("Dst File name: " + myFileFileName);
+
+                        File destFile  = new File(destPath, myFileFileName);
+                        FileUtils.copyFile(myFile, destFile);
+
+                    } catch(IOException e) {
+                        e.printStackTrace();
+                        return ERROR;
+                    }
 
                     vResult = ActionSupport.SUCCESS;
                 }
@@ -177,5 +199,29 @@ public class LoginAction extends ActionSupport implements SessionAware {
 
     public void setNumero(String numero) {
         this.numero = numero;
+    }
+
+    public File getMyFile() {
+        return myFile;
+    }
+
+    public void setMyFile(File myFile) {
+        this.myFile = myFile;
+    }
+
+    public String getMyFileContentType() {
+        return myFileContentType;
+    }
+
+    public void setMyFileContentType(String myFileContentType) {
+        this.myFileContentType = myFileContentType;
+    }
+
+    public String getMyFileFileName() {
+        return myFileFileName;
+    }
+
+    public void setMyFileFileName(String myFileFileName) {
+        this.myFileFileName = myFileFileName;
     }
 }

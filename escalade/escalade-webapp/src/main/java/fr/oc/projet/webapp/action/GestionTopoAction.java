@@ -4,6 +4,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import fr.oc.projet.business.manager.contract.ManagerFactory;
 import fr.oc.projet.model.bean.escalade.Topo;
 import fr.oc.projet.model.bean.utilisateur.Commentaire;
+import fr.oc.projet.model.bean.utilisateur.Reservation;
 
 import javax.inject.Inject;
 import java.util.List;
@@ -15,6 +16,7 @@ public class GestionTopoAction extends ActionSupport {
 
     private List<Topo> listTopo;
     private List<Commentaire> listCommentaire;
+    private List<Reservation> reservationList;
     private Topo    topo;
     private Integer idTopo;
 
@@ -56,6 +58,14 @@ public class GestionTopoAction extends ActionSupport {
         this.idTopo = idTopo;
     }
 
+    public List<Reservation> getReservationList() {
+        return reservationList;
+    }
+
+    public void setReservationList(List<Reservation> reservationList) {
+        this.reservationList = reservationList;
+    }
+
     public String doDetailTopo(){
 
         if (this.idTopo == null) {
@@ -65,6 +75,13 @@ public class GestionTopoAction extends ActionSupport {
             listCommentaire = managerFactory.getCommentaireManager().getListCommentaireTopo(idTopo);
 
         }
+        return  ActionSupport.SUCCESS;
+    }
+
+    public  String doReservationTopo(){
+
+        reservationList = managerFactory.getReservationManager().getReservationTopo(idTopo);
+
         return  ActionSupport.SUCCESS;
     }
 }

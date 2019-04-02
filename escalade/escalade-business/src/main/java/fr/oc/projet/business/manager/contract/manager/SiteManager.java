@@ -1,5 +1,6 @@
 package fr.oc.projet.business.manager.contract.manager;
 
+import fr.oc.projet.model.bean.Count;
 import fr.oc.projet.model.bean.escalade.Site;
 
 import java.util.List;
@@ -15,4 +16,6 @@ public interface SiteManager {
     List<Site> getListSiteNonValide();
 
     void addSite(Site site);
+
+    int getCountSite();
 }

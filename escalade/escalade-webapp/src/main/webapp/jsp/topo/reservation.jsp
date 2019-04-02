@@ -19,28 +19,12 @@
             justify-content: space-around;
             text-shadow: 0px 0px 15px rgba(0, 0, 0, 1);
         }
-        #cadreImage
-        {
-            height: 400px;
-
-        }
-        #cadreInfos
-        {
-            height: 300px;
-            text-align: center;
-            border-color: black;
-            border-style: solid;
-            border-width: 0px 0px 0px 1px;
-
-        }
         span
         {
             margin: 15px;
+            padding: auto;
         }
-        h4
-        {
-            margin: 20px;
-        }
+
         #cadreBouton
         {
             display: flex;
@@ -49,10 +33,7 @@
             border-style: solid;
             border-width: 0px 1px 1px 1px;
         }
-        .btn
-        {
-            margin: 15px;
-        }
+
         #cadreCommentaire
         {
             background-color: white;
@@ -60,13 +41,10 @@
             border-style: solid;
             border-width: 0px 1px 0px 1px;
         }
-        #date
+        h3
         {
-            float: right;
-            font-style: italic;
-            font-size: 0.7em;
+            padding: 10px;
         }
-
 
     </style>
 
@@ -81,25 +59,39 @@
 
     <div class="col-lg-9 col-md-9 col-sm-9" style="color: white; margin-top: 20px;">
         <div class="col-lg-12 col-md-12 col-sm-12" id="cadreImage" style="background-color:rgba(0,0,0,0.7);padding-top: 10px">
-            <img src="./image/toulon3.jpg"
-                 width="100%" height="100%" id="img" style="border: 1px black solid;" />
-        </div>
-        <div class="col-lg-12 col-md-12 col-sm-12" id="cadreInfos" style="background-color:rgba(0,0,0,0.7);">
-            <h2 id="nomTopo"><s:property value="topo.nom"/></h2>
-            <br/><s:property value="topo.description"/>
+            <h3>Vous voulez reserver ce topo</h3>
+            <s:form action="">
+                <div class="form-group row">
+                    <label for="example-date-input" class="col-2 col-form-label">Date à reserver : </label>
+                    <div class="col-4">
+                        <input name="date" class="form-control" type="date" value="2019-08-04" id="example-date-input">
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <label class="form-check-label">
+                            <input name="matin" class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1"> Matin
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <label class="form-check-label">
+                            <input name="apresMidi" class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2"> Après-midi
+                        </label>
+                    </div>
+                    <s:a action="" class="btn btn-outline-info"><s:param name="idTopo" value="id" /> Réserver </s:a>
+                </div>
+            </s:form>
 
-        </div>
+            <h3 >Liste des réservations de ce topo</h3>
+            <s:iterator value="reservationList">
 
-        <div class="col-lg-12 col-md-12 col-sm-12" id="cadreCommentaire" style="background-color:rgba(0,0,0,0.7);">
-            <a href="#" class="btn btn-sm btn-info " id="slideTop" style="width: 100% ; margin: auto; border-radius: 10%"></a>
-            <div id="listCommentaire">
-
-            </div>
-        </div>
-        <div class="col-lg-12 col-md-12 col-sm-12" id="cadreBouton" style="background-color:rgba(0,0,0,0.7);">
-            <button type="button" class="btn btn-outline-info" id="btnCom">Voir les commentaires</button>
-            <s:a action="reservationTopo" class="btn btn-outline-info"><s:param name="idTopo" value="topo.id" />Voir les créneaux disponibles</s:a>
-            <button type="button" class="btn btn-outline-info" id="btnSecteur" data-toggle="modal" data-target="#exampleModalCenter">Evaluer ce site</button>
+                <div  style="display: flex;justify-content: space-around">
+                    <span class='badge badge-info' style='padding-top:5px; width: 200px'> <s:property value="compte.pseudo"/></span>
+                    <span class='badge badge-light' style='padding-top:5px' > Date : <s:property value="date"/></span>
+                    <span class='badge badge-light' style='padding-top:5px'> Matinée : <s:if test="%{matin == true}">réservé</s:if><s:else>non réservé</s:else></span>
+                    <span class='badge badge-light' style='padding-top:5px'> Après-midi : <s:if test="%{apresMidi == true}">réservé</s:if><s:else>non réservé</s:else></span>
+                </div>
+                <div style='width: 100%;height: 5px; border-bottom : 1px solid lightgray; border-radius: 40%'>
+                </div>
+            </s:iterator>
         </div>
 
         <!--------------------------------- Pop-up ------------------------------------>
@@ -132,31 +124,6 @@
 <script>
     $(function() {
 
-        reloadListCommentaire();
-        setInterval(reloadListCommentaire, 5000);
-
-        $('#cadreCommentaire').hide();
-        $('#cadreSecteur').hide();
-
-        $("#btnCom").click(function() {
-
-            $('#cadreBouton').css('border-width','0px 1px 1px 1px');
-
-            $("html, body").animate({ scrollTop: $('#page').height() }, 1500);
-
-            $('#cadreCommentaire').slideDown(1500);
-
-        });
-
-        $("#slideTop").click(function() {
-
-            $('#cadreBouton').css('border-width','0px 1px 1px 1px');
-
-            $("html, body").animate({ scrollTop: $('#page').height() }, 1500);
-
-            $('#cadreCommentaire').slideUp(1500);
-
-        });
     });
     function reloadListCommentaire() {
         // URL de l'action AJAX

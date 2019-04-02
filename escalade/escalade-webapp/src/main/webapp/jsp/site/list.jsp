@@ -18,7 +18,7 @@
         #bloc
         {
             margin: 20px;
-            background-color:rgba(0,0,0,0.8);
+            background-color:rgba(0,0,0,0.7);
         }
         #divImage
         {
@@ -57,7 +57,7 @@
 </header>
 <div id="page">
     <div id="partieDroite"  class="col-lg-3 col-md-3 col-sm-3">
-        <div class="card text-white mb-4"  id="recherche" style="background-color:rgba(0,0,0,0.8)">
+        <div class="card text-white mb-4"  id="recherche" style="background-color:rgba(0,0,0,0.7)">
             <div class="card-header "></div>
             <div class="card-body" style="display: flex">
             </div>

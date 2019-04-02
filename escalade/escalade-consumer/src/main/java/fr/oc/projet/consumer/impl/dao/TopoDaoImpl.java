@@ -2,6 +2,7 @@ package fr.oc.projet.consumer.impl.dao;
 
 import fr.oc.projet.consumer.contract.dao.TopoDao;
 import fr.oc.projet.consumer.rowmapper.TopoRM;
+import fr.oc.projet.model.bean.Count;
 import fr.oc.projet.model.bean.escalade.Site;
 import fr.oc.projet.model.bean.escalade.Topo;
 import fr.oc.projet.model.bean.utilisateur.NiveauAcces;
@@ -79,5 +80,14 @@ public class TopoDaoImpl extends AbstractDaoImpl implements TopoDao {
             vJdbcTemplate.update(vSQL, vParams);
         } catch (DuplicateKeyException vEx) {
         }
+    }
+
+    @Override
+    public int getCountTopo() {
+        JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
+        int vNbrTopo = vJdbcTemplate.queryForObject(
+                "SELECT COUNT(*) FROM public.topo",
+                Integer.class);
+        return vNbrTopo;
     }
 }

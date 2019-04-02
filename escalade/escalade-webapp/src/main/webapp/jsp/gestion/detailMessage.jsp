@@ -97,7 +97,7 @@
 <div id="page">
 
     <div class="col-lg-8 col-md-8 col-sm-8" style="color: white; margin-top: 20px;">
-        <div class="col-lg-12 col-md-12 col-sm-12" id="cadreInfos" style="background-color:rgba(0,0,0,0.8); ">
+        <div class="col-lg-12 col-md-12 col-sm-12" id="cadreInfos" style="background-color:rgba(0,0,0,0.7); ">
             <div class="col-lg-3 col-md-3 col-sm-3">
             <div id="pseudoCadre" style='padding :10px;text-align:center'>
                 <span id="pseudo"class='btn btn-info btn-sm'  style='text-align:center'>

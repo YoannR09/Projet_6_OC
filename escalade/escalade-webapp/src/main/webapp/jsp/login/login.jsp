@@ -38,7 +38,7 @@
 </header>
 
 <div id="page">
-<div class="card text-white mb-3" style="max-width: 25rem;background-color:rgba(0,0,0,0.8)"
+<div class="card text-white mb-3" style="max-width: 25rem;background-color:rgba(0,0,0,0.7)"
      id="card">
 
     <div class="card-header"><h3>Connection</h3></div>

@@ -2,6 +2,7 @@ package fr.oc.projet.consumer.impl.dao;
 
 import fr.oc.projet.consumer.contract.dao.SiteDao;
 import fr.oc.projet.consumer.rowmapper.SiteRM;
+import fr.oc.projet.model.bean.Count;
 import fr.oc.projet.model.bean.escalade.Site;
 import fr.oc.projet.model.bean.escalade.Topo;
 import org.springframework.dao.DuplicateKeyException;
@@ -90,4 +91,14 @@ public class SiteDaoImpl extends AbstractDaoImpl implements SiteDao {
         } catch (DuplicateKeyException vEx) {
         }
     }
+
+    @Override
+    public int getCountSite() {
+        JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
+        int vNbrSite = vJdbcTemplate.queryForObject(
+                "SELECT COUNT(*) FROM public.site",
+                Integer.class);
+        return vNbrSite;
+    }
+
 }
