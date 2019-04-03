@@ -54,7 +54,10 @@ public class SiteDaoImpl extends AbstractDaoImpl implements SiteDao {
 
     @Override
     public List<Site> getListSiteValide() {
-        String vSQL = "SELECT * FROM site WHERE valide = TRUE";
+        String vSQL = "SELECT * FROM site " +
+                " WHERE valide = TRUE " +
+                " ORDER BY id DESC" +
+                " LIMIT 5 ";
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
         List<Site> vList = vJdbcTemplate.query(vSQL,siteRM);
         return vList;
@@ -66,6 +69,23 @@ public class SiteDaoImpl extends AbstractDaoImpl implements SiteDao {
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
         List<Site> vList = vJdbcTemplate.query(vSQL,siteRM);
         return vList;
+    }
+
+    @Override
+    public List<Site> getListSiteValidePageDown(Integer lastId) {
+        String vSQL = "SELECT * FROM site " +
+                " WHERE valide = true " +
+                " AND id < "+lastId+
+                " ORDER BY id DESC" +
+                " LIMIT 5";
+        JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
+        List<Site> vList = vJdbcTemplate.query(vSQL,siteRM);
+        return vList;
+    }
+
+    @Override
+    public List<Site> getListSiteValidePageUp(Integer lastId) {
+        return null;
     }
 
     @Override
@@ -96,9 +116,11 @@ public class SiteDaoImpl extends AbstractDaoImpl implements SiteDao {
     public int getCountSite() {
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
         int vNbrSite = vJdbcTemplate.queryForObject(
-                "SELECT COUNT(*) FROM public.site",
+                "SELECT COUNT(*) FROM public.site WHERE valide = TRUE ",
                 Integer.class);
         return vNbrSite;
     }
+
+
 
 }

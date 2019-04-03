@@ -18,4 +18,6 @@ public interface TopoManager {
     List<Topo> getListTopoNonValide();
 
     int getCountTopo();
+
+    void addTopo(Topo topo);
 }

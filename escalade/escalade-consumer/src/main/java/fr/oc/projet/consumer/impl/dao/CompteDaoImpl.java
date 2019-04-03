@@ -3,14 +3,12 @@ package fr.oc.projet.consumer.impl.dao;
 import fr.oc.projet.consumer.contract.dao.CompteDao;
 import fr.oc.projet.consumer.rowmapper.CompteRM;
 import fr.oc.projet.model.bean.utilisateur.Compte;
-import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 import javax.inject.Inject;
 import javax.inject.Named;
-import java.sql.SQLException;
 import java.sql.Types;
 import java.util.List;
 
@@ -72,30 +70,22 @@ public class CompteDaoImpl extends AbstractDaoImpl implements CompteDao {
      */
     @Override
     public void addCompte(Compte compte) {
-        try {
-
-            getDataSource().getConnection().setAutoCommit(false);
-            String vSQL = "INSERT INTO compte (pseudo, nom, prenom, mot_de_passe, email, numero_de_telephone, niveau_acces_id)" +
-                    " VALUES (:pseudo, :nom, :prenom, :password, :email, :numero, :niveau)";
-            NamedParameterJdbcTemplate vJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
-
-            BeanPropertySqlParameterSource vParams = new BeanPropertySqlParameterSource(compte);
-            vParams.registerSqlType("pseudo", Types.VARCHAR);
-            vParams.registerSqlType("nom", Types.VARCHAR);
-            vParams.registerSqlType("prenom", Types.VARCHAR);
-            vParams.registerSqlType("password", Types.VARCHAR);
-            vParams.registerSqlType("email", Types.VARCHAR);
-            vParams.registerSqlType("numero", Types.VARCHAR);
-            vParams.registerSqlType("niveau", Types.INTEGER);
-
-            vJdbcTemplate.update(vSQL, vParams);
-
-            getDataSource().getConnection().commit();
 
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        String vSQL = "INSERT INTO compte (pseudo, nom, prenom, mot_de_passe, email, numero_de_telephone, niveau_acces_id)" +
+                " VALUES (:pseudo, :nom, :prenom, :password, :email, :numero, :niveau)";
+        NamedParameterJdbcTemplate vJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
+
+        BeanPropertySqlParameterSource vParams = new BeanPropertySqlParameterSource(compte);
+        vParams.registerSqlType("pseudo", Types.VARCHAR);
+        vParams.registerSqlType("nom", Types.VARCHAR);
+        vParams.registerSqlType("prenom", Types.VARCHAR);
+        vParams.registerSqlType("password", Types.VARCHAR);
+        vParams.registerSqlType("email", Types.VARCHAR);
+        vParams.registerSqlType("numero", Types.VARCHAR);
+        vParams.registerSqlType("niveau", Types.INTEGER);
+
+        vJdbcTemplate.update(vSQL, vParams);
 
     }
 

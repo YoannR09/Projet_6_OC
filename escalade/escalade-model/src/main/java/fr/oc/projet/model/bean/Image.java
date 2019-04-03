@@ -12,8 +12,11 @@ public class Image {
     private        Topo         topo;
     private        Site         site;
     private        Compte       compte;
+    private        Integer      compteId;
+    private        Integer      topoId;
+    private        Integer      siteId;
 
-    private Image(){}
+    public Image(){}
 
     public Integer getId() {
         return id;
@@ -61,5 +64,29 @@ public class Image {
 
     public void setCompte(Compte compte) {
         this.compte = compte;
+    }
+
+    public Integer getCompteId() {
+        return compteId;
+    }
+
+    public void setCompteId(Integer compteId) {
+        this.compteId = compteId;
+    }
+
+    public Integer getTopoId() {
+        return topoId;
+    }
+
+    public void setTopoId(Integer topoId) {
+        this.topoId = topoId;
+    }
+
+    public Integer getSiteId() {
+        return siteId;
+    }
+
+    public void setSiteId(Integer siteId) {
+        this.siteId = siteId;
     }
 }

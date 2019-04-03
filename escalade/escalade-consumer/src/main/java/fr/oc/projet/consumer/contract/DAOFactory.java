@@ -34,4 +34,6 @@ public interface DAOFactory {
 
     LikesDao getLikesDao();
 
+    ImageDao getImageDao();
+
 }

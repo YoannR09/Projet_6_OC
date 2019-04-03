@@ -7,7 +7,6 @@ import fr.oc.projet.model.bean.escalade.Secteur;
 import fr.oc.projet.model.bean.escalade.Site;
 import fr.oc.projet.model.bean.escalade.Topo;
 import fr.oc.projet.model.bean.utilisateur.Commentaire;
-import javassist.NotFoundException;
 
 import javax.inject.Inject;
 import java.util.List;
@@ -18,6 +17,8 @@ public class AjaxAction extends ActionSupport {
     private ManagerFactory managerFactory;
 
     private     List<Commentaire>       listCommentaire;
+    private     List<Topo>              listTopo;
+    private     List<Site>              listSite;
     private     Site                    site;
     private     List<Secteur>           listSecteur;
     private     String                  nomSite;
@@ -86,6 +87,8 @@ public class AjaxAction extends ActionSupport {
         }
         return vResult;
     }
+
+
 
 
     public List<Commentaire> getListCommentaire() {
@@ -166,5 +169,21 @@ public class AjaxAction extends ActionSupport {
 
     public void setNbreTopo(Count nbreTopo) {
         this.nbreTopo = nbreTopo;
+    }
+
+    public List<Topo> getListTopo() {
+        return listTopo;
+    }
+
+    public void setListTopo(List<Topo> listTopo) {
+        this.listTopo = listTopo;
+    }
+
+    public List<Site> getListSite() {
+        return listSite;
+    }
+
+    public void setListSite(List<Site> listSite) {
+        this.listSite = listSite;
     }
 }

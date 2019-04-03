@@ -68,7 +68,9 @@
                         <label for="inputPassConf">Confirmer l'email</label>
                         <input name="emailConf" type="text" class="form-control" id="inputEmailConf" placeholder="Email" required>
                     </div>
-                    <input type = "file" name = "myFile" />
+
+                        <input type="file" name="myFile">
+
                 </div>
 
                 <h3 style="margin: 10px;text-decoration: underline;">Informations personnelles</h3>

@@ -101,8 +101,6 @@ public class LoginAction extends ActionSupport implements SessionAware {
                     destPath = "C:/Users/El-ra/Documents/Projet_6_OC/escalade/escalade-webapp/src/main/webapp/image/"+compte.getPseudo()+"/";
 
                     try {
-                        System.out.println("Src File name: " + myFile);
-                        System.out.println("Dst File name: " + myFileFileName);
 
                         File destFile  = new File(destPath, myFileFileName);
                         FileUtils.copyFile(myFile, destFile);

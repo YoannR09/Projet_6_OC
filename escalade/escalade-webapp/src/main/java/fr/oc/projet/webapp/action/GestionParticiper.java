@@ -2,9 +2,13 @@ package fr.oc.projet.webapp.action;
 
 import com.opensymphony.xwork2.ActionSupport;
 import fr.oc.projet.business.manager.contract.ManagerFactory;
+import fr.oc.projet.model.bean.Image;
 import fr.oc.projet.model.bean.escalade.*;
+import org.apache.commons.io.FileUtils;
 
 import javax.inject.Inject;
+import java.io.File;
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
@@ -29,6 +33,10 @@ public class GestionParticiper extends ActionSupport {
     private      Site                    site;
     private      String                  nomSecteur;
     private      String                  nomSite;
+    private      File                    myFile;
+    private      String                  myFileContentType;
+    private      String                  myFileFileName;
+    private      String                  destPath;
 
 
     /**
@@ -51,6 +59,31 @@ public class GestionParticiper extends ActionSupport {
                 topo.setNom(nom);
                 topo.setDescription(description);
                 topo.setResponsableId(topo.getResponsable().getId());
+
+                managerFactory.getTopoManager().addTopo(topo);
+
+                destPath = "C:/Users/El-ra/Documents/Projet_6_OC/escalade/escalade-webapp/src/main/webapp/image/"+topo.getNom()+"/";
+
+                try {
+
+                    System.out.println("url : "+topo.getNom()+myFileFileName);
+                    File destFile  = new File(destPath, myFileFileName);
+                    FileUtils.copyFile(myFile, destFile);
+
+                    Image image = new Image();
+                    image.setUrl(topo.getNom()+myFileFileName);
+                    image.setImageDePresentation(true);
+                    image.setCompteId(1);
+                    image.setTopoId(topo.getId());
+                    image.setSiteId(null);
+
+                    managerFactory.getImageManager().addImage(image);
+
+
+                } catch(IOException e) {
+                    e.printStackTrace();
+                    return ERROR;
+                }
             }
         }else {
             Site site = new Site();
@@ -209,5 +242,37 @@ public class GestionParticiper extends ActionSupport {
 
     public void setSite(Site site) {
         this.site = site;
+    }
+
+    public File getMyFile() {
+        return myFile;
+    }
+
+    public void setMyFile(File myFile) {
+        this.myFile = myFile;
+    }
+
+    public String getMyFileContentType() {
+        return myFileContentType;
+    }
+
+    public void setMyFileContentType(String myFileContentType) {
+        this.myFileContentType = myFileContentType;
+    }
+
+    public String getMyFileFileName() {
+        return myFileFileName;
+    }
+
+    public void setMyFileFileName(String myFileFileName) {
+        this.myFileFileName = myFileFileName;
+    }
+
+    public String getDestPath() {
+        return destPath;
+    }
+
+    public void setDestPath(String destPath) {
+        this.destPath = destPath;
     }
 }

@@ -39,6 +39,8 @@ public class ManagerFactoryImpl implements ManagerFactory {
     private CommentaireManager commentaireManager;
     @Inject
     private LikesManager likesManager;
+    @Inject
+    private ImageManager imageManager;
 
 
     @Override
@@ -114,5 +116,10 @@ public class ManagerFactoryImpl implements ManagerFactory {
     @Override
     public LikesManager getLikesManager() {
         return this.likesManager;
+    }
+
+    @Override
+    public ImageManager getImageManager() {
+        return this.imageManager;
     }
 }

@@ -27,6 +27,9 @@ public class GestionSiteAction extends ActionSupport {
     private         Integer               idSecteur;
     private         List<Commentaire>     listCommentaire;
     private         List<Secteur>         listSecteur;
+    private         Integer               lastId;
+    private         Integer               nombre;
+    private         Boolean               firstPage;
 
     /**
      * Méthode pour afficher la liste des sites qui sont validés par un administrateur.
@@ -37,6 +40,32 @@ public class GestionSiteAction extends ActionSupport {
     public String doListSiteValide() {
 
         listSite = managerFactory.getSiteManager().getListSiteValide();
+
+        nombre = listSite.size();
+        Site site = listSite.get(nombre-1);
+        lastId = site.getId();
+
+        firstPage = true;
+
+        return ActionSupport.SUCCESS;
+    }
+    public String doListSiteValidePageDown() {
+
+        listSite = managerFactory.getSiteManager().getListSiteValidePageDown(lastId);
+
+        nombre = listSite.size();
+        Site site = listSite.get(nombre-1);
+        lastId = site.getId();
+
+        return ActionSupport.SUCCESS;
+    }
+    public String doListSiteValidePageUp() {
+
+        listSite = managerFactory.getSiteManager().getListSiteValidePageUp(lastId);
+
+        nombre = listSite.size();
+        Site site = listSite.get(nombre-1);
+        lastId = site.getId();
 
         return ActionSupport.SUCCESS;
     }
@@ -148,5 +177,29 @@ public class GestionSiteAction extends ActionSupport {
 
     public void setIdSecteur(Integer idSecteur) {
         this.idSecteur = idSecteur;
+    }
+
+    public Integer getLastId() {
+        return lastId;
+    }
+
+    public void setLastId(Integer lastId) {
+        this.lastId = lastId;
+    }
+
+    public Integer getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(Integer nombre) {
+        this.nombre = nombre;
+    }
+
+    public Boolean getFirstPage() {
+        return firstPage;
+    }
+
+    public void setFirstPage(Boolean firstPage) {
+        this.firstPage = firstPage;
     }
 }

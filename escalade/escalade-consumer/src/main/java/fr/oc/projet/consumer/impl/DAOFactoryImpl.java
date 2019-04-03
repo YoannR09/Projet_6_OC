@@ -39,6 +39,8 @@ public class DAOFactoryImpl implements DAOFactory {
     private CommentaireDao commentaireDao;
     @Inject
     private LikesDao likesDao;
+    @Inject
+    private ImageDao imageDao;
 
 
 
@@ -115,5 +117,10 @@ public class DAOFactoryImpl implements DAOFactory {
     @Override
     public LikesDao getLikesDao() {
         return this.likesDao;
+    }
+
+    @Override
+    public ImageDao getImageDao() {
+        return this.imageDao;
     }
 }

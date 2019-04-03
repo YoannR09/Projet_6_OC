@@ -15,6 +15,10 @@ public interface SiteManager {
 
     List<Site> getListSiteNonValide();
 
+    List<Site> getListSiteValidePageDown(Integer lastId);
+
+    List<Site> getListSiteValidePageUp(Integer lastId);
+
     void addSite(Site site);
 
     int getCountSite();

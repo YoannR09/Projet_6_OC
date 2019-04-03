@@ -40,4 +40,9 @@ public class TopoManagerImpl extends AbstractManagerImpl implements TopoManager 
     public int getCountTopo() {
         return getDaoFactory().getTopoDao().getCountTopo();
     }
+
+    @Override
+    public void addTopo(Topo topo) {
+        getDaoFactory().getTopoDao().addTopo(topo);
+    }
 }

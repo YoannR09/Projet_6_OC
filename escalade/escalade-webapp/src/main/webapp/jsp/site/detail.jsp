@@ -33,6 +33,11 @@
         border-width: 0px 0px 0px 1px;
 
     }
+    em
+    {
+        color : darkgray;
+    }
+
     span
     {
         margin: 15px;
@@ -84,9 +89,9 @@
 
             <h4>Localisation</h4>
 
-            <p><span>Region : <s:property value="site.departement.region.nom"/></span>
-                <span>Département : <s:property value="site.departement.nom"/> </span>
-                <span>Ville : <s:property value="site.ville"/></span> </p>
+            <p><span><em>Region : </em><s:property value="site.departement.region.nom"/></span>
+                <span><em>Département : </em><s:property value="site.departement.nom"/> </span>
+                <span><em>Ville : </em><s:property value="site.ville"/></span> </p>
 
 
         </div>

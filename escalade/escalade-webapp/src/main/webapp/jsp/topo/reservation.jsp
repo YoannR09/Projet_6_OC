@@ -23,6 +23,7 @@
         {
             margin: 15px;
             padding: auto;
+            text-align: center;
         }
 
         #cadreBouton
@@ -61,7 +62,7 @@
         <div class="col-lg-12 col-md-12 col-sm-12" id="cadreImage" style="background-color:rgba(0,0,0,0.7);padding-top: 10px">
             <h3>Vous voulez reserver ce topo</h3>
             <s:form action="">
-                <div class="form-group row">
+                <div class="form-group row" >
                     <label for="example-date-input" class="col-2 col-form-label">Date à reserver : </label>
                     <div class="col-4">
                         <input name="date" class="form-control" type="date" value="2019-08-04" id="example-date-input">
@@ -79,18 +80,42 @@
                     <s:a action="" class="btn btn-outline-info"><s:param name="idTopo" value="id" /> Réserver </s:a>
                 </div>
             </s:form>
-
+            <div>
             <h3 >Liste des réservations de ce topo</h3>
+            <div class="btn-group mr-2" role="group" aria-label="First group" style="width: 100%;margin-bottom: 20px;">
+                <s:a action="" class="btn btn-info btn-sm"><s:param name="idTopo" value="id" /> Janvier </s:a>
+                <s:a action="" class="btn btn-info btn-sm"><s:param name="idTopo" value="id" /> Février </s:a>
+                <s:a action="" class="btn btn-info btn-sm"><s:param name="idTopo" value="id" /> Mars </s:a>
+                <s:a action="" class="btn btn-info btn-sm"><s:param name="idTopo" value="id" /> Avril </s:a>
+                <s:a action="" class="btn btn-info btn-sm"><s:param name="idTopo" value="id" /> Mai </s:a>
+                <s:a action="" class="btn btn-info btn-sm"><s:param name="idTopo" value="id" /> Juin </s:a>
+                <s:a action="" class="btn btn-info btn-sm"><s:param name="idTopo" value="id" /> Juillet </s:a>
+                <s:a action="" class="btn btn-info btn-sm"><s:param name="idTopo" value="id" /> Août </s:a>
+                <s:a action="" class="btn btn-info btn-sm"><s:param name="idTopo" value="id" /> Septembre </s:a>
+                <s:a action="" class="btn btn-info btn-sm"><s:param name="idTopo" value="id" /> Octobre </s:a>
+                <s:a action="" class="btn btn-info btn-sm"><s:param name="idTopo" value="id" /> Novembre </s:a>
+                <s:a action="" class="btn btn-info btn-sm"><s:param name="idTopo" value="id" /> Décembre </s:a>
+
+            </div>
+
+
+                <div  style="display: flex;justify-content: space-around">
+                    <span style='width: 200px'>Qui ?</span>
+                    <span style='width: 100px'>Date</span>
+                    <span style='width: 100px'>Matinée</span>
+                    <span style='width: 100px'>Après-midi</span>
+                </div>
             <s:iterator value="reservationList">
 
                 <div  style="display: flex;justify-content: space-around">
-                    <span class='badge badge-info' style='padding-top:5px; width: 200px'> <s:property value="compte.pseudo"/></span>
-                    <span class='badge badge-light' style='padding-top:5px' > Date : <s:property value="date"/></span>
-                    <span class='badge badge-light' style='padding-top:5px'> Matinée : <s:if test="%{matin == true}">réservé</s:if><s:else>non réservé</s:else></span>
-                    <span class='badge badge-light' style='padding-top:5px'> Après-midi : <s:if test="%{apresMidi == true}">réservé</s:if><s:else>non réservé</s:else></span>
+                    <span class='badge badge-info' style='width: 200px'> <s:property value="compte.pseudo"/></span>
+                    <span class='badge badge-light' style='width: 100px'><s:property value="date"/></span>
+                    <span class='badge badge-light' style='width: 100px'><s:if test="matin == true">réservé</s:if><s:else>non réservé</s:else></span>
+                    <span class='badge badge-light' style='width: 100px'><s:if test="apresMidi == true">réservé</s:if><s:else>non réservé</s:else></span>
                 </div>
                 <div style='width: 100%;height: 5px; border-bottom : 1px solid lightgray; border-radius: 40%'>
                 </div>
+
             </s:iterator>
         </div>
 
@@ -118,6 +143,7 @@
         </div>
     </div>
 
+</div>
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

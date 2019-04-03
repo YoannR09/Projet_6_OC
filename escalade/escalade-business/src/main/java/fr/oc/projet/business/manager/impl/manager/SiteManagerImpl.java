@@ -32,6 +32,16 @@ public class SiteManagerImpl extends AbstractManagerImpl implements SiteManager 
     }
 
     @Override
+    public List<Site> getListSiteValidePageDown(Integer lastId) {
+        return getDaoFactory().getSiteDao().getListSiteValidePageDown(lastId);
+    }
+
+    @Override
+    public List<Site> getListSiteValidePageUp(Integer lastId) {
+        return getDaoFactory().getSiteDao().getListSiteValidePageUp(lastId);
+    }
+
+    @Override
     public void addSite(Site site) {
         getDaoFactory().getSiteDao().addSite(site);
     }
