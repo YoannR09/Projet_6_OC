@@ -134,10 +134,6 @@
                 method="doCreate">
 
             <result name="input">/jsp/participer/addSecteur.jsp</result>
-            <result name="success" type="redirectAction">
-
-            </result>
-
         </action>
 
         <action name="contact">
@@ -163,12 +159,14 @@
         <action name="addTopo"
                 class="fr.oc.projet.webapp.action.GestionParticiper"
                 method="doCreate">
-
-            <result name="input">/jsp/participer/participer.jsp</result>
-            <result name="success" type="redirectAction">
-            </result>
-
+            <result name="success">/jsp/participer/addImageTopo.jsp</result>
         </action>
+
+        <action name="addImageTopo">
+            <result>/jsp/participer/addImageTopo.jsp</result>
+        </action>
+
+
 
         <action name="message_detail"
                 class="fr.oc.projet.webapp.action.GestionSiteWebAction"
@@ -228,7 +226,31 @@
                 <param name="root">listSecteur</param>
             </result>
         </action>
+        <action name="ajax_getListImageTopo"
+                class="fr.oc.projet.webapp.action.AjaxAction"
+                method="doAjaxGetListImageTopo">
+            <result name="success" type="json">
+                <param name="root">listImage</param>
+            </result>
+        </action>
 
+
+        <action name="ajax_addImageTopo"
+                class="fr.oc.projet.webapp.action.AjaxAction"
+                method="doAjaxAddImageTopo">
+            <result name="success" type="json">
+                <param name="root">listImage</param>
+            </result>
+        </action>
+
+
+        <action name="ajax_listResaMois"
+                class="fr.oc.projet.webapp.action.AjaxAction"
+                method="doAjaxDetailResa">
+            <result name="success" type="json">
+                <param name="root">listReservation</param>
+            </result>
+        </action>
 
 
     </package>

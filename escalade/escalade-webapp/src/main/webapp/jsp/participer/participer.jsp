@@ -106,7 +106,7 @@
         </div>
         <div class="col-lg-12 col-md-12 col-sm-12" id="addSite" >
             <h3>Créer un site d'escalade</h3>
-                <s:form action="addSite" id="formulaire" style="margin-left:10%;" enctype="multipart/form-data">
+                <s:form action="addSite" id="formulaire" method="POST" style="margin-left:10%;" enctype="multipart/form-data">
                 <div class="form-row"  id="cadreDiv" style="display: flex; justify-content: space-around;">
                     <div class="form-group col-md-8" style="color: white">
                         <s:textfield id="textNom" name="nom" class="form-control" placeholder="Nom du site" label="Nom du site "/>
@@ -115,7 +115,7 @@
                         <s:select id="selectDepartement" name="departement" class="form-control" list="listDepartement" listValue="nom" listKey="id" label="Departement "/>
                         <s:textfield id="textVille" name="ville" class="form-control" placeholder="Nom de la ville" label="Ville "/>
                         <s:select id="selectTopo" name="topo" class="form-control" list="listTopo" listValue="nom" label="Topo " listKey="id"/>
-                       <!-- <s:file id="fileProfil" name="photoPrincipale"  label="Image principale " style="color:white"/> -->
+                       <!-- <s:file id="fileProfil" name="myFile"  label="Image principale " style="color:white"/> -->
                     </div>
                     <s:submit value="Suivant" id="btn" class="btn btn-info"/>
                 </div>
@@ -123,13 +123,12 @@
             </div>
             <div class="col-lg-12 col-md-12 col-sm-12" id="addTopo" >
                 <h3>Créer un topo d'escalade</h3>
-                <s:form action="addTopo" id="formulaire" style="margin-left:10%;" enctype="multipart/form-data">
+                <s:form action="addTopo" id="formulaire" method="POST" style="margin-left:10%;" enctype="multipart/form-data">
                     <div class="form-row"  id="cadreDiv" style="display: flex; justify-content: space-around;">
                         <div class="form-group col-md-8">
                             <s:textfield id="textNomTopo" name="nom" class="form-control" placeholder="Nom du topo" label="Nom "/>
                             <s:textarea id="textDescriTopo" name="description"  class="form-control" placeholder="Entrez votre description" label="Description "/>
-                            <s:file id="fileProfilTopo" name="photoPrincipale"  label="Image principale " style="color:white"/>
-                            <s:param name="pseudo" value="#session.user"/>
+                            <s:file id="fileProfilTopo" name="myFile"  label="Image principale " style="color:white"/>
                         </div>
                         <div class="form-group col-md-6">
                         </div>

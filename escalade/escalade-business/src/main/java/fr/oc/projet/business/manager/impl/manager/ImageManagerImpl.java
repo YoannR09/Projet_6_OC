@@ -3,8 +3,10 @@ package fr.oc.projet.business.manager.impl.manager;
 import fr.oc.projet.business.manager.contract.manager.ImageManager;
 import fr.oc.projet.model.bean.Image;
 
+import javax.inject.Named;
 import java.util.List;
 
+@Named
 public class ImageManagerImpl extends AbstractManagerImpl implements ImageManager {
     @Override
     public Image getImage(Integer pId) {

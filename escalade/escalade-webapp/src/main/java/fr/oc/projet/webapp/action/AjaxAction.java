@@ -2,13 +2,18 @@ package fr.oc.projet.webapp.action;
 
 import com.opensymphony.xwork2.ActionSupport;
 import fr.oc.projet.business.manager.contract.ManagerFactory;
-import fr.oc.projet.model.bean.Count;
+import fr.oc.projet.model.bean.Image;
 import fr.oc.projet.model.bean.escalade.Secteur;
 import fr.oc.projet.model.bean.escalade.Site;
 import fr.oc.projet.model.bean.escalade.Topo;
 import fr.oc.projet.model.bean.utilisateur.Commentaire;
+import fr.oc.projet.model.bean.utilisateur.Reservation;
+import org.apache.commons.io.FileUtils;
 
 import javax.inject.Inject;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class AjaxAction extends ActionSupport {
@@ -19,6 +24,8 @@ public class AjaxAction extends ActionSupport {
     private     List<Commentaire>       listCommentaire;
     private     List<Topo>              listTopo;
     private     List<Site>              listSite;
+    private     List<Image>             listImage;
+    private     List<Reservation>       listReservation;
     private     Site                    site;
     private     List<Secteur>           listSecteur;
     private     String                  nomSite;
@@ -26,8 +33,12 @@ public class AjaxAction extends ActionSupport {
     private     String                  nom;
     private     Topo                    topo;
     private     String                  nomTopo;
-    private     Count                   nbreSite;
-    private     Count                   nbreTopo;
+    private     String                  description;
+    private     File                    myFile;
+    private     String                  myFileContentType;
+    private     String                  myFileFileName;
+    private     String                  destPath;
+    private     Integer                 mois;
 
 
 
@@ -66,6 +77,20 @@ public class AjaxAction extends ActionSupport {
         return vResult;
     }
 
+    public String doAjaxGetListImageTopo() {
+        String vResult = ActionSupport.SUCCESS;
+        try {
+
+            listImage = managerFactory.getImageManager()
+                    .getListImageTopo(managerFactory.getTopoManager()
+                            .getTopoViaNom(nomTopo).getId());
+
+        }  catch (Exception e) {
+            e.printStackTrace();
+        }
+        return vResult;
+    }
+
     public String doAjaxAddSecteur(){
         String vResult = ActionSupport.SUCCESS;
 
@@ -87,6 +112,64 @@ public class AjaxAction extends ActionSupport {
         }
         return vResult;
     }
+
+    public String doAjaxAddImageTopo(){
+        // Par défaut, le result est "input"
+        String vResult = ActionSupport.INPUT;
+
+        topo = managerFactory.getTopoManager().getTopoViaNom(nom);
+
+        destPath = "C:/Users/El-ra/Documents/Projet_6_OC/escalade/escalade-webapp/src/main/webapp/image/"+nom+"/";
+
+        if(description != null) {
+
+            try {
+
+                File destFile = new File(destPath, myFileFileName);
+                FileUtils.copyFile(myFile, destFile);
+
+                Image image = new Image();
+                image.setUrlImage(nom + "/" + myFileFileName);
+                image.setImageDePresentation(false);
+                image.setCompteId(1); // à changer !!
+                image.setTopoId(topo.getId());
+                image.setSiteId(null);
+                image.setDescription(description);
+
+                managerFactory.getImageManager().addImage(image);
+
+                vResult = ActionSupport.SUCCESS;
+
+            } catch (IOException e) {
+                e.printStackTrace();
+                return ERROR;
+            }
+        }
+
+        listImage = managerFactory.getImageManager().getListImageTopo(topo.getId());
+
+        return vResult;
+    }
+
+    public String doAjaxDetailResa(){
+        String vResult = ActionSupport.SUCCESS;
+
+        topo = managerFactory.getTopoManager().getTopoViaNom(nomTopo);
+
+        listReservation = new ArrayList<>();
+
+        List<Reservation> vList = managerFactory.getReservationManager().getReservationTopo(topo.getId());
+
+        for( int i = 0; i<vList.size();i++){
+            if (vList.get(i).getDate().getMonth() == mois ){
+                listReservation.add(vList.get(i));
+            }
+        }
+
+        return vResult;
+    }
+
+
 
 
 
@@ -155,22 +238,6 @@ public class AjaxAction extends ActionSupport {
         this.nomTopo = nomTopo;
     }
 
-    public Count getNbreSite() {
-        return nbreSite;
-    }
-
-    public void setNbreSite(Count nbreSite) {
-        this.nbreSite = nbreSite;
-    }
-
-    public Count getNbreTopo() {
-        return nbreTopo;
-    }
-
-    public void setNbreTopo(Count nbreTopo) {
-        this.nbreTopo = nbreTopo;
-    }
-
     public List<Topo> getListTopo() {
         return listTopo;
     }
@@ -185,5 +252,69 @@ public class AjaxAction extends ActionSupport {
 
     public void setListSite(List<Site> listSite) {
         this.listSite = listSite;
+    }
+
+    public List<Image> getListImage() {
+        return listImage;
+    }
+
+    public void setListImage(List<Image> listImage) {
+        this.listImage = listImage;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public File getMyFile() {
+        return myFile;
+    }
+
+    public void setMyFile(File myFile) {
+        this.myFile = myFile;
+    }
+
+    public String getMyFileContentType() {
+        return myFileContentType;
+    }
+
+    public void setMyFileContentType(String myFileContentType) {
+        this.myFileContentType = myFileContentType;
+    }
+
+    public String getMyFileFileName() {
+        return myFileFileName;
+    }
+
+    public void setMyFileFileName(String myFileFileName) {
+        this.myFileFileName = myFileFileName;
+    }
+
+    public String getDestPath() {
+        return destPath;
+    }
+
+    public void setDestPath(String destPath) {
+        this.destPath = destPath;
+    }
+
+    public List<Reservation> getListReservation() {
+        return listReservation;
+    }
+
+    public void setListReservation(List<Reservation> listReservation) {
+        this.listReservation = listReservation;
+    }
+
+    public Integer getMois() {
+        return mois;
+    }
+
+    public void setMois(Integer mois) {
+        this.mois = mois;
     }
 }

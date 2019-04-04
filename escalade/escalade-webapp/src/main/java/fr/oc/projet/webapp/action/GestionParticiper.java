@@ -1,5 +1,6 @@
 package fr.oc.projet.webapp.action;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import fr.oc.projet.business.manager.contract.ManagerFactory;
 import fr.oc.projet.model.bean.Image;
@@ -53,6 +54,7 @@ public class GestionParticiper extends ActionSupport {
         if(ville == null){
             if(nom != null){
                 Topo topo = new Topo();
+                pseudo = (String) ActionContext.getContext().getSession().get("pseudo");
                 topo.setResponsable(managerFactory.getCompteManager().getCompteViaPseudo(pseudo));
                 topo.setDate(new Date());
                 topo.setValide(false);
@@ -66,19 +68,20 @@ public class GestionParticiper extends ActionSupport {
 
                 try {
 
-                    System.out.println("url : "+topo.getNom()+myFileFileName);
                     File destFile  = new File(destPath, myFileFileName);
                     FileUtils.copyFile(myFile, destFile);
 
                     Image image = new Image();
-                    image.setUrl(topo.getNom()+myFileFileName);
+                    image.setUrlImage(topo.getNom()+"/"+myFileFileName);
                     image.setImageDePresentation(true);
                     image.setCompteId(1);
-                    image.setTopoId(topo.getId());
+                    image.setTopoId(managerFactory.getTopoManager().getTopoViaNom(topo.getNom()).getId());
+                    image.setDescription("Image de présentation du topo "+topo.getNom());
                     image.setSiteId(null);
 
                     managerFactory.getImageManager().addImage(image);
 
+                    vResult = ActionSupport.SUCCESS;
 
                 } catch(IOException e) {
                     e.printStackTrace();
@@ -98,6 +101,8 @@ public class GestionParticiper extends ActionSupport {
             site.setTopoId(topo.getId());
 
             managerFactory.getSiteManager().addSite(site);
+
+            vResult = ActionSupport.SUCCESS;
         }
 
         listType = managerFactory.getTypeDeRocheManager().getListTypeDeRoche();
@@ -115,6 +120,7 @@ public class GestionParticiper extends ActionSupport {
 
         return ActionSupport.SUCCESS;
     }
+
 
     public List<TypeDeRoche> getListType() {
         return listType;

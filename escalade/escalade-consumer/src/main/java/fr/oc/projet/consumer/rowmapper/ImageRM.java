@@ -26,10 +26,14 @@ public class ImageRM implements RowMapper<Image> {
 
         Image image = new Image();
         image.setId(resultSet.getInt("id"));
-        image.setUrl(resultSet.getString("url"));
+        image.setUrlImage(resultSet.getString("url"));
+        image.setDescription(resultSet.getString("description"));
         image.setImageDePresentation(resultSet.getBoolean("image_de_presentation"));
         image.setCompte(compteDao.getCompte(resultSet.getInt("compte_id")));
-        image.setSite(siteDao.getSite(resultSet.getInt("site_id")));
+        if(resultSet.getInt("spot_id") != 0) {
+            image.setSite(siteDao.getSite(resultSet.getInt("spot_id")));
+        }
+
         image.setTopo(topoDao.getTopo(resultSet.getInt("topo_id")));
         return image;
     }

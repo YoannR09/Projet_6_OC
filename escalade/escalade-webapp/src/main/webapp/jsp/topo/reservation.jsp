@@ -61,7 +61,7 @@
     <div class="col-lg-9 col-md-9 col-sm-9" style="color: white; margin-top: 20px;">
         <div class="col-lg-12 col-md-12 col-sm-12" id="cadreImage" style="background-color:rgba(0,0,0,0.7);padding-top: 10px">
             <h3>Vous voulez reserver ce topo</h3>
-            <s:form action="">
+
                 <div class="form-group row" >
                     <label for="example-date-input" class="col-2 col-form-label">Date à reserver : </label>
                     <div class="col-4">
@@ -79,22 +79,23 @@
                     </div>
                     <s:a action="" class="btn btn-outline-info"><s:param name="idTopo" value="id" /> Réserver </s:a>
                 </div>
-            </s:form>
+
             <div>
             <h3 >Liste des réservations de ce topo</h3>
             <div class="btn-group mr-2" role="group" aria-label="First group" style="width: 100%;margin-bottom: 20px;">
-                <s:a action="" class="btn btn-info btn-sm"><s:param name="idTopo" value="id" /> Janvier </s:a>
-                <s:a action="" class="btn btn-info btn-sm"><s:param name="idTopo" value="id" /> Février </s:a>
-                <s:a action="" class="btn btn-info btn-sm"><s:param name="idTopo" value="id" /> Mars </s:a>
-                <s:a action="" class="btn btn-info btn-sm"><s:param name="idTopo" value="id" /> Avril </s:a>
-                <s:a action="" class="btn btn-info btn-sm"><s:param name="idTopo" value="id" /> Mai </s:a>
-                <s:a action="" class="btn btn-info btn-sm"><s:param name="idTopo" value="id" /> Juin </s:a>
-                <s:a action="" class="btn btn-info btn-sm"><s:param name="idTopo" value="id" /> Juillet </s:a>
-                <s:a action="" class="btn btn-info btn-sm"><s:param name="idTopo" value="id" /> Août </s:a>
-                <s:a action="" class="btn btn-info btn-sm"><s:param name="idTopo" value="id" /> Septembre </s:a>
-                <s:a action="" class="btn btn-info btn-sm"><s:param name="idTopo" value="id" /> Octobre </s:a>
-                <s:a action="" class="btn btn-info btn-sm"><s:param name="idTopo" value="id" /> Novembre </s:a>
-                <s:a action="" class="btn btn-info btn-sm"><s:param name="idTopo" value="id" /> Décembre </s:a>
+                <button id="btn1" class="btn btn-info btn-sm">Janvier</button>
+                <button id="btn2" class="btn btn-info btn-sm">Février</button>
+                <button id="btn3" class="btn btn-info btn-sm">Mars</button>
+                <button id="btn4" class="btn btn-info btn-sm">Avril</button>
+                <button id="btn5" class="btn btn-info btn-sm">Mai</button>
+                <button id="btn6" class="btn btn-info btn-sm">Juin</button>
+                <button id="btn7" class="btn btn-info btn-sm">Juillet</button>
+                <button id="btn8" class="btn btn-info btn-sm">Août</button>
+                <button id="btn9" class="btn btn-info btn-sm">Septembre</button>
+                <button id="btn10" class="btn btn-info btn-sm">Octobre</button>
+                <button id="btn11" class="btn btn-info btn-sm">Novembre</button>
+                <button id="btn12" class="btn btn-info btn-sm">Décembre</button>
+
 
             </div>
 
@@ -107,7 +108,7 @@
                 </div>
             <s:iterator value="reservationList">
 
-                <div  style="display: flex;justify-content: space-around">
+                <div  id="listResa" style="display: flex;justify-content: space-around">
                     <span class='badge badge-info' style='width: 200px'> <s:property value="compte.pseudo"/></span>
                     <span class='badge badge-light' style='width: 100px'><s:property value="date"/></span>
                     <span class='badge badge-light' style='width: 100px'><s:if test="matin == true">réservé</s:if><s:else>non réservé</s:else></span>
@@ -149,15 +150,25 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
     $(function() {
+        
+        
+        for (var i = 0; i<12; i++) {
+            if ($('#btn+i').click()) {
+                var mois = i;
+                listResaMois(mois);
+            }
+        }
 
     });
-    function reloadListCommentaire() {
+    function listResaMois(mois) {
         // URL de l'action AJAX
-        var url = "<s:url action="ajax_getListCommentaire"/>";
+        var url = "<s:url action="ajax_listResaMois"/>";
+
 
         var nomTopo =$("#nomTopo").text();
 
         var params = {
+            mois:mois,
             nomTopo: nomTopo
         };
 
@@ -166,25 +177,26 @@
             url,
             params,
             function (data) {
-                var $listCommentaire = jQuery("#listCommentaire");
-                $listCommentaire.empty();
+                var $listResa = jQuery("#listResa");
+                $listResa.empty();
                 jQuery.each(data, function (key, val) {
-                    $listCommentaire.append(
-                        jQuery("<span class='badge badge-info' style='padding :10px;margin-bottom: 15px;width: 15%;'>")
-                            .append(val.auteur.pseudo)
+                    $listResa.append(
+                        jQuery("<span class='badge badge-info' style='width: 200px'>")
+                            .append(val.compte.pseudo)
                     );
-                    $listCommentaire.append(
-                        jQuery("<span class='badge badge-light' style='padding :10px;margin-bottom: 15px;width: 60%;height: 70px;text-align: left'>")
-                            .append(val.contenu)
-                    );
-
-                    $listCommentaire.append(
-                        jQuery("<span class='badge badge-light' style='margin-bottom: 15px;'>")
+                    $listResa.append(
+                        jQuery("<span class='badge badge-light' style='width: 100px'>")
                             .append(val.date)
                     );
 
-                    $listCommentaire.append(
-                        jQuery("<div style='width: 100%;height: 5px; border-bottom : 1px solid lightgray; border-radius: 40%'>")
+                    $listResa.append(
+                        jQuery("<span class='badge badge-light' style='width: 100px'>")
+                            .append(val.matin)
+                    );
+
+                    $listResa.append(
+                        jQuery(" <span class='badge badge-light' style='width: 100px'>")
+                            .append(val.apresMidi)
                     );
                 });
             })

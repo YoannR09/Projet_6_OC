@@ -34,6 +34,7 @@ public class GestionTopoAction extends ActionSupport {
         return ActionSupport.SUCCESS;
     }
 
+
     public List<Commentaire> getListCommentaire() {
         return listCommentaire;
     }

@@ -7,7 +7,8 @@ import fr.oc.projet.model.bean.utilisateur.Compte;
 public class Image {
 
     private        Integer      id;
-    private        String       url;
+    private        String       urlImage;
+    private        String       description;
     private        Boolean      imageDePresentation;
     private        Topo         topo;
     private        Site         site;
@@ -24,14 +25,6 @@ public class Image {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
     }
 
     public Boolean getImageDePresentation() {
@@ -88,5 +81,21 @@ public class Image {
 
     public void setSiteId(Integer siteId) {
         this.siteId = siteId;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getUrlImage() {
+        return urlImage;
+    }
+
+    public void setUrlImage(String urlImage) {
+        this.urlImage = urlImage;
     }
 }

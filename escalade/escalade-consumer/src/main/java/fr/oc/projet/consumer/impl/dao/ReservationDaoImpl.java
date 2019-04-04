@@ -39,4 +39,5 @@ public class ReservationDaoImpl extends AbstractDaoImpl implements ReservationDa
         List<Reservation> vList = vJdbcTemplate.query(vSQL,reservationRM);
         return vList;
     }
+
 }

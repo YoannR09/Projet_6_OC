@@ -33,6 +33,7 @@
         <form class="form-inline my-2 my-lg-0" style="color: white" >
             <s:if test="#session.user">
                 <s:property value="#session.user.pseudo" />
+                <s:set var="pseudo" value="session.user.pseudo"/>
                 <s:a action="logout" class="nav-link">Deconnexion</s:a>
             </s:if>
             <s:else>

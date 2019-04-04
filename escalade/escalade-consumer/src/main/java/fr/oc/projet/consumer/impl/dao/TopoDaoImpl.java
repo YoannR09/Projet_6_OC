@@ -40,7 +40,7 @@ public class TopoDaoImpl extends AbstractDaoImpl implements TopoDao {
 
     @Override
     public List<Topo> getListTopo() {
-        String vSQL = "SELECT * FROM topo";
+        String vSQL = "SELECT * FROM topo LIMIT 3";
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
         List<Topo> vList = vJdbcTemplate.query(vSQL,topoRM);
         return vList;

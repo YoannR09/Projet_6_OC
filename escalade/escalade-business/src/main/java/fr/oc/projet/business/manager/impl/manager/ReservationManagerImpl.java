@@ -22,4 +22,5 @@ public class ReservationManagerImpl extends AbstractManagerImpl implements Reser
     public List<Reservation> getListReservation() {
         return getDaoFactory().getReservationDao().getListReservation();
     }
+
 }
