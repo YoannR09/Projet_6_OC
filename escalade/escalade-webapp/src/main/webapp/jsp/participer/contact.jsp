@@ -51,22 +51,32 @@
     }
 
 
+
 </style>
 
 
 <div id="page">
 
-    <div class="col-lg-9 col-md-9 col-sm-9" style="color: white; margin-top: 20px;">
+    <div class="col-lg-8 col-md-8 col-sm-8" style="color: white; margin-top: 20px;">
+
         <div class="col-lg-12 col-md-12 col-sm-12" id="cadreInfos" style="background-color:rgba(0,0,0,0.7);padding-top: 10px">
             <h4>Envoyez nous votre message</h4>
             <span style="font-size: 0.7em;">Par email : rocheyoann@outlook.fr</span>
         </div>
-        <div class="col-lg-12 col-md-12 col-sm-12" id="cadreMessage" style="background-color:rgba(0,0,0,0.7);padding-top: 10px">
-            <s:textarea id="messageText" name="message" class="form-control" placeholder="Entrez votre message..." label="Votre message "/>
+
+        <div class="col-lg-12 col-md-12 col-sm-12" id="cadreMessage" style="background-color:rgba(0,0,0,0.7);padding-top: 10px;display: flex;justify-content: space-around">
+            <s:form action="addMessage" style="width:60%;text-align:center" >
+                <label for="inputObjet">Objet</label>
+                <input name="objet" type="text" class="form-control" id="inputObjet" placeholder="Objet du message" required/>
+                <label for="inputContenu">Message</label>
+                <textarea  name="contenu" class="form-control" id="inputContenu" rows="3" placeholder="Ecrivez votre message..."></textarea>
+                <div style="width:100%;display: flex;justify-content: flex-end">
+                    <s:submit value="Envoyer" id="btn" class="btn btn-info" style="position:absolute;margin:20px;right:10px;bottom:5px;"/>
+                </div>
+
+            </s:form>
         </div>
-        <div class="col-lg-12 col-md-12 col-sm-12" id="cadreBtn" style="background-color:rgba(0,0,0,0.7);padding-top: 10px;display: flex;justify-content: flex-end">
-            <s:a action="addVoie" class="btn btn-outline-info" style="margin-bottom:15px;"><s:param name="nomSite" value="nom" /> Envoyer </s:a>
-        </div>
+
     </div>
 
 </div>

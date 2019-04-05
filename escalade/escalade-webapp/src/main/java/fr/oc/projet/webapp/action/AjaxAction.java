@@ -6,6 +6,7 @@ import fr.oc.projet.model.bean.Image;
 import fr.oc.projet.model.bean.escalade.Secteur;
 import fr.oc.projet.model.bean.escalade.Site;
 import fr.oc.projet.model.bean.escalade.Topo;
+import fr.oc.projet.model.bean.escalade.Voie;
 import fr.oc.projet.model.bean.utilisateur.Commentaire;
 import fr.oc.projet.model.bean.utilisateur.Reservation;
 import org.apache.commons.io.FileUtils;
@@ -27,6 +28,7 @@ public class AjaxAction extends ActionSupport {
     private     List<Image>             listImage;
     private     List<Reservation>       listReservation;
     private     Site                    site;
+    private     Secteur                 secteur;
     private     List<Secteur>           listSecteur;
     private     String                  nomSite;
     private     String                  nomSecteur;
@@ -53,9 +55,12 @@ public class AjaxAction extends ActionSupport {
             if(nomSite != null){
                 site = managerFactory.getSiteManager().getSiteViaNom(nomSite);
                 listCommentaire = managerFactory.getCommentaireManager().getListCommentaireSite(site.getId());
-            }else{
+            }else if(nomTopo != null){
                 topo = managerFactory.getTopoManager().getTopoViaNom(nomTopo);
                 listCommentaire = managerFactory.getCommentaireManager().getListCommentaireTopo(topo.getId());
+            }else if(nomSecteur != null){
+                secteur = managerFactory.getSecteurManager().getSecteurViaNom(nomSecteur);
+                listCommentaire = managerFactory.getCommentaireManager().getListCommentaireSecteur(secteur.getId());
             }
 
 
@@ -156,15 +161,28 @@ public class AjaxAction extends ActionSupport {
 
         topo = managerFactory.getTopoManager().getTopoViaNom(nomTopo);
 
-        listReservation = new ArrayList<>();
-
         List<Reservation> vList = managerFactory.getReservationManager().getReservationTopo(topo.getId());
 
+        listReservation = new ArrayList<>();
+
+
         for( int i = 0; i<vList.size();i++){
-            if (vList.get(i).getDate().getMonth() == mois ){
+
+            if ((mois-1) == (vList.get(i).getDate().getMonth())){
                 listReservation.add(vList.get(i));
             }
         }
+
+        return vResult;
+    }
+    public String doAjaxDetailResaTopo(){
+
+        String vResult = ActionSupport.SUCCESS;
+
+        topo = managerFactory.getTopoManager().getTopoViaNom(nomTopo);
+
+        listReservation = managerFactory.getReservationManager().getReservationTopo(topo.getId());
+
 
         return vResult;
     }
@@ -316,5 +334,13 @@ public class AjaxAction extends ActionSupport {
 
     public void setMois(Integer mois) {
         this.mois = mois;
+    }
+
+    public Secteur getSecteur() {
+        return secteur;
+    }
+
+    public void setSecteur(Secteur secteur) {
+        this.secteur = secteur;
     }
 }

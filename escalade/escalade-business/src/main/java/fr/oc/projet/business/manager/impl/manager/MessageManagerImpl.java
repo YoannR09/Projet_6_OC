@@ -17,4 +17,9 @@ public class MessageManagerImpl extends AbstractManagerImpl implements MessageMa
     public List<Message> getListMessage() {
         return getDaoFactory().getMessageDao().getListMessage();
     }
+
+    @Override
+    public void addMessage(Message message) {
+        getDaoFactory().getMessageDao().addMessage(message);
+    }
 }

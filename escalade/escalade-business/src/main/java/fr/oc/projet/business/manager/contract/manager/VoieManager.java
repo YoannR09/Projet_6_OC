@@ -8,4 +8,6 @@ public interface VoieManager {
     Voie getVoie(Integer pId);
 
     List<Voie> getListVoie();
+
+    List<Voie> getListVoieSecteur(Integer secteurId);
 }

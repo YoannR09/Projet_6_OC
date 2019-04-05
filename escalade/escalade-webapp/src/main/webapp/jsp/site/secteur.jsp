@@ -62,6 +62,9 @@
             font-style: italic;
             font-size: 0.7em;
         }
+        a{
+            color: deepskyblue;
+        }
 
 
     </style>
@@ -76,16 +79,20 @@
 
     <div class="col-lg-9 col-md-9 col-sm-9" style="color: white; margin-top: 20px;">
         <div class="col-lg-12 col-md-12 col-sm-12" id="cadreInfos" style="background-color:rgba(0,0,0,0.7); ">
+
+            <div  style="display: flex;justify-content: space-around">
+                <span style='width: 200px'>Nom</span>
+                <span style='width: 100px'>Cotations</span>
+                <span style='width: 100px'>Hauteurs</span>
+                <span style='width: 50px'></span>
+            </div>
+
             <s:iterator value="listSecteur">
-
-                <br/>
-                <div  style="display: flex;justify-content: space-around">
-                    <span class='badge badge-info' style='padding-top:11px; width: 200px'> <s:property value="nom"/></span>
-                    <span class='badge badge-light' style='padding-top:11px;'> Nombre de voies : <s:property value="nombreVoie"/></span>
-                    <span class='badge badge-light' style='padding-top:11px;'> Cotations : <s:property value="cotationMin.valeur"/> à <s:property value="cotationMax.valeur"/></span>
-                        <span class='badge badge-light' style='padding-top:11px;'>- Hauteur : <s:property value="hauteurMin"/> à <s:property value="hauteurMax"/></span>
-                    <s:a action="site_detail" class="btn btn-outline-info" style="float:right;margin-top:13px"><s:param name="idSecteur" value="id" /> Voir </s:a>
-
+                <div  id="listResa" style="display: flex;justify-content: space-around">
+                    <span class='badge badge-info' style='width: 200px'> <s:property value="nom"/></span>
+                    <span class='badge badge-light' style='width: 100px'><s:property value="cotationMin.valeur"/> à <s:property value="cotationMax.valeur"/></span>
+                    <span class='badge badge-light' style='width: 100px'><s:property value="hauteurMin"/> à <s:property value="hauteurMax"/></span>
+                    <s:a action="secteur_detail" style="width:50px;padding-top:10px"><s:param name="idSecteur" value="id" /> Voir </s:a>
                 </div>
                 <div style='width: 100%;height: 5px; border-bottom : 1px solid lightgray; border-radius: 40%'>
                 </div>

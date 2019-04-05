@@ -5,6 +5,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import fr.oc.projet.business.manager.contract.ManagerFactory;
 import fr.oc.projet.model.bean.Image;
 import fr.oc.projet.model.bean.escalade.*;
+import fr.oc.projet.model.bean.utilisateur.Message;
 import org.apache.commons.io.FileUtils;
 
 import javax.inject.Inject;
@@ -34,6 +35,8 @@ public class GestionParticiper extends ActionSupport {
     private      Site                    site;
     private      String                  nomSecteur;
     private      String                  nomSite;
+    private      String                  contenu;
+    private      String                  objet;
     private      File                    myFile;
     private      String                  myFileContentType;
     private      String                  myFileFileName;
@@ -120,6 +123,25 @@ public class GestionParticiper extends ActionSupport {
 
         return ActionSupport.SUCCESS;
     }
+
+
+    public String doAddMessage(){
+
+        Message message = new Message();
+
+        pseudo = (String) ActionContext.getContext().getSession().get("pseudo");
+
+        message.setCompteId(managerFactory.getCompteManager().getCompteViaPseudo(pseudo).getId());
+        message.setDate(new Date());
+        message.setContenu(contenu);
+        message.setObjet(objet);
+
+        managerFactory.getMessageManager().addMessage(message);
+
+        return ActionSupport.SUCCESS;
+    }
+
+
 
 
     public List<TypeDeRoche> getListType() {
@@ -280,5 +302,21 @@ public class GestionParticiper extends ActionSupport {
 
     public void setDestPath(String destPath) {
         this.destPath = destPath;
+    }
+
+    public String getContenu() {
+        return contenu;
+    }
+
+    public void setContenu(String contenu) {
+        this.contenu = contenu;
+    }
+
+    public String getObjet() {
+        return objet;
+    }
+
+    public void setObjet(String objet) {
+        this.objet = objet;
     }
 }

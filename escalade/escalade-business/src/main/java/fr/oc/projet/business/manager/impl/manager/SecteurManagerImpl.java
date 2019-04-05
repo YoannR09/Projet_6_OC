@@ -17,6 +17,11 @@ public class SecteurManagerImpl extends AbstractManagerImpl implements SecteurMa
     }
 
     @Override
+    public Secteur getSecteurViaNom(String nom) {
+        return getDaoFactory().getSecteurDao().getSecteurViaNom(nom);
+    }
+
+    @Override
     public List<Secteur> getListSecteur() {
         return getDaoFactory().getSecteurDao().getListSecteur();
     }

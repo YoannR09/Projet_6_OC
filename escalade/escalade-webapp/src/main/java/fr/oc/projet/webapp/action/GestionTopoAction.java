@@ -81,6 +81,8 @@ public class GestionTopoAction extends ActionSupport {
 
     public  String doReservationTopo(){
 
+        topo = managerFactory.getTopoManager().getTopo(idTopo);
+
         reservationList = managerFactory.getReservationManager().getReservationTopo(idTopo);
 
         return  ActionSupport.SUCCESS;

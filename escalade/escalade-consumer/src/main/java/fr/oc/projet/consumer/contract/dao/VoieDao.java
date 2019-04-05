@@ -7,7 +7,9 @@ import java.util.List;
 public interface VoieDao {
     Voie getVoie(Integer pId);
 
-    List<Voie> getListVoir();
+    List<Voie> getListVoie();
+
+    List<Voie> getListVoieSecteur(Integer idSecteur);
 
     Integer getCountVoieSecteur(Integer idSecteur);
 

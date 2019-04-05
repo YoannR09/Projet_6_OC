@@ -92,6 +92,13 @@
             <result name="success">/jsp/site/detail.jsp</result>
         </action>
 
+        <action name="secteur_detail"
+                class="fr.oc.projet.webapp.action.GestionSiteAction"
+                method="doDetailSecteur">
+
+            <result name="success">/jsp/site/detailSecteur.jsp</result>
+        </action>
+
 
 
         <action name="topo_detail"
@@ -194,10 +201,18 @@
         </action>
 
         <action name="reservationTopo"
-                class="fr.oc.projet.webapp.action.GestionTopoAction"
-                method="doReservationTopo">
-            <result name="success">/jsp/topo/reservation.jsp</result>
+                         class="fr.oc.projet.webapp.action.GestionTopoAction"
+                         method="doReservationTopo">
+        <result name="success">/jsp/topo/reservation.jsp</result>
+    </action>
+
+        <action name="addMessage"
+                class="fr.oc.projet.webapp.action.GestionParticiper"
+                method="doAddMessage">
+            <result name="success">/index.jsp</result>
         </action>
+
+
     </package>
 
     <package name="ajax" extends="base, json-default">
@@ -247,6 +262,14 @@
         <action name="ajax_listResaMois"
                 class="fr.oc.projet.webapp.action.AjaxAction"
                 method="doAjaxDetailResa">
+            <result name="success" type="json">
+                <param name="root">listReservation</param>
+            </result>
+        </action>
+
+        <action name="ajax_listResa"
+                class="fr.oc.projet.webapp.action.AjaxAction"
+                method="doAjaxDetailResaTopo">
             <result name="success" type="json">
                 <param name="root">listReservation</param>
             </result>

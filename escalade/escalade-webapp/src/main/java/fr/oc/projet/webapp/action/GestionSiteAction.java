@@ -27,6 +27,7 @@ public class GestionSiteAction extends ActionSupport {
     private         Integer               idSecteur;
     private         List<Commentaire>     listCommentaire;
     private         List<Secteur>         listSecteur;
+    private         List<Voie>            listVoie;
     private         Integer               lastId;
     private         Integer               nombre;
     private         Boolean               firstPage;
@@ -80,10 +81,24 @@ public class GestionSiteAction extends ActionSupport {
     public String doDetailSite(){
 
         if (this.idSite == null) {
-            this.addActionError("Vous devez indiquer un id de channel");
+            this.addActionError("Vous devez indiquer un id de site");
         } else {
             site = managerFactory.getSiteManager().getSite(idSite);
             listCommentaire = managerFactory.getCommentaireManager().getListCommentaireSite(idSite);
+
+        }
+        return  ActionSupport.SUCCESS;
+    }
+
+    public String doDetailSecteur(){
+
+        if (this.idSecteur == null) {
+            this.addActionError("Vous devez indiquer un id de secteur");
+        } else {
+
+            secteur = managerFactory.getSecteurManager().getSecteur(idSecteur);
+
+            listVoie = managerFactory.getVoieManager().getListVoieSecteur(idSecteur);
 
         }
         return  ActionSupport.SUCCESS;
@@ -201,5 +216,13 @@ public class GestionSiteAction extends ActionSupport {
 
     public void setFirstPage(Boolean firstPage) {
         this.firstPage = firstPage;
+    }
+
+    public List<Voie> getListVoie() {
+        return listVoie;
+    }
+
+    public void setListVoie(List<Voie> listVoie) {
+        this.listVoie = listVoie;
     }
 }

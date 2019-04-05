@@ -15,6 +15,11 @@ public class VoieManagerImpl extends AbstractManagerImpl implements VoieManager 
 
     @Override
     public List<Voie> getListVoie() {
-        return getDaoFactory().getVoieDao().getListVoir();
+        return getDaoFactory().getVoieDao().getListVoie();
+    }
+
+    @Override
+    public List<Voie> getListVoieSecteur(Integer secteurId) {
+        return getDaoFactory().getVoieDao().getListVoieSecteur(secteurId);
     }
 }

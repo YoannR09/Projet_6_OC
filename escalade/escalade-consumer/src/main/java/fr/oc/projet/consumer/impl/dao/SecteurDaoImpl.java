@@ -31,6 +31,14 @@ public class SecteurDaoImpl extends AbstractDaoImpl implements SecteurDao {
     }
 
     @Override
+    public Secteur getSecteurViaNom(String nom) {
+        String vSQL = "SELECT * FROM secteur WHERE nom = '"+nom+"'";
+        JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
+        Secteur secteur = vJdbcTemplate.queryForObject(vSQL,secteurRM);
+        return secteur;
+    }
+
+    @Override
     public List<Secteur> getListSecteur() {
         String vSQL = "SELECT * FROM secteur";
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());

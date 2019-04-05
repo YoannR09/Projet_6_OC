@@ -9,6 +9,8 @@ public interface SecteurDao {
 
     Secteur getSecteur(Integer pId);
 
+    Secteur getSecteurViaNom(String nom);
+
     List<Secteur> getListSecteur();
 
     List<Secteur> getListSecteurSite(Integer siteId);

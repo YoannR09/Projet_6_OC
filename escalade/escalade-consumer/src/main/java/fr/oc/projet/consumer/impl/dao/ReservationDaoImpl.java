@@ -26,7 +26,7 @@ public class ReservationDaoImpl extends AbstractDaoImpl implements ReservationDa
 
     @Override
     public List<Reservation> getReservationTopo(Integer topoId) {
-        String vSQL = "SELECT * FROM reservation WHERE topo_id ="+topoId;
+        String vSQL = "SELECT * FROM reservation WHERE topo_id = "+topoId;
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
         List<Reservation> reservation = vJdbcTemplate.query(vSQL,reservationRM);
         return reservation;

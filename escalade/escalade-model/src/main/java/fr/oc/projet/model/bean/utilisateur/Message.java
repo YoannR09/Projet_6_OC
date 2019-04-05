@@ -9,6 +9,7 @@ public class Message {
     private     String      contenu;
     private     Date        date;
     private     Compte      auteur;
+    private     Integer     compteId;
 
     public Message(){}
 
@@ -50,5 +51,13 @@ public class Message {
 
     public void setAuteur(Compte auteur) {
         this.auteur = auteur;
+    }
+
+    public Integer getCompteId() {
+        return compteId;
+    }
+
+    public void setCompteId(Integer compteId) {
+        this.compteId = compteId;
     }
 }

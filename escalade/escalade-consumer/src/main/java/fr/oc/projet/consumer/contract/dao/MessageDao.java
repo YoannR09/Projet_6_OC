@@ -9,4 +9,6 @@ public interface MessageDao {
     Message getMessage(Integer pId);
 
     List<Message> getListMessage();
+
+    void addMessage(Message message);
 }
