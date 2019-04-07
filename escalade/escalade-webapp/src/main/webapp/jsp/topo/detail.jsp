@@ -235,53 +235,6 @@
         // récupère le message entré par l'utilisateur
         var contenu = $("textarea[name=contenu]").val();
 
-        var nomSite =$("#nomSite").text();
-
-        // URL de l'action AJAX
-        var url = "<s:url action="ajax_addCommentaire"/>";
-
-        // Paramètres de la requête AJAX
-        var params = {
-            contenu: contenu,
-            nomSite: nomSite
-        };
-
-        // Action AJAX en POST
-        jQuery.post(
-            url,
-            params,
-            function (data) {
-                var $listCommentaire = jQuery("#listCommentaire");
-                $listCommentaire.empty();
-                jQuery.each(data, function (key, val) {
-                    $listCommentaire.append(
-                        jQuery("<span class='badge badge-info' style='padding :10px;margin-bottom: 15px;width: 15%;'>")
-                            .append(val.auteur.pseudo)
-                    );
-                    $listCommentaire.append(
-                        jQuery("<span class='badge badge-light' style='padding :10px;margin-bottom: 15px;width: 60%;height: 70px;text-align: left'>")
-                            .append(val.contenu)
-                    );
-
-                    $listCommentaire.append(
-                        jQuery("<span class='badge badge-light' style='margin-bottom: 15px;'>")
-                            .append(val.date)
-                    );
-
-                    $listCommentaire.append(
-                        jQuery("<div style='width: 100%;height: 5px; border-bottom : 1px solid lightgray; border-radius: 40%'>")
-                    );
-                });
-            })
-
-        $("input[name=contenu]").val(""); //-- On vide le champ de saisie du nouveau message à chaque tour.*
-
-    }
-    function addCommentaire() {
-
-        // récupère le message entré par l'utilisateur
-        var contenu = $("input[name=contenu]").val();
-
         var nomTopo =$("#nomTopo").text();
 
         // URL de l'action AJAX

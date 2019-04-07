@@ -9,6 +9,7 @@ import fr.oc.projet.model.bean.escalade.Site;
 import fr.oc.projet.model.bean.escalade.Topo;
 import fr.oc.projet.model.bean.escalade.Voie;
 import fr.oc.projet.model.bean.utilisateur.Commentaire;
+import fr.oc.projet.model.bean.utilisateur.Compte;
 import fr.oc.projet.model.bean.utilisateur.Reservation;
 import org.apache.commons.io.FileUtils;
 
@@ -31,6 +32,7 @@ public class AjaxAction extends ActionSupport {
     private     List<Reservation>       listReservation;
     private     Site                    site;
     private     Secteur                 secteur;
+    private     Compte                  compte;
     private     Commentaire             commentaire;
     private     List<Secteur>           listSecteur;
     private     String                  nomSite;
@@ -193,7 +195,9 @@ public class AjaxAction extends ActionSupport {
         commentaire.setContenu(contenu);
         commentaire.setDate(new Date());
         pseudo = (String) ActionContext.getContext().getSession().get("pseudo");
-        commentaire.setAuteur(managerFactory.getCompteManager().getCompteViaPseudo(pseudo));
+        compte = managerFactory.getCompteManager().getCompteViaPseudo(pseudo);
+        commentaire.setAuteurId(compte.getId());
+
 
 
         if(nomTopo != null){
@@ -395,5 +399,13 @@ public class AjaxAction extends ActionSupport {
 
     public void setPseudo(String pseudo) {
         this.pseudo = pseudo;
+    }
+
+    public Compte getCompte() {
+        return compte;
+    }
+
+    public void setCompte(Compte compte) {
+        this.compte = compte;
     }
 }
