@@ -63,6 +63,30 @@ public class TopoDaoImpl extends AbstractDaoImpl implements TopoDao {
     }
 
     @Override
+    public List<Topo> getListTopoValidePageDown(Integer lastId) {
+        String vSQL = "SELECT * FROM topo " +
+                " WHERE valide = true " +
+                " AND id > "+(lastId-3)+
+                " ORDER BY id DESC" +
+                " LIMIT 5";
+        JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
+        List<Topo> vList = vJdbcTemplate.query(vSQL,topoRM);
+        return vList ;
+    }
+
+    @Override
+    public List<Topo> getListTopoValidePageUp(Integer lastId) {
+        String vSQL = "SELECT * FROM topo " +
+                " WHERE valide = true " +
+                " AND id < "+lastId+
+                " ORDER BY id DESC" +
+                " LIMIT 5";
+        JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
+        List<Topo> vList = vJdbcTemplate.query(vSQL,topoRM);
+        return vList ;
+    }
+
+    @Override
     public void addTopo(Topo topo) {
         String vSQL = "INSERT INTO topo (nom, description, date_de_creation, valide, responsable_id)" +
                 " VALUES (:nom, :description, :date, :valide, :responsableId)";

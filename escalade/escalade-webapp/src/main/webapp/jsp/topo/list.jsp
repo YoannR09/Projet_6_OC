@@ -72,11 +72,25 @@
                     </div>
                 </div>
         </s:iterator>
+    <s:if test="nombre == 3">
+        <s:a id ="pageUp" action="topo_valide_list_pageUp" class="btn btn-info"><s:param name="lastId" value="lastId" /> Page suivante </s:a>
+    </s:if>
+    <s:if test="firstPage != true">
+        <s:a id ="pageDown" action="topo_valide_list_pageUp" class="btn btn-info"><s:param name="lastId" value="lastId" /> Page précedente </s:a>
+    </s:if>
 </div>
     <div id="partieDroite"  class="col-lg-3 col-md-3 col-sm-3">
-        <div class="card text-white mb-4"  id="recherche">
-            <div class="card-header"></div>
-            <div class="card-body" style="display: flex">
+        <div class="card text-white mb-4"  id="recherche" style="background-color:rgba(0,0,0,0.7)">
+            <div class="card-header "><em>Rechercher les sites</em></div>
+            <div class="card-body"style="text-align: center" >
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Recherche..." aria-label="Recipient's username" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-info" type="button"> <span class="glyphicon glyphicon-search"></span></button>
+                    </div>
+                </div>
+                <br/>
+                <s:a action="site_detail" class="btn btn-info" style="width:80%; margin:10px;"><s:param name="idSite" value="id" /> Bien noté </s:a>
             </div>
         </div>
     </div>

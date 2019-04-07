@@ -37,6 +37,16 @@ public class TopoManagerImpl extends AbstractManagerImpl implements TopoManager 
     }
 
     @Override
+    public List<Topo> getListTopoValidePageDown(Integer lastId) {
+        return getDaoFactory().getTopoDao().getListTopoValidePageDown(lastId);
+    }
+
+    @Override
+    public List<Topo> getListTopoValidePageUp(Integer lastId) {
+        return getDaoFactory().getTopoDao().getListTopoValidePageUp(lastId);
+    }
+
+    @Override
     public int getCountTopo() {
         return getDaoFactory().getTopoDao().getCountTopo();
     }

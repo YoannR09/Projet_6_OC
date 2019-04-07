@@ -16,4 +16,4 @@ INSERT INTO voie (nom,hauteur,secteur_id,cotation_id) VALUES
 ('Voie moyenne',20,5,20),
 ('Voie difficile',30,5,35),
 (null,25,6,24),
-(null,15,6,32),
+(null,15,6,32);

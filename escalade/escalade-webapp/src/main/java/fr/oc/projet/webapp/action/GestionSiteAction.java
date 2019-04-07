@@ -10,6 +10,7 @@ import fr.oc.projet.model.bean.utilisateur.Commentaire;
 import javassist.NotFoundException;
 
 import javax.inject.Inject;
+import java.util.Collections;
 import java.util.List;
 
 public class GestionSiteAction extends ActionSupport {
@@ -47,6 +48,42 @@ public class GestionSiteAction extends ActionSupport {
         lastId = site.getId();
 
         firstPage = true;
+
+        return ActionSupport.SUCCESS;
+    }
+
+    public String doListSiteValideCotaMax() {
+
+        listSite = managerFactory.getSiteManager().getListSiteValide();
+
+        Collections.sort(listSite, Site.ComparatorCotations);
+
+        firstPage = true;
+
+        nombre = listSite.size();
+        Site site = listSite.get(nombre-1);
+        lastId = site.getId();
+
+
+
+        return ActionSupport.SUCCESS;
+    }
+    public String doListSiteValideCotaMin() {
+
+        listSite = managerFactory.getSiteManager().getListSiteValide();
+
+        firstPage = true;
+
+        Collections.sort(listSite, Site.ComparatorCotations);
+
+        Collections.sort(listSite, Collections.reverseOrder());
+
+
+        nombre = listSite.size();
+        Site site = listSite.get(nombre-1);
+        lastId = site.getId();
+
+
 
         return ActionSupport.SUCCESS;
     }

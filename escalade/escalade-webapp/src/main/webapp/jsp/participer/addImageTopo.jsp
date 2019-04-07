@@ -60,7 +60,7 @@
 
                 <s:textfield name="description" label="Description " class="blocInfo"/>
                 <input type="file" name="myFile">
-            <button id="btn" onclick="addImage()" class="btn btn-info">Ajouter</button>
+            <button id="btn" class="btn btn-info">Ajouter</button>
         </div>
         <div class="col-lg-12 col-md-12 col-sm-12" id="cadreImage" style="background-color:rgba(0,0,0,0.7);">
             <h5 style="text-align: center">Liste des images du topos</h5>
@@ -74,7 +74,7 @@
             </div>
 
             <div class="col-lg-12 col-md-12 col-sm-12" id="listBoutons" style="display: flex;justify-content: flex-end">
-                <s:a action="addVoie" class="btn btn-info"> Suivant </s:a>
+                <s:a action="" class="btn btn-info"> Suivant </s:a>
             </div>
         </div>
         <!--------------------------------- Pop-up ------------------------------------>
@@ -90,6 +90,29 @@
     $(function() {
 
             reloadListImage();
+
+
+
+        $('#btn').on('click', function(e) {
+            e.preventDefault();
+            var fd = new FormData();
+            var file = $('#myFile')[0].files[0];
+            fd.append('file', file);
+            fd.append('userId', $('#userid').val());
+            console.log("hi");
+            $.ajax({
+                url: './image/'+$('#session.pseudo').data('value'),
+                data: fd,
+                type: "POST",
+                contentType: false,
+                processData: false,
+                success: function(dd) {
+                    alert("sucessfully Uploaded")
+                }
+            });
+
+            addImage(file.name)
+        });
 
     });
     function reloadListImage() {
@@ -118,10 +141,6 @@
                         jQuery(" <div id='divImage'>")
                             .append(jQuery("<img id='img' src='./image/"+(val.urlImage)+"' width='200px;' height='100px' id='img' style='border: 1px black solid;' />"))
                     );
-
-                    $("#img").attr('src', url);
-
-                    console.log($("#img").attr('src'));
                 });
             })
             .fail(function () {
@@ -136,7 +155,7 @@
         var myFile = $("input[name=myFile]").val();
         var description = $("input[name=description]").val();
 
-        var nom =$("#nomTopo").text();
+        var nomTopo =$("#nomTopo").text();
 
 
         // URL de l'action AJAX
@@ -144,9 +163,8 @@
 
         // Paramètres de la requête AJAX
         var params = {
-            myFile: myFile,
             description: description,
-            nom: nom
+            nomTopo: nomTopo
         };
 
         // Action AJAX en POST

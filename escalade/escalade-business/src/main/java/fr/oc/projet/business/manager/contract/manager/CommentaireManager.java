@@ -13,4 +13,6 @@ public interface CommentaireManager {
     List<Commentaire> getListCommentaireTopo(Integer topoId);
 
     List<Commentaire> getListCommentaireSite(Integer siteId);
+
+    void addCommentaire(Commentaire commentaire);
 }

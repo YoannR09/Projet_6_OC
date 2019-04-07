@@ -17,6 +17,10 @@ public interface TopoManager {
 
     List<Topo> getListTopoNonValide();
 
+    List<Topo> getListTopoValidePageDown(Integer lastId);
+
+    List<Topo> getListTopoValidePageUp(Integer lastId);
+
     int getCountTopo();
 
     void addTopo(Topo topo);

@@ -62,6 +62,16 @@
                 method="doListSiteValide">
             <result name="success">/jsp/site/list.jsp</result>
         </action>
+        <action name="site_valide_list_cotaMax"
+                class="fr.oc.projet.webapp.action.GestionSiteAction"
+                method="doListSiteValideCotaMax">
+            <result name="success">/jsp/site/list.jsp</result>
+        </action>
+        <action name="site_valide_list_cotaMin"
+                class="fr.oc.projet.webapp.action.GestionSiteAction"
+                method="doListSiteValideCotaMin">
+            <result name="success">/jsp/site/list.jsp</result>
+        </action>
         <action name="site_valide_list_pageDown"
                 class="fr.oc.projet.webapp.action.GestionSiteAction"
                 method="doListSiteValidePageDown">
@@ -71,6 +81,17 @@
                 class="fr.oc.projet.webapp.action.GestionSiteAction"
                 method="doListSiteValidePageUp">
             <result name="success">/jsp/site/list.jsp</result>
+        </action>
+
+        <action name="topo_valide_list_pageDown"
+                class="fr.oc.projet.webapp.action.GestionTopoAction"
+                method="doListSiteValidePageDown">
+            <result name="success">/jsp/topo/list.jsp</result>
+        </action>
+        <action name="topo_valide_list_pageUp"
+                class="fr.oc.projet.webapp.action.GestionTopoAction"
+                method="doListSiteValidePageUp">
+            <result name="success">/jsp/topo/list.jsp</result>
         </action>
 
         <action name="listSecteur"
@@ -255,6 +276,14 @@
                 method="doAjaxAddImageTopo">
             <result name="success" type="json">
                 <param name="root">listImage</param>
+            </result>
+        </action>
+
+        <action name="ajax_addCommentaire"
+                class="fr.oc.projet.webapp.action.AjaxAction"
+                method="doAjaxAddCommentaire">
+            <result name="success" type="json">
+                <param name="root">listCommentaire</param>
             </result>
         </action>
 

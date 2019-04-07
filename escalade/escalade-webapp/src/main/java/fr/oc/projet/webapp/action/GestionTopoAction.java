@@ -14,11 +14,69 @@ public class GestionTopoAction extends ActionSupport {
     @Inject
     private ManagerFactory managerFactory;
 
-    private List<Topo> listTopo;
-    private List<Commentaire> listCommentaire;
-    private List<Reservation> reservationList;
-    private Topo    topo;
-    private Integer idTopo;
+    private         List<Topo>            listTopo;
+    private         List<Commentaire>     listCommentaire;
+    private         List<Reservation>     reservationList;
+    private         Topo                  topo;
+    private         Integer               idTopo;
+    private         Integer               lastId;
+    private         Integer               nombre;
+    private         Boolean               firstPage;
+
+
+    public String doDetailTopo(){
+
+        if (this.idTopo == null) {
+            this.addActionError("Vous devez indiquer un id de channel");
+        } else {
+            topo = managerFactory.getTopoManager().getTopo(idTopo);
+            listCommentaire = managerFactory.getCommentaireManager().getListCommentaireTopo(idTopo);
+
+        }
+        return  ActionSupport.SUCCESS;
+    }
+
+    public  String doReservationTopo(){
+
+        topo = managerFactory.getTopoManager().getTopo(idTopo);
+
+        reservationList = managerFactory.getReservationManager().getReservationTopo(idTopo);
+
+        return  ActionSupport.SUCCESS;
+    }
+
+    public String doListSiteValidePageDown() {
+
+        listTopo = managerFactory.getTopoManager().getListTopoValidePageDown(lastId);
+
+        nombre = listTopo.size();
+        Topo topo = listTopo.get(nombre-1);
+        lastId = topo.getId();
+
+        return ActionSupport.SUCCESS;
+    }
+    public String doListSiteValidePageUp() {
+
+        listTopo = managerFactory.getTopoManager().getListTopoValidePageUp(lastId);
+
+        nombre = listTopo.size();
+        Topo topo = listTopo.get(nombre-1);
+        lastId = topo.getId();
+
+        return ActionSupport.SUCCESS;
+    }
+    public String doListTopoValide() {
+        listTopo = managerFactory.getTopoManager().getListTopoValide();
+
+
+        nombre = listTopo.size();
+        Topo topo = listTopo.get(nombre-1);
+        lastId = topo.getId();
+
+        firstPage = true;
+
+        return ActionSupport.SUCCESS;
+    }
 
     public List<Topo> getListTopo() {
         return listTopo;
@@ -28,11 +86,6 @@ public class GestionTopoAction extends ActionSupport {
         this.listTopo = listTopo;
     }
 
-    public String doListTopoValide() {
-        listTopo = managerFactory.getTopoManager().getListTopo();
-
-        return ActionSupport.SUCCESS;
-    }
 
 
     public List<Commentaire> getListCommentaire() {
@@ -67,24 +120,28 @@ public class GestionTopoAction extends ActionSupport {
         this.reservationList = reservationList;
     }
 
-    public String doDetailTopo(){
-
-        if (this.idTopo == null) {
-            this.addActionError("Vous devez indiquer un id de channel");
-        } else {
-            topo = managerFactory.getTopoManager().getTopo(idTopo);
-            listCommentaire = managerFactory.getCommentaireManager().getListCommentaireTopo(idTopo);
-
-        }
-        return  ActionSupport.SUCCESS;
+    public Integer getLastId() {
+        return lastId;
     }
 
-    public  String doReservationTopo(){
-
-        topo = managerFactory.getTopoManager().getTopo(idTopo);
-
-        reservationList = managerFactory.getReservationManager().getReservationTopo(idTopo);
-
-        return  ActionSupport.SUCCESS;
+    public void setLastId(Integer lastId) {
+        this.lastId = lastId;
     }
+
+    public Integer getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(Integer nombre) {
+        this.nombre = nombre;
+    }
+
+    public Boolean getFirstPage() {
+        return firstPage;
+    }
+
+    public void setFirstPage(Boolean firstPage) {
+        this.firstPage = firstPage;
+    }
+
 }

@@ -46,6 +46,7 @@
             color : darkgray;
         }
 
+
     </style>
 </head>
 <body>
@@ -55,8 +56,20 @@
 <div id="page">
     <div id="partieDroite"  class="col-lg-3 col-md-3 col-sm-3">
         <div class="card text-white mb-4"  id="recherche" style="background-color:rgba(0,0,0,0.7)">
-            <div class="card-header "></div>
-            <div class="card-body" style="display: flex">
+            <div class="card-header "><em>Rechercher les sites</em></div>
+            <div class="card-body"style="text-align: center" >
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Recherche..." aria-label="Recipient's username" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-info" type="button"> <span class="glyphicon glyphicon-search"></span></button>
+                    </div>
+                </div>
+                <br/>
+                <s:a action="site_valide_list_cotaMax" class="btn btn-info" style="width:80%; margin:10px;"><s:param name="idSite" value="id" /> Difficiles </s:a>
+                <br/>
+                <s:a action="site_valide_list_cotaMin" class="btn btn-info" style="width:80%; margin:10px;"><s:param name="idSite" value="id" /> Faciles </s:a>
+                <br/>
+                <s:a action="site_detail" class="btn btn-info" style="width:80%; margin:10px;"><s:param name="idSite" value="id" /> Bien noté </s:a>
             </div>
         </div>
     </div>

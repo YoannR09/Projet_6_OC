@@ -8,6 +8,7 @@ import javassist.NotFoundException;
 import jdk.jfr.Name;
 import org.apache.commons.io.FileUtils;
 import org.apache.struts2.interceptor.SessionAware;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -49,6 +50,9 @@ public class LoginAction extends ActionSupport implements SessionAware {
         String vResult = ActionSupport.INPUT;
         if (pseudo != null) {
             compte = managerFactory.getCompteManager().getCompteViaPseudo(pseudo);
+            // BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+            // String hashedPassword = passwordEncoder.encode(password);
+            // if(hashedPassword.equals(compte.getPassword())){
             if(password.equals(compte.getPassword())){
                 this.session.put("user", compte);
                 this.session.put("pseudo", compte.getPseudo());
@@ -86,12 +90,20 @@ public class LoginAction extends ActionSupport implements SessionAware {
                 if (email.equals(emailConf)) {
 
 
+
+
+
                     Compte compte = new Compte();
+
+                    BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+                    String hashedPassword = passwordEncoder.encode(password);
+
+                    System.out.println(hashedPassword);
 
                     compte.setPseudo(pseudo);
                     compte.setPrenom(prenom);
                     compte.setNom(nom);
-                    compte.setPassword(password);
+                    compte.setPassword(hashedPassword);
                     compte.setEmail(email);
                     compte.setNumero(numero);
                     compte.setNiveau(1);

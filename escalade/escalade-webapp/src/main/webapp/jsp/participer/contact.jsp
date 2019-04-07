@@ -69,7 +69,7 @@
                 <label for="inputObjet">Objet</label>
                 <input name="objet" type="text" class="form-control" id="inputObjet" placeholder="Objet du message" required/>
                 <label for="inputContenu">Message</label>
-                <textarea  name="contenu" class="form-control" id="inputContenu" rows="3" placeholder="Ecrivez votre message..."></textarea>
+                <textarea  name="contenu" class="form-control" id="inputContenu" rows="4" placeholder="Ecrivez votre message..."></textarea>
                 <div style="width:100%;display: flex;justify-content: flex-end">
                     <s:submit value="Envoyer" id="btn" class="btn btn-info" style="position:absolute;margin:20px;right:10px;bottom:5px;"/>
                 </div>

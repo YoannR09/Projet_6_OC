@@ -1,5 +1,6 @@
 package fr.oc.projet.webapp.action;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import fr.oc.projet.business.manager.contract.ManagerFactory;
 import fr.oc.projet.model.bean.Image;
@@ -15,6 +16,7 @@ import javax.inject.Inject;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class AjaxAction extends ActionSupport {
@@ -29,10 +31,12 @@ public class AjaxAction extends ActionSupport {
     private     List<Reservation>       listReservation;
     private     Site                    site;
     private     Secteur                 secteur;
+    private     Commentaire             commentaire;
     private     List<Secteur>           listSecteur;
     private     String                  nomSite;
     private     String                  nomSecteur;
     private     String                  nom;
+    private     String                  contenu;
     private     Topo                    topo;
     private     String                  nomTopo;
     private     String                  description;
@@ -40,6 +44,7 @@ public class AjaxAction extends ActionSupport {
     private     String                  myFileContentType;
     private     String                  myFileFileName;
     private     String                  destPath;
+    private     String                  pseudo;
     private     Integer                 mois;
 
 
@@ -86,9 +91,13 @@ public class AjaxAction extends ActionSupport {
         String vResult = ActionSupport.SUCCESS;
         try {
 
+
+            System.out.println(nomTopo);
+
+            topo = managerFactory.getTopoManager().getTopoViaNom(nomTopo);
+
             listImage = managerFactory.getImageManager()
-                    .getListImageTopo(managerFactory.getTopoManager()
-                            .getTopoViaNom(nomTopo).getId());
+                    .getListImageTopo(topo.getId());
 
         }  catch (Exception e) {
             e.printStackTrace();
@@ -122,33 +131,23 @@ public class AjaxAction extends ActionSupport {
         // Par défaut, le result est "input"
         String vResult = ActionSupport.INPUT;
 
-        topo = managerFactory.getTopoManager().getTopoViaNom(nom);
-
-        destPath = "C:/Users/El-ra/Documents/Projet_6_OC/escalade/escalade-webapp/src/main/webapp/image/"+nom+"/";
+        topo = managerFactory.getTopoManager().getTopoViaNom(nomTopo);
 
         if(description != null) {
 
-            try {
 
-                File destFile = new File(destPath, myFileFileName);
-                FileUtils.copyFile(myFile, destFile);
+            Image image = new Image();
+            image.setUrlImage(nomTopo + "/" + myFileFileName);
+            image.setImageDePresentation(false);
+            image.setCompteId(1); // à changer !!
+            image.setTopoId(topo.getId());
+            image.setSiteId(null);
+            image.setDescription(description);
 
-                Image image = new Image();
-                image.setUrlImage(nom + "/" + myFileFileName);
-                image.setImageDePresentation(false);
-                image.setCompteId(1); // à changer !!
-                image.setTopoId(topo.getId());
-                image.setSiteId(null);
-                image.setDescription(description);
+            managerFactory.getImageManager().addImage(image);
 
-                managerFactory.getImageManager().addImage(image);
+            vResult = ActionSupport.SUCCESS;
 
-                vResult = ActionSupport.SUCCESS;
-
-            } catch (IOException e) {
-                e.printStackTrace();
-                return ERROR;
-            }
         }
 
         listImage = managerFactory.getImageManager().getListImageTopo(topo.getId());
@@ -185,6 +184,36 @@ public class AjaxAction extends ActionSupport {
 
 
         return vResult;
+    }
+
+    public String doAjaxAddCommentaire(){
+
+        Commentaire commentaire = new Commentaire();
+
+        commentaire.setContenu(contenu);
+        commentaire.setDate(new Date());
+        pseudo = (String) ActionContext.getContext().getSession().get("pseudo");
+        commentaire.setAuteur(managerFactory.getCompteManager().getCompteViaPseudo(pseudo));
+
+
+        if(nomTopo != null){
+            topo = managerFactory.getTopoManager().getTopoViaNom(nomTopo);
+            commentaire.setTopoId(topo.getId());
+            listCommentaire = managerFactory.getCommentaireManager().getListCommentaireTopo(topo.getId());
+
+        }else if(nomSite != null){
+            site = managerFactory.getSiteManager().getSiteViaNom(nomSite);
+            commentaire.setSiteId(site.getId());
+            listCommentaire = managerFactory.getCommentaireManager().getListCommentaireSite(site.getId());
+
+        }else if(nomSecteur != null){
+            secteur = managerFactory.getSecteurManager().getSecteurViaNom(nomSecteur);
+            commentaire.setSecteurId(secteur.getId());
+            listCommentaire = managerFactory.getCommentaireManager().getListCommentaireSecteur(secteur.getId());
+        }
+
+        managerFactory.getCommentaireManager().addCommentaire(commentaire);
+        return ActionSupport.SUCCESS;
     }
 
 
@@ -342,5 +371,29 @@ public class AjaxAction extends ActionSupport {
 
     public void setSecteur(Secteur secteur) {
         this.secteur = secteur;
+    }
+
+    public Commentaire getCommentaire() {
+        return commentaire;
+    }
+
+    public void setCommentaire(Commentaire commentaire) {
+        this.commentaire = commentaire;
+    }
+
+    public String getContenu() {
+        return contenu;
+    }
+
+    public void setContenu(String contenu) {
+        this.contenu = contenu;
+    }
+
+    public String getPseudo() {
+        return pseudo;
+    }
+
+    public void setPseudo(String pseudo) {
+        this.pseudo = pseudo;
     }
 }

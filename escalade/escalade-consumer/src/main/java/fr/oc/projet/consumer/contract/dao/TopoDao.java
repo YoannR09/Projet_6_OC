@@ -1,6 +1,7 @@
 package fr.oc.projet.consumer.contract.dao;
 
 import fr.oc.projet.model.bean.Count;
+import fr.oc.projet.model.bean.escalade.Site;
 import fr.oc.projet.model.bean.escalade.Topo;
 
 import java.util.List;
@@ -16,6 +17,10 @@ public interface TopoDao {
     List<Topo> getListTopoValide();
 
     List<Topo> getListTopoNonValide();
+
+    List<Topo> getListTopoValidePageDown(Integer lastId);
+
+    List<Topo> getListTopoValidePageUp(Integer lastId);
 
     void addTopo(Topo topo);
 

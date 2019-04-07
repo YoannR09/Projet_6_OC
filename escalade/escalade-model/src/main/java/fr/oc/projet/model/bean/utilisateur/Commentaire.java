@@ -15,6 +15,10 @@ public class Commentaire {
     private        Topo         topo;
     private        Secteur      secteur;
     private        Compte       auteur;
+    private        Integer      auteurId;
+    private        Integer      siteId;
+    private        Integer      topoId;
+    private        Integer      secteurId;
     private        Likes        likes;
 
     public Commentaire(){}
@@ -83,5 +87,37 @@ public class Commentaire {
 
     public void setLikes(Likes likes) {
         this.likes = likes;
+    }
+
+    public Integer getAuteurId() {
+        return auteurId;
+    }
+
+    public void setAuteurId(Integer auteurId) {
+        this.auteurId = auteurId;
+    }
+
+    public Integer getSiteId() {
+        return siteId;
+    }
+
+    public void setSiteId(Integer siteId) {
+        this.siteId = siteId;
+    }
+
+    public Integer getTopoId() {
+        return topoId;
+    }
+
+    public void setTopoId(Integer topoId) {
+        this.topoId = topoId;
+    }
+
+    public Integer getSecteurId() {
+        return secteurId;
+    }
+
+    public void setSecteurId(Integer secteurId) {
+        this.secteurId = secteurId;
     }
 }

@@ -28,4 +28,9 @@ public class CommentaireManagerImpl extends AbstractManagerImpl implements Comme
     public List<Commentaire> getListCommentaireSite(Integer siteId) {
         return getDaoFactory().getCommentaireDao().getListCommentaireSite(siteId);
     }
+
+    @Override
+    public void addCommentaire(Commentaire commentaire) {
+        getDaoFactory().getCommentaireDao().addCommentaire(commentaire);
+    }
 }

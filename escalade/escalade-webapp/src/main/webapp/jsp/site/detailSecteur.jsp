@@ -19,14 +19,8 @@
         justify-content: space-around;
         text-shadow: 0px 0px 15px rgba(0, 0, 0, 1);
     }
-    #cadreImage
-    {
-        height: 400px;
-
-    }
     #cadreInfos
     {
-        height: 300px;
         text-align: center;
         border-color: black;
         border-style: solid;
@@ -110,32 +104,32 @@
         </div>
         <div class="col-lg-12 col-md-12 col-sm-12" id="cadreBouton" style="background-color:rgba(0,0,0,0.7);padding-top: 30px">
             <button type="button" class="btn btn-outline-info" id="btnCom">Voir les commentaires</button>
+            <button type="button" class="btn btn-info" id="btnEnvoyer" data-toggle="modal" data-target="#votreCommentaire">Mettre un commentaire</button>
         </div>
 
         <!--------------------------------- Pop-up ------------------------------------>
 
-        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="color: black">
-            <div class="modal-dialog modal-dialog-centered" role="document" style="width: 20%">
-                <div class="modal-content">
+        <div class="modal fade" id="votreCommentaire" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="color: black">
+            <div class="modal-dialog modal-dialog-centered" role="document" style="width: 50%">
+                <div class="modal-content bg-dark" style="color:white;">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Evaluer le site</h5>
+                        <h5 class="modal-title" id="tittle">Votre commentaire</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body" style="display: flex;justify-content: center">
-                        <input type="number" id="tentacles" name="tentacles" style="margin: 5px"
-                               min="1" max="10">  <span>/ 10</span>
+                            <label for="inputContenu">Message</label>
+                            <textarea  name="contenu"class="form-control" id="inputContenu" rows="4" placeholder="Ecrivez votre message..."></textarea>
                     </div>
                     <div class="modal-footer" style="display: flex;justify-content: space-around">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-                        <button type="button" class="btn btn-primary">Valider</button>
+                        <button type="button" class="btn btn-primary" onclick="addCommentaire()"  data-dismiss="modal">Valider</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -147,6 +141,7 @@
 
         $('#cadreCommentaire').hide();
         $('#cadreSecteur').hide();
+        $('#btnEnvoyer').hide();
 
         $("#btnCom").click(function() {
 
@@ -155,6 +150,10 @@
             $("html, body").animate({ scrollTop: $('#page').height() }, 1500);
 
             $('#cadreCommentaire').slideDown(1500);
+
+            $('#btnEnvoyer').show();
+
+            $('#btnCom').hide();
 
         });
 
@@ -165,6 +164,10 @@
             $("html, body").animate({ scrollTop: $('#page').height() }, 1500);
 
             $('#cadreCommentaire').slideUp(1500);
+
+            $('#btnEnvoyer').hide();
+
+            $('#btnCom').show();
 
         });
     });
@@ -208,6 +211,53 @@
             .fail(function () {
                 alert("Erreur !!");
             });
+    }
+    function addCommentaire() {
+
+        // récupère le message entré par l'utilisateur
+        var contenu = $("textarea[name=contenu]").val();
+
+        var nomSecteur = $("#nomSecteur").text();
+
+        // URL de l'action AJAX
+        var url = "<s:url action="ajax_addCommentaire"/>";
+
+        // Paramètres de la requête AJAX
+        var params = {
+            contenu: contenu,
+            nomSecteur: nomSecteur
+        };
+
+        // Action AJAX en POST
+        jQuery.post(
+            url,
+            params,
+            function (data) {
+                var $listCommentaire = jQuery("#listCommentaire");
+                $listCommentaire.empty();
+                jQuery.each(data, function (key, val) {
+                    $listCommentaire.append(
+                        jQuery("<span class='badge badge-info' style='padding :10px;margin-bottom: 15px;width: 15%;'>")
+                            .append(val.auteur.pseudo)
+                    );
+                    $listCommentaire.append(
+                        jQuery("<span class='badge badge-light' style='padding :10px;margin-bottom: 15px;width: 60%;height: 70px;text-align: left'>")
+                            .append(val.contenu)
+                    );
+
+                    $listCommentaire.append(
+                        jQuery("<span class='badge badge-light' style='margin-bottom: 15px;'>")
+                            .append(val.date)
+                    );
+
+                    $listCommentaire.append(
+                        jQuery("<div style='width: 100%;height: 5px; border-bottom : 1px solid lightgray; border-radius: 40%'>")
+                    );
+                });
+            })
+
+        $("textarea[name=contenu]").val(""); //-- On vide le champ de saisie du nouveau message à chaque tour.*
+
     }
 </script>
 </body>

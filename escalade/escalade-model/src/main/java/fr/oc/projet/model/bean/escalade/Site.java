@@ -3,6 +3,7 @@ package fr.oc.projet.model.bean.escalade;
 import fr.oc.projet.model.bean.utilisateur.Compte;
 import fr.oc.projet.model.bean.utilisateur.Note;
 
+import java.util.Comparator;
 import java.util.Date;
 
 
@@ -186,4 +187,6 @@ public class Site {
     public void setTopoId(Integer topoId) {
         this.topoId = topoId;
     }
+
+    public static Comparator<Site> ComparatorCotations = (e1, e2) -> (int) (e1.getCotationMax().getNiveau()) - e2.getCotationMax().getNiveau();
 }
