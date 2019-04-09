@@ -7,6 +7,7 @@ public class Voie {
     private     Integer     hauteur;
     private     Secteur     secteur;
     private     Cotation    cotation;
+    private     Integer     cotationId;
 
     public Voie(){}
 
@@ -50,5 +51,13 @@ public class Voie {
 
     public void setCotation(Cotation cotation) {
         this.cotation = cotation;
+    }
+
+    public Integer getCotationId() {
+        return cotationId;
+    }
+
+    public void setCotationId(Integer cotationId) {
+        this.cotationId = cotationId;
     }
 }

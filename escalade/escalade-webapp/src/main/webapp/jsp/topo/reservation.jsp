@@ -68,19 +68,19 @@
                 <div class="form-group row" >
                     <label for="example-date-input" class="col-2 col-form-label">Date à reserver : </label>
                     <div class="col-4">
-                        <input name="date" class="form-control" type="date" value="2019-08-04" id="example-date-input">
+                        <input id="date" name="date" class="form-control" type="date" value="2019-08-04" id="example-date-input">
                     </div>
                     <div class="form-check form-check-inline">
                         <label class="form-check-label">
-                            <input name="matin" class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1"> Matin
+                            <input id="matin" name="matin" class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1"> Matin
                         </label>
                     </div>
                     <div class="form-check form-check-inline">
                         <label class="form-check-label">
-                            <input name="apresMidi" class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2"> Après-midi
+                            <input id="apresMidi" name="apresMidi" class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2"> Après-midi
                         </label>
                     </div>
-                    <s:a action="" class="btn btn-outline-info"><s:param name="idTopo" value="id" /> Réserver </s:a>
+                    <button type="button" onclick="addResa()" class="btn btn-outline-info">Réserver</button>
                 </div>
 
             <div>
@@ -249,6 +249,61 @@
             })
             .fail(function () {
                 alert("Erreur !!");
+            });
+    }
+    function addResa() {
+        // URL de l'action AJAX
+        var url = "<s:url action="ajax_add_reservation"/>";
+
+
+        var nomTopo = $("#nomTopo").text();
+
+        var date = $("#date").val();
+
+        var matin = $("#matin").val();
+
+        var apresMidi = $("#apresMidi").val();
+
+        var params = {
+            date:date,
+            matin:matin,
+            apresMidi:apresMidi,
+            nomTopo: nomTopo
+        };
+
+        // Action AJAX en POST
+        jQuery.post(
+            url,
+            params,
+            function (data) {
+                var $listResa = jQuery("#listResa");
+                $listResa.empty();
+                jQuery.each(data, function (key, val) {
+
+                    if (val.matin == true) {
+                        var etatMatin = 'réservé';
+                    }else {
+                        var etatMatin = 'non réservé';
+                    }
+                    if (val.apresMidi == true) {
+                        var etatApres = 'réservé';
+                    }else {
+                        var etatApres = 'non réservé';
+                    }
+
+                    $listResa.append(
+                        jQuery("<div style='display:flex;justify-content: space-around'>")
+                            .append(jQuery("<span class='badge badge-info' style='width: 200px'>").append(val.compte.pseudo),
+                                jQuery("<span class='badge badge-light' style='width: 100px'>").append(val.date),
+                                jQuery("<span class='badge badge-light' style='width: 100px'>").append(etatMatin),
+                                jQuery("<span class='badge badge-light' style='width: 100px'>").append(etatApres))
+
+                    );
+                    $listResa.append(
+                        jQuery("</div><div style='width: 100%;height: 5px; border-bottom : 1px solid lightgray; border-radius: 40%'>")
+                    );
+                });
+
             });
     }
 </script>

@@ -12,6 +12,8 @@ public class Reservation {
     private     Boolean     apresMidi;
     private     Compte      compte;
     private     Topo        topo;
+    private     Integer     compteId;
+    private     Integer     topoId;
 
     public Reservation(){}
 
@@ -63,5 +65,21 @@ public class Reservation {
 
     public void setTopo(Topo topo) {
         this.topo = topo;
+    }
+
+    public Integer getCompteId() {
+        return compteId;
+    }
+
+    public void setCompteId(Integer compteId) {
+        this.compteId = compteId;
+    }
+
+    public Integer getTopoId() {
+        return topoId;
+    }
+
+    public void setTopoId(Integer topoId) {
+        this.topoId = topoId;
     }
 }

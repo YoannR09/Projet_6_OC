@@ -1,5 +1,6 @@
 package fr.oc.projet.webapp.action;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import fr.oc.projet.business.manager.contract.ManagerFactory;
 import fr.oc.projet.model.bean.escalade.Topo;
@@ -7,6 +8,7 @@ import fr.oc.projet.model.bean.utilisateur.Commentaire;
 import fr.oc.projet.model.bean.utilisateur.Reservation;
 
 import javax.inject.Inject;
+import java.util.Date;
 import java.util.List;
 
 public class GestionTopoAction extends ActionSupport {
@@ -21,6 +23,7 @@ public class GestionTopoAction extends ActionSupport {
     private         Integer               idTopo;
     private         Integer               lastId;
     private         Integer               nombre;
+    private         String                pseudo;
     private         Boolean               firstPage;
 
 
@@ -44,6 +47,8 @@ public class GestionTopoAction extends ActionSupport {
 
         return  ActionSupport.SUCCESS;
     }
+
+
 
     public String doListSiteValidePageDown() {
 
@@ -144,4 +149,11 @@ public class GestionTopoAction extends ActionSupport {
         this.firstPage = firstPage;
     }
 
+    public String getPseudo() {
+        return pseudo;
+    }
+
+    public void setPseudo(String pseudo) {
+        this.pseudo = pseudo;
+    }
 }

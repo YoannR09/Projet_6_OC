@@ -57,6 +57,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
                 this.session.put("user", compte);
                 this.session.put("pseudo", compte.getPseudo());
                 this.session.put("niveau", compte.getNiveauAcces().getNiveau());
+
                 vResult = ActionSupport.SUCCESS;
             }
         }

@@ -8,6 +8,7 @@ import fr.oc.projet.model.bean.escalade.Topo;
 import fr.oc.projet.model.bean.utilisateur.NiveauAcces;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.SqlParameterValue;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
@@ -113,5 +114,19 @@ public class TopoDaoImpl extends AbstractDaoImpl implements TopoDao {
                 "SELECT COUNT(*) FROM public.topo",
                 Integer.class);
         return vNbrTopo;
+    }
+
+    @Override
+    public void update(Topo topo) {
+        String vSQL = "UPDATE topo SET valide = ? WHERE id = ?";
+
+        Object[] vParams = {
+                new SqlParameterValue(Types.BOOLEAN, topo.getValide()),
+                new SqlParameterValue(Types.INTEGER, topo.getId()),
+
+        };
+
+        JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
+        vJdbcTemplate.update(vSQL, vParams);
     }
 }

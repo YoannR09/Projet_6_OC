@@ -79,41 +79,16 @@
                  width="100%" height="100%" id="img" style="border: 1px black solid;" />
         </div>
         <div class="col-lg-12 col-md-12 col-sm-12" id="cadreInfos" style="background-color:rgba(0,0,0,0.7);">
-            <h2 id="nomSite"><s:property value="site.nom"/></h2>
-            <br/><s:property value="site.description"/>
-
-            <h4>Localisation</h4>
-
-            <p><span>Region : <s:property value="site.departement.region.nom"/></span>
-                <span>Département : <s:property value="site.departement.nom"/> </span>
-                <span>Ville : <s:property value="site.ville"/></span> </p>
+            <h2 id="nomTopo"><s:property value="topo.nom"/></h2>
+            <br/><s:property value="topo.description"/>
 
 
         </div>
 
-        <div class="col-lg-12 col-md-12 col-sm-12" id="cadreCommentaire" style="background-color:rgba(0,0,0,0.7);">
-            <a href="#" class="btn btn-sm btn-info " id="slideTop" style="width: 100% ; margin: auto; border-radius: 10%"></a>
-            <div id="listCommentaire">
-                <s:iterator value="secteurList">
-
-                    <br/>
-                    <div  style="display: flex;justify-content: space-around">
-                        <span class='badge badge-info' style='padding-top:11px; width: 200px'> <s:property value="nom"/></span>
-                        <span class='badge badge-light' style='padding-top:11px;'> Nombre de voies : <s:property value="nombreVoie"/></span>
-                        <span class='badge badge-light' style='padding-top:11px;'> Cotations : <s:property value="cotationMin.valeur"/> à <s:property value="cotationMax.valeur"/></span>
-                        <span class='badge badge-light' style='padding-top:11px;'>- Hauteur : <s:property value="hauteurMin"/> à <s:property value="hauteurMax"/></span>
-
-                    </div>
-                    <div style='width: 100%;height: 5px; border-bottom : 1px solid lightgray; border-radius: 40%'>
-                    </div>
-                </s:iterator>
-
-            </div>
-        </div>
         <div class="col-lg-12 col-md-12 col-sm-12" id="cadreBouton" style="background-color:rgba(0,0,0,0.7);">
             <s:a action="" class="btn btn-outline-danger"><s:param name="idSite" value="site.id" />Refuser</s:a>
             <button type="button" class="btn btn-outline-info" id="btnCom">Voir les secteurs</button>
-            <s:a action="valider" class="btn btn-outline-info"><s:param name="idSite" value="site.id" /> Valider </s:a>
+            <s:a action="valider" class="btn btn-outline-info"><s:param name="idTopo" value="topo.id" /> Valider </s:a>
         </div>
 
         <!--------------------------------- Pop-up ------------------------------------>
@@ -142,33 +117,5 @@
 
 </div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script>
-    $(function() {
-
-        $('#cadreCommentaire').hide();
-        $('#cadreSecteur').hide();
-
-        $("#btnCom").click(function() {
-
-            $('#cadreBouton').css('border-width','0px 1px 1px 1px');
-
-            $("html, body").animate({ scrollTop: $('#page').height() }, 1500);
-
-            $('#cadreCommentaire').slideDown(1500);
-
-        });
-
-        $("#slideTop").click(function() {
-
-            $('#cadreBouton').css('border-width','0px 1px 1px 1px');
-
-            $("html, body").animate({ scrollTop: $('#page').height() }, 1500);
-
-            $('#cadreCommentaire').slideUp(1500);
-
-        });
-    });
-</script>
 </body>
 </html>

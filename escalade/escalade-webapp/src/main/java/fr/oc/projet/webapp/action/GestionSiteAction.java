@@ -76,8 +76,6 @@ public class GestionSiteAction extends ActionSupport {
 
         Collections.sort(listSite, Site.ComparatorCotations);
 
-        Collections.sort(listSite, Collections.reverseOrder());
-
 
         nombre = listSite.size();
         Site site = listSite.get(nombre-1);

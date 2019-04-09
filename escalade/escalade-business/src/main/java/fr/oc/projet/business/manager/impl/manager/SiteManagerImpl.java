@@ -50,4 +50,9 @@ public class SiteManagerImpl extends AbstractManagerImpl implements SiteManager 
     public int getCountSite() {
         return getDaoFactory().getSiteDao().getCountSite();
     }
+
+    @Override
+    public void updateSite(Site site) {
+        getDaoFactory().getSiteDao().updateSite(site);
+    }
 }

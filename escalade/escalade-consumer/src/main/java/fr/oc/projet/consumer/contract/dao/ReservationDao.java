@@ -12,4 +12,6 @@ public interface ReservationDao {
 
     List<Reservation> getListReservation();
 
+    void addReservation(Reservation reservation);
+
 }

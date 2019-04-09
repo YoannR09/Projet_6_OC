@@ -86,7 +86,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                            <s:textfield id="textNomSecteur" name="nomSecteur" class="form-control" label="Nom "/>
+                        <input name="nomSecteur" type="text" class="form-control" id="inputObjet" placeholder="Nom" required/>
                         <button id="btn" data-dismiss="modal" onclick="addSecteur()" class="btn btn-info">Envoyer</button>
                     </div>
 
@@ -143,7 +143,7 @@
     function addSecteur() {
 
         // récupère le message entré par l'utilisateur
-        var contenuSecteur = $("input[name=nomSecteur]").val();
+        var nomSecteur = $("text[name=nomSecteur]").val();
 
         var nomSite =$("#nomSite").text();
 
@@ -152,17 +152,16 @@
 
         // Paramètres de la requête AJAX
         var params = {
-            contenuSecteur: contenuSecteur,
+            nomSecteur: nomSecteur,
             nomSite: nomSite
         };
 
         // Action AJAX en POST
         jQuery.post(
             url,
-
             params,
-            function (data) { // La méthode qui lit le résultat retourné à la suite de l'envoi de la requêt POST
-                var $listSecteur = jQuery("#listSecteur"); // OFA : il faut qu'une balise html existe avec cet id="listMessage" pour savoir ou mettre la liste des mesages.
+            function (data) {
+                var $listSecteur = jQuery("#listSecteur");
 
                 $listSecteur.empty();
 

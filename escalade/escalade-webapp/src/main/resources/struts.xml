@@ -131,15 +131,15 @@
 
 
 
-    <action name="newUser"
-            class="fr.oc.projet.webapp.action.LoginAction"
-            method="doCreate">
+        <action name="newUser"
+                class="fr.oc.projet.webapp.action.LoginAction"
+                method="doCreate">
 
-        <result name="input">/jsp/login/newUser.jsp</result>
-        <result name="success" type="redirectAction">
-            <param name="actionName">login</param>
-        </result>
-    </action>
+            <result name="input">/jsp/login/newUser.jsp</result>
+            <result name="success" type="redirectAction">
+                <param name="actionName">login</param>
+            </result>
+        </action>
 
 
         <action name="logout" class="fr.oc.projet.webapp.action.LoginAction" method="doLogout">
@@ -160,8 +160,7 @@
         <action name="addSite"
                 class="fr.oc.projet.webapp.action.GestionParticiper"
                 method="doCreate">
-
-            <result name="input">/jsp/participer/addSecteur.jsp</result>
+            <result name="success">/jsp/participer/addSecteur.jsp</result>
         </action>
 
         <action name="contact">
@@ -215,17 +214,30 @@
             <result name="success">/jsp/gestion/moderer.jsp</result>
         </action>
 
+        <action name="valider"
+                class="fr.oc.projet.webapp.action.GestionSiteWebAction"
+                method="doValide">
+            <result name="success">/index.jsp</result>
+        </action>
+
         <action name="moderer_site"
                 class="fr.oc.projet.webapp.action.GestionSiteWebAction"
                 method="doModerationSite">
             <result name="success">/jsp/gestion/detailSite.jsp</result>
         </action>
+        <action name="moderer_topo"
+                class="fr.oc.projet.webapp.action.GestionSiteWebAction"
+                method="doModerationTopo">
+            <result name="success">/jsp/gestion/detailTopo.jsp</result>
+        </action>
 
         <action name="reservationTopo"
-                         class="fr.oc.projet.webapp.action.GestionTopoAction"
-                         method="doReservationTopo">
-        <result name="success">/jsp/topo/reservation.jsp</result>
-    </action>
+                class="fr.oc.projet.webapp.action.GestionTopoAction"
+                method="doReservationTopo">
+            <result name="success">/jsp/topo/reservation.jsp</result>
+        </action>
+
+
 
         <action name="addMessage"
                 class="fr.oc.projet.webapp.action.GestionParticiper"
@@ -299,6 +311,14 @@
         <action name="ajax_listResa"
                 class="fr.oc.projet.webapp.action.AjaxAction"
                 method="doAjaxDetailResaTopo">
+            <result name="success" type="json">
+                <param name="root">listReservation</param>
+            </result>
+        </action>
+
+        <action name="ajax_add_reservation"
+                class="fr.oc.projet.webapp.action.AjaxAction"
+                method="doReservation">
             <result name="success" type="json">
                 <param name="root">listReservation</param>
             </result>

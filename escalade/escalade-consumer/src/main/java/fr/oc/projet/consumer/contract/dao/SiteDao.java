@@ -22,4 +22,6 @@ public interface SiteDao {
     void addSite(Site site);
 
     int getCountSite();
+
+    void updateSite(Site site);
 }

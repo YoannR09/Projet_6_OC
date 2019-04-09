@@ -28,7 +28,9 @@ public class GestionSiteWebAction extends ActionSupport {
     private Integer       idMessage;
     private Message       message;
     private Site          site;
+    private Topo          topo;
     private Integer       idSite;
+    private Integer       idTopo;
 
 
     /**
@@ -72,7 +74,29 @@ public class GestionSiteWebAction extends ActionSupport {
     public String doModerationSite(){
 
         site = managerFactory.getSiteManager().getSite(idSite);
-        secteurList = managerFactory.getSecteurManager().getListSecteurSite(idSite);
+
+        return ActionSupport.SUCCESS;
+    }
+    public String doModerationTopo(){
+
+        topo = managerFactory.getTopoManager().getTopo(idTopo);
+
+        return ActionSupport.SUCCESS;
+    }
+
+    public String doValide(){
+
+        if(idSite != null){
+            site = managerFactory.getSiteManager().getSite(idSite);
+            site.setValide(true);
+            managerFactory.getSiteManager().updateSite(site);
+            this.addActionMessage("Le site est maintenant disponible.");
+        }else if(idTopo != null){
+            topo = managerFactory.getTopoManager().getTopo(idTopo);
+            topo.setValide(true);
+            managerFactory.getTopoManager().update(topo);
+            this.addActionMessage("Le topo est maintenant disponible.");
+        }
 
         return ActionSupport.SUCCESS;
     }
@@ -140,6 +164,22 @@ public class GestionSiteWebAction extends ActionSupport {
 
     public void setSecteurList(List<Secteur> secteurList) {
         this.secteurList = secteurList;
+    }
+
+    public Topo getTopo() {
+        return topo;
+    }
+
+    public void setTopo(Topo topo) {
+        this.topo = topo;
+    }
+
+    public Integer getIdTopo() {
+        return idTopo;
+    }
+
+    public void setIdTopo(Integer idTopo) {
+        this.idTopo = idTopo;
     }
 }
 

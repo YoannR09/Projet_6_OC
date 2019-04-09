@@ -37,6 +37,13 @@
 <header>
     <%@ include file="/_include/header.jsp"%>
 </header>
+<div style="position: fixed;z-index: 1;right: 20px;bottom: 10px;">
+    <div class="alert alert-success">
+        <s:actionmessage/>
+    </div>
+    <button class="btn btn-outline-light" type="button">X</button>
+</div>
+
 <div id="page">
 <div class="col-lg-10 col-md-10 col-sm-10" style="color: white;">
     <div id="recherche" class="col-lg-12 col-md-12 col-sm-12" style="background-color:rgba(0,0,0,0.7);padding-top: 10px;padding-bottom: 10px;margin-top: 20px">

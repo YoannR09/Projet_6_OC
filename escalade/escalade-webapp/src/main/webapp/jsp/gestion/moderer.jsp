@@ -130,7 +130,7 @@
                     <span class='badge badge-info' style='padding-top:11px; width: 200px'><s:property value="nom"/></span>
                     <span class='badge badge-light' style='padding-top:11px; width: 200px'><s:property value="date"/></span>
                     <span class='badge badge-light' style='padding-top:11px;'><s:property value="responsable.pseudo"/></span>
-                    <s:a action="site_detail" class="btn btn-outline-info" style="float:right;margin-top:13px"><s:param name="idSecteur" value="id" /> Voir </s:a>
+                    <s:a action="moderer_topo" class="btn btn-outline-info" style="float:right;margin-top:13px"><s:param name="idTopo" value="id" /> Voir </s:a>
 
                 </div>
                 <div style='width: 100%;height: 5px; border-bottom : 1px solid lightgray; border-radius: 40%'>

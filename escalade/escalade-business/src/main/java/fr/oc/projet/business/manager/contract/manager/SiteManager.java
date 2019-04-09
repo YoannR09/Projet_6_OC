@@ -22,4 +22,6 @@ public interface SiteManager {
     void addSite(Site site);
 
     int getCountSite();
+
+    void updateSite(Site site);
 }

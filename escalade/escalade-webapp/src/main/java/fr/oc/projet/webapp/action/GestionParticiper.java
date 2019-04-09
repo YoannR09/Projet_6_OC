@@ -77,7 +77,7 @@ public class GestionParticiper extends ActionSupport {
                     Image image = new Image();
                     image.setUrlImage(topo.getNom()+"/"+myFileFileName);
                     image.setImageDePresentation(true);
-                    image.setCompteId(1);
+                    image.setCompteId(1); // A changer !!
                     image.setTopoId(managerFactory.getTopoManager().getTopoViaNom(topo.getNom()).getId());
                     image.setDescription("Image de présentation du topo "+topo.getNom());
                     image.setSiteId(null);
@@ -93,6 +93,7 @@ public class GestionParticiper extends ActionSupport {
             }
         }else {
             Site site = new Site();
+            pseudo = (String) ActionContext.getContext().getSession().get("pseudo");
             site.setEditeur(managerFactory.getCompteManager().getCompteViaPseudo(pseudo));
             site.setNom(nom);
             site.setTypeId(type.getId());
@@ -105,7 +106,28 @@ public class GestionParticiper extends ActionSupport {
 
             managerFactory.getSiteManager().addSite(site);
 
-            vResult = ActionSupport.SUCCESS;
+            destPath = "C:/Users/El-ra/Documents/Projet_6_OC/escalade/escalade-webapp/src/main/webapp/image/"+topo.getNom()+"/";
+
+            try {
+
+                File destFile  = new File(destPath, myFileFileName);
+                FileUtils.copyFile(myFile, destFile);
+
+                Image image = new Image();
+                image.setUrlImage(site.getNom()+"/"+myFileFileName);
+                image.setSiteId(site.getId());
+                image.setDescription("Image de présentation du topo "+topo.getNom());
+                image.setImageDePresentation(true);
+                image.setCompteId(1); // A changer !!
+
+                managerFactory.getImageManager().addImage(image);
+
+                vResult = ActionSupport.SUCCESS;
+
+            } catch(IOException e) {
+                e.printStackTrace();
+                return ERROR;
+            }
         }
 
         listType = managerFactory.getTypeDeRocheManager().getListTypeDeRoche();
@@ -118,7 +140,6 @@ public class GestionParticiper extends ActionSupport {
 
     public String doAddListVoie(){
 
-            System.out.println("nom du site : "+nomSite);
             site = managerFactory.getSiteManager().getSiteViaNom(nomSite);
 
         return ActionSupport.SUCCESS;
@@ -137,6 +158,8 @@ public class GestionParticiper extends ActionSupport {
         message.setObjet(objet);
 
         managerFactory.getMessageManager().addMessage(message);
+
+        this.addActionMessage("Message bien envoyé.");
 
         return ActionSupport.SUCCESS;
     }
@@ -319,4 +342,5 @@ public class GestionParticiper extends ActionSupport {
     public void setObjet(String objet) {
         this.objet = objet;
     }
+
 }

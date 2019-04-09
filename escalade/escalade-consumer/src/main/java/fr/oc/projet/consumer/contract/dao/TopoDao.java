@@ -25,4 +25,6 @@ public interface TopoDao {
     void addTopo(Topo topo);
 
     int getCountTopo();
+
+    void update(Topo topo);
 }

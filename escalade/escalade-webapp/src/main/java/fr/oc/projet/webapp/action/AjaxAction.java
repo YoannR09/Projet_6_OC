@@ -4,10 +4,7 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import fr.oc.projet.business.manager.contract.ManagerFactory;
 import fr.oc.projet.model.bean.Image;
-import fr.oc.projet.model.bean.escalade.Secteur;
-import fr.oc.projet.model.bean.escalade.Site;
-import fr.oc.projet.model.bean.escalade.Topo;
-import fr.oc.projet.model.bean.escalade.Voie;
+import fr.oc.projet.model.bean.escalade.*;
 import fr.oc.projet.model.bean.utilisateur.Commentaire;
 import fr.oc.projet.model.bean.utilisateur.Compte;
 import fr.oc.projet.model.bean.utilisateur.Reservation;
@@ -20,6 +17,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * Classe qui gère les actions en ajax de l'application.
+ */
 public class AjaxAction extends ActionSupport {
 
     @Inject
@@ -32,7 +32,9 @@ public class AjaxAction extends ActionSupport {
     private     List<Reservation>       listReservation;
     private     Site                    site;
     private     Secteur                 secteur;
+    private     Voie                    voie;
     private     Compte                  compte;
+    private     Cotation                cotation;
     private     Commentaire             commentaire;
     private     List<Secteur>           listSecteur;
     private     String                  nomSite;
@@ -48,6 +50,11 @@ public class AjaxAction extends ActionSupport {
     private     String                  destPath;
     private     String                  pseudo;
     private     Integer                 mois;
+    private     Integer                 hauteur;
+    private     Date                    date;
+    private     String                 matin;
+    private     String                 apresMidi;
+    private     Integer                 idTopo;
 
 
 
@@ -129,6 +136,31 @@ public class AjaxAction extends ActionSupport {
         return vResult;
     }
 
+    public String doAjaxAddVoie(){
+        String vResult = ActionSupport.SUCCESS;
+
+        try {
+            site =  managerFactory.getSiteManager().getSiteViaNom(nomSite);
+
+            Voie voie = new Voie();
+            voie.setSecteur(secteur);
+            voie.setHauteur(hauteur);
+            voie.setNom(nom);
+            voie.setCotationId(cotation.getId());
+
+
+
+            listSecteur = managerFactory.getSecteurManager().getListSecteurSite(site.getId());
+
+
+        }  catch (Exception e) {
+            e.printStackTrace();
+        }
+        return vResult;
+    }
+
+
+
     public String doAjaxAddImageTopo(){
         // Par défaut, le result est "input"
         String vResult = ActionSupport.INPUT;
@@ -187,7 +219,32 @@ public class AjaxAction extends ActionSupport {
 
         return vResult;
     }
+    public  String doReservation(){
 
+        topo = managerFactory.getTopoManager().getTopoViaNom(nomTopo);
+
+        pseudo = (String) ActionContext.getContext().getSession().get("pseudo");
+
+        Reservation reservation = new Reservation();
+        reservation.setDate(date);
+        System.out.println(matin);
+        reservation.setMatin(true);
+        reservation.setApresMidi(true);
+        reservation.setCompteId(managerFactory.getCompteManager().getCompteViaPseudo(pseudo).getId());
+        reservation.setTopoId(topo.getId());
+        managerFactory.getReservationManager().addReservation(reservation);
+
+        listReservation = managerFactory.getReservationManager().getReservationTopo(topo.getId());
+
+        return  ActionSupport.SUCCESS;
+    }
+
+    /**
+     * Méthode pour créer un commentaire dans un site/topo/secteur
+     * On récupère le nom en haut de la page et en focntion de celui-ci on s'est
+     * si on est sur un site/topo ou secteur.
+     * @return
+     */
     public String doAjaxAddCommentaire(){
 
         Commentaire commentaire = new Commentaire();
@@ -219,10 +276,6 @@ public class AjaxAction extends ActionSupport {
         managerFactory.getCommentaireManager().addCommentaire(commentaire);
         return ActionSupport.SUCCESS;
     }
-
-
-
-
 
 
     public List<Commentaire> getListCommentaire() {
@@ -407,5 +460,61 @@ public class AjaxAction extends ActionSupport {
 
     public void setCompte(Compte compte) {
         this.compte = compte;
+    }
+
+    public Voie getVoie() {
+        return voie;
+    }
+
+    public void setVoie(Voie voie) {
+        this.voie = voie;
+    }
+
+    public Cotation getCotation() {
+        return cotation;
+    }
+
+    public void setCotation(Cotation cotation) {
+        this.cotation = cotation;
+    }
+
+    public Integer getHauteur() {
+        return hauteur;
+    }
+
+    public void setHauteur(Integer hauteur) {
+        this.hauteur = hauteur;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public Integer getIdTopo() {
+        return idTopo;
+    }
+
+    public void setIdTopo(Integer idTopo) {
+        this.idTopo = idTopo;
+    }
+
+    public String getMatin() {
+        return matin;
+    }
+
+    public void setMatin(String matin) {
+        this.matin = matin;
+    }
+
+    public String getApresMidi() {
+        return apresMidi;
+    }
+
+    public void setApresMidi(String apresMidi) {
+        this.apresMidi = apresMidi;
     }
 }

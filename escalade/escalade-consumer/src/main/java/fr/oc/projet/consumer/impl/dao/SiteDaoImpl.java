@@ -7,6 +7,7 @@ import fr.oc.projet.model.bean.escalade.Site;
 import fr.oc.projet.model.bean.escalade.Topo;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.SqlParameterValue;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
@@ -113,7 +114,6 @@ public class SiteDaoImpl extends AbstractDaoImpl implements SiteDao {
         vParams.registerSqlType("valide", Types.BOOLEAN);
         vParams.registerSqlType("date", Types.DATE);
 
-
         try {
             vJdbcTemplate.update(vSQL, vParams);
         } catch (DuplicateKeyException vEx) {
@@ -129,6 +129,19 @@ public class SiteDaoImpl extends AbstractDaoImpl implements SiteDao {
         return vNbrSite;
     }
 
+    @Override
+    public void updateSite(Site site) {
+        String vSQL = "UPDATE site SET valide = ? WHERE id = ?";
+
+        Object[] vParams = {
+                new SqlParameterValue(Types.BOOLEAN, site.getValide()),
+                new SqlParameterValue(Types.INTEGER, site.getId()),
+
+        };
+
+        JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
+        vJdbcTemplate.update(vSQL, vParams);
+    }
 
 
 }
