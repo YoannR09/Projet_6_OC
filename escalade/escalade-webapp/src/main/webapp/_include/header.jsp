@@ -34,7 +34,8 @@
             <s:if test="#session.user">
                 <s:property value="#session.user.pseudo" />
                 <s:set var="pseudo" value="session.user.pseudo"/>
-                <s:a action="logout" class="nav-link">Deconnexion</s:a>
+                <s:a action="logout" class="nav-link">Deconnexion</s:a> /
+                <s:a action="logout" class="nav-link">Mon profil</s:a>
             </s:if>
             <s:else>
                 <s:a action="login" style="color:lightgray" class="nav-link">Connexion</s:a> /

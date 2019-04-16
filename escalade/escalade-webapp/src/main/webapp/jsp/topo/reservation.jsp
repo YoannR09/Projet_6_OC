@@ -171,6 +171,8 @@
                 $listResa.empty();
                 jQuery.each(data, function (key, val) {
 
+                    var dates = new Date(val.date);
+
                     if (val.matin == true) {
                         var etatMatin = 'réservé';
                     }else {
@@ -185,7 +187,7 @@
                     $listResa.append(
                         jQuery("<div style='display:flex;justify-content: space-around'>")
                             .append(jQuery("<span class='badge badge-info' style='width: 200px'>").append(val.compte.pseudo),
-                            jQuery("<span class='badge badge-light' style='width: 100px'>").append(val.date),
+                            jQuery("<span class='badge badge-light' style='width: 100px'>").append(dates.getDate(),'/',(dates.getMonth()+1),'/',dates.getFullYear()),
                                 jQuery("<span class='badge badge-light' style='width: 100px'>").append(etatMatin),
                             jQuery("<span class='badge badge-light' style='width: 100px'>").append(etatApres))
 
@@ -223,6 +225,8 @@
                 $listResa.empty();
                 jQuery.each(data, function (key, val) {
 
+                    var dates = new Date(val.date);
+
                     if (val.matin == true) {
                         var etatMatin = 'réservé';
                     }else {
@@ -237,7 +241,7 @@
                     $listResa.append(
                         jQuery("<div style='display:flex;justify-content: space-around'>")
                             .append(jQuery("<span class='badge badge-info' style='width: 200px'>").append(val.compte.pseudo),
-                                jQuery("<span class='badge badge-light' style='width: 100px'>").append(val.date),
+                                jQuery("<span class='badge badge-light' style='width: 100px'>").append(dates.getDate(),'/',(dates.getMonth()+1),'/',dates.getFullYear()),
                                 jQuery("<span class='badge badge-light' style='width: 100px'>").append(etatMatin),
                                 jQuery("<span class='badge badge-light' style='width: 100px'>").append(etatApres))
 
@@ -268,7 +272,7 @@
             date:date,
             matin:matin,
             apresMidi:apresMidi,
-            nomTopo: nomTopo
+            nomTopo: nomTopo,
         };
 
         // Action AJAX en POST
@@ -279,6 +283,8 @@
                 var $listResa = jQuery("#listResa");
                 $listResa.empty();
                 jQuery.each(data, function (key, val) {
+
+                    var dates = new Date(val.date);
 
                     if (val.matin == true) {
                         var etatMatin = 'réservé';
@@ -294,7 +300,7 @@
                     $listResa.append(
                         jQuery("<div style='display:flex;justify-content: space-around'>")
                             .append(jQuery("<span class='badge badge-info' style='width: 200px'>").append(val.compte.pseudo),
-                                jQuery("<span class='badge badge-light' style='width: 100px'>").append(val.date),
+                                jQuery("<span class='badge badge-light' style='width: 100px'>").append(dates.getDate(),'/',(dates.getMonth()+1),'/',dates.getFullYear()),
                                 jQuery("<span class='badge badge-light' style='width: 100px'>").append(etatMatin),
                                 jQuery("<span class='badge badge-light' style='width: 100px'>").append(etatApres))
 
@@ -303,7 +309,9 @@
                         jQuery("</div><div style='width: 100%;height: 5px; border-bottom : 1px solid lightgray; border-radius: 40%'>")
                     );
                 });
-
+            })
+            .fail(function () {
+                alert("Erreur !!");
             });
     }
 </script>

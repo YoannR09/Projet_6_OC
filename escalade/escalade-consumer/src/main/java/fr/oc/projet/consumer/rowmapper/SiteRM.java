@@ -44,8 +44,13 @@ public class SiteRM implements RowMapper<Site> {
         site.setEditeur(compteDao.getCompte(resultSet.getInt("responsable_id")));
         site.setTopo(topoDao.getTopo(resultSet.getInt("topo_id")));
         site.setTypeDeRoche(typeDeRocheDao.getTypeDeRoche(resultSet.getInt("type_de_roche_id")));
-        site.setCotationMin(cotationDao.getCotationMinSite(site.getId()));
-        site.setCotationMax(cotationDao.getCotationMaxSite(site.getId()));
+        if(voieDao.getCountVoieSite(site.getId()) != 0){
+            site.setCotationMin(cotationDao.getCotationMinSite(site.getId()));
+        }
+        if(voieDao.getCountVoieSite(site.getId()) != 0){
+            site.setCotationMax(cotationDao.getCotationMaxSite(site.getId()));
+        }
+
         site.setNote(7);
         site.setNombreVoie(voieDao.getCountVoieSite(resultSet.getInt("id")));
         site.setNombreSecteur(secteurDao.getCountSecteurSite(resultSet.getInt("id")));

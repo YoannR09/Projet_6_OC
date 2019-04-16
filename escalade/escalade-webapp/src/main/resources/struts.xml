@@ -153,30 +153,31 @@
 
 
         <action name="participer" class="fr.oc.projet.webapp.action.GestionParticiper"
-                method="doCreate">
+                method="doAddTopo">
             <result name="input">/jsp/participer/participer.jsp</result>
         </action>
 
-        <action name="addSite"
+        <action name="formulaireSite"
                 class="fr.oc.projet.webapp.action.GestionParticiper"
-                method="doCreate">
-            <result name="success">/jsp/participer/addSecteur.jsp</result>
+                method="doFormulaireSite">
+            <result name="success">/jsp/participer/addSite.jsp</result>
         </action>
 
         <action name="contact">
             <result>/jsp/participer/contact.jsp</result>
         </action>
 
-        <action name="addVoie"
+        <action name="secteurAdd"
                 class="fr.oc.projet.webapp.action.GestionParticiper"
-                method="doAddListVoie">
-
-            <interceptor-ref name="store">
-                <param name="operationMode">RETRIEVE</param>
-            </interceptor-ref>
-            <interceptor-ref name="defaultStack" />
-
+                method="doAddVoie">
             <result name="success">/jsp/participer/addVoie.jsp</result>
+        </action>
+
+        <action name="addImageSite"
+                class="fr.oc.projet.webapp.action.GestionParticiper"
+                method="doAddImageSite">
+            <result name="input">/jsp/participer/addImageSite.jsp</result>
+            <result name="success">/jsp/participer/addImageSite.jsp</result>
         </action>
 
         <action name="gestion">
@@ -185,12 +186,18 @@
 
         <action name="addTopo"
                 class="fr.oc.projet.webapp.action.GestionParticiper"
-                method="doCreate">
+                method="doAddTopo">
             <result name="success">/jsp/participer/addImageTopo.jsp</result>
         </action>
 
         <action name="addImageTopo">
             <result>/jsp/participer/addImageTopo.jsp</result>
+        </action>
+
+        <action name="addSite"
+                class="fr.oc.projet.webapp.action.GestionParticiper"
+                method="doAddSite">
+            <result name="success">/jsp/participer/addSecteur.jsp</result>
         </action>
 
 
@@ -249,6 +256,7 @@
     </package>
 
     <package name="ajax" extends="base, json-default">
+
         <!-- Action renvoyant la liste des commentaires d'un site -->
         <action name="ajax_getListCommentaire"
                 class="fr.oc.projet.webapp.action.AjaxAction"
@@ -274,6 +282,16 @@
                 <param name="root">listSecteur</param>
             </result>
         </action>
+
+        <action name="ajax_add_voie"
+                class="fr.oc.projet.webapp.action.AjaxAction"
+                method="doAjaxAddVoie">
+            <result name="success" type="json">
+                <param name="root">listVoie</param>
+            </result>
+        </action>
+
+
         <action name="ajax_getListImageTopo"
                 class="fr.oc.projet.webapp.action.AjaxAction"
                 method="doAjaxGetListImageTopo">
@@ -324,6 +342,13 @@
             </result>
         </action>
 
+        <action name="ajax_addImageSite"
+                class="fr.oc.projet.webapp.action.AjaxAction"
+                method="doAjaxAddImage">
+            <result name="success" type="json">
+                <param name="root">listImage</param>
+            </result>
+        </action>
 
     </package>
 

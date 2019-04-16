@@ -9,6 +9,8 @@ public interface VoieDao {
 
     List<Voie> getListVoie();
 
+    List<Voie> getListVoieSite(Integer idSite);
+
     List<Voie> getListVoieSecteur(Integer idSecteur);
 
     Integer getCountVoieSecteur(Integer idSecteur);
@@ -18,4 +20,6 @@ public interface VoieDao {
     Integer getHauteurMaxSecteur(Integer secteurId);
 
     Integer getHauteurMinSecteur(Integer secteurId);
+
+    void addVoie(Voie voie);
 }

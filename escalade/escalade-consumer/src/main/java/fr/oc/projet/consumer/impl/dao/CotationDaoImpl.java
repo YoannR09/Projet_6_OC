@@ -11,12 +11,20 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.List;
 
+/**
+ * Classe qui gère les requêtes SQL de la table cotation.
+ */
 @Named
 public class CotationDaoImpl extends AbstractDaoImpl implements CotationDao {
 
     @Inject
     CotationRM cotationRM;
 
+    /**
+     * Méthode pour récupèrer une cotation via un id.
+     * @param pId
+     * @return
+     */
     @Override
     public Cotation getCotation(Integer pId) {
         String vSQL = "SELECT * FROM cotation WHERE id ="+pId;
@@ -25,6 +33,10 @@ public class CotationDaoImpl extends AbstractDaoImpl implements CotationDao {
         return cotation;
     }
 
+    /**
+     * Méthode pour récupèrer la liste des cotations disponibles dans la BDD.
+     * @return
+     */
     @Override
     public List<Cotation> getListCotation() {
         String vSQL = "SELECT * FROM cotation";
@@ -33,6 +45,12 @@ public class CotationDaoImpl extends AbstractDaoImpl implements CotationDao {
         return vList;
     }
 
+    /**
+     * Méthode pour récupèrer la cotation maximum d'un site.
+     * On récupère en premier la liste des cotations 
+     * @param siteId
+     * @return
+     */
     @Override
     public Cotation getCotationMaxSite(Integer siteId) {
         String vSQL = "SELECT * FROM secteur,voie,cotation" +

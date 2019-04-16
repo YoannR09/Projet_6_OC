@@ -243,7 +243,7 @@
         var contenu = $("textarea[name=contenu]").val();
 
 
-        var nomSite =$("#nomSite").text();
+        var nomSite = $("#nomSite").text();
 
         // URL de l'action AJAX
         var url = "<s:url action="ajax_addCommentaire"/>";

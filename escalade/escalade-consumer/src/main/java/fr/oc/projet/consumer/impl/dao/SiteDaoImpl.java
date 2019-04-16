@@ -100,7 +100,7 @@ public class SiteDaoImpl extends AbstractDaoImpl implements SiteDao {
     @Override
     public void addSite(Site site) {
         String vSQL = "INSERT INTO site (nom, description, topo_id, type_de_roche_id, departement_id, responsable_id, ville, valide, date_de_creation)" +
-                " VALUES (:nom, :description, :topoId, :typeId, :departementId, :editeurId, :ville, :valide, :date, )";
+                " VALUES (:nom, :description, :topoId, :typeId, :departementId, :editeurId, :ville, :valide, :date)";
         NamedParameterJdbcTemplate vJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
 
         BeanPropertySqlParameterSource vParams = new BeanPropertySqlParameterSource(site);

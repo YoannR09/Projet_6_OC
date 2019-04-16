@@ -30,6 +30,7 @@ public class AjaxAction extends ActionSupport {
     private     List<Site>              listSite;
     private     List<Image>             listImage;
     private     List<Reservation>       listReservation;
+    private     List<Voie>              listVoie;
     private     Site                    site;
     private     Secteur                 secteur;
     private     Voie                    voie;
@@ -49,12 +50,16 @@ public class AjaxAction extends ActionSupport {
     private     String                  myFileFileName;
     private     String                  destPath;
     private     String                  pseudo;
+    private     String                  nomVoie;
+    private     String                  fileUrl;
     private     Integer                 mois;
     private     Integer                 hauteur;
     private     Date                    date;
-    private     String                 matin;
-    private     String                 apresMidi;
+    private     String                  matin;
+    private     String                  apresMidi;
     private     Integer                 idTopo;
+    private     Integer                 secteurId;
+    private     Integer                 cotationId;
 
 
 
@@ -114,6 +119,10 @@ public class AjaxAction extends ActionSupport {
         return vResult;
     }
 
+    /**
+     * Méthode pour ajouter un secteur dans un site en cours de création.
+     * @return
+     */
     public String doAjaxAddSecteur(){
         String vResult = ActionSupport.SUCCESS;
 
@@ -122,7 +131,7 @@ public class AjaxAction extends ActionSupport {
             site = managerFactory.getSiteManager().getSiteViaNom(nomSite);
 
             Secteur secteur = new Secteur();
-            secteur.setNom(nom);
+            secteur.setNom(nomSecteur);
             secteur.setSiteId(site.getId());
 
             managerFactory.getSecteurManager().addSecteur(secteur);
@@ -143,14 +152,14 @@ public class AjaxAction extends ActionSupport {
             site =  managerFactory.getSiteManager().getSiteViaNom(nomSite);
 
             Voie voie = new Voie();
-            voie.setSecteur(secteur);
+            voie.setSecteurId(secteurId);
             voie.setHauteur(hauteur);
             voie.setNom(nom);
-            voie.setCotationId(cotation.getId());
+            voie.setCotationId(cotationId);
 
+            managerFactory.getVoieManager().addVoie(voie);
 
-
-            listSecteur = managerFactory.getSecteurManager().getListSecteurSite(site.getId());
+            listVoie = managerFactory.getVoieManager().getListVoieSite(site.getId());
 
 
         }  catch (Exception e) {
@@ -189,6 +198,10 @@ public class AjaxAction extends ActionSupport {
         return vResult;
     }
 
+    /**
+     * Méthode pour afficher une liste de réservation du mois séléctionné.
+     * @return
+     */
     public String doAjaxDetailResa(){
         String vResult = ActionSupport.SUCCESS;
 
@@ -208,6 +221,11 @@ public class AjaxAction extends ActionSupport {
 
         return vResult;
     }
+
+    /**
+     * Méthode pour afficher la liste de toutes les réservations de ce topo
+     * @return
+     */
     public String doAjaxDetailResaTopo(){
 
         String vResult = ActionSupport.SUCCESS;
@@ -227,14 +245,23 @@ public class AjaxAction extends ActionSupport {
 
         Reservation reservation = new Reservation();
         reservation.setDate(date);
-        System.out.println(matin);
         reservation.setMatin(true);
         reservation.setApresMidi(true);
         reservation.setCompteId(managerFactory.getCompteManager().getCompteViaPseudo(pseudo).getId());
         reservation.setTopoId(topo.getId());
         managerFactory.getReservationManager().addReservation(reservation);
 
-        listReservation = managerFactory.getReservationManager().getReservationTopo(topo.getId());
+        List<Reservation> vList = managerFactory.getReservationManager().getReservationTopo(topo.getId());
+
+        listReservation = new ArrayList<>();
+
+
+        for( int i = 0; i<vList.size();i++){
+
+            if ((date.getMonth()) == (vList.get(i).getDate().getMonth())){
+                listReservation.add(vList.get(i));
+            }
+        }
 
         return  ActionSupport.SUCCESS;
     }
@@ -274,6 +301,28 @@ public class AjaxAction extends ActionSupport {
         }
 
         managerFactory.getCommentaireManager().addCommentaire(commentaire);
+        return ActionSupport.SUCCESS;
+    }
+
+    public String doAjaxAddImage(){
+
+        if(nomSite != null) {
+
+            site = managerFactory.getSiteManager().getSiteViaNom(nomSite);
+
+            Image image = new Image();
+            image.setUrlImage(nomSite + "/" + myFile);
+            image.setImageDePresentation(false);
+            image.setSiteId(site.getId());
+            image.setDescription(description);
+
+            managerFactory.getImageManager().addImage(image);
+
+            listImage = managerFactory.getImageManager().getListImageTopo(site.getId());
+        }
+
+
+
         return ActionSupport.SUCCESS;
     }
 
@@ -516,5 +565,45 @@ public class AjaxAction extends ActionSupport {
 
     public void setApresMidi(String apresMidi) {
         this.apresMidi = apresMidi;
+    }
+
+    public Integer getSecteurId() {
+        return secteurId;
+    }
+
+    public void setSecteurId(Integer secteurId) {
+        this.secteurId = secteurId;
+    }
+
+    public Integer getCotationId() {
+        return cotationId;
+    }
+
+    public void setCotationId(Integer cotationId) {
+        this.cotationId = cotationId;
+    }
+
+    public String getNomVoie() {
+        return nomVoie;
+    }
+
+    public void setNomVoie(String nomVoie) {
+        this.nomVoie = nomVoie;
+    }
+
+    public List<Voie> getListVoie() {
+        return listVoie;
+    }
+
+    public void setListVoie(List<Voie> listVoie) {
+        this.listVoie = listVoie;
+    }
+
+    public String getFileUrl() {
+        return fileUrl;
+    }
+
+    public void setFileUrl(String fileUrl) {
+        this.fileUrl = fileUrl;
     }
 }

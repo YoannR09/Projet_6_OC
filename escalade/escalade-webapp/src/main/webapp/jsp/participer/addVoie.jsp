@@ -53,23 +53,26 @@
     <div class="col-lg-9 col-md-9 col-sm-9" style="color: white; margin-top: 20px;">
         <div class="col-lg-12 col-md-12 col-sm-12" id="cadreInfos" style="background-color:rgba(0,0,0,0.7);display: flex;justify-content: space-around">
             <div class="col-lg-6 col-md-6 col-sm-6">
-                <h2 id="nomSite" style="padding: 20px"><s:property value="site.nom"/></h2>
+                <h2 id="nomSite" style="padding: 20px"><s:property value="nomSite"/></h2>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6">
-                <button type="button" class="btn btn-outline-info" id="btnSecteur" style="float: right" data-toggle="modal" data-target="#exampleModalCenter">Ajouter un secteur</button>
+                <button type="button" class="btn btn-outline-info" id="btnSecteur" style="float: right" data-toggle="modal" data-target="#exampleModalCenter">Ajouter une voie</button>
             </div>
         </div>
         <div class="col-lg-12 col-md-12 col-sm-12" id="cadreSecteur" style="background-color:rgba(0,0,0,0.7);">
-            <h5 style="text-align: center">Liste des secteurs du site</h5>
-            <div>
-                <span class='badge badge-light' style='padding :10px;margin-bottom: 15px;'>Nom du secteur</span>
+            <h5 style="text-align: center">Ajouter des voies</h5>
+            <div  style="display: flex;justify-content: space-around">
+                <span style='width: 200px'>Nom</span>
+                <span style='width: 100px'>Hauteur</span>
+                <span style='width: 100px'>Cotation</span>
+                <span style='width: 100px'>Secteur</span>
             </div>
 
-            <div id="listSecteur">
+            <div id="listVoie">
 
             </div>
 
-            <s:a action="addVoie" class="btn btn-info" style="font-size:0.5em;background-color:rgba(0,0,0,0.8);"><s:param name="nomSite" value="nom" /> Suivant </s:a>
+            <s:a action="addImageSite" class="btn btn-info">Suivant <s:param name="nomSite" value="nomSite" /></s:a>
         </div>
         <!--------------------------------- Pop-up ------------------------------------>
 
@@ -84,8 +87,13 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <s:textfield id="textNomSecteur" name="nomSecteur" class="form-control" label="Nom "/>
-                        <button id="btn" data-dismiss="modal" onclick="addSecteur()" class="btn btn-info">Envoyer</button>
+                        <s:select id="selectSecteur" name="secteurId" label="Secteur "
+                                  list="listSecteur" listKey="id" listValue="nom"/>
+                        <s:select id="selectCotation" name="cotationId" label="Cotation "
+                                  list="listCotation" listKey="id" listValue="valeur"/>
+                        <input name="nomVoie" type="text" class="form-control" id="textNom" placeholder="Nom" required/>
+                        <input name="hauteur" type="text" class="form-control" id="textHauteur" placeholder="Hauteur" required/> mètres
+                        <button id="btn" data-dismiss="modal" onclick="addVoie()" class="btn btn-info">Créer</button>
                     </div>
 
                 </div>
@@ -99,74 +107,49 @@
 <script>
     $(function() {
 
-        $('#cadreCommentaire').hide();
-
-        $("#btn").click(function() {
-            reloadListSecteur();
-        });
     });
-    function reloadListSecteur() {
-        // URL de l'action AJAX
-        var url = "<s:url action="ajax_getListSecteur"/>";
 
-        var nomSite =$("#nomSite").text();
+    function addVoie() {
 
-        var params = {
-            nomSite: nomSite
-        };
+        var nomVoie = $("input[name=nomVoie]").val();
 
-        // Action AJAX en POST
-        jQuery.post(
-            url,
-            params,
-            function (data) {
-                var $listSecteur = jQuery("#listSecteur");
-                $listSecteur.empty();
-                jQuery.each(data, function (key, val) {
-                    $listSecteur.append(
-                        jQuery("<span class='badge badge-light' id='nom' style='padding :10px;margin-bottom: 15px;'>")
-                            .append(val.nom)
-                    );
-                    $listSecteur.append(
-                        jQuery("<button  class='badge badge-danger' style='padding :10px;margin-bottom: 15px;'>").append('Supprimer')
-                    );
-                });
-            })
-            .fail(function () {
-                alert("Erreur !!");
-            });
+        var hauteur = $("input[name=hauteur]").val();
 
-    }
+        var secteurId = $("select[name=secteurId]").val();
 
-    function addSecteur() {
+        var cotationId = $("select[name=cotationId]").val();
 
-        // récupère le message entré par l'utilisateur
-        var contenuSecteur = $("input[name=nomSecteur]").val();
 
         var nomSite =$("#nomSite").text();
 
         // URL de l'action AJAX
-        var url = "<s:url action="ajax_addSecteur"/>";
+        var url = "<s:url action="ajax_add_voie"/>";
 
         // Paramètres de la requête AJAX
         var params = {
-            contenuSecteur: contenuSecteur,
-            nomSite: nomSite
+            nomVoie: nomVoie,
+            nomSite: nomSite,
+            hauteur:hauteur,
+            secteurId:secteurId,
+            cotationId:cotationId
         };
 
         // Action AJAX en POST
         jQuery.post(
             url,
-
             params,
             function (data) { // La méthode qui lit le résultat retourné à la suite de l'envoi de la requêt POST
-                var $listSecteur = jQuery("#listSecteur"); // OFA : il faut qu'une balise html existe avec cet id="listMessage" pour savoir ou mettre la liste des mesages.
+                var $listVoie = jQuery("#listVoie"); // OFA : il faut qu'une balise html existe avec cet id="listMessage" pour savoir ou mettre la liste des mesages.
 
-                $listSecteur.empty();
+                $listVoie.empty();
 
                 jQuery.each(data, function (key, val) {
-                    $listSecteur.append(
-                        jQuery("<span class='badge badge-light' style='padding :10px;margin-bottom: 15px;'>").append(val.nom)
+                    $listVoie.append(
+                        jQuery("<div style='display:flex;justify-content: space-around'>")
+                            .append(jQuery("<span class='badge badge-info' style='width: 200px'>").append(val.nom),
+                                jQuery("<span class='badge badge-light' style='width: 100px'>").append(val.hauteur),
+                                jQuery("<span class='badge badge-light' style='width: 100px'>").append(val.secteur.nom),
+                                jQuery("<span class='badge badge-light' style='width: 100px'>").append(val.cotation.valeur))
                     );
                 });
             })
@@ -174,7 +157,7 @@
                 alert("Erreur");
             });
 
-        $("input[name=nomSecteur]").val(""); //-- On vide le champ de saisie du nouveau message à chaque tour.
+        $("input[name=nomVoie]").val(""); //-- On vide le champ de saisie du nouveau message à chaque tour.
     }
 </script>
 </body>

@@ -5,7 +5,6 @@ import com.opensymphony.xwork2.ActionSupport;
 import fr.oc.projet.business.manager.contract.ManagerFactory;
 import fr.oc.projet.model.bean.Image;
 import fr.oc.projet.model.bean.escalade.*;
-import fr.oc.projet.model.bean.utilisateur.Message;
 import org.apache.commons.io.FileUtils;
 
 import javax.inject.Inject;
@@ -20,6 +19,7 @@ public class GestionParticiper extends ActionSupport {
     private ManagerFactory managerFactory;
 
     private      List<TypeDeRoche>       listType;
+    private      List<Cotation>          listCotation;
     private      List<Departement>       listDepartement;
     private      List<Region>            listRegion;
     private      List<Topo>              listTopo;
@@ -35,12 +35,110 @@ public class GestionParticiper extends ActionSupport {
     private      Site                    site;
     private      String                  nomSecteur;
     private      String                  nomSite;
-    private      String                  contenu;
-    private      String                  objet;
     private      File                    myFile;
     private      String                  myFileContentType;
     private      String                  myFileFileName;
     private      String                  destPath;
+    private      Integer                 typeId;
+    private      Integer                 topoId;
+    private      Integer                 departementId;
+
+
+    public String doFormulaireSite(){
+
+        listType = managerFactory.getTypeDeRocheManager().getListTypeDeRoche();
+        listDepartement = managerFactory.getDepartementManager().getListDepartement();
+        listTopo = managerFactory.getTopoManager().getListTopo();
+
+        return ActionSupport.SUCCESS;
+    }
+
+    public String doAddVoie(){
+
+        site = managerFactory.getSiteManager().getSiteViaNom(nomSite);
+        listSecteur = managerFactory.getSecteurManager().getListSecteurSite(site.getId());
+        listCotation = managerFactory.getCotationManager().getListCotation();
+
+
+        return ActionSupport.SUCCESS;
+    }
+
+    public String doAddImageSite(){
+
+        String vResult = ActionSupport.INPUT;
+
+        if(myFile != null) {
+
+            System.out.println(site.getNom());
+
+            destPath = "C:/Users/El-ra/Documents/Projet_6_OC/escalade/escalade-webapp/src/main/webapp/image/" + nomSite+ "/";
+
+            try {
+
+
+
+                File destFile = new File(destPath, myFileFileName);
+                FileUtils.copyFile(myFile, destFile);
+
+                Image image = new Image();
+                image.setUrlImage(site.getNom() + "/" + myFileFileName);
+                image.setSiteId(site.getId());
+                image.setDescription(description);
+                image.setImageDePresentation(false);
+
+                managerFactory.getImageManager().addImage(image);
+
+                vResult = ActionSupport.SUCCESS;
+
+            } catch (IOException e) {
+                e.printStackTrace();
+                return ERROR;
+            }
+        }else {
+            site = managerFactory.getSiteManager().getSiteViaNom(nomSite);
+        }
+
+        return vResult;
+    }
+
+    public String doAddSite(){
+
+        Site site = new Site();
+        pseudo = (String) ActionContext.getContext().getSession().get("pseudo");
+        site.setEditeurId(managerFactory.getCompteManager().getCompteViaPseudo(pseudo).getId());
+        site.setNom(nomSite);
+        site.setTypeId(typeId);
+        site.setDepartementId(departementId);
+        site.setValide(false);
+        site.setVille(ville);
+        site.setDescription(description);
+        site.setDate(new Date());
+        site.setTopoId(topoId);
+
+        managerFactory.getSiteManager().addSite(site);
+
+        destPath = "C:/Users/El-ra/Documents/Projet_6_OC/escalade/escalade-webapp/src/main/webapp/image/"+nomSite+"/";
+
+        try {
+
+            File destFile  = new File(destPath, myFileFileName);
+            FileUtils.copyFile(myFile, destFile);
+
+            Image image = new Image();
+            image.setUrlImage(site.getNom()+"/"+myFileFileName);
+            image.setSiteId(managerFactory.getSiteManager().getSiteViaNom(site.getNom()).getId());
+            image.setDescription("Image de présentation du topo "+nomSite);
+            image.setImageDePresentation(true);
+
+            managerFactory.getImageManager().addImage(image);
+
+        } catch(IOException e) {
+            e.printStackTrace();
+            return ERROR;
+        }
+
+        return ActionSupport.SUCCESS;
+    }
 
 
     /**
@@ -49,7 +147,7 @@ public class GestionParticiper extends ActionSupport {
      * Si nom est null c'est que l'utilisateur vient d'ouvrir cette page.
      * @return
      */
-    public String doCreate() {
+    public String doAddTopo() {
 
         // Par défaut, le result est "input"
         String vResult = ActionSupport.INPUT;
@@ -70,6 +168,8 @@ public class GestionParticiper extends ActionSupport {
                 destPath = "C:/Users/El-ra/Documents/Projet_6_OC/escalade/escalade-webapp/src/main/webapp/image/"+topo.getNom()+"/";
 
                 try {
+
+
 
                     File destFile  = new File(destPath, myFileFileName);
                     FileUtils.copyFile(myFile, destFile);
@@ -92,79 +192,11 @@ public class GestionParticiper extends ActionSupport {
                 }
             }
         }else {
-            Site site = new Site();
-            pseudo = (String) ActionContext.getContext().getSession().get("pseudo");
-            site.setEditeur(managerFactory.getCompteManager().getCompteViaPseudo(pseudo));
-            site.setNom(nom);
-            site.setTypeId(type.getId());
-            site.setDepartementId(departement.getId());
-            site.setValide(false);
-            site.setVille(ville);
-            site.setDescription(description);
-            site.setDate(new Date());
-            site.setTopoId(topo.getId());
 
-            managerFactory.getSiteManager().addSite(site);
-
-            destPath = "C:/Users/El-ra/Documents/Projet_6_OC/escalade/escalade-webapp/src/main/webapp/image/"+topo.getNom()+"/";
-
-            try {
-
-                File destFile  = new File(destPath, myFileFileName);
-                FileUtils.copyFile(myFile, destFile);
-
-                Image image = new Image();
-                image.setUrlImage(site.getNom()+"/"+myFileFileName);
-                image.setSiteId(site.getId());
-                image.setDescription("Image de présentation du topo "+topo.getNom());
-                image.setImageDePresentation(true);
-                image.setCompteId(1); // A changer !!
-
-                managerFactory.getImageManager().addImage(image);
-
-                vResult = ActionSupport.SUCCESS;
-
-            } catch(IOException e) {
-                e.printStackTrace();
-                return ERROR;
-            }
         }
-
-        listType = managerFactory.getTypeDeRocheManager().getListTypeDeRoche();
-        listDepartement = managerFactory.getDepartementManager().getListDepartement();
-        listTopo = managerFactory.getTopoManager().getListTopo();
-
 
         return vResult;
     }
-
-    public String doAddListVoie(){
-
-            site = managerFactory.getSiteManager().getSiteViaNom(nomSite);
-
-        return ActionSupport.SUCCESS;
-    }
-
-
-    public String doAddMessage(){
-
-        Message message = new Message();
-
-        pseudo = (String) ActionContext.getContext().getSession().get("pseudo");
-
-        message.setCompteId(managerFactory.getCompteManager().getCompteViaPseudo(pseudo).getId());
-        message.setDate(new Date());
-        message.setContenu(contenu);
-        message.setObjet(objet);
-
-        managerFactory.getMessageManager().addMessage(message);
-
-        this.addActionMessage("Message bien envoyé.");
-
-        return ActionSupport.SUCCESS;
-    }
-
-
 
 
     public List<TypeDeRoche> getListType() {
@@ -327,20 +359,35 @@ public class GestionParticiper extends ActionSupport {
         this.destPath = destPath;
     }
 
-    public String getContenu() {
-        return contenu;
+    public Integer getTypeId() {
+        return typeId;
     }
 
-    public void setContenu(String contenu) {
-        this.contenu = contenu;
+    public void setTypeId(Integer typeId) {
+        this.typeId = typeId;
     }
 
-    public String getObjet() {
-        return objet;
+    public Integer getTopoId() {
+        return topoId;
     }
 
-    public void setObjet(String objet) {
-        this.objet = objet;
+    public void setTopoId(Integer topoId) {
+        this.topoId = topoId;
     }
 
+    public Integer getDepartementId() {
+        return departementId;
+    }
+
+    public void setDepartementId(Integer departementId) {
+        this.departementId = departementId;
+    }
+
+    public List<Cotation> getListCotation() {
+        return listCotation;
+    }
+
+    public void setListCotation(List<Cotation> listCotation) {
+        this.listCotation = listCotation;
+    }
 }

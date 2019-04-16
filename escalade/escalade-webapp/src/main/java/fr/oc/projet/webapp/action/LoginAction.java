@@ -99,7 +99,6 @@ public class LoginAction extends ActionSupport implements SessionAware {
                     BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
                     String hashedPassword = passwordEncoder.encode(password);
 
-                    System.out.println(hashedPassword);
 
                     compte.setPseudo(pseudo);
                     compte.setPrenom(prenom);

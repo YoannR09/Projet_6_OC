@@ -54,7 +54,7 @@ public class ImageDaoImpl extends AbstractDaoImpl implements ImageDao {
     @Override
     public void addImage(Image image) {
 
-        String vSQL = "INSERT INTO image (url, image_de_presentation, topo_id, spot_id, compte_id, description)" +
+        String vSQL = "INSERT INTO image (url, image_de_presentation, topo_id, site_id, compte_id, description)" +
                 " VALUES (:urlImage, :imageDePresentation, :topoId, :siteId, :compteId, :description)";
         NamedParameterJdbcTemplate vJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
 

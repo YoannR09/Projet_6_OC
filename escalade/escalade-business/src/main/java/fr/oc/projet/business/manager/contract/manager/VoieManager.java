@@ -10,4 +10,8 @@ public interface VoieManager {
     List<Voie> getListVoie();
 
     List<Voie> getListVoieSecteur(Integer secteurId);
+
+    List<Voie> getListVoieSite(Integer siteId);
+
+    void addVoie(Voie voie);
 }
