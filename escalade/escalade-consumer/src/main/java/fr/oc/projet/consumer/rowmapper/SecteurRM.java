@@ -37,9 +37,12 @@ public class SecteurRM implements RowMapper<Secteur> {
         if(voieDao.getCountVoieSecteur(secteur.getId()) != 0) {
             secteur.setCotationMax(cotationDao.getCotationMaxSecteur(resultSet.getInt("id")));
         }
-
-        // secteur.setHauteurMin(voieDao.getHauteurMinSecteur(resultSet.getInt("id")));
-        // secteur.setHauteurMax(voieDao.getHauteurMaxSecteur(resultSet.getInt("id")));
+        if(voieDao.getCountVoieSecteur(secteur.getId()) != 0) {
+            secteur.setHauteurMin(voieDao.getHauteurMinSecteur(resultSet.getInt("id")));
+        }
+        if(voieDao.getCountVoieSecteur(secteur.getId()) != 0) {
+            secteur.setHauteurMax(voieDao.getHauteurMaxSecteur(resultSet.getInt("id")));
+        }
         return secteur;
     }
 }

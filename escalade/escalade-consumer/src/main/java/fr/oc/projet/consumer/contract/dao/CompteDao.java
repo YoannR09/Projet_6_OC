@@ -13,4 +13,8 @@ public interface CompteDao {
     List<Compte> getListCompte();
 
     void addCompte(Compte compte);
+
+    void updateMdp(Compte compte);
+
+    void updateMail(Compte compte);
 }

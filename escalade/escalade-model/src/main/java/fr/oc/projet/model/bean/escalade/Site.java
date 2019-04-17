@@ -24,7 +24,7 @@ public class Site {
     private     Compte              editeur;
     private     Cotation            cotationMax;
     private     Cotation            cotationMin;
-    private     Integer             note;
+    private     Double              note;
     private     Integer             nombreVoie;
     private     Integer             nombreSecteur;
     private     Integer             editeurId;
@@ -132,13 +132,6 @@ public class Site {
         this.cotationMin = cotationMin;
     }
 
-    public Integer getNote() {
-        return note;
-    }
-
-    public void setNote(Integer note) {
-        this.note = note;
-    }
 
     public Integer getNombreVoie() {
         return nombreVoie;
@@ -186,6 +179,14 @@ public class Site {
 
     public void setTopoId(Integer topoId) {
         this.topoId = topoId;
+    }
+
+    public Double getNote() {
+        return note;
+    }
+
+    public void setNote(Double note) {
+        this.note = note;
     }
 
     public static Comparator<Site> ComparatorCotations = (e1, e2) -> (int) (e1.getCotationMax().getNiveau()) - e2.getCotationMax().getNiveau();

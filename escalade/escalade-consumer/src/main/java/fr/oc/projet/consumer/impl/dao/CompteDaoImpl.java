@@ -4,6 +4,7 @@ import fr.oc.projet.consumer.contract.dao.CompteDao;
 import fr.oc.projet.consumer.rowmapper.CompteRM;
 import fr.oc.projet.model.bean.utilisateur.Compte;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.SqlParameterValue;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
@@ -85,6 +86,35 @@ public class CompteDaoImpl extends AbstractDaoImpl implements CompteDao {
         vParams.registerSqlType("numero", Types.VARCHAR);
         vParams.registerSqlType("niveau", Types.INTEGER);
 
+        vJdbcTemplate.update(vSQL, vParams);
+
+    }
+
+    @Override
+    public void updateMdp(Compte compte) {
+        String vSQL = "UPDATE compte SET mot_de_passe = ? WHERE id = ?";
+
+        Object[] vParams = {
+                new SqlParameterValue(Types.VARCHAR, compte.getPassword()),
+                new SqlParameterValue(Types.INTEGER, compte.getId()),
+
+        };
+
+        JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
+        vJdbcTemplate.update(vSQL, vParams);
+    }
+
+    @Override
+    public void updateMail(Compte compte) {
+        String vSQL = "UPDATE compte SET email = ? WHERE id = ?";
+
+        Object[] vParams = {
+                new SqlParameterValue(Types.VARCHAR, compte.getEmail()),
+                new SqlParameterValue(Types.INTEGER, compte.getId()),
+
+        };
+
+        JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
         vJdbcTemplate.update(vSQL, vParams);
 
     }

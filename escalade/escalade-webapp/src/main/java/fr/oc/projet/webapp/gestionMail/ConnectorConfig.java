@@ -1,37 +1,47 @@
 package fr.oc.projet.webapp.gestionMail;
 
+
+import org.apache.catalina.Context;
+import org.apache.catalina.connector.Connector;
+import org.apache.tomcat.util.descriptor.web.SecurityCollection;
+import org.apache.tomcat.util.descriptor.web.SecurityConstraint;
+
+import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
+import org.springframework.boot.web.servlet.server.ServletWebServerFactory;
+
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.util.Collection;
 
 @Configuration
-public class ConnectorConfig {
+public class ConnectorConfig{
 
-    /*
-    @Haricot
-    public  EmbeddedServletContainerFactory  servletContainer () {
-        TomcatEmbeddedServletContainerFactory tomcat =  new  TomcatEmbeddedServletContainerFactory () {
-            @Passer outre
-            protégé  vide  postProcessContext ( Contexte  contexte ) {
-                SecurityConstraint securityConstraint =  new  SecurityConstraint ();
-                securityConstraint . setUserConstraint ( " CONFIDENTIAL " );
-                Collection SecurityCollection =  new  SecurityCollection ();
-                collection . addPattern ( " / * " );
-                securityConstraint . addCollection (collection);
-                contexte . addConstraint (securityConstraint);
-            }
-        };
-        tomcat . addAdditionalTomcatConnectors (getHttpConnector ());
-        retourner tomcat;
+
+    @Bean
+    public ServletWebServerFactory servletContainer() {
+        TomcatServletWebServerFactory tomcat =
+                new TomcatServletWebServerFactory() {
+                    @Override
+                    protected void postProcessContext(Context context) {
+                        SecurityConstraint securityConstraint = new SecurityConstraint();
+                        securityConstraint.setUserConstraint("CONFIDENTIAL");
+                        SecurityCollection collection = new SecurityCollection();
+                        collection.addPattern("/*");
+                        securityConstraint.addCollection(collection);
+                        context.addConstraint(securityConstraint);
+                    }
+                };
+        tomcat.addAdditionalTomcatConnectors(redirectConnector());
+        return tomcat;
     }
 
-    connecteur  privé getHttpConnector () {
-        Connecteur connecteur =  nouveau  connecteur ( " org.apache.coyote.http11.Http11NioProtocol " );
-        connecteur . setScheme ( " http " );
-        connecteur . setPort ( 8080 );
-        connecteur . setSecure ( false );
-        connecteur . setRedirectPort ( 8443 );
-        connecteur de retour ;
+    private Connector redirectConnector() {
+        Connector connector = new Connector("org.apache.coyote.http11.Http11NioProtocol");
+        connector.setScheme("http");
+        connector.setPort(8080);
+        connector.setSecure(false);
+        connector.setRedirectPort(8443);
+        return connector;
     }
-    */
+
 }

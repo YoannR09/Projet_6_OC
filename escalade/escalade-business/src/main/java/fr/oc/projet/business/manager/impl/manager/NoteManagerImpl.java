@@ -13,12 +13,17 @@ public class NoteManagerImpl extends AbstractManagerImpl implements NoteManager 
     }
 
     @Override
-    public float getNoteTopo(Integer topoId) {
+    public Double getNoteTopo(Integer topoId) {
         return getDaoFactory().getNoteDao().getNoteTopo(topoId);
     }
 
     @Override
-    public float getNoteSite(Integer siteId) {
+    public Double getNoteSite(Integer siteId) {
         return getDaoFactory().getNoteDao().getNoteSite(siteId);
+    }
+
+    @Override
+    public void addNote(Note note) {
+        getDaoFactory().getNoteDao().addNote(note);
     }
 }

@@ -306,6 +306,22 @@ public class AjaxAction extends ActionSupport {
 
     public String doAjaxAddImage(){
 
+
+        if(myFile != null){
+            destPath = "C:/Users/El-ra/Documents/Projet_6_OC/escalade/escalade-webapp/src/main/webapp/image/"+topo.getNom()+"/";
+
+            try {
+                File destFile  = new File(destPath, myFileFileName);
+                FileUtils.copyFile(myFile, destFile);
+
+            } catch(IOException e) {
+                e.printStackTrace();
+                return ERROR;
+            }
+        }
+
+
+
         if(nomSite != null) {
 
             site = managerFactory.getSiteManager().getSiteViaNom(nomSite);

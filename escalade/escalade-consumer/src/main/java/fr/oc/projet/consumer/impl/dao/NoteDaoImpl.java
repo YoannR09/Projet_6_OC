@@ -5,10 +5,15 @@ import fr.oc.projet.consumer.rowmapper.NoteRM;
 import fr.oc.projet.consumer.rowmapper.TopoRM;
 import fr.oc.projet.model.bean.utilisateur.Note;
 import fr.oc.projet.model.bean.utilisateur.Reservation;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.sql.Types;
+import java.util.ArrayList;
 import java.util.List;
 
 @Named
@@ -31,17 +36,12 @@ public class NoteDaoImpl extends AbstractDaoImpl implements NoteDao {
      * @return
      */
     @Override
-    public float getNoteTopo(Integer topoId) {
+    public Double getNoteTopo(Integer topoId) {
         String vSQL = "SELECT * FROM note WHERE topo_id ="+topoId;
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
-        List<Note> vListNoteTopo = vJdbcTemplate.query(vSQL,noteRM);
-        float notes = 0;
-        int i=0;
-        for(i=0;i<vListNoteTopo.size();i++){
-           notes = (notes + vListNoteTopo.get(i).getNote());
-        }
-        notes = (notes/i);
-        return notes;
+        List<Note> vListNote = vJdbcTemplate.query(vSQL,noteRM);
+        Double moyenne = calculNote(vListNote);
+        return moyenne;
     }
 
     /**
@@ -49,19 +49,50 @@ public class NoteDaoImpl extends AbstractDaoImpl implements NoteDao {
      * @param siteId
      * @return
      */
+    @Override
+    public Double getNoteSite(Integer siteId) {
+        String vSQL = "SELECT * FROM note WHERE site_id = "+siteId ;
+        JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
+        List<Note> vListNote = vJdbcTemplate.query(vSQL,noteRM);
+        Double moyenne = calculNote(vListNote);
+        return moyenne;
+    }
 
     @Override
-    public float getNoteSite(Integer siteId) {
-        String vSQL = "SELECT * FROM note WHERE site_id = "+siteId;
-        JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
-        List<Note> vListSite = vJdbcTemplate.query(vSQL,noteRM);
-        float notes = 0;
-        int i=0;
-        for(i=0;i<vListSite.size();i++){
-            notes = (notes + vListSite.get(i).getNote());
-        }
+    public void addNote(Note note) {
+        String vSQL = "INSERT INTO note (note, site_id, topo_id, compte_id)" +
+                " VALUES (:note, :siteId, :topoId, :compteId)";
+        NamedParameterJdbcTemplate vJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
 
-        notes = (notes/i);
-        return notes;
+        BeanPropertySqlParameterSource vParams = new BeanPropertySqlParameterSource(note);
+        vParams.registerSqlType("note", Types.DOUBLE);
+        vParams.registerSqlType("siteId", Types.INTEGER);
+        vParams.registerSqlType("topoId", Types.INTEGER);
+        vParams.registerSqlType("compteId", Types.INTEGER);
+
+        try {
+            vJdbcTemplate.update(vSQL, vParams);
+        } catch (DuplicateKeyException vEx) {
+        }
     }
+
+    /**
+     * Méthode qui fait le calcul de la moyenne des notes d'un site/topo.
+     * @param vListNote
+     * @return
+     */
+    Double calculNote(List<Note> vListNote){
+        List<Double> list = new ArrayList<Double>();
+        for(int i=0;i<vListNote.size();i++){
+            list.add(vListNote.get(i).getNote());
+        }
+        double total = 0;
+        for (double note : list) {
+            total += note;
+        }
+        Double moyenne = total / list.size();
+        return moyenne;
+    }
+
+
 }

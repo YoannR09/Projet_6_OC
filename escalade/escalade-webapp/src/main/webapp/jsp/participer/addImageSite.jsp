@@ -94,7 +94,7 @@
 
             $.ajax({
                 type: "POST",
-                url: 'C:/Users/El-ra/Documents/Projet_6_OC/escalade/escalade-webapp/src/main/webapp/image/' +$('#nomSite').text()+'/'+filename,
+                url: "<s:url action="ajax_addImageSite"/>",
                 enctype: 'multipart/form-data',
                 data: {
                     file: filename

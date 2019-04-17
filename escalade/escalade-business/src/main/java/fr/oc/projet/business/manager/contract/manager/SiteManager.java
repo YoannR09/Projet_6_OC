@@ -19,9 +19,13 @@ public interface SiteManager {
 
     List<Site> getListSiteValidePageUp(Integer lastId);
 
+    List<Site> rechercheSite(String text);
+
     void addSite(Site site);
 
     int getCountSite();
 
     void updateSite(Site site);
+
+
 }

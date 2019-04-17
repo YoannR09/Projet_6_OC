@@ -19,6 +19,7 @@ public class GestionMessageAction  extends ActionSupport {
     private      String                  contenu;
     private      String                  objet;
     private      String                  pseudo;
+    private      String                  email;
 
 
 
@@ -36,7 +37,7 @@ public class GestionMessageAction  extends ActionSupport {
 
         managerFactory.getMessageManager().addMessage(message);
 
-        sendMessage(objet,contenu,null,null);
+        sendMessage(objet,contenu,email);
 
         this.addActionMessage("Message bien envoyé.");
 
@@ -45,44 +46,39 @@ public class GestionMessageAction  extends ActionSupport {
 
 
 
-    public static void sendMessage(String subject, String text, String destinataire, String copyDest) {
+    public static void sendMessage(String objet,String contenu,String email) {
 
-        // 1 -> Création de la session
-        Properties properties = new Properties();
-        properties.setProperty("mail.transport.protocol", "smtp");
-        properties.setProperty("mail.smtp.host", "smtp.live.com");
-        properties.setProperty("mail.smtp.user", "applimail09@gmail.com");
-        properties.setProperty("mail.from", "imap.gmail.com");
-        Session session = Session.getInstance(properties);
+        final String username = "applimail09@gmail.com";
+        final String password = "Yocorps17";
 
-        // 2 -> Création du message
-        MimeMessage message = new MimeMessage(session);
+        Properties prop = new Properties();
+        prop.put("mail.smtp.host", "smtp.gmail.com");
+        prop.put("mail.smtp.port", "587");
+        prop.put("mail.smtp.auth", "true");
+        prop.put("mail.smtp.starttls.enable", "true"); //TLS
+
+        Session session = Session.getInstance(prop,
+                new javax.mail.Authenticator() {
+                    protected PasswordAuthentication getPasswordAuthentication() {
+                        return new PasswordAuthentication(username, password);
+                    }
+                });
+
         try {
-            message.setText(text);
-            message.setSubject(subject);
-            message.addRecipients(Message.RecipientType.TO, destinataire);
-            message.addRecipients(Message.RecipientType.CC, copyDest);
+
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(email));
+            message.setRecipients(
+                    Message.RecipientType.TO,
+                    InternetAddress.parse("applimail09@gmail.com")
+            );
+            message.setSubject(objet);
+            message.setText(contenu);
+
+            Transport.send(message);
+
         } catch (MessagingException e) {
             e.printStackTrace();
-        }
-
-        // 3 -> Envoi du message
-        Transport transport = null;
-        try {
-            transport = session.getTransport("smtp");
-            transport.connect("applimail09@gmail.com", "Yocorps17");
-            transport.sendMessage(message, new Address[] { new InternetAddress(destinataire),
-                    new InternetAddress(copyDest) });
-        } catch (MessagingException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (transport != null) {
-                    transport.close();
-                }
-            } catch (MessagingException e) {
-                e.printStackTrace();
-            }
         }
 
     }
@@ -110,6 +106,14 @@ public class GestionMessageAction  extends ActionSupport {
 
     public void setPseudo(String pseudo) {
         this.pseudo = pseudo;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
 

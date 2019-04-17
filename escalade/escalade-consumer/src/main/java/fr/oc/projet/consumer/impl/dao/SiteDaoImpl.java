@@ -97,6 +97,43 @@ public class SiteDaoImpl extends AbstractDaoImpl implements SiteDao {
         return vList ;
     }
 
+    /**
+     * Méthode pour la recherche de site.
+     * On cherche si le mot se trouve dans les noms de site, ensuite le pseudo de l'editeur, la ville
+     * departement, region puis pour finir si le mot ce trouve dans la description
+     * @param text
+     * @return
+     */
+    @Override
+    public List<Site> rechercheSite(String text) {
+        String vSQL = "SELECT * FROM site " +
+                " WHERE valide = TRUE " +
+                " ORDER BY id DESC" +
+                " LIMIT 5 ";
+        JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
+        List<Site> vList = vJdbcTemplate.query(vSQL,siteRM);
+
+        List<Site> vListSite = new ArrayList<>();
+        for(int i = 0; i<vList.size();i++){
+            if(vList.get(i).getNom().equals(text)){
+                vListSite.add(vList.get(i));
+            }
+            else if(vList.get(i).getEditeur().getPseudo().equals(text)){
+                vListSite.add(vList.get(i));
+            }
+            else if(vList.get(i).getVille().equals(text)){
+                vListSite.add(vList.get(i));
+            }
+            else if(vList.get(i).getDepartement().equals(text)){
+                vListSite.add(vList.get(i));
+            }
+            else if (vList.get(i).getDescription().lastIndexOf(text) != -1) {
+                vListSite.add(vList.get(i));
+            }
+        }
+        return vListSite;
+    }
+
     @Override
     public void addSite(Site site) {
         String vSQL = "INSERT INTO site (nom, description, topo_id, type_de_roche_id, departement_id, responsable_id, ville, valide, date_de_creation)" +

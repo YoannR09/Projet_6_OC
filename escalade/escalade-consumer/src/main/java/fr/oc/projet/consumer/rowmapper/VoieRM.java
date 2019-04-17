@@ -14,8 +14,6 @@ import java.sql.SQLException;
 public class VoieRM implements RowMapper<Voie> {
 
     @Inject
-    SecteurDao secteurDao;
-    @Inject
     CotationDao cotationDao;
 
     @Override
@@ -25,7 +23,6 @@ public class VoieRM implements RowMapper<Voie> {
         voie.setNom(resultSet.getString("nom"));
         voie.setHauteur(resultSet.getInt("hauteur"));
         voie.setCotation(cotationDao.getCotation(resultSet.getInt("cotation_id")));
-        voie.setSecteur(secteurDao.getSecteur(resultSet.getInt("secteur_id")));
         return voie;
     }
 }

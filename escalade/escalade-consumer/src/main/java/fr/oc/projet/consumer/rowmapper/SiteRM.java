@@ -51,7 +51,8 @@ public class SiteRM implements RowMapper<Site> {
             site.setCotationMax(cotationDao.getCotationMaxSite(site.getId()));
         }
 
-        site.setNote(7);
+
+        site.setNote(noteDao.getNoteSite(site.getId()));
         site.setNombreVoie(voieDao.getCountVoieSite(resultSet.getInt("id")));
         site.setNombreSecteur(secteurDao.getCountSecteurSite(resultSet.getInt("id")));
         return site;

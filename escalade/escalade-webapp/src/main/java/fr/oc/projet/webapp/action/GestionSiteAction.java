@@ -20,6 +20,7 @@ public class GestionSiteAction extends ActionSupport {
 
     private         List<Site>            listSite;
     private         String                nomSite;
+    private         String                text;
     private         Cotation              cotation;
     private         Secteur               secteur;
     private         Voie                  voie;
@@ -32,6 +33,7 @@ public class GestionSiteAction extends ActionSupport {
     private         Integer               lastId;
     private         Integer               nombre;
     private         Boolean               firstPage;
+    private         Integer               note;
 
     /**
      * Méthode pour afficher la liste des sites qui sont validés par un administrateur.
@@ -142,6 +144,19 @@ public class GestionSiteAction extends ActionSupport {
     public String doSecteurList(){
 
             listSecteur = managerFactory.getSecteurManager().getListSecteurSite(idSite);
+
+        return ActionSupport.SUCCESS;
+    }
+
+    public String doRechercheSite(){
+
+
+        listSite = managerFactory.getSiteManager().rechercheSite(text);
+
+        nombre = listSite.size();
+        firstPage = true;
+        Site site = listSite.get(nombre-1);
+        lastId = site.getId();
 
         return ActionSupport.SUCCESS;
     }
@@ -259,5 +274,21 @@ public class GestionSiteAction extends ActionSupport {
 
     public void setListVoie(List<Voie> listVoie) {
         this.listVoie = listVoie;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public Integer getNote() {
+        return note;
+    }
+
+    public void setNote(Integer note) {
+        this.note = note;
     }
 }

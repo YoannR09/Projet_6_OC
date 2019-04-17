@@ -34,8 +34,8 @@ public class CommentaireRM implements RowMapper<Commentaire> {
         if(resultSet.getInt("secteur_id") != 0){
             commentaire.setSecteur(secteurDao.getSecteur(resultSet.getInt("secteur_id")));
         }
-        if(resultSet.getInt("spot_id") != 0){
-            commentaire.setSite(siteDao.getSite(resultSet.getInt("spot_id")));
+        if(resultSet.getInt("site_id") != 0){
+            commentaire.setSite(siteDao.getSite(resultSet.getInt("site_id")));
         }
         if(resultSet.getInt("topo_id") != 0){
             commentaire.setTopo(topoDao.getTopo(resultSet.getInt("topo_id")));

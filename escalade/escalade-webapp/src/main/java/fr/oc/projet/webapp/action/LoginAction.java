@@ -1,5 +1,6 @@
 package fr.oc.projet.webapp.action;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import fr.oc.projet.business.manager.contract.ManagerFactory;
 import fr.oc.projet.model.bean.utilisateur.Compte;
@@ -8,7 +9,6 @@ import javassist.NotFoundException;
 import jdk.jfr.Name;
 import org.apache.commons.io.FileUtils;
 import org.apache.struts2.interceptor.SessionAware;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -23,7 +23,6 @@ public class LoginAction extends ActionSupport implements SessionAware {
 
     // ==================== Attributs ====================
     private        Compte         compte;
-    private        NiveauAcces    niveauAcces;
     private        String         nom;
     private        String         prenom;
     private        String         pseudo;
@@ -32,10 +31,9 @@ public class LoginAction extends ActionSupport implements SessionAware {
     private        String         email;
     private        String         emailConf;
     private        String         numero;
-    private        File           myFile;
-    private        String         myFileContentType;
-    private        String         myFileFileName;
-    private        String         destPath;
+    private        String         verif;
+    private        String         nouveau;
+    private        String         verifNouveau;
 
     // ----- Eléments Struts
     private Map<String, Object> session;
@@ -68,7 +66,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
      * Action de déconnexion d'un utilisateur
      * @return success
      */
-    public String doLogout() throws NotFoundException {
+    public String doLogout() {
         this.session.remove("user");
         this.session.remove("pseudo");
         this.session.remove("niveau");
@@ -90,37 +88,18 @@ public class LoginAction extends ActionSupport implements SessionAware {
                 // On regarde si l'email est bien confirmé une deuxième fois
                 if (email.equals(emailConf)) {
 
-
-
-
-
                     Compte compte = new Compte();
-
-                    BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-                    String hashedPassword = passwordEncoder.encode(password);
 
 
                     compte.setPseudo(pseudo);
                     compte.setPrenom(prenom);
                     compte.setNom(nom);
-                    compte.setPassword(hashedPassword);
+                    compte.setPassword(password);
                     compte.setEmail(email);
                     compte.setNumero(numero);
                     compte.setNiveau(1);
 
                     managerFactory.getCompteManager().addCompte(compte);
-
-                    destPath = "C:/Users/El-ra/Documents/Projet_6_OC/escalade/escalade-webapp/src/main/webapp/image/"+compte.getPseudo()+"/";
-
-                    try {
-
-                        File destFile  = new File(destPath, myFileFileName);
-                        FileUtils.copyFile(myFile, destFile);
-
-                    } catch(IOException e) {
-                        e.printStackTrace();
-                        return ERROR;
-                    }
 
                     vResult = ActionSupport.SUCCESS;
                 }
@@ -128,6 +107,49 @@ public class LoginAction extends ActionSupport implements SessionAware {
         }
         return vResult;
 
+    }
+
+    public String doDetailProfil(){
+
+        pseudo = (String) ActionContext.getContext().getSession().get("pseudo");
+
+        compte = managerFactory.getCompteManager().getCompteViaPseudo(pseudo);
+
+        return ActionSupport.SUCCESS;
+    }
+
+    public String updateMdp(){
+
+
+        if(nouveau.equals(verifNouveau)){
+            pseudo = (String) ActionContext.getContext().getSession().get("pseudo");
+
+            compte = managerFactory.getCompteManager().getCompteViaPseudo(pseudo);
+
+            compte.setPassword(nouveau);
+        }
+
+
+
+
+        return ActionSupport.SUCCESS;
+    }
+
+    public String updateMail(){
+
+
+        if(nouveau.equals(verifNouveau)){
+            pseudo = (String) ActionContext.getContext().getSession().get("pseudo");
+
+            compte = managerFactory.getCompteManager().getCompteViaPseudo(pseudo);
+
+            compte.setEmail(nouveau);
+        }
+
+
+
+
+        return ActionSupport.SUCCESS;
     }
 
     @Override
@@ -211,27 +233,27 @@ public class LoginAction extends ActionSupport implements SessionAware {
         this.numero = numero;
     }
 
-    public File getMyFile() {
-        return myFile;
+    public String getVerif() {
+        return verif;
     }
 
-    public void setMyFile(File myFile) {
-        this.myFile = myFile;
+    public void setVerif(String verif) {
+        this.verif = verif;
     }
 
-    public String getMyFileContentType() {
-        return myFileContentType;
+    public String getNouveau() {
+        return nouveau;
     }
 
-    public void setMyFileContentType(String myFileContentType) {
-        this.myFileContentType = myFileContentType;
+    public void setNouveau(String nouveau) {
+        this.nouveau = nouveau;
     }
 
-    public String getMyFileFileName() {
-        return myFileFileName;
+    public String getVerifNouveau() {
+        return verifNouveau;
     }
 
-    public void setMyFileFileName(String myFileFileName) {
-        this.myFileFileName = myFileFileName;
+    public void setVerifNouveau(String verifNouveau) {
+        this.verifNouveau = verifNouveau;
     }
 }

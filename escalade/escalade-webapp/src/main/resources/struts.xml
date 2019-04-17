@@ -94,6 +94,12 @@
             <result name="success">/jsp/topo/list.jsp</result>
         </action>
 
+        <action name="recherche_site"
+                class="fr.oc.projet.webapp.action.GestionSiteAction"
+                method="doRechercheSite">
+            <result name="success">/jsp/site/list.jsp</result>
+        </action>
+
         <action name="listSecteur"
                 class="fr.oc.projet.webapp.action.GestionSiteAction"
                 method="doSecteurList">
@@ -238,6 +244,24 @@
             <result name="success">/jsp/gestion/detailTopo.jsp</result>
         </action>
 
+        <action name="detail_profil"
+                class="fr.oc.projet.webapp.action.LoginAction"
+                method="doDetailProfil">
+            <result name="success">/jsp/login/profil.jsp</result>
+        </action>
+
+        <action name="update_mdp"
+                class="fr.oc.projet.webapp.action.LoginAction"
+                method="updateMdp">
+            <result name="success">/jsp/login/profil.jsp</result>
+        </action>
+
+        <action name="update_mail"
+                class="fr.oc.projet.webapp.action.LoginAction"
+                method="updateMail">
+            <result name="success">/jsp/login/profil.jsp</result>
+        </action>
+
         <action name="reservationTopo"
                 class="fr.oc.projet.webapp.action.GestionTopoAction"
                 method="doReservationTopo">
@@ -247,7 +271,7 @@
 
 
         <action name="addMessage"
-                class="fr.oc.projet.webapp.action.GestionParticiper"
+                class="fr.oc.projet.webapp.action.GestionMessageAction"
                 method="doAddMessage">
             <result name="success">/index.jsp</result>
         </action>
@@ -348,6 +372,11 @@
             <result name="success" type="json">
                 <param name="root">listImage</param>
             </result>
+        </action>
+
+        <action name="ajax_addNote"
+                class="fr.oc.projet.webapp.action.AjaxActionSite"
+                method="doAjaxAddNote">
         </action>
 
     </package>

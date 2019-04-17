@@ -6,7 +6,9 @@ public interface NoteManager {
 
     Note getNote(Integer pId);
 
-    float getNoteTopo(Integer topoId);
+    Double getNoteTopo(Integer topoId);
 
-    float getNoteSite(Integer siteId);
+    Double getNoteSite(Integer siteId);
+
+    void addNote(Note note);
 }

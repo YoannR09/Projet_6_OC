@@ -42,6 +42,11 @@ public class SiteManagerImpl extends AbstractManagerImpl implements SiteManager 
     }
 
     @Override
+    public List<Site> rechercheSite(String text) {
+        return getDaoFactory().getSiteDao().rechercheSite(text);
+    }
+
+    @Override
     public void addSite(Site site) {
         getDaoFactory().getSiteDao().addSite(site);
     }

@@ -106,12 +106,12 @@
             <button type="button" class="btn btn-info" id="btnEnvoyer" data-toggle="modal" data-target="#votreCommentaire">Mettre un commentaire</button>
             <button type="button" class="btn btn-outline-info" id="btnCom">Voir les commentaires</button>
             <s:a action="listSecteur" class="btn btn-outline-info"><s:param name="idSite" value="site.id" />Liste des secteurs</s:a>
-            <button type="button" class="btn btn-outline-info" id="btnSecteur" data-toggle="modal" data-target="#exampleModalCenter">Evaluer ce site</button>
+            <button type="button" class="btn btn-outline-info" id="btnSecteur" data-toggle="modal" data-target="#eva">Evaluer ce site</button>
         </div>
 
         <!--------------------------------- Pop-up ------------------------------------>
 
-        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="color: black">
+        <div class="modal fade" id="eva" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="color: black">
             <div class="modal-dialog modal-dialog-centered" role="document" style="width: 20%">
                 <div class="modal-content bg-dark" style="color:white;">
                     <div class="modal-header">
@@ -121,12 +121,12 @@
                         </button>
                     </div>
                     <div class="modal-body" style="display: flex;justify-content: center">
-                        <input type="number" id="tentacles" name="tentacles" style="margin: 5px"
+                        <input type="number" id="tentacles" name="note" style="margin: 5px"
                                min="1" max="10">  <span>/ 10</span>
                     </div>
                     <div class="modal-footer" style="display: flex;justify-content: space-around">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-                        <button type="button" class="btn btn-primary">Valider</button>
+                        <button type="button" onclick="addNote()" data-dismiss="modal" class="btn btn-primary">Valider</button>
                     </div>
                 </div>
             </div>
@@ -160,7 +160,6 @@
     $(function() {
 
         reloadListCommentaire();
-        setInterval(reloadListCommentaire, 5000);
 
         $('#cadreCommentaire').hide();
         $('#cadreSecteur').hide();
@@ -283,6 +282,33 @@
             })
 
         $("textarea[name=contenu]").val(""); //-- On vide le champ de saisie du nouveau message à chaque tour.*
+
+    }
+    function addNote() {
+
+        // récupère le message entré par l'utilisateur
+        var note = $("input[name=note]").val();
+
+
+        var nomSite = $("#nomSite").text();
+
+        // URL de l'action AJAX
+        var url = "<s:url action="ajax_addNote"/>";
+
+        // Paramètres de la requête AJAX
+        var params = {
+            note: note,
+            nomSite: nomSite
+        };
+
+        // Action AJAX en POST
+        jQuery.post(
+            url,
+            params,
+            function (data) {
+            })
+
+        $("input[name=note]").val(""); //-- On vide le champ de saisie du nouveau message à chaque tour.*
 
     }
 </script>

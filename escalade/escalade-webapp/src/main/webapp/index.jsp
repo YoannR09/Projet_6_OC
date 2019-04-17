@@ -30,7 +30,6 @@
         border-width: 0px 1px 0px 1px;
         text-shadow: 0px 0px 15px rgba(0, 0, 0, 1);
     }
-
     </style>
 </head>
 <body>
@@ -49,13 +48,19 @@
 <div id="page">
 <div class="col-lg-10 col-md-10 col-sm-10" style="color: white;">
     <div id="recherche" class="col-lg-12 col-md-12 col-sm-12" style="background-color:rgba(0,0,0,0.7);padding-top: 10px;padding-bottom: 10px;margin-top: 20px">
+        <s:form action="recherche_site" style="width:100%">
         <div class="input-group">
-            <input type="text" class="form-control" placeholder="Recherche" aria-label="Recipient's username" aria-describedby="basic-addon2">
+            <input id="text" name="text" type="text" class="form-control" placeholder="Recherche" aria-label="Recipient's username" aria-describedby="basic-addon2">
             <div class="input-group-append">
-                <button class="btn btn-outline-light" type="button">Site</button>
-                <button class="btn btn-outline-light" type="button">Topo</button>
+                <select name="select" class="form-control">
+                    <option>Site</option>
+                    <option>Topo</option>
+                </select>
+
             </div>
+                <s:submit style="margin:auto" value="Rechercher" id="btn" class="btn btn-info"/>
         </div>
+        </s:form>
     </div>
         <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel" class="col-lg-12 col-md-12 col-sm-12" style="background-color:rgba(0,0,0,0.7);height: 440px;">
             <div class="carousel-inner" style="height: 100%; background-color:rgba(0,0,0,0.8)">
@@ -73,10 +78,6 @@
         </div>
 
     <div id="textDescri" class="col-lg-12 col-md-12 col-sm-12"style="background-color:rgba(0,0,0,0.7);padding-top: 10px;text-align: center" >
-
-        <p>Bienvenue sur mon site communautaire dedie a l'escalade.</p>
-        <p>Vous pouvez y trouver des sites et topos disponibles dans votre region/departement</p>
-
 
     </div>
 </div>
