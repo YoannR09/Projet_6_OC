@@ -75,6 +75,7 @@
     <div class="col-lg-9 col-md-9 col-sm-9" style="color: white; margin-top: 20px;">
         <div class="col-lg-12 col-md-12 col-sm-12" id="cadreInfos" style="background-color:rgba(0,0,0,0.7);">
             <h2 id="nomSecteur" style="padding: 15px"><s:property value="secteur.nom"/></h2>
+            <h4 style="padding: 20px;text-align: left"><em>Liste des voies</em></h4>
 
             <div  style="display: flex;justify-content: space-around">
                 <span style='width: 200px'>Nom</span>
@@ -87,7 +88,7 @@
                 <div  id="listResa" style="display: flex;justify-content: space-around">
                     <span class='badge badge-info' style='width: 200px'> <s:property value="nom"/></span>
                     <span class='badge badge-light' style='width: 100px'><s:property value="hauteur"/></span>
-                    <span class='badge badge-light' style='width: 100px'><s:property value="cotation.valeur"/></span>
+                    <span class='badge badge-light' style='color: white;width: 100px;background-color:<s:property value="cotation.couleur"/>'><s:property value="cotation.valeur"/></span>
                 </div>
                 <div style='width: 100%;height: 5px; border-bottom : 1px solid lightgray; border-radius: 40%'>
                 </div>

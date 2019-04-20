@@ -38,8 +38,6 @@ public class DAOFactoryImpl implements DAOFactory {
     @Inject
     private CommentaireDao commentaireDao;
     @Inject
-    private LikesDao likesDao;
-    @Inject
     private ImageDao imageDao;
 
 
@@ -112,11 +110,6 @@ public class DAOFactoryImpl implements DAOFactory {
     @Override
     public CommentaireDao getCommentaireDao() {
         return this.commentaireDao;
-    }
-
-    @Override
-    public LikesDao getLikesDao() {
-        return this.likesDao;
     }
 
     @Override

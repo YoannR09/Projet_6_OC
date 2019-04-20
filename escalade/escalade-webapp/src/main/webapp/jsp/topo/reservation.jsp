@@ -25,26 +25,25 @@
             padding: auto;
             text-align: center;
         }
-
-        #cadreBouton
+        em
         {
-            display: flex;
-            justify-content: space-around;
-            border-color: black;
-            border-style: solid;
-            border-width: 0px 1px 1px 1px;
-        }
-
-        #cadreCommentaire
-        {
-            background-color: white;
-            border-color: black;
-            border-style: solid;
-            border-width: 0px 1px 0px 1px;
+            color : darkgray;
         }
         h3
         {
             padding: 10px;
+        }
+        #infos
+        {
+            border-radius: 25%;
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            z-index: 1;
+        }
+        #info
+        {
+            color: white;
         }
 
     </style>
@@ -58,14 +57,17 @@
 
 <div id="page">
 
-
     <div class="col-lg-9 col-md-9 col-sm-9" style="color: white; margin-top: 20px;">
 
-        <div class="col-lg-12 col-md-12 col-sm-12" id="cadreImage" style="background-color:rgba(0,0,0,0.7);padding-top: 10px">
-            <h2 id="nomTopo"><s:property value="topo.nom"/></h2>
-            <h3>Vous voulez reserver ce topo</h3>
+        <button id="infos" type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#informations"><em id="info">i</em></button>
 
-                <div class="form-group row" >
+        <div class="col-lg-12 col-md-12 col-sm-12" id="cadreImage" style="background-color:rgba(0,0,0,0.7);padding-top: 10px;text-align: center">
+            <h2 id="nomTopo"><s:property value="topo.nom"/></h2>
+            <h4 style="text-align: left;margin: 15px"><em>Vous voulez reserver ce topo</em></h4>
+
+            <em id="messageAjax"></em>
+
+                <div class="form-group row">
                     <label for="example-date-input" class="col-2 col-form-label">Date à reserver : </label>
                     <div class="col-4">
                         <input id="date" name="date" class="form-control" type="date" value="2019-08-04" id="example-date-input">
@@ -84,7 +86,7 @@
                 </div>
 
             <div>
-            <h3 >Liste des réservations de ce topo</h3>
+                <h4 style="text-align: left;margin: 15px"><em>Liste des réservations de ce topo</em></h4>
             <div id="blocBtn" class="btn-group mr-2" role="group" aria-label="First group" style="width: 100%;margin-bottom: 20px;">
                 <button id="1" class="btn btn-info btn-sm">Janvier</button>
                 <button id="2" class="btn btn-info btn-sm">Février</button>
@@ -112,26 +114,23 @@
 
         <!--------------------------------- Pop-up ------------------------------------>
 
-        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="color: black">
-            <div class="modal-dialog modal-dialog-centered" role="document" style="width: 20%">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Evaluer le site</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body" style="display: flex;justify-content: center">
-                        <input type="number" id="tentacles" name="tentacles" style="margin: 5px"
-                               min="1" max="10">  <span>/ 10</span>
-                    </div>
-                    <div class="modal-footer" style="display: flex;justify-content: space-around">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-                        <button type="button" class="btn btn-primary">Valider</button>
+            <div class="modal fade" id="informations" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="color: black">
+                <div class="modal-dialog modal-dialog-centered" role="document" style="width: 50%">
+                    <div class="modal-content bg-dark" style="color:white;">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="tittle">Responsable du topo</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body" style="text-align: center">
+                            <p><s:property value="topo.responsable.nom"/> / <s:property value="topo.responsable.prenom"/></p>
+                            <p><s:property value="topo.responsable.email"/></p>
+                            <p><s:property value="topo.responsable.numero"/></p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
     </div>
 
 </div>
@@ -256,6 +255,7 @@
             });
     }
     function addResa() {
+
         // URL de l'action AJAX
         var url = "<s:url action="ajax_add_reservation"/>";
 
@@ -264,9 +264,19 @@
 
         var date = $("#date").val();
 
-        var matin = $("#matin").val();
+        if( $('input[name=matin]').is(':checked') ){
+            var matin = true;
+        } else {
+            var matin = false;
+        }
 
-        var apresMidi = $("#apresMidi").val();
+        if( $('input[name=apresMidi]').is(':checked') ){
+            var apresMidi = true;
+        } else {
+            var apresMidi = false;
+        }
+
+
 
         var params = {
             date:date,
@@ -281,9 +291,10 @@
             params,
             function (data) {
                 var $listResa = jQuery("#listResa");
+                var $messageAjax = jQuery("#messageAjax");
                 $listResa.empty();
+                $messageAjax.empty();
                 jQuery.each(data, function (key, val) {
-
                     var dates = new Date(val.date);
 
                     if (val.matin == true) {
@@ -297,6 +308,8 @@
                         var etatApres = 'non réservé';
                     }
 
+                    $messageAjax.append(val.messageAjax);
+
                     $listResa.append(
                         jQuery("<div style='display:flex;justify-content: space-around'>")
                             .append(jQuery("<span class='badge badge-info' style='width: 200px'>").append(val.compte.pseudo),
@@ -308,6 +321,8 @@
                     $listResa.append(
                         jQuery("</div><div style='width: 100%;height: 5px; border-bottom : 1px solid lightgray; border-radius: 40%'>")
                     );
+
+
                 });
             })
             .fail(function () {

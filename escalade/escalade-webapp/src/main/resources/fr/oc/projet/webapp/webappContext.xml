@@ -16,7 +16,6 @@
 
     <context:property-placeholder location="classpath:application.properties" />
 
-
     <bean id="dataSourceTicket" class="org.springframework.jndi.JndiObjectFactoryBean">
         <property name="jndiName" value="java:comp/env/jdbc/DB_TICKET"/>
     </bean>

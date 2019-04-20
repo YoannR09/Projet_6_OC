@@ -61,7 +61,6 @@
 
         <div class="col-lg-12 col-md-12 col-sm-12" id="cadreInfos" style="background-color:rgba(0,0,0,0.7);padding-top: 10px">
             <h4>Envoyez nous votre message</h4>
-            <span style="font-size: 0.7em;">Par email : rocheyoann@outlook.fr</span>
         </div>
 
         <div class="col-lg-12 col-md-12 col-sm-12" id="cadreMessage" style="background-color:rgba(0,0,0,0.7);padding-top: 10px;display: flex;justify-content: space-around">

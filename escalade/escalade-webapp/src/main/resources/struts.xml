@@ -359,9 +359,12 @@
         </action>
 
         <action name="ajax_add_reservation"
-                class="fr.oc.projet.webapp.action.AjaxAction"
+                class="fr.oc.projet.webapp.action.AjaxActionTopo"
                 method="doReservation">
             <result name="success" type="json">
+                <param name="root">listReservation</param>
+            </result>
+            <result name="error" type="json">
                 <param name="root">listReservation</param>
             </result>
         </action>

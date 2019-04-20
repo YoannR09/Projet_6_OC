@@ -19,7 +19,6 @@ public class Commentaire {
     private        Integer      siteId;
     private        Integer      topoId;
     private        Integer      secteurId;
-    private        Likes        likes;
 
     public Commentaire(){}
 
@@ -79,14 +78,6 @@ public class Commentaire {
 
     public void setAuteur(Compte auteur) {
         this.auteur = auteur;
-    }
-
-    public Likes getLikes() {
-        return likes;
-    }
-
-    public void setLikes(Likes likes) {
-        this.likes = likes;
     }
 
     public Integer getAuteurId() {

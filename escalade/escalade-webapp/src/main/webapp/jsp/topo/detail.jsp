@@ -207,6 +207,7 @@
                 var $listCommentaire = jQuery("#listCommentaire");
                 $listCommentaire.empty();
                 jQuery.each(data, function (key, val) {
+                    var dates = new Date(val.date);
                     $listCommentaire.append(
                         jQuery("<span class='badge badge-info' style='padding :10px;margin-bottom: 15px;width: 15%;'>")
                             .append(val.auteur.pseudo)
@@ -218,7 +219,7 @@
 
                     $listCommentaire.append(
                         jQuery("<span class='badge badge-light' style='margin-bottom: 15px;'>")
-                            .append(val.date)
+                            .append(dates.getDate(),'/',(dates.getMonth()+1),'/',dates.getFullYear())
                     );
 
                     $listCommentaire.append(
@@ -254,6 +255,7 @@
                 var $listCommentaire = jQuery("#listCommentaire");
                 $listCommentaire.empty();
                 jQuery.each(data, function (key, val) {
+                    var dates = new Date(val.date);
                     $listCommentaire.append(
                         jQuery("<span class='badge badge-info' style='padding :10px;margin-bottom: 15px;width: 15%;'>")
                             .append(val.auteur.pseudo)
@@ -265,7 +267,7 @@
 
                     $listCommentaire.append(
                         jQuery("<span class='badge badge-light' style='margin-bottom: 15px;'>")
-                            .append(val.date)
+                            .append(dates.getDate(),'/',(dates.getMonth()+1),'/',dates.getFullYear())
                     );
 
                     $listCommentaire.append(

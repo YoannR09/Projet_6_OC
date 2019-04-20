@@ -3,6 +3,7 @@ package fr.oc.projet.webapp.action;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import fr.oc.projet.business.manager.contract.ManagerFactory;
+import fr.oc.projet.model.bean.utilisateur.Compte;
 
 import javax.inject.Inject;
 import javax.mail.*;
@@ -11,6 +12,10 @@ import javax.mail.internet.MimeMessage;
 import java.util.Date;
 import java.util.Properties;
 
+/**
+ * Classe qui gère la fonction nous contacter pour les visiteurs.
+ * Celle-ci enregistre un message en bdd et l'envoie un email.
+ */
 public class GestionMessageAction  extends ActionSupport {
 
     @Inject
@@ -20,24 +25,31 @@ public class GestionMessageAction  extends ActionSupport {
     private      String                  objet;
     private      String                  pseudo;
     private      String                  email;
+    private Compte      compte;
 
 
-
-
+    /**
+     * Méthode pour créer le message de l'utilisateur dans la base de données.
+     * On appel la méthode sendMessage pour passer les variables récupéré
+     * et envoyer le mail.
+     * @return
+     */
     public String doAddMessage(){
 
         fr.oc.projet.model.bean.utilisateur.Message message = new fr.oc.projet.model.bean.utilisateur.Message();
 
         pseudo = (String) ActionContext.getContext().getSession().get("pseudo");
 
-        message.setCompteId(managerFactory.getCompteManager().getCompteViaPseudo(pseudo).getId());
+        compte = managerFactory.getCompteManager().getCompteViaPseudo(pseudo);
+
+        message.setCompteId(compte.getId());
         message.setDate(new Date());
         message.setContenu(contenu);
         message.setObjet(objet);
 
         managerFactory.getMessageManager().addMessage(message);
 
-        sendMessage(objet,contenu,email);
+        sendMessage(objet,contenu,compte.getEmail());
 
         this.addActionMessage("Message bien envoyé.");
 
@@ -45,7 +57,12 @@ public class GestionMessageAction  extends ActionSupport {
     }
 
 
-
+    /**
+     * Méthode pour envoyer le mail à la boîte mail dédié à l'application
+     * @param objet
+     * @param contenu
+     * @param email
+     */
     public static void sendMessage(String objet,String contenu,String email) {
 
         final String username = "applimail09@gmail.com";
@@ -115,5 +132,6 @@ public class GestionMessageAction  extends ActionSupport {
     public void setEmail(String email) {
         this.email = email;
     }
+
 }
 

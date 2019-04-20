@@ -2,6 +2,7 @@ package fr.oc.projet.webapp.action;
 
 import com.opensymphony.xwork2.ActionSupport;
 import fr.oc.projet.business.manager.contract.ManagerFactory;
+import fr.oc.projet.model.bean.Image;
 import fr.oc.projet.model.bean.escalade.Cotation;
 import fr.oc.projet.model.bean.escalade.Secteur;
 import fr.oc.projet.model.bean.escalade.Site;
@@ -13,6 +14,11 @@ import javax.inject.Inject;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Classe qui gère les actions pour les sites d'escalades du site web.
+ * On peut récupèrer la liste des sites valides,
+ * afficher leurs secteurs et leurs voies
+ */
 public class GestionSiteAction extends ActionSupport {
 
     @Inject
@@ -30,6 +36,7 @@ public class GestionSiteAction extends ActionSupport {
     private         List<Commentaire>     listCommentaire;
     private         List<Secteur>         listSecteur;
     private         List<Voie>            listVoie;
+    private         List<Image>           listImage;
     private         Integer               lastId;
     private         Integer               nombre;
     private         Boolean               firstPage;
@@ -122,7 +129,7 @@ public class GestionSiteAction extends ActionSupport {
         } else {
             site = managerFactory.getSiteManager().getSite(idSite);
             listCommentaire = managerFactory.getCommentaireManager().getListCommentaireSite(idSite);
-
+            listImage = managerFactory.getImageManager().getListImageSite(site.getId());
         }
         return  ActionSupport.SUCCESS;
     }
@@ -136,7 +143,6 @@ public class GestionSiteAction extends ActionSupport {
             secteur = managerFactory.getSecteurManager().getSecteur(idSecteur);
 
             listVoie = managerFactory.getVoieManager().getListVoieSecteur(idSecteur);
-
         }
         return  ActionSupport.SUCCESS;
     }
@@ -282,6 +288,14 @@ public class GestionSiteAction extends ActionSupport {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public List<Image> getListImage() {
+        return listImage;
+    }
+
+    public void setListImage(List<Image> listImage) {
+        this.listImage = listImage;
     }
 
     public Integer getNote() {

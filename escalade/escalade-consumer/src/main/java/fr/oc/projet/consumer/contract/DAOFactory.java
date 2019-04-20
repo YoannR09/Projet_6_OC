@@ -32,8 +32,6 @@ public interface DAOFactory {
 
     CommentaireDao getCommentaireDao();
 
-    LikesDao getLikesDao();
-
     ImageDao getImageDao();
 
 }

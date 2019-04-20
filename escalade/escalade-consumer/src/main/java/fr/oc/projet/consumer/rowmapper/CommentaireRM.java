@@ -20,9 +20,6 @@ public class CommentaireRM implements RowMapper<Commentaire> {
     SecteurDao secteurDao;
     @Inject
     CompteDao compteDao;
-    @Inject
-    LikesDao likesDao;
-
 
     @Override
     public Commentaire mapRow(ResultSet resultSet, int i) throws SQLException {

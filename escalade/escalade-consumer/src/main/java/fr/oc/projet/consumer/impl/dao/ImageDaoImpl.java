@@ -37,7 +37,7 @@ public class ImageDaoImpl extends AbstractDaoImpl implements ImageDao {
 
     @Override
     public List<Image> getListImageSite(Integer siteId) {
-        String vSQL = "SELECT * FROM image WHERE spot_id ="+siteId;
+        String vSQL = "SELECT * FROM image WHERE site_id ="+siteId;
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
         List<Image> vList = vJdbcTemplate.query(vSQL,imageRM);
         return vList;

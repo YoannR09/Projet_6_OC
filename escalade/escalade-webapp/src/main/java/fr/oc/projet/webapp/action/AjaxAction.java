@@ -105,9 +105,6 @@ public class AjaxAction extends ActionSupport {
         String vResult = ActionSupport.SUCCESS;
         try {
 
-
-            System.out.println(nomTopo);
-
             topo = managerFactory.getTopoManager().getTopoViaNom(nomTopo);
 
             listImage = managerFactory.getImageManager()
@@ -236,34 +233,6 @@ public class AjaxAction extends ActionSupport {
 
 
         return vResult;
-    }
-    public  String doReservation(){
-
-        topo = managerFactory.getTopoManager().getTopoViaNom(nomTopo);
-
-        pseudo = (String) ActionContext.getContext().getSession().get("pseudo");
-
-        Reservation reservation = new Reservation();
-        reservation.setDate(date);
-        reservation.setMatin(true);
-        reservation.setApresMidi(true);
-        reservation.setCompteId(managerFactory.getCompteManager().getCompteViaPseudo(pseudo).getId());
-        reservation.setTopoId(topo.getId());
-        managerFactory.getReservationManager().addReservation(reservation);
-
-        List<Reservation> vList = managerFactory.getReservationManager().getReservationTopo(topo.getId());
-
-        listReservation = new ArrayList<>();
-
-
-        for( int i = 0; i<vList.size();i++){
-
-            if ((date.getMonth()) == (vList.get(i).getDate().getMonth())){
-                listReservation.add(vList.get(i));
-            }
-        }
-
-        return  ActionSupport.SUCCESS;
     }
 
     /**

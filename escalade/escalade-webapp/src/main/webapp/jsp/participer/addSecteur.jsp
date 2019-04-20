@@ -138,7 +138,7 @@
             });
 
         $("input[name=nomSecteur]").val(""); //-- On vide le champ de saisie du nouveau message à chaque tour.
-    }
+     }
 </script>
 </body>
 </html>

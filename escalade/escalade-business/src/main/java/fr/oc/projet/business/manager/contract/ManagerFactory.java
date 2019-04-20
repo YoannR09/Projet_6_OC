@@ -32,7 +32,5 @@ public interface ManagerFactory {
 
     CommentaireManager getCommentaireManager();
 
-    LikesManager getLikesManager();
-
     ImageManager getImageManager();
 }

@@ -17,7 +17,6 @@
         }
         #cadreInfos
         {
-            height: 300px;
             text-align: center;
             border-color: black;
             border-style: solid;
@@ -32,34 +31,14 @@
         {
             margin: 20px;
         }
-        #cadreBouton
-        {
-            display: flex;
-            justify-content: space-around;
-            border-color: black;
-            border-style: solid;
-            border-width: 0px 1px 1px 1px;
-        }
-        .btn
-        {
-            margin: 15px;
-        }
-        #cadreCommentaire
-        {
-            background-color: white;
-            border-color: black;
-            border-style: solid;
-            border-width: 0px 1px 0px 1px;
-        }
-        #date
-        {
-            float: right;
-            font-style: italic;
-            font-size: 0.7em;
-        }
         a{
             color: deepskyblue;
         }
+        em
+        {
+            color : darkgray;
+        }
+
 
 
     </style>
@@ -74,12 +53,12 @@
 
     <div class="col-lg-9 col-md-9 col-sm-9" style="color: white; margin-top: 20px;">
         <div class="col-lg-12 col-md-12 col-sm-12" id="cadreInfos" style="background-color:rgba(0,0,0,0.7); ">
-
+            <h4 style="padding: 20px;text-align: left"><em>Liste des secteurs</em></h4>
             <div  style="display: flex;justify-content: space-around">
                 <span style='width: 200px'>Nom</span>
                 <span style='width: 100px'>Cotations</span>
                 <span style='width: 100px'>Hauteurs</span>
-                <span style='width: 50px'></span>
+                <span style='width: 50px'>Consulter</span>
             </div>
 
             <s:iterator value="listSecteur">
