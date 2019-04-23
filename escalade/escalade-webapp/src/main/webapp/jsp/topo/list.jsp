@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <%@ include file="/_include/head.jsp"%>
@@ -24,25 +25,16 @@
         #bloc
         {
             margin: 20px;
-            width: 200px;
+            width: 250px;
         }
         #divImage
         {
             height: 100%;
             background-color: white;
         }
-        #divCota
+        em
         {
-            text-align: center
-        }
-        #editeur
-        {
-            float: right;
-            font-size: 0.7em;
-        }
-        #btnVoir
-        {
-            float: right;
+            color : darkgray;
         }
         #recherche
         {
@@ -67,26 +59,29 @@
                                  width="100%" height="100%" id="img" style="border: 1px black solid;" />
                         </div>
                     </div>
-                    <div class="card-footer">
+                    <div class="card-footer" style="text-align: center">
+                        <em >Editeur : </em><s:property value="responsable.pseudo"/></p>
                         <s:a action="topo_detail" class="btn btn-info" id="btnVoir" style="width:100%"><s:param name="idTopo" value="id" /> Voir </s:a>
                     </div>
                 </div>
         </s:iterator>
-    <s:if test="nombre == 3">
-        <s:a id ="pageUp" action="topo_valide_list_pageUp" class="btn btn-info"><s:param name="lastId" value="lastId" /> Page suivante </s:a>
-    </s:if>
-    <s:if test="firstPage != true">
-        <s:a id ="pageDown" action="topo_valide_list_pageUp" class="btn btn-info"><s:param name="lastId" value="lastId" /> Page précedente </s:a>
-    </s:if>
+    <div style="position: absolute; bottom: -50px; justify-content: space-between;display: flex" class="col-lg-12 col-md-12 col-sm-12">
+        <s:if test="nombre == 3">
+            <s:a id ="pageUp" action="topo_valide_list_pageUp" class="btn btn-info" ><s:param name="lastId" value="lastId" /> Page suivante </s:a>
+        </s:if>
+        <s:if test="page != 1">
+            <s:a id ="pageDown" action="topo_valide_list_pageUp" class="btn btn-info"><s:param name="lastId" value="lastId" /> Page précedente </s:a>
+        </s:if>
+    </div>
 </div>
     <div id="partieDroite"  class="col-lg-3 col-md-3 col-sm-3">
         <div class="card text-white mb-4"  id="recherche" style="background-color:rgba(0,0,0,0.7)">
             <div class="card-header "><em>Rechercher les sites</em></div>
             <div class="card-body"style="text-align: center" >
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Recherche..." aria-label="Recipient's username" aria-describedby="basic-addon2">
+                    <input type="text" name="text" class="form-control" placeholder="Recherche..." aria-label="Recipient's username" aria-describedby="basic-addon2" required>
                     <div class="input-group-append">
-                        <button class="btn btn-outline-info" type="button"> <span class="glyphicon glyphicon-search"></span></button>
+                        <button class="btn btn-outline-info" type="button"><i class="fas fa-search"></i></button>
                     </div>
                 </div>
                 <br/>

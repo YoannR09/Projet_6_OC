@@ -15,6 +15,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.sql.Types;
+import java.util.ArrayList;
 import java.util.List;
 
 @Named
@@ -85,6 +86,30 @@ public class TopoDaoImpl extends AbstractDaoImpl implements TopoDao {
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
         List<Topo> vList = vJdbcTemplate.query(vSQL,topoRM);
         return vList ;
+    }
+
+    @Override
+    public List<Topo> rechercheTopo(String text) {
+        String vSQL = "SELECT * FROM topo " +
+                " WHERE valide = TRUE " +
+                " ORDER BY id DESC" +
+                " LIMIT 5 ";
+        JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
+        List<Topo> vList = vJdbcTemplate.query(vSQL,topoRM);
+
+        List<Topo> vListTopo = new ArrayList<>();
+        for(int i = 0; i<vList.size();i++){
+            if(vList.get(i).getNom().equals(text)){
+                vListTopo.add(vList.get(i));
+            }
+            else if(vList.get(i).getResponsable().getPseudo().equals(text)){
+                vListTopo.add(vList.get(i));
+            }
+            else if (vList.get(i).getDescription().lastIndexOf(text) != -1) {
+                vListTopo.add(vList.get(i));
+            }
+        }
+        return vListTopo;
     }
 
     @Override

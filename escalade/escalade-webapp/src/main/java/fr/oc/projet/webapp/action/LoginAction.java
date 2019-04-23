@@ -14,6 +14,8 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class LoginAction extends ActionSupport implements SessionAware {
@@ -44,19 +46,28 @@ public class LoginAction extends ActionSupport implements SessionAware {
      * Ensuite on vérifie si le mot de passe est bon.
      * @return input / success
      */
-    public String doLogin() throws NotFoundException {
+    public String doLogin(){
         String vResult = ActionSupport.INPUT;
         if (pseudo != null) {
-            compte = managerFactory.getCompteManager().getCompteViaPseudo(pseudo);
-            // BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-            // String hashedPassword = passwordEncoder.encode(password);
-            // if(hashedPassword.equals(compte.getPassword())){
-            if(password.equals(compte.getPassword())){
-                this.session.put("user", compte);
-                this.session.put("pseudo", compte.getPseudo());
-                this.session.put("niveau", compte.getNiveauAcces().getNiveau());
 
-                vResult = ActionSupport.SUCCESS;
+            List<Compte> vList;
+            vList = managerFactory.getCompteManager().getListCompte();
+
+            for(int i = 0;i<vList.size();i++){
+                if(vList.get(i).getPseudo().equals(pseudo)){
+                    compte = managerFactory.getCompteManager().getCompteViaPseudo(pseudo);
+                    if(password.equals(compte.getPassword())){
+                        this.session.put("user", compte);
+                        this.session.put("pseudo", compte.getPseudo());
+                        this.session.put("niveau", compte.getNiveauAcces().getNiveau());
+                        vResult = ActionSupport.SUCCESS;
+                    }else {
+                        this.addActionMessage("Mot de passe invalide");
+                    }
+                }
+            }
+            if(compte == null){
+                this.addActionMessage("Identifiant inconnu");
             }
         }
         return vResult;
@@ -145,9 +156,6 @@ public class LoginAction extends ActionSupport implements SessionAware {
 
             compte.setEmail(nouveau);
         }
-
-
-
 
         return ActionSupport.SUCCESS;
     }

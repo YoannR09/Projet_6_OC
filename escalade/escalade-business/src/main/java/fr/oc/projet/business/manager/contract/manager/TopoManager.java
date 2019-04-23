@@ -21,6 +21,8 @@ public interface TopoManager {
 
     List<Topo> getListTopoValidePageUp(Integer lastId);
 
+    List<Topo> rechercheTopo(String text);
+
     int getCountTopo();
 
     void addTopo(Topo topo);

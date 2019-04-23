@@ -39,10 +39,8 @@
     <package name="public" extends="base">
 
         <!-- Action "index" -->
-        <action name="index"
-                class="fr.oc.projet.webapp.action.GestionIndexAction"
-                method="doGetCountAction">
-            <result name="success">/index.jsp</result>
+        <action name="index">
+            <result>/index.jsp</result>
         </action>
 
         <!-- Actions Login/Logout -->
@@ -98,6 +96,19 @@
                 class="fr.oc.projet.webapp.action.GestionSiteAction"
                 method="doRechercheSite">
             <result name="success">/jsp/site/list.jsp</result>
+        </action>
+
+        <action name="recherche_topo"
+                class="fr.oc.projet.webapp.action.GestionTopoAction"
+                method="doRechercheTopo">
+            <result name="success">/jsp/site/list.jsp</result>
+        </action>
+
+        <action name="recherche"
+                class="fr.oc.projet.webapp.action.GestionIndexAction"
+                method="doRecherche">
+            <result name="Site">/jsp/site/list.jsp</result>
+            <result name="Topo">/jsp/topo/list.jsp</result>
         </action>
 
         <action name="listSecteur"
@@ -377,10 +388,27 @@
             </result>
         </action>
 
+        <action name="ajax_countSite"
+                class="fr.oc.projet.webapp.action.GestionIndexAction"
+                method="doGetCountNbreSiteAction">
+            <result name="success" type="json">
+                <param name="root">nbreSite</param>
+            </result>
+        </action>
+
+        <action name="ajax_countTopo"
+                class="fr.oc.projet.webapp.action.GestionIndexAction"
+                method="doGetCountNbreTopoAction">
+            <result name="success" type="json">
+                <param name="root">nbreTopo</param>
+            </result>
+        </action>
+
         <action name="ajax_addNote"
                 class="fr.oc.projet.webapp.action.AjaxActionSite"
                 method="doAjaxAddNote">
         </action>
+
 
     </package>
 

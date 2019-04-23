@@ -5,6 +5,7 @@
   Time: 17:57
   To change this template use File | Settings | File Templates.
 --%>
+<!DOCTYPE html>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -65,16 +66,16 @@
         border-style: solid;
         border-width: 0px 1px 0px 1px;
     }
-    #carrousel{
-        position:relative;
-        height:200px;
-        width:700px;
-        margin:auto;
-    }
-    #carrousel ul li{
-        position:absolute;
-        top:0;
-        left:0;
+    #popInfos
+    {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        z-index: 1;
+        background-color: rgba(255,255,255,0.7);
+        padding: 20px;
+        border: 2px deepskyblue solid;
+        border-radius: 25px;
     }
 
 
@@ -84,7 +85,24 @@
 
 <div id="page">
 
+    <div id="popInfos">
+        Se connecter pour plus de fonctionnalité
+        <div style="display: flex;justify-content: space-around">
+            <s:a action="login"  class="btn btn-outline-info">Oui</s:a>
+            <button type="button" class="btn btn-outline-info" id=btnNon>Non</button>
+        </div>
+    </div>
+
+
+
     <div class="col-lg-9 col-md-9 col-sm-9" style="color: white; margin-top: 20px;">
+        <div class="col-lg-12 col-md-12 col-sm-12" id="cadreImage" style="background-color:rgba(0,0,0,0.7);padding-top: 10px">
+            <s:iterator value="listImage">
+                <img src="./image/<s:property value="url"/> "
+                     width="100%" height="100%" id="img" style="border: 1px black solid;" />
+            </s:iterator>
+        </div>
+
         <div class="col-lg-12 col-md-12 col-sm-12" id="cadreInfos" style="background-color:rgba(0,0,0,0.7);padding-top: 10px">
             <h2 id="nomSite"><s:property value="site.nom"/></h2>
             <br/><s:property value="site.description"/>
@@ -108,7 +126,7 @@
             <button type="button" class="btn btn-info" id="btnEnvoyer" data-toggle="modal" data-target="#votreCommentaire">Mettre un commentaire</button>
             <button type="button" class="btn btn-outline-info" id="btnCom">Voir les commentaires</button>
             <s:a action="listSecteur" class="btn btn-outline-info"><s:param name="idSite" value="site.id" />Liste des secteurs</s:a>
-            <button type="button" class="btn btn-outline-info" id="btnSecteur" data-toggle="modal" data-target="#eva">Evaluer ce site</button>
+            <button type="button" class="btn btn-outline-info" id="btnEva" data-toggle="modal" data-target="#eva">Evaluer ce site</button>
         </div>
 
         <!--------------------------------- Pop-up ------------------------------------>
@@ -159,71 +177,29 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
+
+
     $(function() {
 
-        var $carrousel = $('#carrousel'), // on cible le bloc du carrousel
-            $img = $('#carrousel img'), // on cible les images contenues dans le carrousel
-            indexImg = $img.length - 1, // on définit l'index du dernier élément
-            i = 0, // on initialise un compteur
-            $currentImg = $img.eq(i); // enfin, on cible l'image courante, qui possède l'index i (0 pour l'instant)
+        $('#popInfos').hide();
 
-        $img.css('display', 'none'); // on cache les images
-        $currentImg.css('display', 'block'); // on affiche seulement l'image courante
+        var nombre = 0;
+        $('#cadreImage > img').hide();
+        carrousel(nombre);
 
-        $carrousel.append('<div class="controls"> <span class="prev">Precedent</span> <span class="next">Suivant</span> </div>');
 
-        $('.next').click(function(){ // image suivante
 
-            i++; // on incrémente le compteur
-
-            if( i <= indexImg ){
-                $img.css('display', 'none'); // on cache les images
-                $currentImg = $img.eq(i); // on définit la nouvelle image
-                $currentImg.css('display', 'block'); // puis on l'affiche
-            }
-            else{
-                i = indexImg;
-            }
-
-        });
-
-        $('.prev').click(function(){ // image précédente
-
-            i--; // on décrémente le compteur, puis on réalise la même chose que pour la fonction "suivante"
-
-            if( i >= 0 ){
-                $img.css('display', 'none');
-                $currentImg = $img.eq(i);
-                $currentImg.css('display', 'block');
-            }
-            else{
-                i = 0;
-            }
-
-        });
-
-        function slideImg(){
-            setTimeout(function(){ // on utilise une fonction anonyme
-
-                if(i < indexImg){ // si le compteur est inférieur au dernier index
-                    i++; // on l'incrémente
-                }
-                else{ // sinon, on le remet à 0 (première image)
-                    i = 0;
-                }
-
-                $img.css('display', 'none');
-
-                $currentImg = $img.eq(i);
-                $currentImg.css('display', 'block');
-
-                slideImg(); // on oublie pas de relancer la fonction à la fin
-
-            }, 7000); // on définit l'intervalle à 7000 millisecondes (7s)
+        if($('#pseudo').text() == ""){
+            $('#btnCom').attr("disabled", true);
+            $('#btnEva').attr("disabled", true);
+            $('#popInfos').show();
         }
 
-        slideImg(); // enfin, on lance la fonction une première fois
+        $("#btnNon").click(function() {
+            $('#popInfos').hide();
+        });
 
+        });
 
         reloadListCommentaire();
 
@@ -260,7 +236,6 @@
 
 
         });
-    });
     function reloadListCommentaire() {
         // URL de l'action AJAX
         var url = "<s:url action="ajax_getListCommentaire"/>";
@@ -381,6 +356,30 @@
 
         $("input[name=note]").val(""); //-- On vide le champ de saisie du nouveau message à chaque tour.*
 
+    }
+
+    function carrousel(nombre){
+
+            if(nombre != 1) {
+                $('#cadreImage > img:eq(nombre -1)').fadeOut(2000);
+            }
+            $('#cadreImage > img:eq(nombre)').fadeIn(2000);
+            console.log(nombre);
+
+            ++nombre;
+
+            setInterval(defil(nombre),5000);
+    }
+
+    function defil(nombre){
+        var listImg = $('#cadreImage > img').length;
+        if(nombre < listImg) {
+            carrousel(nombre);
+        }
+        else{
+            nombre = 0;
+            carrousel(nombre);
+        }
     }
 </script>
 </body>

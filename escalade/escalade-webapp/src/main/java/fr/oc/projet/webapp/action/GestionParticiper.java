@@ -69,8 +69,6 @@ public class GestionParticiper extends ActionSupport {
 
         if(myFile != null) {
 
-            System.out.println(site.getNom());
-
             destPath = "C:/Users/El-ra/Documents/Projet_6_OC/escalade/escalade-webapp/src/main/webapp/image/" + nomSite+ "/";
 
             try {
@@ -81,7 +79,7 @@ public class GestionParticiper extends ActionSupport {
                 FileUtils.copyFile(myFile, destFile);
 
                 Image image = new Image();
-                image.setUrlImage(site.getNom() + "/" + myFileFileName);
+                image.setUrlImage(site.getNom() + "/" + myFile);
                 image.setSiteId(site.getId());
                 image.setDescription(description);
                 image.setImageDePresentation(false);

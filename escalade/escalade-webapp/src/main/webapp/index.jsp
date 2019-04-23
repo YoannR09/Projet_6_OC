@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html>
 <head>
     <%@ include file="/_include/head.jsp"%>
@@ -48,7 +47,7 @@
 <div id="page">
 <div class="col-lg-10 col-md-10 col-sm-10" style="color: white;">
     <div id="recherche" class="col-lg-12 col-md-12 col-sm-12" style="background-color:rgba(0,0,0,0.7);padding-top: 10px;padding-bottom: 10px;margin-top: 20px">
-        <s:form action="recherche_site" style="width:100%">
+        <s:form action="recherche" style="width:100%">
         <div class="input-group">
             <input id="text" name="text" type="text" class="form-control" placeholder="Recherche" aria-label="Recipient's username" aria-describedby="basic-addon2">
             <div class="input-group-append">
@@ -58,7 +57,7 @@
                 </select>
 
             </div>
-                <s:submit style="margin:auto" value="Rechercher" id="btn" class="btn btn-info"/>
+                <s:submit value="Rechercher" id="btn" class="btn btn-info"/>
         </div>
         </s:form>
     </div>
@@ -78,10 +77,62 @@
         </div>
 
     <div id="textDescri" class="col-lg-12 col-md-12 col-sm-12"style="background-color:rgba(0,0,0,0.7);padding-top: 10px;text-align: center" >
-
+        <div>
+            <span id="nombreSite"></span>
+            <span id="nombreTopo"></span>
+        </div>
     </div>
 </div>
 
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+
+
+    $(function() {
+        reloadCountTopo();
+        reloadCountSite();
+    });
+
+    function reloadCountSite() {
+        // URL de l'action AJAX
+        var url = "<s:url action="ajax_countSite"/>";
+
+        // Action AJAX en POST
+        jQuery.post(
+            url,
+            function (data) {
+                var $nombreSite = jQuery("#nombreSite");
+                $nombreSite.empty();
+                jQuery.each(data, function (key, val) {
+                    console.log(val.nbreSite);
+                    $nombreSite.append(val.nbreSite);
+                });
+            })
+            .fail(function () {
+                alert("Erreur !!");
+            });
+    }
+    function reloadCountTopo() {
+        // URL de l'action AJAX
+        var url = "<s:url action="ajax_countTopo"/>";
+
+        // Action AJAX en POST
+        jQuery.post(
+            url,
+            function (data) {
+                var $nombreTopo = jQuery("#nombreTopo");
+                $nombreTopo.empty();
+                jQuery.each(data, function (key, val) {
+                    console.log(val.nbreTopo);
+                    $nombreTopo.append(val.nbreTopo);
+                });
+            })
+            .fail(function () {
+                alert("Erreur !!");
+            });
+    }
+
+</script>
 </body>
 </html>

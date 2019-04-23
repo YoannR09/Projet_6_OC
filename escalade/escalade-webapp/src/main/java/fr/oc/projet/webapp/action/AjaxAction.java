@@ -46,6 +46,7 @@ public class AjaxAction extends ActionSupport {
     private     String                  nomTopo;
     private     String                  description;
     private     File                    myFile;
+    private     File                    file;
     private     String                  myFileContentType;
     private     String                  myFileFileName;
     private     String                  destPath;
@@ -275,13 +276,12 @@ public class AjaxAction extends ActionSupport {
 
     public String doAjaxAddImage(){
 
-
-        if(myFile != null){
+        if(file != null){
             destPath = "C:/Users/El-ra/Documents/Projet_6_OC/escalade/escalade-webapp/src/main/webapp/image/"+topo.getNom()+"/";
 
             try {
                 File destFile  = new File(destPath, myFileFileName);
-                FileUtils.copyFile(myFile, destFile);
+                FileUtils.copyFile(file, destFile);
 
             } catch(IOException e) {
                 e.printStackTrace();
@@ -289,14 +289,12 @@ public class AjaxAction extends ActionSupport {
             }
         }
 
-
-
         if(nomSite != null) {
 
             site = managerFactory.getSiteManager().getSiteViaNom(nomSite);
 
             Image image = new Image();
-            image.setUrlImage(nomSite + "/" + myFile);
+            image.setUrlImage(nomSite + "/" + file);
             image.setImageDePresentation(false);
             image.setSiteId(site.getId());
             image.setDescription(description);
@@ -305,8 +303,6 @@ public class AjaxAction extends ActionSupport {
 
             listImage = managerFactory.getImageManager().getListImageTopo(site.getId());
         }
-
-
 
         return ActionSupport.SUCCESS;
     }
@@ -590,5 +586,13 @@ public class AjaxAction extends ActionSupport {
 
     public void setFileUrl(String fileUrl) {
         this.fileUrl = fileUrl;
+    }
+
+    public File getFile() {
+        return file;
+    }
+
+    public void setFile(File file) {
+        this.file = file;
     }
 }

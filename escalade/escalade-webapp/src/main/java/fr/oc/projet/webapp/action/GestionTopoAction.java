@@ -3,6 +3,7 @@ package fr.oc.projet.webapp.action;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import fr.oc.projet.business.manager.contract.ManagerFactory;
+import fr.oc.projet.model.bean.escalade.Site;
 import fr.oc.projet.model.bean.escalade.Topo;
 import fr.oc.projet.model.bean.utilisateur.Commentaire;
 import fr.oc.projet.model.bean.utilisateur.Reservation;
@@ -24,7 +25,8 @@ public class GestionTopoAction extends ActionSupport {
     private         Integer               lastId;
     private         Integer               nombre;
     private         String                pseudo;
-    private         Boolean               firstPage;
+    private         String                text;
+    private         Integer               page;
 
 
     public String doDetailTopo(){
@@ -58,6 +60,8 @@ public class GestionTopoAction extends ActionSupport {
         Topo topo = listTopo.get(nombre-1);
         lastId = topo.getId();
 
+        page = page-1;
+
         return ActionSupport.SUCCESS;
     }
     public String doListSiteValidePageUp() {
@@ -67,6 +71,8 @@ public class GestionTopoAction extends ActionSupport {
         nombre = listTopo.size();
         Topo topo = listTopo.get(nombre-1);
         lastId = topo.getId();
+
+        page = page+1;
 
         return ActionSupport.SUCCESS;
     }
@@ -78,7 +84,20 @@ public class GestionTopoAction extends ActionSupport {
         Topo topo = listTopo.get(nombre-1);
         lastId = topo.getId();
 
-        firstPage = true;
+        page = 1;
+
+        return ActionSupport.SUCCESS;
+    }
+
+    public String doRechercheTopo(){
+
+
+        listTopo = managerFactory.getTopoManager().rechercheTopo(text);
+
+        nombre = listTopo.size();
+        page = 1;
+        Topo topo = listTopo.get(nombre-1);
+        lastId = topo.getId();
 
         return ActionSupport.SUCCESS;
     }
@@ -141,12 +160,12 @@ public class GestionTopoAction extends ActionSupport {
         this.nombre = nombre;
     }
 
-    public Boolean getFirstPage() {
-        return firstPage;
+    public Integer getPage() {
+        return page;
     }
 
-    public void setFirstPage(Boolean firstPage) {
-        this.firstPage = firstPage;
+    public void setPage(Integer page) {
+        this.page = page;
     }
 
     public String getPseudo() {
@@ -155,5 +174,13 @@ public class GestionTopoAction extends ActionSupport {
 
     public void setPseudo(String pseudo) {
         this.pseudo = pseudo;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
     }
 }

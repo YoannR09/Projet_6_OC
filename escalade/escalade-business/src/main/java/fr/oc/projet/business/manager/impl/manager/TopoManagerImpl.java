@@ -47,6 +47,11 @@ public class TopoManagerImpl extends AbstractManagerImpl implements TopoManager 
     }
 
     @Override
+    public List<Topo> rechercheTopo(String text) {
+        return getDaoFactory().getTopoDao().rechercheTopo(text);
+    }
+
+    @Override
     public int getCountTopo() {
         return getDaoFactory().getTopoDao().getCountTopo();
     }

@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <%@ include file="/_include/head.jsp"%>
@@ -68,8 +69,6 @@
                         <label for="inputPassConf">Confirmer l'email</label>
                         <input name="emailConf" type="text" class="form-control" id="inputEmailConf" placeholder="Email" required>
                     </div>
-
-                        <input type="file" name="myFile">
 
                 </div>
 

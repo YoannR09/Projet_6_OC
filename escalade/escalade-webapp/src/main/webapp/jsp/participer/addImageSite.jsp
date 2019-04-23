@@ -1,4 +1,5 @@
 
+<!DOCTYPE html>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -76,9 +77,11 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                            <input name="description" type="text" class="form-control" id="textNom" placeholder="Nom" required/>
-                            <s:file id="file" name="myFile"  label="Image principale " style="color:white"/>
-                        <button id="btn" data-dismiss="modal" class="btn btn-info">Créer</button>
+                        <form id="fileForm">
+                            <input type="file" name="file" />
+                            <button id="btnUpload" type="button">Upload file</button>
+                            <button id="btnClear" type="button">Clear</button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -90,22 +93,42 @@
     $(function() {
 
         $("#btn").click(function() {
-            var filename = $("#myFile").val();
+            var file = $('[name="file"]');
+            var imgContainer = $('#imgContainer');
 
-            $.ajax({
-                type: "POST",
-                url: "<s:url action="ajax_addImageSite"/>",
-                enctype: 'multipart/form-data',
-                data: {
-                    file: filename
-                },
-                success: function () {
-                    alert("Data Uploaded: ");
+            $('#btnUpload').on('click', function() {
+                var filename = $.trim(file.val());
+
+                if (!(isJpg(filename) || isPng(filename))) {
+                    alert('Please browse a JPG/PNG file to upload ...');
+                    return;
                 }
-            });
-            addImage();
-        });
 
+                $.ajax({
+                    url: '<%=baseUrl%>api/echofile',
+                    type: "POST",
+                    data: new FormData(document.getElementById("fileForm")),
+                    enctype: 'multipart/form-data',
+                    processData: false,
+                    contentType: false
+                }).done(function(data) {
+                    imgContainer.html('');
+                    var img = '<img src="data:' + data.contenttype + ';base64,'
+                        + data.base64 + '"/>';
+
+                    imgContainer.append(img);
+                }).fail(function(jqXHR, textStatus) {
+                    //alert(jqXHR.responseText);
+                    alert('File upload failed ...');
+                });
+
+            });
+
+            $('#btnClear').on('click', function() {
+                imgContainer.html('');
+                file.val('');
+            });
+        });
     });
 
     function addImage() {
@@ -119,10 +142,14 @@
         // URL de l'action AJAX
         var url = "<s:url action="ajax_addImageSite"/>";
 
+
+
         // Paramètres de la requête AJAX
         var params = {
             description: description,
             nomSite: nomSite,
+            enctype: 'multipart/form-data',
+            type: "POST",
             file: file
         };
 

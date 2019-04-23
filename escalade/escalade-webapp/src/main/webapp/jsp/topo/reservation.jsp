@@ -5,6 +5,7 @@
   Time: 17:57
   To change this template use File | Settings | File Templates.
 --%>
+<!DOCTYPE html>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -35,7 +36,7 @@
         }
         #infos
         {
-            border-radius: 25%;
+            border-radius: 25px;
             position: absolute;
             top: 20px;
             right: 40px;
@@ -59,7 +60,7 @@
 
     <div class="col-lg-9 col-md-9 col-sm-9" style="color: white; margin-top: 20px;">
 
-        <button id="infos" type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#informations"><em id="info">i</em></button>
+        <button id="infos" type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#informations"><em id="info"><i class="fas fa-info"></i></em></button>
 
         <div class="col-lg-12 col-md-12 col-sm-12" id="cadreImage" style="background-color:rgba(0,0,0,0.7);padding-top: 10px;text-align: center">
             <h2 id="nomTopo"><s:property value="topo.nom"/></h2>
@@ -120,7 +121,7 @@
                         <div class="modal-header">
                             <h5 class="modal-title" id="tittle">Responsable du topo</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
+                                <span style="color: white" aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body" style="text-align: center">

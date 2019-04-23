@@ -1,6 +1,7 @@
 
 
 <!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <%@ include file="/_include/head.jsp"%>
@@ -42,6 +43,7 @@
      id="card">
 
     <div class="card-header"><h3>Connection</h3></div>
+    <s:actionmessage/>
     <div class="card-body" id="mid">
         <s:form action="login">
             <s:textfield name="pseudo" label="Identifiant " class="blocInfo"/>

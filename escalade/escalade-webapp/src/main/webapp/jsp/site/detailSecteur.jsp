@@ -5,6 +5,7 @@
   Time: 17:57
   To change this template use File | Settings | File Templates.
 --%>
+<!DOCTYPE html>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -59,11 +60,16 @@
         border-style: solid;
         border-width: 0px 1px 0px 1px;
     }
-    #date
+    #popInfos
     {
-        float: right;
-        font-style: italic;
-        font-size: 0.7em;
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        z-index: 1;
+        background-color: rgba(255,255,255,0.7);
+        padding: 20px;
+        border: 2px deepskyblue solid;
+        border-radius: 25px;
     }
 
 
@@ -71,6 +77,14 @@
 
 
 <div id="page">
+
+    <div id="popInfos">
+        Se connecter pour plus de fonctionnalité
+        <div style="display: flex;justify-content: space-around">
+            <s:a action="login"  class="btn btn-outline-info">Oui</s:a>
+            <button type="button" class="btn btn-outline-info" id=btnNon>Non</button>
+        </div>
+    </div>
 
     <div class="col-lg-9 col-md-9 col-sm-9" style="color: white; margin-top: 20px;">
         <div class="col-lg-12 col-md-12 col-sm-12" id="cadreInfos" style="background-color:rgba(0,0,0,0.7);">
@@ -137,8 +151,20 @@
 <script>
     $(function() {
 
+
+        $('#popInfos').hide();
+
+
+        if($('#pseudo').text() == ""){
+            $('#btnCom').attr("disabled", true);
+            $('#popInfos').show();
+        }
+
+        $("#btnNon").click(function() {
+            $('#popInfos').hide();
+        });
+
         reloadListCommentaire();
-        setInterval(reloadListCommentaire, 5000);
 
         $('#cadreCommentaire').hide();
         $('#cadreSecteur').hide();
@@ -190,6 +216,8 @@
                 var $listCommentaire = jQuery("#listCommentaire");
                 $listCommentaire.empty();
                 jQuery.each(data, function (key, val) {
+                    var dates = new Date(val.date);
+
                     $listCommentaire.append(
                         jQuery("<span class='badge badge-info' style='padding :10px;margin-bottom: 15px;width: 15%;'>")
                             .append(val.auteur.pseudo)
@@ -201,7 +229,7 @@
 
                     $listCommentaire.append(
                         jQuery("<span class='badge badge-light' style='margin-bottom: 15px;'>")
-                            .append(val.date)
+                            .append(dates.getDate(),'/',(dates.getMonth()+1),'/',dates.getFullYear())
                     );
 
                     $listCommentaire.append(
@@ -237,6 +265,8 @@
                 var $listCommentaire = jQuery("#listCommentaire");
                 $listCommentaire.empty();
                 jQuery.each(data, function (key, val) {
+                    var dates = new Date(val.date);
+
                     $listCommentaire.append(
                         jQuery("<span class='badge badge-info' style='padding :10px;margin-bottom: 15px;width: 15%;'>")
                             .append(val.auteur.pseudo)
@@ -248,7 +278,7 @@
 
                     $listCommentaire.append(
                         jQuery("<span class='badge badge-light' style='margin-bottom: 15px;'>")
-                            .append(val.date)
+                            .append(dates.getDate(),'/',(dates.getMonth()+1),'/',dates.getFullYear())
                     );
 
                     $listCommentaire.append(

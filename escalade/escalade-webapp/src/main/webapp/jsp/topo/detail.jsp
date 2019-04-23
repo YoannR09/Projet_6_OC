@@ -5,6 +5,7 @@
   Time: 17:57
   To change this template use File | Settings | File Templates.
 --%>
+<!DOCTYPE html>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -60,11 +61,16 @@
             border-style: solid;
             border-width: 0px 1px 0px 1px;
         }
-        #date
+        #popInfos
         {
-            float: right;
-            font-style: italic;
-            font-size: 0.7em;
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1;
+            background-color: rgba(255,255,255,0.7);
+            padding: 20px;
+            border: 2px deepskyblue solid;
+            border-radius: 25px;
         }
 
 
@@ -78,6 +84,14 @@
 
 
 <div id="page">
+
+    <div id="popInfos">
+        Se connecter pour plus de fonctionnalité
+        <div style="display: flex;justify-content: space-around">
+            <s:a action="login"  class="btn btn-outline-info">Oui</s:a>
+            <button type="button" class="btn btn-outline-info" id=btnNon>Non</button>
+        </div>
+    </div>
 
     <div class="col-lg-9 col-md-9 col-sm-9" style="color: white; margin-top: 20px;">
         <div class="col-lg-12 col-md-12 col-sm-12" id="cadreImage" style="background-color:rgba(0,0,0,0.7);padding-top: 10px">
@@ -99,8 +113,9 @@
         <div class="col-lg-12 col-md-12 col-sm-12" id="cadreBouton" style="background-color:rgba(0,0,0,0.7);">
             <button type="button" class="btn btn-info" id="btnEnvoyer" data-toggle="modal" data-target="#votreCommentaire">Mettre un commentaire</button>
             <button type="button" class="btn btn-outline-info" id="btnCom">Voir les commentaires</button>
-            <s:a action="reservationTopo" class="btn btn-outline-info"><s:param name="idTopo" value="topo.id" />Voir les créneaux disponibles</s:a>
-            <button type="button" class="btn btn-outline-info" id="btnSecteur" data-toggle="modal" data-target="#exampleModalCenter">Evaluer ce site</button>
+            <button type="button" class="btn btn-outline-info" id="btnFake">Voir les créneaux disponibles</button>
+            <s:a action="reservationTopo" class="btn btn-outline-info" id="btnResa"><s:param name="idTopo" value="topo.id" />Voir les créneaux disponibles</s:a>
+            <button type="button" class="btn btn-outline-info" id="btnEva" data-toggle="modal" data-target="#exampleModalCenter">Evaluer ce site</button>
         </div>
 
         <!--------------------------------- Pop-up ------------------------------------>
@@ -135,8 +150,8 @@
                         </button>
                     </div>
                     <div class="modal-body" style="display: flex;justify-content: center">
-                            <label for="inputContenu">Message</label>
-                            <textarea  name="contenu" class="form-control" id="inputContenu" rows="4" placeholder="Ecrivez votre message..."></textarea>
+                        <label for="inputContenu">Message</label>
+                        <textarea  name="contenu" class="form-control" id="inputContenu" rows="4" placeholder="Ecrivez votre message..."></textarea>
                     </div>
                     <div class="modal-footer" style="display: flex;justify-content: space-around">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
@@ -152,9 +167,25 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
     $(function() {
+        
+
+        $('#popInfos').hide();
+        $('#btnFake').hide();
+
+        if($('#pseudo').text() == ""){
+            $('#btnCom').attr("disabled", true);
+            $('#btnEva').attr("disabled", true);
+            $('#btnResa').hide();
+            $('#btnFake').show();
+            $('#btnFake').attr("disabled", true);
+            $('#popInfos').show();
+        }
+
+        $("#btnNon").click(function() {
+            $('#popInfos').hide();
+        });
 
         reloadListCommentaire();
-        setInterval(reloadListCommentaire, 5000);
 
         $('#cadreCommentaire').hide();
         $('#cadreSecteur').hide();

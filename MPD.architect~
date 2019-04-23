@@ -16,19 +16,19 @@
     <column id="COL2" populated="true" UUID="383f70b6-5fbc-49b2-ae16-93c24db88498" autoIncrement="true" autoIncrementSequenceName="compte_id_seq" defaultValue="" name="id" nullable="0" physicalName="id" precision="0" primaryKeySeq="0" referenceCount="2" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
      <remarks></remarks>
     </column>
-    <column id="COL3" populated="true" UUID="39eeb75d-604b-427e-b11d-8d1c0457c813" autoIncrement="false" autoIncrementSequenceName="compte_pseudo_seq" defaultValue="" name="pseudo" nullable="0" physicalName="pseudo" precision="50" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+    <column id="COL3" populated="true" UUID="39eeb75d-604b-427e-b11d-8d1c0457c813" autoIncrement="false" autoIncrementSequenceName="compte_pseudo_seq" defaultValue="" name="pseudo" nullable="0" physicalName="pseudo" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
      <remarks></remarks>
     </column>
-    <column id="COL4" populated="true" UUID="05af57d4-d457-4cf5-830c-fc5234194dc6" autoIncrement="false" autoIncrementSequenceName="compte_nom_seq" defaultValue="" name="nom" nullable="0" physicalName="nom" precision="50" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+    <column id="COL4" populated="true" UUID="05af57d4-d457-4cf5-830c-fc5234194dc6" autoIncrement="false" autoIncrementSequenceName="compte_nom_seq" defaultValue="" name="nom" nullable="0" physicalName="nom" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
      <remarks></remarks>
     </column>
-    <column id="COL5" populated="true" UUID="03b726af-0379-4557-b888-72205eb51f66" autoIncrement="false" autoIncrementSequenceName="compte_prenom_seq" defaultValue="" name="prenom" nullable="0" physicalName="prenom" precision="50" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+    <column id="COL5" populated="true" UUID="03b726af-0379-4557-b888-72205eb51f66" autoIncrement="false" autoIncrementSequenceName="compte_prenom_seq" defaultValue="" name="prenom" nullable="0" physicalName="prenom" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
      <remarks></remarks>
     </column>
-    <column id="COL6" populated="true" UUID="ceef227b-66f6-4144-92ce-3bdadfc73205" autoIncrement="false" autoIncrementSequenceName="compte_mot_de_passe_seq" defaultValue="" name="mot_de_passe" nullable="0" physicalName="mot_de_passe" precision="50" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+    <column id="COL6" populated="true" UUID="ceef227b-66f6-4144-92ce-3bdadfc73205" autoIncrement="false" autoIncrementSequenceName="compte_mot_de_passe_seq" defaultValue="" name="mot_de_passe" nullable="0" physicalName="mot_de_passe" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
      <remarks></remarks>
     </column>
-    <column id="COL7" populated="true" UUID="76e27cae-b1fc-427e-9039-d24c76147cab" autoIncrement="false" autoIncrementSequenceName="compte_email_seq" defaultValue="" name="email" nullable="0" physicalName="email" precision="30" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+    <column id="COL7" populated="true" UUID="76e27cae-b1fc-427e-9039-d24c76147cab" autoIncrement="false" autoIncrementSequenceName="compte_email_seq" defaultValue="" name="email" nullable="0" physicalName="email" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
      <remarks></remarks>
     </column>
     <column id="COL8" populated="true" UUID="51fe18f5-cf90-434d-b4d6-998ccd049dea" autoIncrement="false" autoIncrementSequenceName="compte_numero_de_telephone_seq" defaultValue="" name="numero_de_telephone" nullable="0" physicalName="numero_de_telephone" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
@@ -77,7 +77,7 @@
     <column id="COL19" populated="true" UUID="28a4c224-dc69-47cc-b3d5-a6a1e0e7c48e" autoIncrement="true" autoIncrementSequenceName="site_id_seq" defaultValue="" name="id" nullable="0" physicalName="id" precision="0" primaryKeySeq="0" referenceCount="6" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
      <remarks></remarks>
     </column>
-    <column id="COL20" populated="true" UUID="990f881f-4502-4604-8cde-bebeb01d66a9" autoIncrement="false" autoIncrementSequenceName="site_nom_seq" defaultValue="" name="nom" nullable="0" physicalName="nom" precision="50" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+    <column id="COL20" populated="true" UUID="990f881f-4502-4604-8cde-bebeb01d66a9" autoIncrement="false" autoIncrementSequenceName="site_nom_seq" defaultValue="" name="nom" nullable="0" physicalName="nom" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
      <remarks></remarks>
     </column>
     <column id="COL21" populated="true" UUID="31b7a9f3-9223-4396-bfa6-6efef2cdd722" autoIncrement="false" autoIncrementSequenceName="spot_resume_seq" defaultValue="" name="description" nullable="0" physicalName="description" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
@@ -92,7 +92,7 @@
     <column id="COL24" populated="true" UUID="e0dcce2b-1369-4d21-bcb4-ce46b4d7f29b" autoIncrement="false" autoIncrementSequenceName="site_departement_id_seq" defaultValue="" name="departement_id" nullable="0" physicalName="departement_id" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
      <remarks></remarks>
     </column>
-    <column id="COL25" populated="true" UUID="49d0d33f-6efa-45e5-a1da-6b7295ee2c38" autoIncrement="false" autoIncrementSequenceName="site_ville_seq" defaultValue="" name="ville" nullable="0" physicalName="ville" precision="50" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+    <column id="COL25" populated="true" UUID="49d0d33f-6efa-45e5-a1da-6b7295ee2c38" autoIncrement="false" autoIncrementSequenceName="site_ville_seq" defaultValue="" name="ville" nullable="0" physicalName="ville" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
      <remarks></remarks>
     </column>
     <column id="COL26" populated="true" UUID="24435b80-e6d6-4540-bf93-5299863166bc" autoIncrement="false" autoIncrementSequenceName="site_date_de_creation_seq" defaultValue="" name="date_de_creation" nullable="0" physicalName="date_de_creation" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="91" userDefinedTypeUUID="ee349be3-6af2-46e1-b305-975f5354b009" >
@@ -156,7 +156,7 @@
     <column id="COL42" populated="true" UUID="dc7c74c7-c4e3-4332-afa5-174144339c02" autoIncrement="true" autoIncrementSequenceName="topo_id_seq" defaultValue="" name="id" nullable="0" physicalName="id" precision="0" primaryKeySeq="0" referenceCount="6" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
      <remarks></remarks>
     </column>
-    <column id="COL43" populated="true" UUID="12fa595e-2b40-4661-bae9-b8cedf3c1351" autoIncrement="false" autoIncrementSequenceName="topo_nom_seq" defaultValue="" name="nom" nullable="0" physicalName="nom" precision="50" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+    <column id="COL43" populated="true" UUID="12fa595e-2b40-4661-bae9-b8cedf3c1351" autoIncrement="false" autoIncrementSequenceName="topo_nom_seq" defaultValue="" name="nom" nullable="0" physicalName="nom" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
      <remarks></remarks>
     </column>
     <column id="COL44" populated="true" UUID="4f088013-a3ba-46a0-9391-a585be2c7084" autoIncrement="false" autoIncrementSequenceName="topo_description_seq" defaultValue="" name="description" nullable="0" physicalName="description" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
@@ -188,7 +188,7 @@
     <column id="COL51" populated="true" UUID="1badc62e-f846-41a3-801f-136991d8e73f" autoIncrement="true" autoIncrementSequenceName="voie_id_seq" defaultValue="" name="id" nullable="0" physicalName="id" precision="0" primaryKeySeq="0" referenceCount="6" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
      <remarks></remarks>
     </column>
-    <column id="COL52" populated="true" UUID="57c82e1c-21f2-49be-a94d-058564fe0ad0" autoIncrement="false" autoIncrementSequenceName="voie_nom_seq" defaultValue="" name="nom" nullable="1" physicalName="nom" precision="50" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+    <column id="COL52" populated="true" UUID="57c82e1c-21f2-49be-a94d-058564fe0ad0" autoIncrement="false" autoIncrementSequenceName="voie_nom_seq" defaultValue="" name="nom" nullable="1" physicalName="nom" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
      <remarks></remarks>
     </column>
     <column id="COL53" populated="true" UUID="9d239b65-c692-4992-802c-f308f3cc9784" autoIncrement="false" autoIncrementSequenceName="voie_hauteur_seq" defaultValue="" name="hauteur" nullable="0" physicalName="hauteur" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
@@ -333,7 +333,7 @@
     <column id="COL91" populated="true" UUID="e7f1c7cb-6cf9-41d7-ad9d-ce1e31a6680e" autoIncrement="true" autoIncrementSequenceName="secteur_id_seq" defaultValue="" name="id" nullable="0" physicalName="id" precision="0" primaryKeySeq="0" referenceCount="2" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
      <remarks></remarks>
     </column>
-    <column id="COL92" populated="true" UUID="6ad7451e-edb2-41a3-ab72-b7f138d594a5" autoIncrement="false" autoIncrementSequenceName="secteur_nom_seq" defaultValue="" name="nom" nullable="0" physicalName="nom" precision="50" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+    <column id="COL92" populated="true" UUID="6ad7451e-edb2-41a3-ab72-b7f138d594a5" autoIncrement="false" autoIncrementSequenceName="secteur_nom_seq" defaultValue="" name="nom" nullable="0" physicalName="nom" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
      <remarks></remarks>
     </column>
     <column id="COL93" populated="true" UUID="788e02a1-67b8-45e5-9947-fa78ca54097c" autoIncrement="false" autoIncrementSequenceName="secteur_site_id_seq" defaultValue="" name="site_id" nullable="0" physicalName="site_id" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
@@ -382,7 +382,7 @@
     <column id="COL104" populated="true" UUID="5455daf7-2f0c-499c-947c-15222c8958d2" autoIncrement="true" autoIncrementSequenceName="note_id_seq" defaultValue="" name="id" nullable="0" physicalName="id" precision="0" primaryKeySeq="0" referenceCount="4" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
      <remarks></remarks>
     </column>
-    <column id="COL105" populated="true" UUID="eba66e82-570a-48d8-ad71-af90881810cd" autoIncrement="false" autoIncrementSequenceName="note_note_seq" defaultValue="" name="note" nullable="0" physicalName="note" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="6" userDefinedTypeUUID="7e55bcd0-7606-4153-b749-9c397f12c4d8" >
+    <column id="COL105" populated="true" UUID="eba66e82-570a-48d8-ad71-af90881810cd" autoIncrement="false" autoIncrementSequenceName="note_note_seq" defaultValue="" name="note" nullable="0" physicalName="note" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="8" userDefinedTypeUUID="4fc90970-b2e5-41dd-911c-cc605d87e7a8" >
      <remarks></remarks>
     </column>
     <column id="COL106" populated="true" UUID="77ab1f00-4caf-4c62-a9f4-716c1b228ec1" autoIncrement="false" autoIncrementSequenceName="note_site_id_seq" defaultValue="" name="site_id" nullable="1" physicalName="site_id" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
@@ -523,10 +523,10 @@
    </relationship>
   </relationships>
  </target-database>
- <ddl-generator type="ca.sqlpower.architect.ddl.PostgresDDLGenerator" allow-connection="true" target-schema="public"> </ddl-generator>
+ <ddl-generator type="ca.sqlpower.architect.ddl.PostgresDDLGenerator" allow-connection="false" target-schema="public"> </ddl-generator>
  <liquibase-settings useSeparateChangeSets="false" generateId="false" idStart="1"/>
  <create-kettle-job-settings filePath="" jobName="" schemaName="" kettleJoinType="0" savingToFile="true" />
- <play-pen zoom="1.0" viewportX="0" viewportY="0" relationship-style="rectilinear" names-displayLogicalNames="true" showPrimaryTag="true" showForeignTag="true" showAlternateTag="true" columnVisibility="ALL" relationshipLabelVisibility="true">
+ <play-pen zoom="1.0" viewportX="9" viewportY="0" relationship-style="rectilinear" names-displayLogicalNames="true" showPrimaryTag="true" showForeignTag="true" showAlternateTag="true" columnVisibility="ALL" relationshipLabelVisibility="true">
   <table-pane table-ref="TAB1" x="941" y="74" bgColor="0xbfd6ff" fgColor="0x000000" rounded="false" dashed="false"/>
   <table-pane table-ref="TAB12" x="1421" y="81" bgColor="0xf6bcbc" fgColor="0x000000" rounded="false" dashed="false"/>
   <table-pane table-ref="TAB18" x="58" y="172" bgColor="0xc8dccc" fgColor="0x000000" rounded="false" dashed="false"/>

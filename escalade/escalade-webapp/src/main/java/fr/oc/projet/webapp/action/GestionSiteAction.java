@@ -39,7 +39,7 @@ public class GestionSiteAction extends ActionSupport {
     private         List<Image>           listImage;
     private         Integer               lastId;
     private         Integer               nombre;
-    private         Boolean               firstPage;
+    private         Integer               page;
     private         Integer               note;
 
     /**
@@ -56,7 +56,7 @@ public class GestionSiteAction extends ActionSupport {
         Site site = listSite.get(nombre-1);
         lastId = site.getId();
 
-        firstPage = true;
+        page = 1;
 
         return ActionSupport.SUCCESS;
     }
@@ -67,7 +67,7 @@ public class GestionSiteAction extends ActionSupport {
 
         Collections.sort(listSite, Site.ComparatorCotations);
 
-        firstPage = true;
+        page = 1;
 
         nombre = listSite.size();
         Site site = listSite.get(nombre-1);
@@ -81,7 +81,7 @@ public class GestionSiteAction extends ActionSupport {
 
         listSite = managerFactory.getSiteManager().getListSiteValide();
 
-        firstPage = true;
+        page = 1;
 
         Collections.sort(listSite, Site.ComparatorCotations);
 
@@ -102,6 +102,8 @@ public class GestionSiteAction extends ActionSupport {
         Site site = listSite.get(nombre-1);
         lastId = site.getId();
 
+        page = page-1;
+
         return ActionSupport.SUCCESS;
     }
     public String doListSiteValidePageUp() {
@@ -111,6 +113,8 @@ public class GestionSiteAction extends ActionSupport {
         nombre = listSite.size();
         Site site = listSite.get(nombre-1);
         lastId = site.getId();
+
+        page = page +1;
 
         return ActionSupport.SUCCESS;
     }
@@ -160,7 +164,7 @@ public class GestionSiteAction extends ActionSupport {
         listSite = managerFactory.getSiteManager().rechercheSite(text);
 
         nombre = listSite.size();
-        firstPage = true;
+        page = 1;
         Site site = listSite.get(nombre-1);
         lastId = site.getId();
 
@@ -266,14 +270,6 @@ public class GestionSiteAction extends ActionSupport {
         this.nombre = nombre;
     }
 
-    public Boolean getFirstPage() {
-        return firstPage;
-    }
-
-    public void setFirstPage(Boolean firstPage) {
-        this.firstPage = firstPage;
-    }
-
     public List<Voie> getListVoie() {
         return listVoie;
     }
@@ -304,5 +300,13 @@ public class GestionSiteAction extends ActionSupport {
 
     public void setNote(Integer note) {
         this.note = note;
+    }
+
+    public Integer getPage() {
+        return page;
+    }
+
+    public void setPage(Integer page) {
+        this.page = page;
     }
 }
