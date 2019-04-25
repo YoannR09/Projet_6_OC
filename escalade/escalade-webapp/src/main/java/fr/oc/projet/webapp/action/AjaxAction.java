@@ -125,7 +125,6 @@ public class AjaxAction extends ActionSupport {
         String vResult = ActionSupport.SUCCESS;
 
         try {
-
             site = managerFactory.getSiteManager().getSiteViaNom(nomSite);
 
             Secteur secteur = new Secteur();
@@ -135,7 +134,6 @@ public class AjaxAction extends ActionSupport {
             managerFactory.getSecteurManager().addSecteur(secteur);
 
             listSecteur = managerFactory.getSecteurManager().getListSecteurSite(site.getId());
-
 
         }  catch (Exception e) {
             e.printStackTrace();
@@ -273,40 +271,6 @@ public class AjaxAction extends ActionSupport {
         managerFactory.getCommentaireManager().addCommentaire(commentaire);
         return ActionSupport.SUCCESS;
     }
-
-    public String doAjaxAddImage(){
-
-        if(file != null){
-            destPath = "C:/Users/El-ra/Documents/Projet_6_OC/escalade/escalade-webapp/src/main/webapp/image/"+topo.getNom()+"/";
-
-            try {
-                File destFile  = new File(destPath, myFileFileName);
-                FileUtils.copyFile(file, destFile);
-
-            } catch(IOException e) {
-                e.printStackTrace();
-                return ERROR;
-            }
-        }
-
-        if(nomSite != null) {
-
-            site = managerFactory.getSiteManager().getSiteViaNom(nomSite);
-
-            Image image = new Image();
-            image.setUrlImage(nomSite + "/" + file);
-            image.setImageDePresentation(false);
-            image.setSiteId(site.getId());
-            image.setDescription(description);
-
-            managerFactory.getImageManager().addImage(image);
-
-            listImage = managerFactory.getImageManager().getListImageTopo(site.getId());
-        }
-
-        return ActionSupport.SUCCESS;
-    }
-
 
     public List<Commentaire> getListCommentaire() {
         return listCommentaire;

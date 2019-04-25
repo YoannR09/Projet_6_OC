@@ -7,6 +7,7 @@
 --%>
 <!DOCTYPE html>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <html>
 <head>
     <%@ include file="/_include/head.jsp"%>
@@ -23,22 +24,19 @@
     #cadreImage
     {
         height: 400px;
-
     }
     #cadreInfos
     {
-        height: 300px;
+        height: 380px;
         text-align: center;
         border-color: black;
         border-style: solid;
         border-width: 0px 0px 0px 1px;
-
     }
     em
     {
         color : darkgray;
     }
-
     span
     {
         margin: 15px;
@@ -77,9 +75,12 @@
         border: 2px deepskyblue solid;
         border-radius: 25px;
     }
-
-
-
+    #spanCotaMin,#spanCotaMax
+    {
+        border-radius: 25px;
+        border: black solid 2px;
+        padding: 10px;
+    }
 </style>
 
 
@@ -97,23 +98,53 @@
 
     <div class="col-lg-9 col-md-9 col-sm-9" style="color: white; margin-top: 20px;">
         <div class="col-lg-12 col-md-12 col-sm-12" id="cadreImage" style="background-color:rgba(0,0,0,0.7);padding-top: 10px">
-            <s:iterator value="listImage">
-                <img src="./image/<s:property value="url"/> "
-                     width="100%" height="100%" id="img" style="border: 1px black solid;" />
-            </s:iterator>
+            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner" style="max-height: 380px">
+                    <s:iterator value="listImage" status="list">
+                        <s:if test="%{#list.count == 1}">
+                            <s:property value="%{#list.count}"/>
+                            <div class="carousel-item active" style="width: 100%;height: 100%">
+                                <img class="d-block w-100" src="./image/<s:property value="urlImage"/>"
+                                     alt="First slide">
+                            </div>
+                        </s:if>
+                        <s:else>
+                            <div class="carousel-item" style="width: 100%;height: 100%">
+                                <img class="d-block w-100" src="./image/<s:property value="urlImage"/>"
+                                     alt="Second slide">
+                            </div>
+                        </s:else>
+                    </s:iterator>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
         </div>
 
         <div class="col-lg-12 col-md-12 col-sm-12" id="cadreInfos" style="background-color:rgba(0,0,0,0.7);padding-top: 10px">
             <h2 id="nomSite"><s:property value="site.nom"/></h2>
             <br/><s:property value="site.description"/>
 
-            <h4>Localisation</h4>
+            <h4><em>Localisation</em></h4>
 
             <p><span><em>Region : </em><s:property value="site.departement.region.nom"/></span>
                 <span><em>Département : </em><s:property value="site.departement.nom"/> </span>
                 <span><em>Ville : </em><s:property value="site.ville"/></span> </p>
 
-
+            <h4><em>Détails</em></h4>
+            <p><span><em>Type de roche: </em><s:property value="site.typeDeRoche.type"/></span>
+                <span><em>Nombre de voies : </em><s:property value="site.nombreVoie"/> </span>
+                <span><em>Nombre de secteurs : </em><s:property value="site.nombreSecteur"/></span> </p>
+            <p>
+          <span ><em>Cotation minimum: </em><span id="spanCotaMin" style="background-color:<s:property value="site.cotationMin.couleur"/>"><s:property value="site.cotationMin.valeur"/></span></span>
+                <span><em>Cotation maximum: </em><span id="spanCotaMax" style="background-color:<s:property value="site.cotationMax.couleur"/>"><s:property value="site.cotationMax.valeur"/></span></span>
+            </p>
         </div>
 
         <div class="col-lg-12 col-md-12 col-sm-12" id="cadreCommentaire" style="background-color:rgba(0,0,0,0.7);">
@@ -177,15 +208,10 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
-
-
     $(function() {
-
         $('#popInfos').hide();
 
-        var nombre = 0;
-        $('#cadreImage > img').hide();
-        carrousel(nombre);
+        //  $('#carou > div:eq(0)').attr('class','active');
 
 
 
@@ -194,60 +220,37 @@
             $('#btnEva').attr("disabled", true);
             $('#popInfos').show();
         }
-
         $("#btnNon").click(function() {
             $('#popInfos').hide();
         });
+    });
+    reloadListCommentaire();
+    $('#cadreCommentaire').hide();
+    $('#cadreSecteur').hide();
+    $('#btnEnvoyer').hide();
 
-        });
+    $("#btnCom").click(function() {
+        $('#cadreBouton').css('border-width','0px 1px 1px 1px');
+        $("html, body").animate({ scrollTop: $('#page').height() }, 1500);
+        $('#cadreCommentaire').slideDown(1500)
+        $('#btnEnvoyer').show();
+        $('#btnCom').hide();
+    });
 
-        reloadListCommentaire();
-
-        $('#cadreCommentaire').hide();
-        $('#cadreSecteur').hide();
+    $("#slideTop").click(function() {
+        $('#cadreBouton').css('border-width','0px 1px 1px 1px');
+        $("html, body").animate({ scrollTop: $('#page').height() }, 1500);
+        $('#cadreCommentaire').slideUp(1500);
         $('#btnEnvoyer').hide();
-
-        $("#btnCom").click(function() {
-
-            $('#cadreBouton').css('border-width','0px 1px 1px 1px');
-
-            $("html, body").animate({ scrollTop: $('#page').height() }, 1500);
-
-            $('#cadreCommentaire').slideDown(1500)
-
-            $('#btnEnvoyer').show();
-
-            $('#btnCom').hide();
-
-
-        });
-
-        $("#slideTop").click(function() {
-
-            $('#cadreBouton').css('border-width','0px 1px 1px 1px');
-
-            $("html, body").animate({ scrollTop: $('#page').height() }, 1500);
-
-            $('#cadreCommentaire').slideUp(1500);
-
-            $('#btnEnvoyer').hide();
-
-            $('#btnCom').show();
-
-
-        });
+        $('#btnCom').show();
+    });
     function reloadListCommentaire() {
         // URL de l'action AJAX
         var url = "<s:url action="ajax_getListCommentaire"/>";
-
         var nomSite =$("#nomSite").text();
-
-
-
         var params = {
             nomSite: nomSite
         };
-
         // Action AJAX en POST
         jQuery.post(
             url,
@@ -257,7 +260,6 @@
                 $listCommentaire.empty();
                 jQuery.each(data, function (key, val) {
                     var dates = new Date(val.date);
-
                     $listCommentaire.append(
                         jQuery("<span class='badge badge-info' style='padding :10px;margin-bottom: 15px;width: 15%;'>")
                             .append(val.auteur.pseudo)
@@ -266,12 +268,10 @@
                         jQuery("<span class='badge badge-light' style='padding :10px;margin-bottom: 15px;width: 60%;height: 70px;text-align: left'>")
                             .append(val.contenu)
                     );
-
                     $listCommentaire.append(
                         jQuery("<span class='badge badge-light' style='margin-bottom: 15px;'>")
                             .append(dates.getDate(),'/',(dates.getMonth()+1),'/',dates.getFullYear())
                     );
-
                     $listCommentaire.append(
                         jQuery("<div style='width: 100%;height: 5px; border-bottom : 1px solid lightgray; border-radius: 40%'>")
                     );
@@ -282,22 +282,16 @@
             });
     }
     function addCommentaire() {
-
         // récupère le message entré par l'utilisateur
         var contenu = $("textarea[name=contenu]").val();
-
-
         var nomSite = $("#nomSite").text();
-
         // URL de l'action AJAX
         var url = "<s:url action="ajax_addCommentaire"/>";
-
         // Paramètres de la requête AJAX
         var params = {
             contenu: contenu,
             nomSite: nomSite
         };
-
         // Action AJAX en POST
         jQuery.post(
             url,
@@ -315,71 +309,35 @@
                         jQuery("<span class='badge badge-light' style='padding :10px;margin-bottom: 15px;width: 60%;height: 70px;text-align: left'>")
                             .append(val.contenu)
                     );
-
                     $listCommentaire.append(
                         jQuery("<span class='badge badge-light' style='margin-bottom: 15px;'>")
                             .append(dates.getDate(),'/',(dates.getMonth()+1),'/',dates.getFullYear())
                     );
-
                     $listCommentaire.append(
                         jQuery("<div style='width: 100%;height: 5px; border-bottom : 1px solid lightgray; border-radius: 40%'>")
                     );
                 });
             })
-
         $("textarea[name=contenu]").val(""); //-- On vide le champ de saisie du nouveau message à chaque tour.*
-
     }
     function addNote() {
-
         // récupère le message entré par l'utilisateur
         var note = $("input[name=note]").val();
-
-
         var nomSite = $("#nomSite").text();
-
         // URL de l'action AJAX
         var url = "<s:url action="ajax_addNote"/>";
-
         // Paramètres de la requête AJAX
         var params = {
             note: note,
             nomSite: nomSite
         };
-
         // Action AJAX en POST
         jQuery.post(
             url,
             params,
             function (data) {
             })
-
         $("input[name=note]").val(""); //-- On vide le champ de saisie du nouveau message à chaque tour.*
-
-    }
-
-    function carrousel(nombre){
-
-            if(nombre != 1) {
-                $('#cadreImage > img:eq(nombre -1)').fadeOut(2000);
-            }
-            $('#cadreImage > img:eq(nombre)').fadeIn(2000);
-            console.log(nombre);
-
-            ++nombre;
-
-            setInterval(defil(nombre),5000);
-    }
-
-    function defil(nombre){
-        var listImg = $('#cadreImage > img').length;
-        if(nombre < listImg) {
-            carrousel(nombre);
-        }
-        else{
-            nombre = 0;
-            carrousel(nombre);
-        }
     }
 </script>
 </body>

@@ -27,7 +27,6 @@ public class SecteurRM implements RowMapper<Secteur> {
         Secteur secteur = new Secteur();
         secteur.setId(resultSet.getInt("id"));
         secteur.setNom(resultSet.getString("nom"));
-        secteur.setSite(siteDao.getSite(resultSet.getInt("site_id")));
 
         secteur.setNombreVoie(voieDao.getCountVoieSecteur(resultSet.getInt("id")));
 

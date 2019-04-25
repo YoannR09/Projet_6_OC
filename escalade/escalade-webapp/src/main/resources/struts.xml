@@ -310,6 +310,7 @@
                 <param name="root">listSecteur</param>
             </result>
         </action>
+
         <action name="ajax_addSecteur"
                 class="fr.oc.projet.webapp.action.AjaxAction"
                 method="doAjaxAddSecteur">
@@ -323,6 +324,14 @@
                 method="doAjaxAddVoie">
             <result name="success" type="json">
                 <param name="root">listVoie</param>
+            </result>
+        </action>
+
+        <action name="ajax_get_secteur"
+                class="fr.oc.projet.webapp.action.AjaxActionSite"
+                method="doGetSecteur">
+            <result name="success" type="json">
+                <param name="root">nomSecteur</param>
             </result>
         </action>
 
@@ -377,14 +386,6 @@
             </result>
             <result name="error" type="json">
                 <param name="root">listReservation</param>
-            </result>
-        </action>
-
-        <action name="ajax_addImageSite"
-                class="fr.oc.projet.webapp.action.AjaxAction"
-                method="doAjaxAddImage">
-            <result name="success" type="json">
-                <param name="root">listImage</param>
             </result>
         </action>
 

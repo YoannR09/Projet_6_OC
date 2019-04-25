@@ -62,7 +62,7 @@
 
             </div>
 
-            <s:a action="" class="btn btn-info">Terminer </s:a>
+            <s:a action="index" class="btn btn-info">Terminer </s:a>
         </div>
         <!--------------------------------- Pop-up ------------------------------------>
 
@@ -77,11 +77,11 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form id="fileForm">
-                            <input type="file" name="file" />
-                            <button id="btnUpload" type="button">Upload file</button>
-                            <button id="btnClear" type="button">Clear</button>
-                        </form>
+<s:form action="addImageSite" id="formulaire" method="POST" style="margin-left:10%;" enctype="multipart/form-data">
+    <s:file id="fileProfil" name="myFile"  label="Image principale " style="color:white"/>
+    <s:submit value="Ajouter" id="btn" class="btn btn-info"/>
+    <s:textfield value="" name="nomSiteText" id="nomSiteText"/>
+</s:form>
                     </div>
                 </div>
             </div>
@@ -91,90 +91,46 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
     $(function() {
-
-        $("#btn").click(function() {
-            var file = $('[name="file"]');
-            var imgContainer = $('#imgContainer');
-
-            $('#btnUpload').on('click', function() {
-                var filename = $.trim(file.val());
-
-                if (!(isJpg(filename) || isPng(filename))) {
-                    alert('Please browse a JPG/PNG file to upload ...');
-                    return;
-                }
-
-                $.ajax({
-                    url: '<%=baseUrl%>api/echofile',
-                    type: "POST",
-                    data: new FormData(document.getElementById("fileForm")),
-                    enctype: 'multipart/form-data',
-                    processData: false,
-                    contentType: false
-                }).done(function(data) {
-                    imgContainer.html('');
-                    var img = '<img src="data:' + data.contenttype + ';base64,'
-                        + data.base64 + '"/>';
-
-                    imgContainer.append(img);
-                }).fail(function(jqXHR, textStatus) {
-                    //alert(jqXHR.responseText);
-                    alert('File upload failed ...');
-                });
-
-            });
-
-            $('#btnClear').on('click', function() {
-                imgContainer.html('');
-                file.val('');
-            });
-        });
+        var text = $('#nomSite').text();
+        $('#nomSiteText').hide();
+        $('#nomSiteText').val(text);
     });
 
     function addImage() {
 
-        var description = $("input[name=description]").val();
 
-        var file =$("#myFile").val();
+        var myFile =$("#myFile").val();
 
-        var nomSite =$("#nomSite").text();
 
         // URL de l'action AJAX
-        var url = "<s:url action="ajax_addImageSite"/>";
-
-
+        var url = "<s:url action="addImageSite"/>";
 
         // Paramètres de la requête AJAX
         var params = {
-            description: description,
-            nomSite: nomSite,
-            enctype: 'multipart/form-data',
-            type: "POST",
-            file: file
+            nomSecteur: nomSecteur,
+            nomSite: nomSite
         };
 
         // Action AJAX en POST
         jQuery.post(
             url,
             params,
-            function (data) { // La méthode qui lit le résultat retourné à la suite de l'envoi de la requêt POST
-                var $listImage = jQuery("#listImage"); // OFA : il faut qu'une balise html existe avec cet id="listMessage" pour savoir ou mettre la liste des mesages.
+            function (data) {
+                var $listSecteur = jQuery("#listSecteur");
 
-                $listImage.empty();
+                $listSecteur.empty();
 
                 jQuery.each(data, function (key, val) {
-                    $listImage.append(
-                        jQuery("<div style='display:flex;justify-content: space-around'>")
-                            .append(jQuery("<span class='badge badge-info' style='width: 200px'>").append(val.url),
-                                jQuery("<span class='badge badge-light' style='width: 100px'>").append(val.description))
-                    );
+                    $listSecteur.append(
+                        jQuery("<div style='width: 100%;'>").append(jQuery("<span class='badge badge-light' style='padding :10px;margin-bottom: 15px;'>").append(val.nom)
+                        ));
                 });
             })
             .fail(function () {
                 alert("Erreur");
             });
 
-        $("input[name=nomVoie]").val(""); //-- On vide le champ de saisie du nouveau message à chaque tour.
+        $("input[name=nomSecteur]").val(""); //-- On vide le champ de saisie du nouveau message à chaque tour.
     }
 </script>
 </body>

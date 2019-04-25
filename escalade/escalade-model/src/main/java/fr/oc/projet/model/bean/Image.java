@@ -4,7 +4,7 @@ import fr.oc.projet.model.bean.escalade.Site;
 import fr.oc.projet.model.bean.escalade.Topo;
 import fr.oc.projet.model.bean.utilisateur.Compte;
 
-public class Image {
+public class  Image {
 
     private        Integer      id;
     private        String       urlImage;

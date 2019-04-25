@@ -3,6 +3,7 @@ package fr.oc.projet.webapp.action;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import fr.oc.projet.business.manager.contract.ManagerFactory;
+import fr.oc.projet.model.bean.escalade.Secteur;
 import fr.oc.projet.model.bean.escalade.Site;
 import fr.oc.projet.model.bean.utilisateur.Compte;
 import fr.oc.projet.model.bean.utilisateur.Note;
@@ -20,6 +21,9 @@ public class AjaxActionSite extends ActionSupport {
     private         String      pseudo;
     private         Compte      compte;
     private         Site        site;
+    private         String      nomSecteur;
+    private         Integer     idSecteur;
+    private         Secteur     secteur;
 
 
 
@@ -40,6 +44,14 @@ public class AjaxActionSite extends ActionSupport {
 
             managerFactory.getNoteManager().addNote(pNote);
         }
+
+        return ActionSupport.SUCCESS;
+    }
+
+    public String doGetSecteur(){
+
+        secteur = managerFactory.getSecteurManager().getSecteur(idSecteur);
+        nomSecteur = secteur.getNom();
 
         return ActionSupport.SUCCESS;
     }
@@ -82,5 +94,29 @@ public class AjaxActionSite extends ActionSupport {
 
     public void setSite(Site site) {
         this.site = site;
+    }
+
+    public String getNomSecteur() {
+        return nomSecteur;
+    }
+
+    public void setNomSecteur(String nomSecteur) {
+        this.nomSecteur = nomSecteur;
+    }
+
+    public Integer getIdSecteur() {
+        return idSecteur;
+    }
+
+    public void setIdSecteur(Integer idSecteur) {
+        this.idSecteur = idSecteur;
+    }
+
+    public Secteur getSecteur() {
+        return secteur;
+    }
+
+    public void setSecteur(Secteur secteur) {
+        this.secteur = secteur;
     }
 }

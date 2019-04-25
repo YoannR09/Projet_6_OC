@@ -66,7 +66,7 @@
             <h2 id="nomTopo"><s:property value="topo.nom"/></h2>
             <h4 style="text-align: left;margin: 15px"><em>Vous voulez reserver ce topo</em></h4>
 
-            <em id="messageAjax"></em>
+            <em id="messageAjax" style="color: firebrick;"></em>
 
                 <div class="form-group row">
                     <label for="example-date-input" class="col-2 col-form-label">Date à reserver : </label>
@@ -260,6 +260,7 @@
         // URL de l'action AJAX
         var url = "<s:url action="ajax_add_reservation"/>";
 
+        var oldListSize = $('#listResa').length;
 
         var nomTopo = $("#nomTopo").text();
 
@@ -325,6 +326,9 @@
 
 
                 });
+                if(oldListSize == $('#listResa').length){
+                    $('#messageAjax').append("Créneau déjà réservé");
+                }
             })
             .fail(function () {
                 alert("Erreur !!");

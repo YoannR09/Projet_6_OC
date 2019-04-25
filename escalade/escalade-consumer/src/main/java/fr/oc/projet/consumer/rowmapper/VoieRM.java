@@ -15,6 +15,8 @@ public class VoieRM implements RowMapper<Voie> {
 
     @Inject
     CotationDao cotationDao;
+    @Inject
+    SecteurDao secteurDao;
 
     @Override
     public Voie mapRow(ResultSet resultSet, int i) throws SQLException {
@@ -23,6 +25,7 @@ public class VoieRM implements RowMapper<Voie> {
         voie.setNom(resultSet.getString("nom"));
         voie.setHauteur(resultSet.getInt("hauteur"));
         voie.setCotation(cotationDao.getCotation(resultSet.getInt("cotation_id")));
+        voie.setSecteurId(resultSet.getInt("secteur_id"));
         return voie;
     }
 }

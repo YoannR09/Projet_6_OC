@@ -39,6 +39,7 @@ public class GestionParticiper extends ActionSupport {
     private      String                  myFileContentType;
     private      String                  myFileFileName;
     private      String                  destPath;
+    private      String                  nomSiteText;
     private      Integer                 typeId;
     private      Integer                 topoId;
     private      Integer                 departementId;
@@ -67,21 +68,22 @@ public class GestionParticiper extends ActionSupport {
 
         String vResult = ActionSupport.INPUT;
 
+
         if(myFile != null) {
 
-            destPath = "C:/Users/El-ra/Documents/Projet_6_OC/escalade/escalade-webapp/src/main/webapp/image/" + nomSite+ "/";
+            destPath = "C:/Users/El-ra/Documents/Projet_6_OC/escalade/escalade-webapp/src/main/webapp/image/" + nomSiteText+ "/";
 
             try {
-
-
 
                 File destFile = new File(destPath, myFileFileName);
                 FileUtils.copyFile(myFile, destFile);
 
+                site = managerFactory.getSiteManager().getSiteViaNom(nomSiteText);
+
                 Image image = new Image();
-                image.setUrlImage(site.getNom() + "/" + myFile);
+                image.setUrlImage(nomSiteText + "/" + myFileFileName);
                 image.setSiteId(site.getId());
-                image.setDescription(description);
+                image.setDescription("Image du site : "+nomSiteText);
                 image.setImageDePresentation(false);
 
                 managerFactory.getImageManager().addImage(image);
@@ -387,5 +389,13 @@ public class GestionParticiper extends ActionSupport {
 
     public void setListCotation(List<Cotation> listCotation) {
         this.listCotation = listCotation;
+    }
+
+    public String getNomSiteText() {
+        return nomSiteText;
+    }
+
+    public void setNomSiteText(String nomSiteText) {
+        this.nomSiteText = nomSiteText;
     }
 }

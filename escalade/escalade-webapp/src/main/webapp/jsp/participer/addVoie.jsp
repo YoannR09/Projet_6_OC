@@ -63,10 +63,10 @@
         <div class="col-lg-12 col-md-12 col-sm-12" id="cadreSecteur" style="background-color:rgba(0,0,0,0.7);">
             <h5 style="text-align: center">Ajouter des voies</h5>
             <div  style="display: flex;justify-content: space-around">
-                <span style='width: 200px'>Nom</span>
-                <span style='width: 100px'>Hauteur</span>
-                <span style='width: 100px'>Cotation</span>
-                <span style='width: 100px'>Secteur</span>
+                <span style='width: 200px;text-align: center'>Nom</span>
+                <span style='width: 100px;text-align: center'>Hauteur</span>
+                <span style='width: 100px;text-align: center'>Secteur</span>
+                <span style='width: 100px;text-align: center'>Cotation</span>
             </div>
 
             <div id="listVoie">
@@ -112,7 +112,7 @@
 
     function addVoie() {
 
-        var nomVoie = $("input[name=nomVoie]").val();
+        var nom = $("input[name=nomVoie]").val();
 
         var hauteur = $("input[name=hauteur]").val();
 
@@ -128,9 +128,9 @@
 
         // Paramètres de la requête AJAX
         var params = {
-            nomVoie: nomVoie,
+            nom: nom,
             nomSite: nomSite,
-            hauteur:hauteur,
+            hauteur: hauteur,
             secteurId:secteurId,
             cotationId:cotationId
         };
@@ -145,11 +145,12 @@
                 $listVoie.empty();
 
                 jQuery.each(data, function (key, val) {
+                    console.log("test2");
                     $listVoie.append(
                         jQuery("<div style='display:flex;justify-content: space-around'>")
                             .append(jQuery("<span class='badge badge-info' style='width: 200px'>").append(val.nom),
                                 jQuery("<span class='badge badge-light' style='width: 100px'>").append(val.hauteur),
-                                jQuery("<span class='badge badge-light' style='width: 100px'>").append(val.secteur.nom),
+                                jQuery("<span class='badge badge-light' style='width: 100px'>").append(getNomSecteur(val.secteurId)),
                                 jQuery("<span class='badge badge-light' style='width: 100px'>").append(val.cotation.valeur))
                     );
                 });
@@ -157,8 +158,31 @@
             .fail(function () {
                 alert("Erreur");
             });
-
         $("input[name=nomVoie]").val(""); //-- On vide le champ de saisie du nouveau message à chaque tour.
+    }
+    function getNomSecteur(idSecteur) {
+
+
+        // URL de l'action AJAX
+        var url = "<s:url action="ajax_get_secteur"/>";
+
+        // Paramètres de la requête AJAX
+        var params = {
+            idSecteur: idSecteur,
+        };
+
+        // Action AJAX en POST
+        jQuery.post(
+            url,
+            params,
+            function (data) { // La méthode qui lit le résultat retourné à la suite de l'envoi de la requêt POST
+                nomSecteur = data;
+            })
+            .fail(function () {
+                alert("Erreur");
+            });
+
+        return nomSecteur;
     }
 </script>
 </body>
