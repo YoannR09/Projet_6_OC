@@ -190,4 +190,6 @@ public class Site {
     }
 
     public static Comparator<Site> ComparatorCotations = (e1, e2) -> (int) (e1.getCotationMax().getNiveau()) - e2.getCotationMax().getNiveau();
+
+    public static Comparator<Site> ComparatorNote = (e1, e2) -> (int) ((e1.getNote()) - e2.getNote());
 }

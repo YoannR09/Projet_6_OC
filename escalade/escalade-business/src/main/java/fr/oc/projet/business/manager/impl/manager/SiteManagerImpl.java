@@ -47,6 +47,11 @@ public class SiteManagerImpl extends AbstractManagerImpl implements SiteManager 
     }
 
     @Override
+    public List<Site> getListSiteTopo(Integer topoId) {
+        return getDaoFactory().getSiteDao().getListSiteTopo(topoId);
+    }
+
+    @Override
     public void addSite(Site site) {
         getDaoFactory().getSiteDao().addSite(site);
     }

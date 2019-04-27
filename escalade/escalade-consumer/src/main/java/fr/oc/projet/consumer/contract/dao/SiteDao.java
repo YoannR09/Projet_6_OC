@@ -21,6 +21,8 @@ public interface SiteDao {
 
     List<Site> rechercheSite(String text);
 
+    List<Site> getListSiteTopo(Integer topoId);
+
     void addSite(Site site);
 
     int getCountSite();

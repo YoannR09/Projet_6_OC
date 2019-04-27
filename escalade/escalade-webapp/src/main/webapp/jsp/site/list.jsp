@@ -73,7 +73,7 @@
                 <br/>
                 <s:a action="site_valide_list_cotaMin" class="btn btn-info" style="width:80%; margin:10px;"><s:param name="idSite" value="id" /> Faciles </s:a>
                 <br/>
-                <s:a action="site_detail" class="btn btn-info" style="width:80%; margin:10px;"><s:param name="idSite" value="id" /> Bien noté </s:a>
+                <s:a action="site_valide_list_note" class="btn btn-info" style="width:80%; margin:10px;"><s:param name="idSite" value="id" /> Bien noté </s:a>
             </div>
         </div>
     </div>

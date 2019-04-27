@@ -67,6 +67,8 @@ public class GestionSiteAction extends ActionSupport {
 
         Collections.sort(listSite, Site.ComparatorCotations);
 
+        Collections.reverse(listSite);
+
         page = 1;
 
         nombre = listSite.size();
@@ -77,6 +79,12 @@ public class GestionSiteAction extends ActionSupport {
 
         return ActionSupport.SUCCESS;
     }
+
+    /**
+     * Méthode pour afficher une liste de site
+     * La liste commence par les sites avec les voies les plus faciles.
+     * @return
+     */
     public String doListSiteValideCotaMin() {
 
         listSite = managerFactory.getSiteManager().getListSiteValide();
@@ -90,10 +98,35 @@ public class GestionSiteAction extends ActionSupport {
         Site site = listSite.get(nombre-1);
         lastId = site.getId();
 
+        return ActionSupport.SUCCESS;
+    }
 
+    /**
+     * Méthode pour afficher une liste de site en fonction des notes.
+     * Les mieux notés seront affichés en premier.
+     * @return
+     */
+    public String doListSiteNote() {
+
+        listSite = managerFactory.getSiteManager().getListSiteValide();
+
+        page = 1;
+
+        Collections.sort(listSite, Site.ComparatorNote);
+
+        Collections.reverse(listSite);
+
+        nombre = listSite.size();
+        Site site = listSite.get(nombre-1);
+        lastId = site.getId();
 
         return ActionSupport.SUCCESS;
     }
+
+    /**
+     * Méthode pour retourner une page en arrière.
+     * @return
+     */
     public String doListSiteValidePageDown() {
 
         listSite = managerFactory.getSiteManager().getListSiteValidePageDown(lastId);

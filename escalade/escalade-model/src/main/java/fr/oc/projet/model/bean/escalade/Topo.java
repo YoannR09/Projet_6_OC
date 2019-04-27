@@ -2,6 +2,7 @@ package fr.oc.projet.model.bean.escalade;
 
 import fr.oc.projet.model.bean.utilisateur.Compte;
 
+import java.util.Comparator;
 import java.util.Date;
 
 public class Topo {
@@ -13,6 +14,7 @@ public class Topo {
     private     Boolean     valide;
     private     Compte      responsable;
     private     Integer     responsableId;
+    private     Double      note;
 
     public Topo(){}
 
@@ -73,4 +75,16 @@ public class Topo {
     public void setResponsableId(Integer responsableId) {
         this.responsableId = responsableId;
     }
+
+    public Double getNote() {
+        return note;
+    }
+
+    public void setNote(Double note) {
+        this.note = note;
+    }
+
+    public static Comparator<Topo> ComparatorNote = (e1, e2) -> (int) ((e1.getNote()) - e2.getNote());
+
+
 }

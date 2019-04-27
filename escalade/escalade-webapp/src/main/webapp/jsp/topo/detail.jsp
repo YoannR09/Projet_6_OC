@@ -25,15 +25,29 @@
             height: 400px;
 
         }
-        #cadreInfos
+        #cadre
         {
             height: 300px;
             text-align: center;
             border-color: black;
             border-style: solid;
-            border-width: 0px 0px 0px 1px;
+            border-width: 0px 1px 0px 1px;
 
         }
+        em
+        {
+            color : darkgray;
+        }
+        #cadreGauche
+        {
+            text-align: center;
+            border-color: deepskyblue;
+            border-style: solid;
+            border-width: 1px 1px 1px 1px;
+            border-radius: 15px;
+            margin-top: 10px;
+        }
+
         span
         {
             margin: 15px;
@@ -98,11 +112,22 @@
             <img src="./image/toulon3.jpg"
                  width="100%" height="100%" id="img" style="border: 1px black solid;" />
         </div>
-        <div class="col-lg-12 col-md-12 col-sm-12" id="cadreInfos" style="background-color:rgba(0,0,0,0.7);">
-            <h2 id="nomTopo"><s:property value="topo.nom"/></h2>
-            <br/><s:property value="topo.description"/>
+        <div class="col-lg-12 col-md-12 col-sm-12" id="cadre" style="background-color:rgba(0,0,0,0.7);display: flex;justify-content: space-around">
+            <div class="col-lg-4 col-md-4 col-sm-4 overflow-auto" id="cadreGauche">
+            <em>Liste des sites contenu dans ce topo</em>
+                        <s:iterator value="listSite">
+                            <s:property value="nom"/>
+                            <s:a action="site_detail" class="btn btn-info" style="font-size:0.5em;"><s:param name="idSite" value="id" /> Voir </s:a>
+                        </s:iterator>
+
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-8" id="cadreInfos">
+                <h2 id="nomTopo"><s:property value="topo.nom"/></h2>
+                <br/><s:property value="topo.description"/>
+            </div>
 
         </div>
+
 
         <div class="col-lg-12 col-md-12 col-sm-12" id="cadreCommentaire" style="background-color:rgba(0,0,0,0.7);">
             <a href="#" class="btn btn-sm btn-info " id="slideTop" style="width: 100% ; margin: auto; border-radius: 10%"></a>

@@ -45,6 +45,15 @@ public class ReservationDaoImpl extends AbstractDaoImpl implements ReservationDa
     }
 
     @Override
+    public int getCountResa(Integer topoId) {
+        JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
+        int vNbreResa = vJdbcTemplate.queryForObject(
+                "SELECT COUNT(*) FROM public.reservation WHERE  topo_id = "+topoId,
+                Integer.class);
+        return vNbreResa;
+    }
+
+    @Override
     public void addReservation(Reservation reservation) {
         String vSQL = "INSERT INTO reservation (date, matin, apres_midi, compte_id, topo_id) VALUES (:date, :matin, :apresMidi, :compteId, :topoId)";
         NamedParameterJdbcTemplate vJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());

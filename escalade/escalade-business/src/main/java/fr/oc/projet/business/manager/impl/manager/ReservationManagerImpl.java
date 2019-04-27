@@ -7,7 +7,7 @@ import javax.inject.Named;
 import java.util.List;
 
 @Named
-public class ReservationManagerImpl extends AbstractManagerImpl implements ReservationManager {
+public class  ReservationManagerImpl extends AbstractManagerImpl implements ReservationManager {
     @Override
     public Reservation getReservation(Integer pId) {
         return getDaoFactory().getReservationDao().getReservation(pId);
@@ -26,6 +26,11 @@ public class ReservationManagerImpl extends AbstractManagerImpl implements Reser
     @Override
     public void addReservation(Reservation reservation) {
         getDaoFactory().getReservationDao().addReservation(reservation);
+    }
+
+    @Override
+    public int getCountResa(Integer topoId) {
+        return getDaoFactory().getReservationDao().getCountResa(topoId);
     }
 
 }

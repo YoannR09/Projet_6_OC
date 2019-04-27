@@ -135,6 +135,16 @@ public class SiteDaoImpl extends AbstractDaoImpl implements SiteDao {
     }
 
     @Override
+    public List<Site> getListSiteTopo(Integer topoId) {
+        String vSQL = "SELECT * FROM site " +
+                " WHERE valide = true " +
+                " AND topo_id = "+topoId;
+        JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
+        List<Site> vList = vJdbcTemplate.query(vSQL,siteRM);
+        return vList ;
+    }
+
+    @Override
     public void addSite(Site site) {
         String vSQL = "INSERT INTO site (nom, description, topo_id, type_de_roche_id, departement_id, responsable_id, ville, valide, date_de_creation)" +
                 " VALUES (:nom, :description, :topoId, :typeId, :departementId, :editeurId, :ville, :valide, :date)";

@@ -52,26 +52,30 @@
 
     <div class="col-lg-8 col-md-8 col-sm-8" id="bloc">
         <div class="col-lg-12 col-md-12 col-sm-12" id="addSite" >
-            <h3>Créer un site d'escalade</h3>
+            <h3 style="margin: 15px;">Créer un site d'escalade</h3>
             <div class="form-row"  id="cadreDiv" style="display: flex; justify-content: space-around;">
-                <div class="form-group col-md-8" style="color: white">
-                    <s:form action="addSite" id="formulaire" method="POST" style="margin-left:10%;" enctype="multipart/form-data">
-                    <div class="form-group col-md-4">
+                <div class="form-group " style="color: white">
+                    <s:form action="addSite" id="formulaire" method="POST" enctype="multipart/form-data">
+                    <div class="form-group">
                         <label for="inputNom">Nom</label>
-                        <input name="nomSite" type="text" class="form-control" id="inputNom" placeholder="Nom" required>
+                        <input name="nomSite" type="text" class="form-control" id="inputNom" placeholder="Nom du site" required>
                     </div>
-                    <s:textarea id="textDescri" name="description" class="form-control" placeholder="Entrez votre description" label="Description "/>
-                    <s:select id="selectType" name="typeId" label="Type de roche"
-                              list="listType" listKey="id" listValue="type"/>
-                    <s:select id="selectDepartement" name="departementId" label="Departement"
-                              list="listDepartement" listKey="id" listValue="nom"/>
-                    <div class="form-group col-md-4">
+                        <div class="form-group">
+                            <label for="textDescri">Description</label>
+                        <textarea  name="description" class="form-control" id="textDescri" rows="4" placeholder="Ecrivez votre description..."></textarea>
+                        </div>
+
+                    <s:select id="selectType" name="typeId" label="Type de roche "
+                              list="listType" listKey="id" listValue="type" style="margin:10px"/>
+                    <s:select id="selectDepartement" name="departementId" label="Departement "
+                              list="listDepartement" listKey="id" listValue="nom" style="margin:10px"/>
+                    <div class="form-group">
                         <label for="inputNom">Ville</label>
-                        <input name="ville" type="text" class="form-control" id="inputVille" placeholder="Nom" required>
+                        <input name="ville" type="text" class="form-control" id="inputVille" placeholder="Ville" required>
                     </div>
-                    <s:select id="selectTopo" name="topoId" label="Topo"
-                              list="listTopo" listKey="id" listValue="nom"/>
-                    <s:file id="fileProfil" name="myFile"  label="Image principale " style="color:white"/>
+                    <s:select id="selectTopo" name="topoId" label="Topo "
+                              list="listTopo" listKey="id" listValue="nom" style="margin:10px"/>
+                    <s:file id="fileProfil" name="myFile"  label="Image principale " style="color:white;margin:10px"/>
                 </div>
                 <s:submit value="Suivant" id="btn" class="btn btn-info"/>
                 </s:form>

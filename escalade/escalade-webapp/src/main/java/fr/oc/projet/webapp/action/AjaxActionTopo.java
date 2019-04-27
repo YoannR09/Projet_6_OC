@@ -25,6 +25,7 @@ public class AjaxActionTopo extends ActionSupport {
     private         Boolean              apresMidi;
     private         Boolean              occupe;
     private         String               messageAjax;
+    private         Integer              nbreResa;
 
 
     /**
@@ -107,6 +108,20 @@ public class AjaxActionTopo extends ActionSupport {
             return vResult;
         }
 
+    /**
+     * Méthode pour compter le nombre de réservation du topo.
+     * On utilise cette méthode pour comparer si le nombre de réservation à changé.
+     * @return
+     */
+    public String doAjaxCountResa(){
+
+            topo = managerFactory.getTopoManager().getTopoViaNom(nomTopo);
+
+            nbreResa = managerFactory.getReservationManager().getCountResa(topo.getId());
+
+        return ActionSupport.SUCCESS;
+        }
+
 
     public List<Reservation> getListReservation() {
         return listReservation;
@@ -170,6 +185,14 @@ public class AjaxActionTopo extends ActionSupport {
 
     public void setMessageAjax(String messageAjax) {
         this.messageAjax = messageAjax;
+    }
+
+    public Integer getNbreResa() {
+        return nbreResa;
+    }
+
+    public void setNbreResa(Integer nbreResa) {
+        this.nbreResa = nbreResa;
     }
 }
 

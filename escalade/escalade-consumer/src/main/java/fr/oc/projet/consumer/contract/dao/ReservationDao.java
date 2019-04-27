@@ -14,4 +14,6 @@ public interface ReservationDao {
 
     void addReservation(Reservation reservation);
 
+    int getCountResa(Integer topoId);
+
 }

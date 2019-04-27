@@ -70,6 +70,13 @@
                 method="doListSiteValideCotaMin">
             <result name="success">/jsp/site/list.jsp</result>
         </action>
+
+        <action name="site_valide_list_note"
+                class="fr.oc.projet.webapp.action.GestionSiteAction"
+                method="doListSiteNote">
+            <result name="success">/jsp/site/list.jsp</result>
+        </action>
+
         <action name="site_valide_list_pageDown"
                 class="fr.oc.projet.webapp.action.GestionSiteAction"
                 method="doListSiteValidePageDown">
@@ -332,6 +339,14 @@
                 method="doGetSecteur">
             <result name="success" type="json">
                 <param name="root">nomSecteur</param>
+            </result>
+        </action>
+
+        <action name="ajax_count_resa"
+                class="fr.oc.projet.webapp.action.AjaxActionTopo"
+                method="doAjaxCountResa">
+            <result name="success" type="json">
+                <param name="root">nbreResa</param>
             </result>
         </action>
 

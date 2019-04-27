@@ -61,6 +61,9 @@
                     </div>
                     <div class="card-footer" style="text-align: center">
                         <em >Editeur : </em><s:property value="responsable.pseudo"/></p>
+                        <em >Note : </em><s:property value="note"/> / 10
+                    </div>
+                    <div class="card-footer" style="text-align: center">
                         <s:a action="topo_detail" class="btn btn-info" id="btnVoir" style="width:100%"><s:param name="idTopo" value="id" /> Voir </s:a>
                     </div>
                 </div>

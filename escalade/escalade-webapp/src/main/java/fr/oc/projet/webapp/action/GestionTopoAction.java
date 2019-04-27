@@ -20,6 +20,7 @@ public class GestionTopoAction extends ActionSupport {
     private         List<Topo>            listTopo;
     private         List<Commentaire>     listCommentaire;
     private         List<Reservation>     reservationList;
+    private         List<Site>            listSite;
     private         Topo                  topo;
     private         Integer               idTopo;
     private         Integer               lastId;
@@ -36,7 +37,7 @@ public class GestionTopoAction extends ActionSupport {
         } else {
             topo = managerFactory.getTopoManager().getTopo(idTopo);
             listCommentaire = managerFactory.getCommentaireManager().getListCommentaireTopo(idTopo);
-
+            listSite = managerFactory.getSiteManager().getListSiteTopo(topo.getId());
         }
         return  ActionSupport.SUCCESS;
     }
@@ -182,5 +183,13 @@ public class GestionTopoAction extends ActionSupport {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public List<Site> getListSite() {
+        return listSite;
+    }
+
+    public void setListSite(List<Site> listSite) {
+        this.listSite = listSite;
     }
 }

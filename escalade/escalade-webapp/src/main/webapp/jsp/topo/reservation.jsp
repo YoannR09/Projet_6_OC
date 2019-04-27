@@ -15,6 +15,7 @@
             height: 100%;
             background-image: url("./image/gplay.png");
         }
+
         #page {
             display: flex;
             justify-content: space-around;
@@ -62,11 +63,12 @@
 
         <button id="infos" type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#informations"><em id="info"><i class="fas fa-info"></i></em></button>
 
-        <div class="col-lg-12 col-md-12 col-sm-12" id="cadreImage" style="background-color:rgba(0,0,0,0.7);padding-top: 10px;text-align: center">
+        <div class="col-lg-12 col-md-12 col-sm-12" id="cadreImage" style="background-color:rgba(0,0,0,0.7);padding-top: 10px;text-align: center;margin-bottom: 20px;">
+            <p id="count"></p>
             <h2 id="nomTopo"><s:property value="topo.nom"/></h2>
-            <h4 style="text-align: left;margin: 15px"><em>Vous voulez reserver ce topo</em></h4>
+            <h4 style="text-align: left;margin: 15px;"><em>Vous voulez reserver ce topo</em></h4>
 
-            <em id="messageAjax" style="color: firebrick;"></em>
+            <em id="messageAjax" style="color: yellow;">Créneau déjà réservé</em>
 
                 <div class="form-group row">
                     <label for="example-date-input" class="col-2 col-form-label">Date à reserver : </label>
@@ -109,8 +111,10 @@
                     <span style='width: 100px'>Matinée</span>
                     <span style='width: 100px'>Après-midi</span>
                 </div>
-                <div  id="listResa">
+
+                <div  id="listResa" class="overflow-auto" style="max-height: 400px">
                 </div>
+
         </div>
 
         <!--------------------------------- Pop-up ------------------------------------>
@@ -141,7 +145,11 @@
 <script>
     $(function() {
 
+        $('#messageAjax').hide();
+        $('#count').hide();
+
         listResa();
+
 
 
         $('#blocBtn > button').click(function(){
@@ -260,7 +268,9 @@
         // URL de l'action AJAX
         var url = "<s:url action="ajax_add_reservation"/>";
 
-        var oldListSize = $('#listResa').length;
+        countResa();
+
+        var oldNbreResa = $('#count').text();
 
         var nomTopo = $("#nomTopo").text();
 
@@ -277,8 +287,6 @@
         } else {
             var apresMidi = false;
         }
-
-
 
         var params = {
             date:date,
@@ -310,8 +318,6 @@
                         var etatApres = 'non réservé';
                     }
 
-                    $messageAjax.append(val.messageAjax);
-
                     $listResa.append(
                         jQuery("<div style='display:flex;justify-content: space-around'>")
                             .append(jQuery("<span class='badge badge-info' style='width: 200px'>").append(val.compte.pseudo),
@@ -323,15 +329,38 @@
                     $listResa.append(
                         jQuery("</div><div style='width: 100%;height: 5px; border-bottom : 1px solid lightgray; border-radius: 40%'>")
                     );
-
-
                 });
-                if(oldListSize == $('#listResa').length){
-                    $('#messageAjax').append("Créneau déjà réservé");
+
+                countResa();
+                var nbreResa = $('#count').text();
+                console.log("nbreResa : "+nbreResa);
+
+                if(oldNbreResa == nbreResa){
+                    $('#messageAjax').show();
+                }else {
+                    $('#messageAjax').hide();
                 }
             })
             .fail(function () {
                 alert("Erreur !!");
+            });
+    }
+    function countResa() {
+        // URL de l'action AJAX
+        var url = "<s:url action="ajax_count_resa"/>";
+
+        var nomTopo = $("#nomTopo").text();
+
+        var params = {
+            nomTopo: nomTopo,
+        };
+        // Action AJAX en POST
+        jQuery.post(
+            url,
+            params,
+            function (data) {
+                $('#count').empty();
+                $('#count').append(data);
             });
     }
 </script>
