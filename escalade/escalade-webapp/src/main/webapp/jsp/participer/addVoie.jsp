@@ -92,8 +92,15 @@
                                   list="listSecteur" listKey="id" listValue="nom"/>
                         <s:select id="selectCotation" name="cotationId" label="Cotation "
                                   list="listCotation" listKey="id" listValue="valeur"/>
-                        <input name="nomVoie" type="text" class="form-control" id="textNom" placeholder="Nom" required/>
-                        <input name="hauteur" type="text" class="form-control" id="textHauteur" placeholder="Hauteur" required/> mètres
+                        <div class="form-group">
+                            <label for="textNom">Nom</label>
+                            <input name="nomVoie" type="text" class="form-control" id="textNom" placeholder="Nom de la voie" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="textNom">Hauteur</label>
+                            <input name="hauteur" type="text" class="form-control" id="textHauteur" placeholder="Mètres" required>
+                        </div>
+
                         <button id="btn" data-dismiss="modal" onclick="addVoie()" class="btn btn-info">Créer</button>
                     </div>
 
@@ -110,6 +117,12 @@
 
     });
 
+    /**
+     * Méthode pour ajouter une voie pendant la création d'un site.
+     * On récupère toute les informations rentré par l'utilisateur.
+     * On les envoies dans une méthode ajax pour l'ajouter dans la bdd.
+     * On affiche ensuite la liste des voies.
+     */
     function addVoie() {
 
         var nom = $("input[name=nomVoie]").val();
@@ -145,7 +158,6 @@
                 $listVoie.empty();
 
                 jQuery.each(data, function (key, val) {
-                    console.log("test2");
                     $listVoie.append(
                         jQuery("<div style='display:flex;justify-content: space-around'>")
                             .append(jQuery("<span class='badge badge-info' style='width: 200px'>").append(val.nom),
@@ -160,6 +172,12 @@
             });
         $("input[name=nomVoie]").val(""); //-- On vide le champ de saisie du nouveau message à chaque tour.
     }
+
+    /**
+     * Méthode pour transformer l'id du secteur en nom du secteur.
+     * @param idSecteur
+     * @returns {*}
+     */
     function getNomSecteur(idSecteur) {
 
 
@@ -170,18 +188,14 @@
         var params = {
             idSecteur: idSecteur,
         };
-
         // Action AJAX en POST
         jQuery.post(
             url,
             params,
-            function (data) { // La méthode qui lit le résultat retourné à la suite de l'envoi de la requêt POST
-                nomSecteur = data;
-            })
-            .fail(function () {
-                alert("Erreur");
-            });
+            function (data) {
+                var nomSecteur = data;
 
+            });
         return nomSecteur;
     }
 </script>

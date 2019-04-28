@@ -9,6 +9,9 @@ import fr.oc.projet.model.bean.escalade.Topo;
 import javax.inject.Inject;
 import java.util.List;
 
+/**
+ * Classe qui gère les actions de la page d'index du site web.
+ */
 public class GestionIndexAction extends ActionSupport {
 
     @Inject
@@ -25,6 +28,10 @@ public class GestionIndexAction extends ActionSupport {
     private         Boolean               firstPage;
 
 
+    /**
+     * Méthode pour compter le nombre de topo valide du site web.
+     * @return
+     */
     public String doGetCountNbreTopoAction(){
 
         nbreTopo = managerFactory.getTopoManager().getCountTopo();
@@ -32,6 +39,10 @@ public class GestionIndexAction extends ActionSupport {
         return ActionSupport.SUCCESS;
     }
 
+    /**
+     * Méthode pour compter le nombre de site valide du site web.
+     * @return
+     */
     public String doGetCountNbreSiteAction(){
 
         nbreSite = managerFactory.getSiteManager().getCountSite();
@@ -39,6 +50,11 @@ public class GestionIndexAction extends ActionSupport {
         return ActionSupport.SUCCESS;
     }
 
+    /**
+     * Méthode pour effectuer une recherche avec un mot-clé.
+     * On récupère l'information du select pour savoir si on cherche un site ou un topo.
+     * @return
+     */
     public String doRecherche(){
 
         String vResult;

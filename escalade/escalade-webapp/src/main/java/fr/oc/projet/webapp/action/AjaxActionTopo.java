@@ -11,6 +11,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * Classe qui gère les actions ajax des topos d'escalade.
+ */
 public class AjaxActionTopo extends ActionSupport {
 
     @Inject
@@ -65,7 +68,6 @@ public class AjaxActionTopo extends ActionSupport {
             }
             reservation.setCompteId(managerFactory.getCompteManager().getCompteViaPseudo(pseudo).getId());
             reservation.setTopoId(topo.getId());
-
             List<Reservation> vList = managerFactory.getReservationManager().getReservationTopo(topo.getId());
 
             for (int i = 0; i<vList.size(); i++){
@@ -87,11 +89,9 @@ public class AjaxActionTopo extends ActionSupport {
                     occupe = false;
                 }
             }
-
             if(!occupe){
                 managerFactory.getReservationManager().addReservation(reservation);
             }
-
             vList = managerFactory.getReservationManager().getReservationTopo(topo.getId());
 
             listReservation = new ArrayList<>();

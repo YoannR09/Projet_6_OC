@@ -159,6 +159,9 @@
 
     });
 
+    /**
+     * Méthode pour afficher la liste des réservations du topo.
+     */
     function listResa() {
         // URL de l'action AJAX
         var url = "<s:url action="ajax_listResa"/>";
@@ -211,7 +214,10 @@
     }
 
 
-
+    /**
+     * Méthode pour afficher la liste des réservations du topo en fonction du mois.
+     * @param mois
+     */
     function listResaMois(mois) {
         // URL de l'action AJAX
         var url = "<s:url action="ajax_listResaMois"/>";
@@ -263,6 +269,12 @@
                 alert("Erreur !!");
             });
     }
+
+    /**
+     * Méthode pour ajouter une réservation.
+     * Ajoute la réservation à la bdd si toutes les conditions sont bonnes.
+     * On affiche ensuite la liste des réservations du mois de la réservation éffectuée.
+     */
     function addResa() {
 
         // URL de l'action AJAX
@@ -345,6 +357,10 @@
                 alert("Erreur !!");
             });
     }
+
+    /**
+     * Méthode pour compter le nombre de réservations.
+     */
     function countResa() {
         // URL de l'action AJAX
         var url = "<s:url action="ajax_count_resa"/>";

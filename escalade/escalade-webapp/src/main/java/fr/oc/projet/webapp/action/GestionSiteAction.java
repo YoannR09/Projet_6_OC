@@ -51,11 +51,9 @@ public class GestionSiteAction extends ActionSupport {
     public String doListSiteValide() {
 
         listSite = managerFactory.getSiteManager().getListSiteValide();
-
         nombre = listSite.size();
         Site site = listSite.get(nombre-1);
         lastId = site.getId();
-
         page = 1;
 
         return ActionSupport.SUCCESS;
@@ -64,18 +62,12 @@ public class GestionSiteAction extends ActionSupport {
     public String doListSiteValideCotaMax() {
 
         listSite = managerFactory.getSiteManager().getListSiteValide();
-
         Collections.sort(listSite, Site.ComparatorCotations);
-
         Collections.reverse(listSite);
-
         page = 1;
-
         nombre = listSite.size();
         Site site = listSite.get(nombre-1);
         lastId = site.getId();
-
-
 
         return ActionSupport.SUCCESS;
     }
@@ -88,12 +80,8 @@ public class GestionSiteAction extends ActionSupport {
     public String doListSiteValideCotaMin() {
 
         listSite = managerFactory.getSiteManager().getListSiteValide();
-
         page = 1;
-
         Collections.sort(listSite, Site.ComparatorCotations);
-
-
         nombre = listSite.size();
         Site site = listSite.get(nombre-1);
         lastId = site.getId();
@@ -109,13 +97,9 @@ public class GestionSiteAction extends ActionSupport {
     public String doListSiteNote() {
 
         listSite = managerFactory.getSiteManager().getListSiteValide();
-
         page = 1;
-
         Collections.sort(listSite, Site.ComparatorNote);
-
         Collections.reverse(listSite);
-
         nombre = listSite.size();
         Site site = listSite.get(nombre-1);
         lastId = site.getId();
@@ -130,23 +114,24 @@ public class GestionSiteAction extends ActionSupport {
     public String doListSiteValidePageDown() {
 
         listSite = managerFactory.getSiteManager().getListSiteValidePageDown(lastId);
-
         nombre = listSite.size();
         Site site = listSite.get(nombre-1);
         lastId = site.getId();
-
         page = page-1;
 
         return ActionSupport.SUCCESS;
     }
+
+    /**
+     * Méthode pour passer à la page suivante.
+     * @return
+     */
     public String doListSiteValidePageUp() {
 
         listSite = managerFactory.getSiteManager().getListSiteValidePageUp(lastId);
-
         nombre = listSite.size();
         Site site = listSite.get(nombre-1);
         lastId = site.getId();
-
         page = page +1;
 
         return ActionSupport.SUCCESS;
@@ -171,6 +156,11 @@ public class GestionSiteAction extends ActionSupport {
         return  ActionSupport.SUCCESS;
     }
 
+    /**
+     * Méthode pour afficher les détails d'un secteur.
+     * On affiche son nom et la liste des voies qu'il contient.
+     * @return
+     */
     public String doDetailSecteur(){
 
         if (this.idSecteur == null) {
@@ -184,6 +174,10 @@ public class GestionSiteAction extends ActionSupport {
         return  ActionSupport.SUCCESS;
     }
 
+    /**
+     * Méthode pour récupèrer la liste des secteurs d'un site.
+     * @return
+     */
     public String doSecteurList(){
 
             listSecteur = managerFactory.getSecteurManager().getListSecteurSite(idSite);
@@ -191,11 +185,14 @@ public class GestionSiteAction extends ActionSupport {
         return ActionSupport.SUCCESS;
     }
 
+    /**
+     * Méthode pour rechercher un site avec un mot-clé.
+     * @return
+     */
     public String doRechercheSite(){
 
 
         listSite = managerFactory.getSiteManager().rechercheSite(text);
-
         nombre = listSite.size();
         page = 1;
         Site site = listSite.get(nombre-1);

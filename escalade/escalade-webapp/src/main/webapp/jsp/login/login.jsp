@@ -46,8 +46,14 @@
     <s:actionmessage/>
     <div class="card-body" id="mid">
         <s:form action="login">
-            <s:textfield name="pseudo" label="Identifiant " class="blocInfo"/>
-            <s:textfield name="password" type="password" label="Mot de passe " class="blocInfo" />
+            <div class="form-group" style="margin: 20px;">
+                <label for="inputPseudo">Identifiant</label>
+                <input name="pseudo" type="pseudo" class="form-control" id="inputPseudo" required>
+            </div>
+            <div class="form-group " style="margin: 20px">
+                <label for="inputPassword">Mot de passe</label>
+                <input name="password" type="password" class="form-control" id="inputPassword" required>
+            </div>
             <s:submit value="Connexion" id="btn" class="btn btn-info"/>
         </s:form>
     </div>

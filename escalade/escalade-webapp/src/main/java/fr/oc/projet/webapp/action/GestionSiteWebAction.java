@@ -21,16 +21,16 @@ public class GestionSiteWebAction extends ActionSupport {
     @Inject
     private ManagerFactory managerFactory;
 
-    private List<Message> messageList;
-    private List<Topo>    topoList;
-    private List<Site>    siteList;
-    private List<Secteur> secteurList;
-    private Integer       idMessage;
-    private Message       message;
-    private Site          site;
-    private Topo          topo;
-    private Integer       idSite;
-    private Integer       idTopo;
+    private         List<Message>       messageList;
+    private         List<Topo>          topoList;
+    private         List<Site>          siteList;
+    private         List<Secteur>       secteurList;
+    private         Integer             idMessage;
+    private         Message             message;
+    private         Site                site;
+    private         Topo                topo;
+    private         Integer             idSite;
+    private         Integer             idTopo;
 
 
     /**
@@ -53,7 +53,6 @@ public class GestionSiteWebAction extends ActionSupport {
      */
     public String doModeration(){
 
-
         siteList = managerFactory.getSiteManager().getListSiteNonValide();
         topoList = managerFactory.getTopoManager().getListTopoNonValide();
 
@@ -71,12 +70,21 @@ public class GestionSiteWebAction extends ActionSupport {
         return ActionSupport.SUCCESS;
     }
 
+    /**
+     * Méthode pour afficher les détails d'un site à moderer.
+     * @return
+     */
     public String doModerationSite(){
 
         site = managerFactory.getSiteManager().getSite(idSite);
 
         return ActionSupport.SUCCESS;
     }
+
+    /**
+     * Méthode pour afficher les détails d'un topo à moderer.
+     * @return
+     */
     public String doModerationTopo(){
 
         topo = managerFactory.getTopoManager().getTopo(idTopo);
@@ -84,6 +92,10 @@ public class GestionSiteWebAction extends ActionSupport {
         return ActionSupport.SUCCESS;
     }
 
+    /**
+     * Méthode pour valider un site/topo qui était en attente de validation.
+     * @return
+     */
     public String doValide(){
 
         if(idSite != null){
@@ -97,7 +109,6 @@ public class GestionSiteWebAction extends ActionSupport {
             managerFactory.getTopoManager().update(topo);
             this.addActionMessage("Le topo est maintenant disponible.");
         }
-
         return ActionSupport.SUCCESS;
     }
 

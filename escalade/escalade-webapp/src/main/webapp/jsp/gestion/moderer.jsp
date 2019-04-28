@@ -20,20 +20,6 @@
         justify-content: space-around;
         text-shadow: 0px 0px 15px rgba(0, 0, 0, 1);
     }
-    #cadreImage
-    {
-        height: 400px;
-
-    }
-    #cadreInfos
-    {
-        height: 300px;
-        text-align: center;
-        border-color: black;
-        border-style: solid;
-        border-width: 0px 0px 0px 1px;
-
-    }
     span
     {
         margin: 15px;
@@ -54,19 +40,6 @@
     {
         margin: 15px;
     }
-    #cadreCommentaire
-    {
-        background-color: white;
-        border-color: black;
-        border-style: solid;
-        border-width: 0px 1px 0px 1px;
-    }
-    #date
-    {
-        float: right;
-        font-style: italic;
-        font-size: 0.7em;
-    }
     #bloc
     {
         color: white;
@@ -74,23 +47,10 @@
         background-color:rgba(0,0,0,0.7);
         text-align: center;
     }
-    #partieDroite
-    {
-        float: right;
-        margin-top: 30px;
-    }
-    #inputNom,#inputDescri
-    {
-        margin: 10px;
-    }
+
     label
     {
         color: white;
-    }
-    #selectTopo,#selectType,#selectDepartement,#textNom,#textDescri,#textVille,
-    #textDescriTopo,#textNomTopo,#fileProfil,#fileProfilTopo
-    {
-        margin: 10px;
     }
 
 

@@ -10,6 +10,9 @@ import fr.oc.projet.model.bean.utilisateur.Note;
 
 import javax.inject.Inject;
 
+/**
+ * Classe qui gère les actions en ajax pour les pages des sites d'escalades.
+ */
 public class AjaxActionSite extends ActionSupport {
 
 
@@ -26,25 +29,25 @@ public class AjaxActionSite extends ActionSupport {
     private         Secteur     secteur;
 
 
-
+    /**
+     * Méthode pour ajouter une note à un site.
+     * On récupère la note entré par l'utilisateur pour ensuite l'ajouter à la bdd.
+     * @return
+     */
     public String doAjaxAddNote(){
 
         if(note != null){
 
             site = managerFactory.getSiteManager().getSiteViaNom(nomSite);
-
             Note pNote = new Note();
             pNote.setSiteId(site.getId());
             pNote.setNote(note);
-
             pseudo = (String) ActionContext.getContext().getSession().get("pseudo");
             compte = managerFactory.getCompteManager().getCompteViaPseudo(pseudo);
-
             pNote.setCompteId(compte.getId());
 
             managerFactory.getNoteManager().addNote(pNote);
         }
-
         return ActionSupport.SUCCESS;
     }
 

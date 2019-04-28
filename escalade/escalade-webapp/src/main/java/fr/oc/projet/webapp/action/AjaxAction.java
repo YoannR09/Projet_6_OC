@@ -18,7 +18,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Classe qui gère les actions en ajax de l'application.
+ * Classe qui gère les actions en ajax de l'application en général.
  */
 public class AjaxAction extends ActionSupport {
 
@@ -33,9 +33,7 @@ public class AjaxAction extends ActionSupport {
     private     List<Voie>              listVoie;
     private     Site                    site;
     private     Secteur                 secteur;
-    private     Voie                    voie;
     private     Compte                  compte;
-    private     Cotation                cotation;
     private     Commentaire             commentaire;
     private     List<Secteur>           listSecteur;
     private     String                  nomSite;
@@ -44,21 +42,9 @@ public class AjaxAction extends ActionSupport {
     private     String                  contenu;
     private     Topo                    topo;
     private     String                  nomTopo;
-    private     String                  description;
-    private     File                    myFile;
-    private     File                    file;
-    private     String                  myFileContentType;
-    private     String                  myFileFileName;
-    private     String                  destPath;
     private     String                  pseudo;
-    private     String                  nomVoie;
-    private     String                  fileUrl;
     private     Integer                 mois;
     private     Integer                 hauteur;
-    private     Date                    date;
-    private     String                  matin;
-    private     String                  apresMidi;
-    private     Integer                 idTopo;
     private     Integer                 secteurId;
     private     Integer                 cotationId;
 
@@ -89,7 +75,14 @@ public class AjaxAction extends ActionSupport {
         }
         return vResult;
     }
-    public String doAjaxGetListSecteur() { // throws NotFoundException, TechnicalException {
+
+    /**
+     * Méthode pour récupèrer la liste des secteurs d'un site.
+     * On récupère le site avec le nom dans la page.
+     * On récupère ensuite la liste avec l'id du site.
+     * @return
+     */
+    public String doAjaxGetListSecteur() {
         String vResult = ActionSupport.SUCCESS;
         try {
 
@@ -141,6 +134,10 @@ public class AjaxAction extends ActionSupport {
         return vResult;
     }
 
+    /**
+     * Mé
+     * @return
+     */
     public String doAjaxAddVoie(){
         String vResult = ActionSupport.SUCCESS;
 
@@ -164,35 +161,6 @@ public class AjaxAction extends ActionSupport {
         return vResult;
     }
 
-
-
-    public String doAjaxAddImageTopo(){
-        // Par défaut, le result est "input"
-        String vResult = ActionSupport.INPUT;
-
-        topo = managerFactory.getTopoManager().getTopoViaNom(nomTopo);
-
-        if(description != null) {
-
-
-            Image image = new Image();
-            image.setUrlImage(nomTopo + "/" + myFileFileName);
-            image.setImageDePresentation(false);
-            image.setCompteId(1); // à changer !!
-            image.setTopoId(topo.getId());
-            image.setSiteId(null);
-            image.setDescription(description);
-
-            managerFactory.getImageManager().addImage(image);
-
-            vResult = ActionSupport.SUCCESS;
-
-        }
-
-        listImage = managerFactory.getImageManager().getListImageTopo(topo.getId());
-
-        return vResult;
-    }
 
     /**
      * Méthode pour afficher une liste de réservation du mois séléctionné.
@@ -360,46 +328,6 @@ public class AjaxAction extends ActionSupport {
         this.listImage = listImage;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public File getMyFile() {
-        return myFile;
-    }
-
-    public void setMyFile(File myFile) {
-        this.myFile = myFile;
-    }
-
-    public String getMyFileContentType() {
-        return myFileContentType;
-    }
-
-    public void setMyFileContentType(String myFileContentType) {
-        this.myFileContentType = myFileContentType;
-    }
-
-    public String getMyFileFileName() {
-        return myFileFileName;
-    }
-
-    public void setMyFileFileName(String myFileFileName) {
-        this.myFileFileName = myFileFileName;
-    }
-
-    public String getDestPath() {
-        return destPath;
-    }
-
-    public void setDestPath(String destPath) {
-        this.destPath = destPath;
-    }
-
     public List<Reservation> getListReservation() {
         return listReservation;
     }
@@ -456,60 +384,12 @@ public class AjaxAction extends ActionSupport {
         this.compte = compte;
     }
 
-    public Voie getVoie() {
-        return voie;
-    }
-
-    public void setVoie(Voie voie) {
-        this.voie = voie;
-    }
-
-    public Cotation getCotation() {
-        return cotation;
-    }
-
-    public void setCotation(Cotation cotation) {
-        this.cotation = cotation;
-    }
-
     public Integer getHauteur() {
         return hauteur;
     }
 
     public void setHauteur(Integer hauteur) {
         this.hauteur = hauteur;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public Integer getIdTopo() {
-        return idTopo;
-    }
-
-    public void setIdTopo(Integer idTopo) {
-        this.idTopo = idTopo;
-    }
-
-    public String getMatin() {
-        return matin;
-    }
-
-    public void setMatin(String matin) {
-        this.matin = matin;
-    }
-
-    public String getApresMidi() {
-        return apresMidi;
-    }
-
-    public void setApresMidi(String apresMidi) {
-        this.apresMidi = apresMidi;
     }
 
     public Integer getSecteurId() {
@@ -526,37 +406,5 @@ public class AjaxAction extends ActionSupport {
 
     public void setCotationId(Integer cotationId) {
         this.cotationId = cotationId;
-    }
-
-    public String getNomVoie() {
-        return nomVoie;
-    }
-
-    public void setNomVoie(String nomVoie) {
-        this.nomVoie = nomVoie;
-    }
-
-    public List<Voie> getListVoie() {
-        return listVoie;
-    }
-
-    public void setListVoie(List<Voie> listVoie) {
-        this.listVoie = listVoie;
-    }
-
-    public String getFileUrl() {
-        return fileUrl;
-    }
-
-    public void setFileUrl(String fileUrl) {
-        this.fileUrl = fileUrl;
-    }
-
-    public File getFile() {
-        return file;
-    }
-
-    public void setFile(File file) {
-        this.file = file;
     }
 }

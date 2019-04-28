@@ -96,42 +96,7 @@
         $('#nomSiteText').val(text);
     });
 
-    function addImage() {
 
-
-        var myFile =$("#myFile").val();
-
-
-        // URL de l'action AJAX
-        var url = "<s:url action="addImageSite"/>";
-
-        // Paramètres de la requête AJAX
-        var params = {
-            nomSecteur: nomSecteur,
-            nomSite: nomSite
-        };
-
-        // Action AJAX en POST
-        jQuery.post(
-            url,
-            params,
-            function (data) {
-                var $listSecteur = jQuery("#listSecteur");
-
-                $listSecteur.empty();
-
-                jQuery.each(data, function (key, val) {
-                    $listSecteur.append(
-                        jQuery("<div style='width: 100%;'>").append(jQuery("<span class='badge badge-light' style='padding :10px;margin-bottom: 15px;'>").append(val.nom)
-                        ));
-                });
-            })
-            .fail(function () {
-                alert("Erreur");
-            });
-
-        $("input[name=nomSecteur]").val(""); //-- On vide le champ de saisie du nouveau message à chaque tour.
-    }
 </script>
 </body>
 </html>

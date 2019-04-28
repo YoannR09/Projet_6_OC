@@ -45,6 +45,10 @@ public class GestionParticiper extends ActionSupport {
     private      Integer                 departementId;
 
 
+    /**
+     * Méthode pour afficher le fomrulaire d'ajout d'un site.
+     * @return
+     */
     public String doFormulaireSite(){
 
         listType = managerFactory.getTypeDeRocheManager().getListTypeDeRoche();
@@ -54,32 +58,36 @@ public class GestionParticiper extends ActionSupport {
         return ActionSupport.SUCCESS;
     }
 
+    /**
+     * Méthode pour afficher la page de l'ajout de voie.
+     * On récupère les informations pour les selects.
+     * @return
+     */
     public String doAddVoie(){
 
         site = managerFactory.getSiteManager().getSiteViaNom(nomSite);
         listSecteur = managerFactory.getSecteurManager().getListSecteurSite(site.getId());
         listCotation = managerFactory.getCotationManager().getListCotation();
 
-
         return ActionSupport.SUCCESS;
     }
 
+    /**
+     * Méthode pour ajouter une image pendant la création d'un site.
+     * @return
+     */
     public String doAddImageSite(){
 
         String vResult = ActionSupport.INPUT;
-
 
         if(myFile != null) {
 
             destPath = "C:/Users/El-ra/Documents/Projet_6_OC/escalade/escalade-webapp/src/main/webapp/image/" + nomSiteText+ "/";
 
             try {
-
                 File destFile = new File(destPath, myFileFileName);
                 FileUtils.copyFile(myFile, destFile);
-
                 site = managerFactory.getSiteManager().getSiteViaNom(nomSiteText);
-
                 Image image = new Image();
                 image.setUrlImage(nomSiteText + "/" + myFileFileName);
                 image.setSiteId(site.getId());
@@ -97,10 +105,16 @@ public class GestionParticiper extends ActionSupport {
         }else {
             site = managerFactory.getSiteManager().getSiteViaNom(nomSite);
         }
-
         return vResult;
     }
 
+    /**
+     * Méthode pour ajouter un site.
+     * On récupère toutes les informations données par l'utilisateur.
+     * On ajoute ensuite le site à la base de données.
+     * On ajoute ensuite l'image principal ajouté par l'utilisateur.
+     * @return
+     */
     public String doAddSite(){
 
         Site site = new Site();
@@ -116,7 +130,6 @@ public class GestionParticiper extends ActionSupport {
         site.setTopoId(topoId);
 
         managerFactory.getSiteManager().addSite(site);
-
         destPath = "C:/Users/El-ra/Documents/Projet_6_OC/escalade/escalade-webapp/src/main/webapp/image/"+nomSite+"/";
 
         try {
@@ -136,7 +149,6 @@ public class GestionParticiper extends ActionSupport {
             e.printStackTrace();
             return ERROR;
         }
-
         return ActionSupport.SUCCESS;
     }
 
@@ -168,12 +180,8 @@ public class GestionParticiper extends ActionSupport {
                 destPath = "C:/Users/El-ra/Documents/Projet_6_OC/escalade/escalade-webapp/src/main/webapp/image/"+topo.getNom()+"/";
 
                 try {
-
-
-
                     File destFile  = new File(destPath, myFileFileName);
                     FileUtils.copyFile(myFile, destFile);
-
                     Image image = new Image();
                     image.setUrlImage(topo.getNom()+"/"+myFileFileName);
                     image.setImageDePresentation(true);
@@ -185,16 +193,12 @@ public class GestionParticiper extends ActionSupport {
                     managerFactory.getImageManager().addImage(image);
 
                     vResult = ActionSupport.SUCCESS;
-
                 } catch(IOException e) {
                     e.printStackTrace();
                     return ERROR;
                 }
             }
-        }else {
-
         }
-
         return vResult;
     }
 

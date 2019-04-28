@@ -12,6 +12,9 @@ import javax.inject.Inject;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * Classe qui gère les actions des pages de topo du site web.
+ */
 public class GestionTopoAction extends ActionSupport {
 
     @Inject
@@ -30,29 +33,35 @@ public class GestionTopoAction extends ActionSupport {
     private         Integer               page;
 
 
+    /**
+     * Méthode pour récupèrer les détails d'un topo.
+     * @return
+     */
     public String doDetailTopo(){
 
-        if (this.idTopo == null) {
-            this.addActionError("Vous devez indiquer un id de channel");
-        } else {
             topo = managerFactory.getTopoManager().getTopo(idTopo);
             listCommentaire = managerFactory.getCommentaireManager().getListCommentaireTopo(idTopo);
             listSite = managerFactory.getSiteManager().getListSiteTopo(topo.getId());
-        }
+
         return  ActionSupport.SUCCESS;
     }
 
+    /**
+     * Méthode pour afficher la liste des réservations du topo.
+     * @return
+     */
     public  String doReservationTopo(){
 
         topo = managerFactory.getTopoManager().getTopo(idTopo);
-
         reservationList = managerFactory.getReservationManager().getReservationTopo(idTopo);
 
         return  ActionSupport.SUCCESS;
     }
 
-
-
+    /**
+     * Méthode pour afficher la page précedente de la liste des topos.
+     * @return
+     */
     public String doListSiteValidePageDown() {
 
         listTopo = managerFactory.getTopoManager().getListTopoValidePageDown(lastId);
@@ -65,36 +74,44 @@ public class GestionTopoAction extends ActionSupport {
 
         return ActionSupport.SUCCESS;
     }
+
+    /**
+     * Méthode pour afficher la page suivante de la liste des topos.
+     * @return
+     */
     public String doListSiteValidePageUp() {
 
         listTopo = managerFactory.getTopoManager().getListTopoValidePageUp(lastId);
-
         nombre = listTopo.size();
         Topo topo = listTopo.get(nombre-1);
         lastId = topo.getId();
-
         page = page+1;
 
         return ActionSupport.SUCCESS;
     }
+
+    /**
+     * Méthode pour afficher la liste des topos valides du site web.
+     * @return
+     */
     public String doListTopoValide() {
+
         listTopo = managerFactory.getTopoManager().getListTopoValide();
-
-
         nombre = listTopo.size();
         Topo topo = listTopo.get(nombre-1);
         lastId = topo.getId();
-
         page = 1;
 
         return ActionSupport.SUCCESS;
     }
 
+    /**
+     * Méthode pour rechercher un topo via un mot-clé.
+     * @return
+     */
     public String doRechercheTopo(){
 
-
         listTopo = managerFactory.getTopoManager().rechercheTopo(text);
-
         nombre = listTopo.size();
         page = 1;
         Topo topo = listTopo.get(nombre-1);

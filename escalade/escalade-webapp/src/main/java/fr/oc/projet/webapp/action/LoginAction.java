@@ -18,6 +18,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+
+/**
+ * Classe qui gère les actions de la gestion d'un compte.
+ */
 public class LoginAction extends ActionSupport implements SessionAware {
 
     @Inject
@@ -86,12 +90,14 @@ public class LoginAction extends ActionSupport implements SessionAware {
 
     /**
      * Action de la créatio d'un compte niveau visiteur.
+     * On récupère toutes les informations rentrées par l'utilisateur.
+     * On regarde si la confirmations du mot de passe est bonne.
+     * On regarde si la confirmation de l'email est bonne
      * @return
      */
     public String doCreate(){
         // Par défaut, le result est "input"
         String vResult = ActionSupport.INPUT;
-
         // Si pseudo est null c'est qu'on vient d'arriver dans le formulaire.
         if(pseudo != null) {
             // On regarde si le mot de passe est bien confirmé une deuxième fois
@@ -100,8 +106,6 @@ public class LoginAction extends ActionSupport implements SessionAware {
                 if (email.equals(emailConf)) {
 
                     Compte compte = new Compte();
-
-
                     compte.setPseudo(pseudo);
                     compte.setPrenom(prenom);
                     compte.setNom(nom);
@@ -117,43 +121,43 @@ public class LoginAction extends ActionSupport implements SessionAware {
             }
         }
         return vResult;
-
     }
 
+    /**
+     * Méthode pour afficher les détails d'un compte d'utilisateur.
+     * @return
+     */
     public String doDetailProfil(){
 
         pseudo = (String) ActionContext.getContext().getSession().get("pseudo");
-
         compte = managerFactory.getCompteManager().getCompteViaPseudo(pseudo);
 
         return ActionSupport.SUCCESS;
     }
 
+    /**
+     * Méthode pour changer le mot de passe de l'utilisateur.
+     * @return
+     */
     public String updateMdp(){
-
 
         if(nouveau.equals(verifNouveau)){
             pseudo = (String) ActionContext.getContext().getSession().get("pseudo");
-
             compte = managerFactory.getCompteManager().getCompteViaPseudo(pseudo);
-
             compte.setPassword(nouveau);
         }
-
-
-
-
         return ActionSupport.SUCCESS;
     }
 
+    /**
+     * Méthode pour changer le d'adresse email de l'utilisateur.
+     * @return
+     */
     public String updateMail(){
-
 
         if(nouveau.equals(verifNouveau)){
             pseudo = (String) ActionContext.getContext().getSession().get("pseudo");
-
             compte = managerFactory.getCompteManager().getCompteViaPseudo(pseudo);
-
             compte.setEmail(nouveau);
         }
 

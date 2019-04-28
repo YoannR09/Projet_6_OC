@@ -102,13 +102,17 @@
 <script>
 
 
+    /**
+     * Méthode pour ajouter un secteur pendant la création d'un site.
+     * On récupère le nom rentré par l'utilisateur.
+     * On affiche ensuite la liste des secteurs.
+     */
     function addSecteur() {
 
         // récupère le message entré par l'utilisateur
         var nomSecteur = $("input[name=nomSecteur]").val();
 
         var nomSite =$("#nomSite").text();
-
 
         // URL de l'action AJAX
         var url = "<s:url action="ajax_addSecteur"/>";

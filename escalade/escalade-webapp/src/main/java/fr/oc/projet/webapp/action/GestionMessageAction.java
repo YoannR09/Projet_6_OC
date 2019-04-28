@@ -97,7 +97,6 @@ public class GestionMessageAction  extends ActionSupport {
         } catch (MessagingException e) {
             e.printStackTrace();
         }
-
     }
 
 

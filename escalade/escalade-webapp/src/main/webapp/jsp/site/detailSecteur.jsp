@@ -170,6 +170,9 @@
         $('#cadreSecteur').hide();
         $('#btnEnvoyer').hide();
 
+        /**
+         * Affiche le cadre des commentaires.
+         */
         $("#btnCom").click(function() {
 
             $('#cadreBouton').css('border-width','0px 1px 1px 1px');
@@ -184,6 +187,9 @@
 
         });
 
+        /**
+         * Rentre le cadre des commentaires.
+         */
         $("#slideTop").click(function() {
 
             $('#cadreBouton').css('border-width','0px 1px 1px 1px');
@@ -198,6 +204,10 @@
 
         });
     });
+
+    /**
+     * Méthode pour récupèrer la liste des commentaires du secteurs à jours.
+     */
     function reloadListCommentaire() {
         // URL de l'action AJAX
         var url = "<s:url action="ajax_getListCommentaire"/>";
@@ -241,6 +251,13 @@
                 alert("Erreur !!");
             });
     }
+
+    /**
+     * Méthode pour ajouter un commentaire au secteur.
+     * On récupère les informations du commentaire entrés dans la pop-up.
+     * On ajoute le commentaire en bdd.
+     * On affiche la liste des commentaires mis à jours.
+     */
     function addCommentaire() {
 
         // récupère le message entré par l'utilisateur
