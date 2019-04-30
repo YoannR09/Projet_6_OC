@@ -22,7 +22,7 @@
     }
     span
     {
-        margin: 15px;
+        margin: 5px;
     }
     h4
     {
@@ -59,40 +59,49 @@
 
 <div id="page">
 
-    <div class="col-lg-8 col-md-8 col-sm-8" id="bloc">
+    <div class="col-lg-9 col-md-9 col-sm-9" id="bloc">
 
         <div class="col-lg-12 col-md-12 col-sm-12" style="display: flex; justify-content: space-around">
-            <button type="button" class="btn btn-outline-info" id="btnSite">Modérer un site</button>
-            <button type="button" class="btn btn-outline-info" id="btnTopo">Modérer un topo</button>
+            <button type="button" class="btn btn-outline-info" style="padding: 20px;" id="btnSite">Modérer un site</button>
+            <button type="button" class="btn btn-outline-info" style="padding: 20px;" id="btnTopo">Modérer un topo</button>
         </div>
         <div class="col-lg-12 col-md-12 col-sm-12" id="addSite" >
+            <div  style="display: flex;justify-content: space-around;text-align: center">
+                <span style='width: 250px'>Nom</span>
+                <span style='width: 150px'>Nombre de voies</span>
+                <span style='width: 200px'>Nombre de secteurs</span>
+                <span style='width: 100px'>Cotations</span>
+                <span style='width: 100px'>Date</span>
+                <span style='width: 100px'>Editeur</span>
+                <span style='width: 100px'>Consulter</span>
+            </div>
             <s:iterator value="siteList">
-
-                <br/>
-                <div  style="display: flex;justify-content: space-around">
-                    <span class='badge badge-info' style='padding-top:11px; width: 200px'> <s:property value="nom"/></span>
-                    <span class='badge badge-light' style='padding-top:11px;'><s:property value="nombreVoie"/> Voies</span>
-                    <span class='badge badge-light' style='padding-top:11px;'><s:property value="nombreSecteur"/> Secteurs</span>
-                    <span class='badge badge-light' style='padding-top:11px;'>Cotations : <s:property value="cotationMin.valeur"/> à <s:property value="cotationMax.valeur"/></span>
-                    <span class='badge badge-light' style='padding-top:11px;'><s:property value="date"/></span>
-                    <span class='badge badge-light' style='padding-top:11px; width: 200px'><s:property value="editeur.pseudo"/></span>
-                    <s:a action="moderer_site" class="btn btn-outline-info" style="float:right;margin-top:13px"><s:param name="idSite" value="id" /> Voir </s:a>
-
+                <div  style="display: flex;justify-content: space-around;text-align: center">
+                    <span class='badge badge-info' style='width: 250px'> <s:property value="nom"/></span>
+                    <span class='badge badge-light' style='width:150px'><s:property value="nombreVoie"/></span>
+                    <span class='badge badge-light' style='width:200px'><s:property value="nombreSecteur"/></span>
+                    <span class='badge badge-light' style='width: 100px'><s:property value="cotationMin.valeur"/> à <s:property value="cotationMax.valeur"/></span>
+                    <span class='badge badge-light' style='width: 100px'><s:property value="date"/></span>
+                    <span class='badge badge-light' style='width: 100px'><s:property value="editeur.pseudo"/></span>
+                    <s:a action="moderer_site" style="width: 100px"><s:param name="idSite" value="id" /> Voir </s:a>
                 </div>
                 <div style='width: 100%;height: 5px; border-bottom : 1px solid lightgray; border-radius: 40%'>
                 </div>
             </s:iterator>
         </div>
         <div class="col-lg-12 col-md-12 col-sm-12" id="addTopo" >
+            <div  style="display: flex;justify-content: space-around;text-align: center">
+                <span style='width: 250px'>Nom</span>
+                <span style='width: 100px'>Date</span>
+                <span style='width: 150px'>Editeur</span>
+                <span style='width: 100px'>Consulter</span>
+            </div>
             <s:iterator value="topoList">
-
-                <br/>
                 <div  style="display: flex;justify-content: space-around">
-                    <span class='badge badge-info' style='padding-top:11px; width: 200px'><s:property value="nom"/></span>
-                    <span class='badge badge-light' style='padding-top:11px; width: 200px'><s:property value="date"/></span>
-                    <span class='badge badge-light' style='padding-top:11px;'><s:property value="responsable.pseudo"/></span>
-                    <s:a action="moderer_topo" class="btn btn-outline-info" style="float:right;margin-top:13px"><s:param name="idTopo" value="id" /> Voir </s:a>
-
+                    <span class='badge badge-info' style='width: 250px'><s:property value="nom"/></span>
+                    <span class='badge badge-light' style='width: 100px'><s:property value="date"/></span>
+                    <span class='badge badge-light' style='width: 150px'><s:property value="responsable.pseudo"/></span>
+                    <s:a action="moderer_topo" style="width:100px"><s:param name="idTopo" value="id" /> Voir </s:a>
                 </div>
                 <div style='width: 100%;height: 5px; border-bottom : 1px solid lightgray; border-radius: 40%'>
                 </div>

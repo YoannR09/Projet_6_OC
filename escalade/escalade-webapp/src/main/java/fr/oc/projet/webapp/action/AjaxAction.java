@@ -8,11 +8,10 @@ import fr.oc.projet.model.bean.escalade.*;
 import fr.oc.projet.model.bean.utilisateur.Commentaire;
 import fr.oc.projet.model.bean.utilisateur.Compte;
 import fr.oc.projet.model.bean.utilisateur.Reservation;
-import org.apache.commons.io.FileUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.inject.Inject;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -24,6 +23,8 @@ public class AjaxAction extends ActionSupport {
 
     @Inject
     private ManagerFactory managerFactory;
+
+    static final Logger logger	= LogManager.getLogger();
 
     private     List<Commentaire>       listCommentaire;
     private     List<Topo>              listTopo;
@@ -49,15 +50,13 @@ public class AjaxAction extends ActionSupport {
     private     Integer                 cotationId;
 
 
-
     /**
      * Action "AJAX" renvoyant la liste des commentaires d'un site/topo ou secteur.
      * @return success
      */
-    public String doAjaxGetListCommentaire() { // throws NotFoundException, TechnicalException {
+    public String doAjaxGetListCommentaire() {
         String vResult = ActionSupport.SUCCESS;
         try {
-
             if(nomSite != null){
                 site = managerFactory.getSiteManager().getSiteViaNom(nomSite);
                 listCommentaire = managerFactory.getCommentaireManager().getListCommentaireSite(site.getId());
@@ -68,8 +67,6 @@ public class AjaxAction extends ActionSupport {
                 secteur = managerFactory.getSecteurManager().getSecteurViaNom(nomSecteur);
                 listCommentaire = managerFactory.getCommentaireManager().getListCommentaireSecteur(secteur.getId());
             }
-
-
         }  catch (Exception e) {
             e.printStackTrace();
         }
@@ -85,10 +82,8 @@ public class AjaxAction extends ActionSupport {
     public String doAjaxGetListSecteur() {
         String vResult = ActionSupport.SUCCESS;
         try {
-
             site = managerFactory.getSiteManager().getSiteViaNom(nomSite);
             listSecteur = managerFactory.getSecteurManager().getListSecteurSite(site.getId());
-
         }  catch (Exception e) {
             e.printStackTrace();
         }
@@ -98,12 +93,9 @@ public class AjaxAction extends ActionSupport {
     public String doAjaxGetListImageTopo() {
         String vResult = ActionSupport.SUCCESS;
         try {
-
             topo = managerFactory.getTopoManager().getTopoViaNom(nomTopo);
-
             listImage = managerFactory.getImageManager()
                     .getListImageTopo(topo.getId());
-
         }  catch (Exception e) {
             e.printStackTrace();
         }
@@ -116,18 +108,14 @@ public class AjaxAction extends ActionSupport {
      */
     public String doAjaxAddSecteur(){
         String vResult = ActionSupport.SUCCESS;
-
         try {
             site = managerFactory.getSiteManager().getSiteViaNom(nomSite);
-
             Secteur secteur = new Secteur();
             secteur.setNom(nomSecteur);
             secteur.setSiteId(site.getId());
-
             managerFactory.getSecteurManager().addSecteur(secteur);
-
+            logger.info("Secteur : "+secteur+" a bien été ajouté à la base de données.");
             listSecteur = managerFactory.getSecteurManager().getListSecteurSite(site.getId());
-
         }  catch (Exception e) {
             e.printStackTrace();
         }
@@ -143,18 +131,14 @@ public class AjaxAction extends ActionSupport {
 
         try {
             site =  managerFactory.getSiteManager().getSiteViaNom(nomSite);
-
             Voie voie = new Voie();
             voie.setSecteurId(secteurId);
             voie.setHauteur(hauteur);
             voie.setNom(nom);
             voie.setCotationId(cotationId);
-
             managerFactory.getVoieManager().addVoie(voie);
-
+            logger.info("Voie : "+voie+" a bien été ajoutée à la base de données");
             listVoie = managerFactory.getVoieManager().getListVoieSite(site.getId());
-
-
         }  catch (Exception e) {
             e.printStackTrace();
         }
@@ -167,22 +151,17 @@ public class AjaxAction extends ActionSupport {
      * @return
      */
     public String doAjaxDetailResa(){
+
         String vResult = ActionSupport.SUCCESS;
-
         topo = managerFactory.getTopoManager().getTopoViaNom(nomTopo);
-
         List<Reservation> vList = managerFactory.getReservationManager().getReservationTopo(topo.getId());
-
         listReservation = new ArrayList<>();
 
-
         for( int i = 0; i<vList.size();i++){
-
             if ((mois-1) == (vList.get(i).getDate().getMonth())){
                 listReservation.add(vList.get(i));
             }
         }
-
         return vResult;
     }
 
@@ -193,11 +172,8 @@ public class AjaxAction extends ActionSupport {
     public String doAjaxDetailResaTopo(){
 
         String vResult = ActionSupport.SUCCESS;
-
         topo = managerFactory.getTopoManager().getTopoViaNom(nomTopo);
-
         listReservation = managerFactory.getReservationManager().getReservationTopo(topo.getId());
-
 
         return vResult;
     }
@@ -211,14 +187,11 @@ public class AjaxAction extends ActionSupport {
     public String doAjaxAddCommentaire(){
 
         Commentaire commentaire = new Commentaire();
-
         commentaire.setContenu(contenu);
         commentaire.setDate(new Date());
         pseudo = (String) ActionContext.getContext().getSession().get("pseudo");
         compte = managerFactory.getCompteManager().getCompteViaPseudo(pseudo);
         commentaire.setAuteurId(compte.getId());
-
-
 
         if(nomTopo != null){
             topo = managerFactory.getTopoManager().getTopoViaNom(nomTopo);
@@ -237,6 +210,7 @@ public class AjaxAction extends ActionSupport {
         }
 
         managerFactory.getCommentaireManager().addCommentaire(commentaire);
+        logger.info("Commentaire : "+commentaire+" a bien été ajouté à la base de données.");
         return ActionSupport.SUCCESS;
     }
 

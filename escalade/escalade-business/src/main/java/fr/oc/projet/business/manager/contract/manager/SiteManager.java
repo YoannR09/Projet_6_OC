@@ -29,5 +29,6 @@ public interface SiteManager {
 
     void updateSite(Site site);
 
+    void deleteSite(Integer siteId);
 
 }

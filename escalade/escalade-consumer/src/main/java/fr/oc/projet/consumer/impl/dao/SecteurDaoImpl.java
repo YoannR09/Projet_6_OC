@@ -79,4 +79,11 @@ public class SecteurDaoImpl extends AbstractDaoImpl implements SecteurDao {
         } catch (DuplicateKeyException vEx) {
         }
     }
+
+    @Override
+    public void deleteSecteur(Integer siteId) {
+        String vSQL = "DELETE FROM secteur WHERE site_id = "+siteId;
+        JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
+        vJdbcTemplate.update(vSQL);
+    }
 }

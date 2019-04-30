@@ -18,4 +18,6 @@ public interface SecteurDao {
     Integer getCountSecteurSite(Integer siteId);
 
     void addSecteur(Secteur secteur);
+
+    void deleteSecteur(Integer siteId);
 }

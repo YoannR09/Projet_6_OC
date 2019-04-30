@@ -65,4 +65,9 @@ public class SiteManagerImpl extends AbstractManagerImpl implements SiteManager 
     public void updateSite(Site site) {
         getDaoFactory().getSiteDao().updateSite(site);
     }
+
+    @Override
+    public void deleteSite(Integer siteId) {
+        getDaoFactory().getSiteDao().deleteSite(siteId);
+    }
 }

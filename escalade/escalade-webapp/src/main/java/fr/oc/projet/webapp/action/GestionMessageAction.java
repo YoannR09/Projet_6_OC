@@ -4,6 +4,8 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import fr.oc.projet.business.manager.contract.ManagerFactory;
 import fr.oc.projet.model.bean.utilisateur.Compte;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.inject.Inject;
 import javax.mail.*;
@@ -21,11 +23,13 @@ public class GestionMessageAction  extends ActionSupport {
     @Inject
     private ManagerFactory managerFactory;
 
+    static final Logger logger	= LogManager.getLogger();
+
     private      String                  contenu;
     private      String                  objet;
     private      String                  pseudo;
     private      String                  email;
-    private Compte      compte;
+    private      Compte                  compte;
 
 
     /**
@@ -37,20 +41,15 @@ public class GestionMessageAction  extends ActionSupport {
     public String doAddMessage(){
 
         fr.oc.projet.model.bean.utilisateur.Message message = new fr.oc.projet.model.bean.utilisateur.Message();
-
         pseudo = (String) ActionContext.getContext().getSession().get("pseudo");
-
         compte = managerFactory.getCompteManager().getCompteViaPseudo(pseudo);
-
         message.setCompteId(compte.getId());
         message.setDate(new Date());
         message.setContenu(contenu);
         message.setObjet(objet);
-
         managerFactory.getMessageManager().addMessage(message);
-
-        sendMessage(objet,contenu,compte.getEmail());
-
+        logger.info("Message : "+message+" a bien été ajouté dans la base de données.");
+        sendMessage(objet,contenu,compte.getEmail()); // Le message est transmit à la boite mail.
         this.addActionMessage("Message bien envoyé.");
 
         return ActionSupport.SUCCESS;
@@ -82,7 +81,6 @@ public class GestionMessageAction  extends ActionSupport {
                 });
 
         try {
-
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(email));
             message.setRecipients(
@@ -91,8 +89,9 @@ public class GestionMessageAction  extends ActionSupport {
             );
             message.setSubject(objet);
             message.setText(contenu);
-
             Transport.send(message);
+
+            logger.info("Message : "+message+" a bien été envoyé vers la boite email de l'application");
 
         } catch (MessagingException e) {
             e.printStackTrace();

@@ -20,16 +20,6 @@
         justify-content: space-around;
         text-shadow: 0px 0px 15px rgba(0, 0, 0, 1);
     }
-    #cadreInfos
-    {
-        display: flex;
-        justify-content: space-between;
-        text-align: center;
-        border-color: black;
-        border-style: solid;
-        border-width: 0px 0px 0px 1px;
-
-    }
     span
     {
         margin: 15px;
@@ -42,14 +32,7 @@
     {
         color: white;
     }
-    #cadreMessage
-    {
-        padding: 20px;
-    }
-    #messageText
-    {
-        height: 200px;
-    }
+
     #blocBtn
     {
         color: white;
@@ -61,6 +44,7 @@
     .btn
     {
         margin: 20px;
+        padding: 10px;
     }
 
 

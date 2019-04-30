@@ -16,8 +16,6 @@ import java.sql.SQLException;
 public class SecteurRM implements RowMapper<Secteur> {
 
     @Inject
-    SiteDao siteDao;
-    @Inject
     VoieDao voieDao;
     @Inject
     CotationDao cotationDao;

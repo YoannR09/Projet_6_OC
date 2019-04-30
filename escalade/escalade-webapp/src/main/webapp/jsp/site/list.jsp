@@ -84,7 +84,7 @@
                 <div class="card-header "><s:property value="nom"/><p id="editeur"><em>Editeur : </em><s:property value="editeur.pseudo"/></p></div>
                 <div class="card-body" style="display: flex;">
                     <div id="divImage" class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                        <img src="./image/toulon3.jpg" width="100%" height="100%" id="img" style="border: 1px black solid;" />
+                        <img src="./image/<s:property value="urlImg"/>" width="100%" height="100%" id="img" style="border: 1px black solid;" />
                     </div>
                     <div id="divInfos" class="col-lg-4 col-md-4 col-sm-4">
                         <p id="vil"><em>Ville : </em><s:property value="ville"/></p>

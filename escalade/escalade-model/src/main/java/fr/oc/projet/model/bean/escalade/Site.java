@@ -17,6 +17,7 @@ public class Site {
     private     String              description;
     private     Boolean             valide;
     private     String              ville;
+    private     String              urlImg;
     private     Date                date;
     private     Topo                topo;
     private     Departement         departement;
@@ -189,7 +190,16 @@ public class Site {
         this.note = note;
     }
 
+    public String getUrlImg() {
+        return urlImg;
+    }
+
+    public void setUrlImg(String urlImg) {
+        this.urlImg = urlImg;
+    }
+
     public static Comparator<Site> ComparatorCotations = (e1, e2) -> (int) (e1.getCotationMax().getNiveau()) - e2.getCotationMax().getNiveau();
 
     public static Comparator<Site> ComparatorNote = (e1, e2) -> (int) ((e1.getNote()) - e2.getNote());
+
 }

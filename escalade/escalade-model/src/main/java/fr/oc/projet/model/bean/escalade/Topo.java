@@ -10,6 +10,7 @@ public class Topo {
     private     Integer     id;
     private     String      nom;
     private     String      description;
+    private     String      urlImg;
     private     Date        date;
     private     Boolean     valide;
     private     Compte      responsable;
@@ -86,5 +87,12 @@ public class Topo {
 
     public static Comparator<Topo> ComparatorNote = (e1, e2) -> (int) ((e1.getNote()) - e2.getNote());
 
+    public String getUrlImg() {
+        return urlImg;
+    }
+
+    public void setUrlImg(String urlImg) {
+        this.urlImg = urlImg;
+    }
 
 }

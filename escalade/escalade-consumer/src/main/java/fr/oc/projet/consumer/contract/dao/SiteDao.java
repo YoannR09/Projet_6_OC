@@ -28,4 +28,6 @@ public interface SiteDao {
     int getCountSite();
 
     void updateSite(Site site);
+
+    void deleteSite(Integer idSite);
 }

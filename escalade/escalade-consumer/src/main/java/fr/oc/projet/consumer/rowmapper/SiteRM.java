@@ -28,6 +28,8 @@ public class SiteRM implements RowMapper<Site> {
     VoieDao voieDao;
     @Inject
     SecteurDao secteurDao;
+    @Inject
+    ImageDao imageDao;
 
 
 
@@ -50,8 +52,10 @@ public class SiteRM implements RowMapper<Site> {
         if(voieDao.getCountVoieSite(site.getId()) != 0){
             site.setCotationMax(cotationDao.getCotationMaxSite(site.getId()));
         }
-
-
+        System.out.println(imageDao.getCountImageSite(site.getId()));
+        if(imageDao.getCountImageSite(site.getId()) != 0) {
+            site.setUrlImg(imageDao.getImageMainSite(resultSet.getInt("id")).getUrlImage());
+        }
         site.setNote(noteDao.getNoteSite(site.getId()));
         site.setNombreVoie(voieDao.getCountVoieSite(resultSet.getInt("id")));
         site.setNombreSecteur(secteurDao.getCountSecteurSite(resultSet.getInt("id")));

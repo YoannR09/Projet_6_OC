@@ -253,7 +253,7 @@
     function reloadListCommentaire() {
         // URL de l'action AJAX
         var url = "<s:url action="ajax_getListCommentaire"/>";
-        var nomSite =$("#nomSite").text();
+        var nomSite = $("#nomSite").text();
         var params = {
             nomSite: nomSite
         };
@@ -284,7 +284,7 @@
                 });
             })
             .fail(function () {
-                alert("Erreur !!");
+                alert("Erreur reloadCommentaires!!");
             });
     }
 

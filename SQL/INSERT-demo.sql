@@ -194,20 +194,15 @@ INSERT INTO type_de_roche (id, type) VALUES
 (7,'Métaphoriques');
 
 INSERT INTO topo (id, nom, description,date_de_creation,valide,responsable_id) VALUES
-(1,'Topo de la region du var','Voici mon premier topo qui rassemblera plusieurs sites de la region du var ','20/03/2019',TRUE,1),
-(2,'Topo pro','Bienvenue sur le topo pro de la region de corse, des sites seront rajoutés pour que ce topo soit au maximum complet','26/02/2019',FALSE,3);
+(1,'Topo de la region du var','Voici mon premier topo qui rassemblera plusieurs sites de la region du var ','20/03/2019',TRUE,1);
 
 INSERT INTO site (id, nom, description,topo_id,type_de_roche_id,departement_id,ville,date_de_creation,valide,responsable_id) VALUES
-(1,'Site de grimpe sur Toulon','Bienvenu sur mon premier site d''escalade sur Toulon, il présente le baou et ses secteurs',1,2,84,'Toulon','15/03/2019',TRUE,1),
-(2,'Site Pro Corse','Bienvenu sur le site pro situé en corse, ce site représente plusieurs voies dans 3 secteurs de tout niveau situé à Ajaccio.',2,1,20,'Ajaccio','03/03/2019',TRUE,3);
+(1,'Site de grimpe sur Toulon','Bienvenu sur mon premier site d''escalade sur Toulon, il présente le baou et ses secteurs',1,2,84,'Toulon','15/03/2019',TRUE,1);
 
 INSERT INTO secteur (nom,site_id) VALUES
 ('Secteur EST',1),
 ('Secteur NORD',1),
-('Secteur SUD',1),
-('Le pic',2),
-('La face EST',2),
-('La face NORD',2);
+('Secteur SUD',1);
 
 INSERT INTO voie (nom,hauteur,secteur_id,cotation_id) VALUES
 (null,30,1,42),
@@ -218,29 +213,26 @@ INSERT INTO voie (nom,hauteur,secteur_id,cotation_id) VALUES
 ('Voie moyenne',20,2,20),
 ('Voie difficile',30,2,35),
 (null,25,3,24),
-(null,15,3,32),
-(null,30,4,42),
-('Voie 2',25,4,23),
-(null,20,4,15),
-(null,25,4,35),
-('Voie facile',15,5,10),
-('Voie moyenne',20,5,20),
-('Voie difficile',30,5,35),
-(null,25,6,24),
-(null,15,6,32);
+(null,15,3,32);
 
 INSERT INTO reservation (date,matin,apres_midi,compte_id,topo_id) VALUES
 ('2019-03-16',TRUE,FALSE,1,1),
-('2019-03-23',TRUE,TRUE,2,1),
-('2019-04-07',FALSE,TRUE,2,2);
+('2019-03-23',TRUE,TRUE,2,1);
 
 INSERT INTO commentaire (contenu,date,site_id,topo_id,secteur_id,compte_id) VALUES
 ('Salut j''espère que ce site d''escalade vous conviendra','2019-03-15',1,null,null,1),
-('Bonjour, j''ai essayé ce secteur et il vaut vraiment le détour !!','2019-04-20',null,null,1,2),
-('Je mettrai à jour mon topo assez souvent, bonne grimpe!','2019-03-30',null,2,null,3);
+('Bonjour, j''ai essayé ce secteur et il vaut vraiment le détour !!','2019-04-20',null,null,1,2);
 
 INSERT INTO message (objet,contenu,compte_id,date) VALUES
 ('Problème','Bonjour j''ai un problème avec la creation d''un topo, je ne peux pas accèder à certaines actions',2,'2019-03-23'),
 ('Mon topo en attente','Bonjour çela fait maintenant plusieurs jours que mon topo est en attente, j''aimerai bien que celui-ci soit accesible à la communauté',3,'2019-04-10');
 
+INSERT INTO image (url,description,image_de_presentation,site_id,topo_id)
+ VALUES ('Site de grimpe sur Toulon/toulon3.jpg','image',true,1,null),
+        ('Site de grimpe sur Toulon/toulon2.jpg','image',false,1,null),
+        ('Topo de la region du var/topo1.jpg','image',true,null,1),
+        ('Topo de la region du var/4.jpg','image',false,null,1);
 
+INSERT INTO note (note, site_id,topo_id,compte_id) VALUES
+(9,1,null,2),
+(8,null,1,3);

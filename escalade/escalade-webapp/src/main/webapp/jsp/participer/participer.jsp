@@ -101,9 +101,9 @@
 
     <div class="col-lg-8 col-md-8 col-sm-8" id="bloc">
 
-        <div class="col-lg-12 col-md-12 col-sm-12" style="display: flex; justify-content: space-around">
-            <s:a action="formulaireSite" class="btn btn-outline-info" style="float:right;margin-top:13px">Créer un site </s:a>
-            <button type="button" class="btn btn-outline-info" id="btnTopo">Créer un topo</button>
+        <div class="col-lg-12 col-md-12 col-sm-12" style="display: flex; justify-content: space-around;">
+            <s:a action="formulaireSite" class="btn btn-outline-info" style="margin:20px;padding:20px">Créer un site </s:a>
+            <s:a action="formulaireTopo" class="btn btn-outline-info" style="margin:20px;padding:20px">Créer un topo </s:a>
         </div>
             <div class="col-lg-12 col-md-12 col-sm-12" id="addTopo" >
                 <h3>Créer un topo d'escalade</h3>

@@ -10,9 +10,6 @@ public class  Image {
     private        String       urlImage;
     private        String       description;
     private        Boolean      imageDePresentation;
-    private        Topo         topo;
-    private        Site         site;
-    private        Compte       compte;
     private        Integer      compteId;
     private        Integer      topoId;
     private        Integer      siteId;
@@ -33,30 +30,6 @@ public class  Image {
 
     public void setImageDePresentation(Boolean imageDePresentation) {
         this.imageDePresentation = imageDePresentation;
-    }
-
-    public Topo getTopo() {
-        return topo;
-    }
-
-    public void setTopo(Topo topo) {
-        this.topo = topo;
-    }
-
-    public Site getSite() {
-        return site;
-    }
-
-    public void setSite(Site site) {
-        this.site = site;
-    }
-
-    public Compte getCompte() {
-        return compte;
-    }
-
-    public void setCompte(Compte compte) {
-        this.compte = compte;
     }
 
     public Integer getCompteId() {

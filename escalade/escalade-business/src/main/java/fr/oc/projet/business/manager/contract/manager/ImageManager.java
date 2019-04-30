@@ -15,4 +15,12 @@ public interface ImageManager {
     List<Image> getListImageTopo(Integer topoId);
 
     void addImage(Image image);
+
+    Integer getCountImageSite(Integer siteId);
+
+    Integer getCountImageTopo(Integer topoId);
+
+    void deleteImageSite(Integer siteId);
+
+    void deleteImageTopo(Integer topoId);
 }

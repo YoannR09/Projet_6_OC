@@ -13,12 +13,6 @@ import java.sql.SQLException;
 public class CommentaireRM implements RowMapper<Commentaire> {
 
     @Inject
-    SiteDao siteDao;
-    @Inject
-    TopoDao topoDao;
-    @Inject
-    SecteurDao secteurDao;
-    @Inject
     CompteDao compteDao;
 
     @Override
@@ -28,15 +22,6 @@ public class CommentaireRM implements RowMapper<Commentaire> {
         commentaire.setContenu(resultSet.getString("contenu"));
         commentaire.setDate(resultSet.getDate("date"));
         commentaire.setAuteur(compteDao.getCompte(resultSet.getInt("compte_id")));
-        if(resultSet.getInt("secteur_id") != 0){
-            commentaire.setSecteur(secteurDao.getSecteur(resultSet.getInt("secteur_id")));
-        }
-        if(resultSet.getInt("site_id") != 0){
-            commentaire.setSite(siteDao.getSite(resultSet.getInt("site_id")));
-        }
-        if(resultSet.getInt("topo_id") != 0){
-            commentaire.setTopo(topoDao.getTopo(resultSet.getInt("topo_id")));
-        }
         return commentaire;
     }
 }

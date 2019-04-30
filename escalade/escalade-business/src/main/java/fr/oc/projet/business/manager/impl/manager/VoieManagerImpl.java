@@ -32,4 +32,9 @@ public class VoieManagerImpl extends AbstractManagerImpl implements VoieManager 
     public void addVoie(Voie voie) {
         getDaoFactory().getVoieDao().addVoie(voie);
     }
+
+    @Override
+    public void deleteVoie(Integer siteId) {
+        getDaoFactory().getVoieDao().deleteVoie(siteId);
+    }
 }

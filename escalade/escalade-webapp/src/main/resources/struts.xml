@@ -55,88 +55,31 @@
             <result name="success" type="redirectAction">index</result>
         </action>
 
+
+        <!-- Action pour la classe GestionSiteAction -->
+
+        <!-- Affiche la liste des sites valides -->
         <action name="site_valide_list"
                 class="fr.oc.projet.webapp.action.GestionSiteAction"
                 method="doListSiteValide">
             <result name="success">/jsp/site/list.jsp</result>
         </action>
+
+        <!-- Affiche la liste des sites valide par cotation max -->
         <action name="site_valide_list_cotaMax"
                 class="fr.oc.projet.webapp.action.GestionSiteAction"
                 method="doListSiteValideCotaMax">
             <result name="success">/jsp/site/list.jsp</result>
         </action>
+
+        <!-- Affiche la liste des sites valide par cotation min -->
         <action name="site_valide_list_cotaMin"
                 class="fr.oc.projet.webapp.action.GestionSiteAction"
                 method="doListSiteValideCotaMin">
             <result name="success">/jsp/site/list.jsp</result>
         </action>
 
-        <action name="site_valide_list_note"
-                class="fr.oc.projet.webapp.action.GestionSiteAction"
-                method="doListSiteNote">
-            <result name="success">/jsp/site/list.jsp</result>
-        </action>
-
-        <action name="site_valide_list_pageDown"
-                class="fr.oc.projet.webapp.action.GestionSiteAction"
-                method="doListSiteValidePageDown">
-            <result name="success">/jsp/site/list.jsp</result>
-        </action>
-        <action name="site_valide_list_pageUp"
-                class="fr.oc.projet.webapp.action.GestionSiteAction"
-                method="doListSiteValidePageUp">
-            <result name="success">/jsp/site/list.jsp</result>
-        </action>
-
-        <action name="topo_valide_list_pageDown"
-                class="fr.oc.projet.webapp.action.GestionTopoAction"
-                method="doListSiteValidePageDown">
-            <result name="success">/jsp/topo/list.jsp</result>
-        </action>
-        <action name="topo_valide_list_pageUp"
-                class="fr.oc.projet.webapp.action.GestionTopoAction"
-                method="doListSiteValidePageUp">
-            <result name="success">/jsp/topo/list.jsp</result>
-        </action>
-
-        <action name="recherche_site"
-                class="fr.oc.projet.webapp.action.GestionSiteAction"
-                method="doRechercheSite">
-            <result name="success">/jsp/site/list.jsp</result>
-        </action>
-
-        <action name="recherche_topo"
-                class="fr.oc.projet.webapp.action.GestionTopoAction"
-                method="doRechercheTopo">
-            <result name="success">/jsp/site/list.jsp</result>
-        </action>
-
-        <action name="recherche"
-                class="fr.oc.projet.webapp.action.GestionIndexAction"
-                method="doRecherche">
-            <result name="Site">/jsp/site/list.jsp</result>
-            <result name="Topo">/jsp/topo/list.jsp</result>
-        </action>
-
-        <action name="listSecteur"
-                class="fr.oc.projet.webapp.action.GestionSiteAction"
-                method="doSecteurList">
-            <result name="success">/jsp/site/secteur.jsp</result>
-        </action>
-
-        <action name="topo_valide_list"
-                class="fr.oc.projet.webapp.action.GestionTopoAction"
-                method="doListTopoValide">
-            <result name="success">/jsp/topo/list.jsp</result>
-        </action>
-
-        <action name="site_detail"
-                class="fr.oc.projet.webapp.action.GestionSiteAction"
-                method="doDetailSite">
-
-            <result name="success">/jsp/site/detail.jsp</result>
-        </action>
-
+        <!-- Affiche les détails d'un secteur -->
         <action name="secteur_detail"
                 class="fr.oc.projet.webapp.action.GestionSiteAction"
                 method="doDetailSecteur">
@@ -144,8 +87,89 @@
             <result name="success">/jsp/site/detailSecteur.jsp</result>
         </action>
 
+        <!-- Affiche la liste des sites valide par classement de note -->
+        <action name="site_valide_list_note"
+                class="fr.oc.projet.webapp.action.GestionSiteAction"
+                method="doListSiteNote">
+            <result name="success">/jsp/site/list.jsp</result>
+        </action>
+
+        <!-- Affiche la page précedente de la liste des sites -->
+        <action name="site_valide_list_pageDown"
+                class="fr.oc.projet.webapp.action.GestionSiteAction"
+                method="doListSiteValidePageDown">
+            <result name="success">/jsp/site/list.jsp</result>
+        </action>
+
+        <!-- Affiche la page suivante de la liste des sites -->
+        <action name="site_valide_list_pageUp"
+                class="fr.oc.projet.webapp.action.GestionSiteAction"
+                method="doListSiteValidePageUp">
+            <result name="success">/jsp/site/list.jsp</result>
+        </action>
+
+        <!-- Affiche une liste de site en fonction du mot-clé -->
+        <action name="recherche_site"
+                class="fr.oc.projet.webapp.action.GestionSiteAction"
+                method="doRechercheSite">
+            <result name="success">/jsp/site/list.jsp</result>
+        </action>
+
+        <!-- Affiche la liste des secteurs d'un site -->
+        <action name="listSecteur"
+                class="fr.oc.projet.webapp.action.GestionSiteAction"
+                method="doSecteurList">
+            <result name="success">/jsp/site/secteur.jsp</result>
+        </action>
+
+        <!-- Affiche les détails d'un site -->
+        <action name="site_detail"
+                class="fr.oc.projet.webapp.action.GestionSiteAction"
+                method="doDetailSite">
+            <result name="success">/jsp/site/detail.jsp</result>
+        </action>
 
 
+
+
+        <!-- Action pour la classe GestionTopoAction -->
+
+        <!-- Affiche la page précedente de la liste des topos -->
+        <action name="topo_valide_list_pageDown"
+                class="fr.oc.projet.webapp.action.GestionTopoAction"
+                method="doListSiteValidePageDown">
+            <result name="success">/jsp/topo/list.jsp</result>
+        </action>
+
+        <!-- Affiche la page suivante de la liste des sites -->
+        <action name="topo_valide_list_pageUp"
+                class="fr.oc.projet.webapp.action.GestionTopoAction"
+                method="doListSiteValidePageUp">
+            <result name="success">/jsp/topo/list.jsp</result>
+        </action>
+
+        <!-- Affiche la liste des topos par classement de note -->
+        <action name="topo_valide_list_note"
+                class="fr.oc.projet.webapp.action.GestionTopoAction"
+                method="doListTopoValideNote">
+            <result name="success">/jsp/topo/list.jsp</result>
+        </action>
+
+        <!-- Affiche une liste de topo en fonction du mot-clé -->
+        <action name="recherche_topo"
+                class="fr.oc.projet.webapp.action.GestionTopoAction"
+                method="doRechercheTopo">
+            <result name="success">/jsp/topo/list.jsp</result>
+        </action>
+
+        <!-- Affiche la liste des topos valides -->
+        <action name="topo_valide_list"
+                class="fr.oc.projet.webapp.action.GestionTopoAction"
+                method="doListTopoValide">
+            <result name="success">/jsp/topo/list.jsp</result>
+        </action>
+
+        <!-- Affiche les détails d'un topo -->
         <action name="topo_detail"
                 class="fr.oc.projet.webapp.action.GestionTopoAction"
                 method="doDetailTopo">
@@ -155,17 +179,19 @@
 
 
 
+        <!-- Action pour la classe LoginAction -->
+
+        <!-- Ajouter un nouveau compte -->
         <action name="newUser"
                 class="fr.oc.projet.webapp.action.LoginAction"
                 method="doCreate">
-
             <result name="input">/jsp/login/newUser.jsp</result>
             <result name="success" type="redirectAction">
                 <param name="actionName">login</param>
             </result>
         </action>
 
-
+        <!-- Déconnexion du compte déjà connecté -->
         <action name="logout" class="fr.oc.projet.webapp.action.LoginAction" method="doLogout">
             <result type="redirectAction">index</result>
         </action>
@@ -175,28 +201,40 @@
 
         <default-interceptor-ref name="authenticatedStack" />
 
+        <!-- Action pour la classe GestionParticiperAction -->
 
+
+        <!-- Affiche le choix pour éditer un site ou topo -->
         <action name="participer" class="fr.oc.projet.webapp.action.GestionParticiper"
                 method="doAddTopo">
             <result name="input">/jsp/participer/participer.jsp</result>
         </action>
 
+        <!-- Affiche un formulaire pour ajouter un site -->
         <action name="formulaireSite"
                 class="fr.oc.projet.webapp.action.GestionParticiper"
                 method="doFormulaireSite">
             <result name="success">/jsp/participer/addSite.jsp</result>
         </action>
 
+        <!-- Affiche un formulaire pour ajouter un topo -->
+        <action name="formulaireTopo">
+            <result name="success">/jsp/participer/addTopo.jsp</result>
+        </action>
+
+        <!-- Affiche la page pour ecrire un message -->
         <action name="contact">
             <result>/jsp/participer/contact.jsp</result>
         </action>
 
+        <!-- Affiche la page pour ajouter les voies -->
         <action name="secteurAdd"
                 class="fr.oc.projet.webapp.action.GestionParticiper"
                 method="doAddVoie">
             <result name="success">/jsp/participer/addVoie.jsp</result>
         </action>
 
+        <!-- Affiche la page pour ajouter une image au site -->
         <action name="addImageSite"
                 class="fr.oc.projet.webapp.action.GestionParticiper"
                 method="doAddImageSite">
@@ -204,28 +242,35 @@
             <result name="success">/jsp/participer/addImageSite.jsp</result>
         </action>
 
+        <!-- Affiche la page pour choisir de modérer ou consulter les messages -->
         <action name="gestion">
             <result>/jsp/gestion/gestion.jsp</result>
         </action>
 
+        <!-- Affiche la page d'ajout d'image et ajoute le topo -->
         <action name="addTopo"
                 class="fr.oc.projet.webapp.action.GestionParticiper"
                 method="doAddTopo">
             <result name="success">/jsp/participer/addImageTopo.jsp</result>
         </action>
 
-        <action name="addImageTopo">
-            <result>/jsp/participer/addImageTopo.jsp</result>
+        <!-- Affiche la page pour ajouter une image au topo -->
+        <action name="addImageTopo"
+                class="fr.oc.projet.webapp.action.GestionParticiper"
+                method="doAddImageTopo">
+            <result name="input">/jsp/participer/addImageTopo.jsp</result>
+            <result name="success">/jsp/participer/addImageTopo.jsp</result>
         </action>
 
+        <!-- Affiche la page pour ajouter des secteurs
+            La méthode ajoute le site à la bdd-->
         <action name="addSite"
                 class="fr.oc.projet.webapp.action.GestionParticiper"
                 method="doAddSite">
             <result name="success">/jsp/participer/addSecteur.jsp</result>
         </action>
 
-
-
+        <!-- Affiche les détails d'un message d'un utilisateur -->
         <action name="message_detail"
                 class="fr.oc.projet.webapp.action.GestionSiteWebAction"
                 method="doDetailMessage">
@@ -233,73 +278,93 @@
             <result name="success">/jsp/gestion/detailMessage.jsp</result>
         </action>
 
+        <!-- Affiche la liste des messages d'utilisateur -->
         <action name="listMessage"
                 class="fr.oc.projet.webapp.action.GestionSiteWebAction"
                 method="doListMessage">
             <result name="success">/jsp/gestion/message.jsp</result>
         </action>
 
+
+        <!-- Affiche la page pour voir la liste des sites et topos à modérer -->
         <action name="moderation"
                 class="fr.oc.projet.webapp.action.GestionSiteWebAction"
                 method="doModeration">
             <result name="success">/jsp/gestion/moderer.jsp</result>
         </action>
 
+        <!-- Action pour valider un site ou topo en attente de validation -->
         <action name="valider"
                 class="fr.oc.projet.webapp.action.GestionSiteWebAction"
                 method="doValide">
             <result name="success">/index.jsp</result>
         </action>
 
+        <!-- Action pour supprimer un site ou topo en attente de validation -->
+        <action name="supprimer"
+                class="fr.oc.projet.webapp.action.GestionSiteWebAction"
+                method="doDelete">
+            <result name="success">/index.jsp</result>
+        </action>
+
+        <!-- Affiche les détails d'un site en attente de validation -->
         <action name="moderer_site"
                 class="fr.oc.projet.webapp.action.GestionSiteWebAction"
                 method="doModerationSite">
             <result name="success">/jsp/gestion/detailSite.jsp</result>
         </action>
+
+        <!-- Affiche les détails d'un topo en attente de validation -->
         <action name="moderer_topo"
                 class="fr.oc.projet.webapp.action.GestionSiteWebAction"
                 method="doModerationTopo">
             <result name="success">/jsp/gestion/detailTopo.jsp</result>
         </action>
 
+        <!-- Affiche les détails du comtpe connecté -->
         <action name="detail_profil"
                 class="fr.oc.projet.webapp.action.LoginAction"
                 method="doDetailProfil">
             <result name="success">/jsp/login/profil.jsp</result>
         </action>
 
+        <!-- Action pour changer le mot de passe du compte -->
         <action name="update_mdp"
                 class="fr.oc.projet.webapp.action.LoginAction"
                 method="updateMdp">
             <result name="success">/jsp/login/profil.jsp</result>
         </action>
 
+        <!-- Action pour changer l'email du compte -->
         <action name="update_mail"
                 class="fr.oc.projet.webapp.action.LoginAction"
                 method="updateMail">
             <result name="success">/jsp/login/profil.jsp</result>
         </action>
 
+        <!-- Affiche la liste des réservations topo -->
         <action name="reservationTopo"
                 class="fr.oc.projet.webapp.action.GestionTopoAction"
                 method="doReservationTopo">
             <result name="success">/jsp/topo/reservation.jsp</result>
         </action>
 
-
-
+        <!-- Action pour envoyer un message
+            Renvoie à la page d'acceuil-->
         <action name="addMessage"
                 class="fr.oc.projet.webapp.action.GestionMessageAction"
                 method="doAddMessage">
             <result name="success">/index.jsp</result>
         </action>
 
-
     </package>
 
     <package name="ajax" extends="base, json-default">
 
-        <!-- Action renvoyant la liste des commentaires d'un site -->
+        <!-- Action pour la classe AjaxAction -->
+
+
+        <!-- Action afficher la liste des commentaires -->
         <action name="ajax_getListCommentaire"
                 class="fr.oc.projet.webapp.action.AjaxAction"
                 method="doAjaxGetListCommentaire">
@@ -308,8 +373,7 @@
             </result>
         </action>
 
-
-        <!-- Action renvoyant la liste des secteurs d'un site -->
+        <!-- Action pour afficher la liste des secteurs-->
         <action name="ajax_getListSecteur"
                 class="fr.oc.projet.webapp.action.AjaxAction"
                 method="doAjaxGetListSecteur">
@@ -318,6 +382,7 @@
             </result>
         </action>
 
+        <!-- Action pour ajouter un secteur au site pendant sa création -->
         <action name="ajax_addSecteur"
                 class="fr.oc.projet.webapp.action.AjaxAction"
                 method="doAjaxAddSecteur">
@@ -326,6 +391,7 @@
             </result>
         </action>
 
+        <!-- Action pour ajouter une voie au site pendant sa création -->
         <action name="ajax_add_voie"
                 class="fr.oc.projet.webapp.action.AjaxAction"
                 method="doAjaxAddVoie">
@@ -334,23 +400,7 @@
             </result>
         </action>
 
-        <action name="ajax_get_secteur"
-                class="fr.oc.projet.webapp.action.AjaxActionSite"
-                method="doGetSecteur">
-            <result name="success" type="json">
-                <param name="root">nomSecteur</param>
-            </result>
-        </action>
-
-        <action name="ajax_count_resa"
-                class="fr.oc.projet.webapp.action.AjaxActionTopo"
-                method="doAjaxCountResa">
-            <result name="success" type="json">
-                <param name="root">nbreResa</param>
-            </result>
-        </action>
-
-
+        <!-- Action pour afficher la liste des images du topo -->
         <action name="ajax_getListImageTopo"
                 class="fr.oc.projet.webapp.action.AjaxAction"
                 method="doAjaxGetListImageTopo">
@@ -359,15 +409,7 @@
             </result>
         </action>
 
-
-        <action name="ajax_addImageTopo"
-                class="fr.oc.projet.webapp.action.AjaxAction"
-                method="doAjaxAddImageTopo">
-            <result name="success" type="json">
-                <param name="root">listImage</param>
-            </result>
-        </action>
-
+        <!-- Action pour ajouter un commentaire -->
         <action name="ajax_addCommentaire"
                 class="fr.oc.projet.webapp.action.AjaxAction"
                 method="doAjaxAddCommentaire">
@@ -376,7 +418,7 @@
             </result>
         </action>
 
-
+        <!-- Action pour afficher la liste des réservation d'un mois -->
         <action name="ajax_listResaMois"
                 class="fr.oc.projet.webapp.action.AjaxAction"
                 method="doAjaxDetailResa">
@@ -385,6 +427,7 @@
             </result>
         </action>
 
+        <!-- Action pour afficher la liste des réservations -->
         <action name="ajax_listResa"
                 class="fr.oc.projet.webapp.action.AjaxAction"
                 method="doAjaxDetailResaTopo">
@@ -393,6 +436,38 @@
             </result>
         </action>
 
+
+        <!-- Action pour la classe AjaxActionSite -->
+
+        <!-- Action pour récupèrer le nom d'un secteur via un id -->
+        <action name="ajax_get_secteur"
+                class="fr.oc.projet.webapp.action.AjaxActionSite"
+                method="doGetSecteur">
+            <result name="success" type="json">
+                <param name="root">nomSecteur</param>
+            </result>
+        </action>
+
+        <!-- Action pour ajouter un note au site-->
+        <action name="ajax_addNote"
+                class="fr.oc.projet.webapp.action.AjaxActionSite"
+                method="doAjaxAddNote">
+        </action>
+
+
+
+        <!-- Action pour la classe AjaxActionTopo -->
+
+        <!-- Action pour compter le nombre de réservations du topo -->
+        <action name="ajax_count_resa"
+                class="fr.oc.projet.webapp.action.AjaxActionTopo"
+                method="doAjaxCountResa">
+            <result name="success" type="json">
+                <param name="root">nbreResa</param>
+            </result>
+        </action>
+
+        <!-- Action pour ajouter un réservation au topo -->
         <action name="ajax_add_reservation"
                 class="fr.oc.projet.webapp.action.AjaxActionTopo"
                 method="doReservation">
@@ -404,6 +479,11 @@
             </result>
         </action>
 
+
+
+        <!-- Action pour la classe GestionIndexAction -->
+
+        <!-- Action pour compter le nombre de site-->
         <action name="ajax_countSite"
                 class="fr.oc.projet.webapp.action.GestionIndexAction"
                 method="doGetCountNbreSiteAction">
@@ -412,6 +492,7 @@
             </result>
         </action>
 
+        <!-- Action pour compter le nombre de topo -->
         <action name="ajax_countTopo"
                 class="fr.oc.projet.webapp.action.GestionIndexAction"
                 method="doGetCountNbreTopoAction">
@@ -420,12 +501,5 @@
             </result>
         </action>
 
-        <action name="ajax_addNote"
-                class="fr.oc.projet.webapp.action.AjaxActionSite"
-                method="doAjaxAddNote">
-        </action>
-
-
     </package>
-
 </struts>

@@ -111,4 +111,17 @@ public class VoieDaoImpl extends AbstractDaoImpl implements VoieDao {
         } catch (DuplicateKeyException vEx) {
         }
     }
+
+    @Override
+    public void deleteVoie(Integer siteId) {
+        String vSQL = "DELETE FROM voie "+
+        " WHERE secteur_id IN "+
+                " ( "+
+                " SELECT id "+
+                " FROM secteur "+
+                " WHERE site_id = "+siteId+
+               " ) ";
+        JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
+        vJdbcTemplate.update(vSQL);
+    }
 }

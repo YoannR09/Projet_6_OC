@@ -98,8 +98,7 @@
             </div>
 
             <s:iterator value="listVoie">
-
-                <div  id="listResa" style="display: flex;justify-content: space-around">
+                <div  id="listVoie" style="display: flex;justify-content: space-around">
                     <span class='badge badge-info' style='width: 200px'> <s:property value="nom"/></span>
                     <span class='badge badge-light' style='width: 100px'><s:property value="hauteur"/></span>
                     <span class='badge badge-light' style='color: white;width: 100px;background-color:<s:property value="cotation.couleur"/>'><s:property value="cotation.valeur"/></span>

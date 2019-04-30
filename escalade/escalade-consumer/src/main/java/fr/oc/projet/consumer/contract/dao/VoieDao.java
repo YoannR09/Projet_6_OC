@@ -22,4 +22,6 @@ public interface VoieDao {
     Integer getHauteurMinSecteur(Integer secteurId);
 
     void addVoie(Voie voie);
+
+    void deleteVoie(Integer siteId);
 }

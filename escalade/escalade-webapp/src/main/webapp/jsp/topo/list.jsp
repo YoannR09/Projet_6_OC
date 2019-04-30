@@ -30,7 +30,6 @@
         #divImage
         {
             height: 100%;
-            background-color: white;
         }
         em
         {
@@ -55,7 +54,7 @@
                     <div class="card-header " style="text-align: center"><s:property value="nom"/></div>
                     <div class="card-body" >
                         <div id="divImage" class="col-lg-12 col-md-12 col-sm-12">
-                            <img src="./image/topo1.jpg"
+                            <img src="./image/<s:property value="urlImg"/>"
                                  width="100%" height="100%" id="img" style="border: 1px black solid;" />
                         </div>
                     </div>
@@ -79,16 +78,18 @@
 </div>
     <div id="partieDroite"  class="col-lg-3 col-md-3 col-sm-3">
         <div class="card text-white mb-4"  id="recherche" style="background-color:rgba(0,0,0,0.7)">
-            <div class="card-header "><em>Rechercher les sites</em></div>
+            <div class="card-header "><em>Rechercher les topos</em></div>
             <div class="card-body"style="text-align: center" >
-                <div class="input-group">
-                    <input type="text" name="text" class="form-control" placeholder="Recherche..." aria-label="Recipient's username" aria-describedby="basic-addon2" required>
-                    <div class="input-group-append">
-                        <button class="btn btn-outline-info" type="button"><i class="fas fa-search"></i></button>
+                <s:form action="recherche_topo">
+                    <div class="input-group">
+                        <input type="text" name="text" class="form-control" placeholder="Recherche..." aria-label="Recipient's username" aria-describedby="basic-addon2" required>
+                        <div class="input-group-append">
+                            <s:submit id="btn" class="btn btn-outline-info" type="button"><i class="fas fa-search"></i></s:submit>
+                        </div>
                     </div>
-                </div>
+                </s:form>
                 <br/>
-                <s:a action="site_detail" class="btn btn-info" style="width:80%; margin:10px;"><s:param name="idSite" value="id" /> Bien noté </s:a>
+                <s:a action="topo_valide_list_note" class="btn btn-info" style="width:80%; margin:10px;"><s:param name="idSite" value="id" /> Bien noté </s:a>
             </div>
         </div>
     </div>

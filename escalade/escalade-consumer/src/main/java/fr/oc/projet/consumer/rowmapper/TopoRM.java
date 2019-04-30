@@ -1,6 +1,7 @@
 package fr.oc.projet.consumer.rowmapper;
 
 import fr.oc.projet.consumer.contract.dao.CompteDao;
+import fr.oc.projet.consumer.contract.dao.ImageDao;
 import fr.oc.projet.consumer.contract.dao.NoteDao;
 import fr.oc.projet.model.bean.escalade.Topo;
 import org.springframework.jdbc.core.RowMapper;
@@ -17,6 +18,8 @@ public class TopoRM implements RowMapper<Topo> {
     CompteDao compteDaoImpl;
     @Inject
     NoteDao noteDao;
+    @Inject
+    ImageDao imageDao;
 
     @Override
     public Topo mapRow(ResultSet resultSet, int i) throws SQLException {
@@ -29,6 +32,9 @@ public class TopoRM implements RowMapper<Topo> {
         topo.setDate(resultSet.getDate("date_de_creation"));
         topo.setResponsable(compteDaoImpl.getCompte(resultSet.getInt("responsable_id")));
         topo.setNote(noteDao.getNoteTopo(resultSet.getInt("id")));
+        if(imageDao.getCountImageTopo(topo.getId())!= 0){
+            topo.setUrlImg(imageDao.getImageMainTopo(resultSet.getInt("id")).getUrlImage());
+        }
         return topo;
     }
 }

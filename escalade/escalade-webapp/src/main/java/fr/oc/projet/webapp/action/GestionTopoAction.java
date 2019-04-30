@@ -3,12 +3,14 @@ package fr.oc.projet.webapp.action;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import fr.oc.projet.business.manager.contract.ManagerFactory;
+import fr.oc.projet.model.bean.Image;
 import fr.oc.projet.model.bean.escalade.Site;
 import fr.oc.projet.model.bean.escalade.Topo;
 import fr.oc.projet.model.bean.utilisateur.Commentaire;
 import fr.oc.projet.model.bean.utilisateur.Reservation;
 
 import javax.inject.Inject;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -23,6 +25,7 @@ public class GestionTopoAction extends ActionSupport {
     private         List<Topo>            listTopo;
     private         List<Commentaire>     listCommentaire;
     private         List<Reservation>     reservationList;
+    private         List<Image>           listImage;
     private         List<Site>            listSite;
     private         Topo                  topo;
     private         Integer               idTopo;
@@ -42,6 +45,7 @@ public class GestionTopoAction extends ActionSupport {
             topo = managerFactory.getTopoManager().getTopo(idTopo);
             listCommentaire = managerFactory.getCommentaireManager().getListCommentaireTopo(idTopo);
             listSite = managerFactory.getSiteManager().getListSiteTopo(topo.getId());
+            listImage = managerFactory.getImageManager().getListImageTopo(topo.getId());
 
         return  ActionSupport.SUCCESS;
     }
@@ -64,13 +68,8 @@ public class GestionTopoAction extends ActionSupport {
      */
     public String doListSiteValidePageDown() {
 
-        listTopo = managerFactory.getTopoManager().getListTopoValidePageDown(lastId);
-
-        nombre = listTopo.size();
-        Topo topo = listTopo.get(nombre-1);
-        lastId = topo.getId();
-
-        page = page-1;
+            listTopo = managerFactory.getTopoManager().getListTopoValidePageDown(lastId);
+            nombre = listTopo.size();
 
         return ActionSupport.SUCCESS;
     }
@@ -83,9 +82,6 @@ public class GestionTopoAction extends ActionSupport {
 
         listTopo = managerFactory.getTopoManager().getListTopoValidePageUp(lastId);
         nombre = listTopo.size();
-        Topo topo = listTopo.get(nombre-1);
-        lastId = topo.getId();
-        page = page+1;
 
         return ActionSupport.SUCCESS;
     }
@@ -98,9 +94,18 @@ public class GestionTopoAction extends ActionSupport {
 
         listTopo = managerFactory.getTopoManager().getListTopoValide();
         nombre = listTopo.size();
-        Topo topo = listTopo.get(nombre-1);
-        lastId = topo.getId();
-        page = 1;
+
+        return ActionSupport.SUCCESS;
+    }
+
+    public String doListTopoValideNote() {
+
+        listTopo = managerFactory.getTopoManager().getListTopoValide();
+
+        Collections.sort(listTopo, Topo.ComparatorNote);
+        Collections.reverse(listTopo);
+        nombre = listTopo.size();
+
 
         return ActionSupport.SUCCESS;
     }
@@ -112,10 +117,6 @@ public class GestionTopoAction extends ActionSupport {
     public String doRechercheTopo(){
 
         listTopo = managerFactory.getTopoManager().rechercheTopo(text);
-        nombre = listTopo.size();
-        page = 1;
-        Topo topo = listTopo.get(nombre-1);
-        lastId = topo.getId();
 
         return ActionSupport.SUCCESS;
     }
@@ -208,5 +209,13 @@ public class GestionTopoAction extends ActionSupport {
 
     public void setListSite(List<Site> listSite) {
         this.listSite = listSite;
+    }
+
+    public List<Image> getListImage() {
+        return listImage;
+    }
+
+    public void setListImage(List<Image> listImage) {
+        this.listImage = listImage;
     }
 }

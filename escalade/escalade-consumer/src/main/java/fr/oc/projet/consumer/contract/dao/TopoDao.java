@@ -29,4 +29,6 @@ public interface TopoDao {
     int getCountTopo();
 
     void update(Topo topo);
+
+    void deleteTopo(Integer topoId);
 }

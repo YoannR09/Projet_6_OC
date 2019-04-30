@@ -5,6 +5,8 @@ import com.opensymphony.xwork2.ActionSupport;
 import fr.oc.projet.business.manager.contract.ManagerFactory;
 import fr.oc.projet.model.bean.escalade.Topo;
 import fr.oc.projet.model.bean.utilisateur.Reservation;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.inject.Inject;
 import java.util.ArrayList;
@@ -19,6 +21,8 @@ public class AjaxActionTopo extends ActionSupport {
     @Inject
     private ManagerFactory managerFactory;
 
+    static final Logger logger	= LogManager.getLogger();
+
     private         List<Reservation>    listReservation;
     private         Topo                 topo;
     private         String               pseudo;
@@ -27,7 +31,6 @@ public class AjaxActionTopo extends ActionSupport {
     private         Boolean              matin;
     private         Boolean              apresMidi;
     private         Boolean              occupe;
-    private         String               messageAjax;
     private         Integer              nbreResa;
 
 
@@ -45,15 +48,12 @@ public class AjaxActionTopo extends ActionSupport {
 
         String vResult ;
 
-
         if(matin == false && apresMidi == false){
             this.addActionMessage("Vous devez choisir un créneau.");
             vResult = ActionSupport.ERROR;
         }else {
             topo = managerFactory.getTopoManager().getTopoViaNom(nomTopo);
-
             pseudo = (String) ActionContext.getContext().getSession().get("pseudo");
-
             Reservation reservation = new Reservation();
             reservation.setDate(date);
             if(matin == true) {
@@ -73,12 +73,10 @@ public class AjaxActionTopo extends ActionSupport {
             for (int i = 0; i<vList.size(); i++){
                 if(reservation.getDate().equals(vList.get(i).getDate())){
                     if(reservation.getMatin() && vList.get(i).getMatin()){
-                        messageAjax = "Créneau déjà reservé.";
                         occupe = true;
                         break;
                     }else {
                         if(reservation.getApresMidi() && vList.get(i).getApresMidi()){
-                            messageAjax = "Créneau déjà reservé.";
                             occupe = true;
                             break;
                         }else {
@@ -91,9 +89,9 @@ public class AjaxActionTopo extends ActionSupport {
             }
             if(!occupe){
                 managerFactory.getReservationManager().addReservation(reservation);
+                logger.info("Reservation : "+reservation+" a bien été ajoutée à la base de données.");
             }
             vList = managerFactory.getReservationManager().getReservationTopo(topo.getId());
-
             listReservation = new ArrayList<>();
 
             for (int i = 0; i < vList.size(); i++) {
@@ -102,7 +100,6 @@ public class AjaxActionTopo extends ActionSupport {
                     listReservation.add(vList.get(i));
                 }
             }
-            messageAjax = "Réservation bien validée";
             vResult = ActionSupport.SUCCESS;
         }
             return vResult;
@@ -116,7 +113,6 @@ public class AjaxActionTopo extends ActionSupport {
     public String doAjaxCountResa(){
 
             topo = managerFactory.getTopoManager().getTopoViaNom(nomTopo);
-
             nbreResa = managerFactory.getReservationManager().getCountResa(topo.getId());
 
         return ActionSupport.SUCCESS;
@@ -177,14 +173,6 @@ public class AjaxActionTopo extends ActionSupport {
 
     public void setApresMidi(Boolean apresMidi) {
         this.apresMidi = apresMidi;
-    }
-
-    public String getMessageAjax() {
-        return messageAjax;
-    }
-
-    public void setMessageAjax(String messageAjax) {
-        this.messageAjax = messageAjax;
     }
 
     public Integer getNbreResa() {

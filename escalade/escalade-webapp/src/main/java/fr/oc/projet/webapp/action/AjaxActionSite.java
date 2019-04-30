@@ -7,6 +7,8 @@ import fr.oc.projet.model.bean.escalade.Secteur;
 import fr.oc.projet.model.bean.escalade.Site;
 import fr.oc.projet.model.bean.utilisateur.Compte;
 import fr.oc.projet.model.bean.utilisateur.Note;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.inject.Inject;
 
@@ -18,6 +20,8 @@ public class AjaxActionSite extends ActionSupport {
 
     @Inject
     private ManagerFactory managerFactory;
+
+    static final Logger logger	= LogManager.getLogger();
 
     private         Double      note;
     private         String      nomSite;
@@ -37,7 +41,6 @@ public class AjaxActionSite extends ActionSupport {
     public String doAjaxAddNote(){
 
         if(note != null){
-
             site = managerFactory.getSiteManager().getSiteViaNom(nomSite);
             Note pNote = new Note();
             pNote.setSiteId(site.getId());
@@ -45,8 +48,8 @@ public class AjaxActionSite extends ActionSupport {
             pseudo = (String) ActionContext.getContext().getSession().get("pseudo");
             compte = managerFactory.getCompteManager().getCompteViaPseudo(pseudo);
             pNote.setCompteId(compte.getId());
-
             managerFactory.getNoteManager().addNote(pNote);
+            logger.info("Note : "+note+" a bien été ajoutée à la base de données.");
         }
         return ActionSupport.SUCCESS;
     }

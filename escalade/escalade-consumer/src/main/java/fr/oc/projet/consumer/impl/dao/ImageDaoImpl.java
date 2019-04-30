@@ -28,6 +28,24 @@ public class ImageDaoImpl extends AbstractDaoImpl implements ImageDao {
     }
 
     @Override
+    public Image getImageMainSite(Integer pId) {
+        String vSQL = "SELECT * FROM image WHERE site_id ="+pId+ "" +
+                " AND image_de_presentation = TRUE";
+        JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
+        Image image = vJdbcTemplate.queryForObject(vSQL,imageRM);
+        return image;
+    }
+
+    @Override
+    public Image getImageMainTopo(Integer pId) {
+        String vSQL = "SELECT * FROM image WHERE topo_id ="+pId+ "" +
+                " AND image_de_presentation = TRUE";
+        JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
+        Image image = vJdbcTemplate.queryForObject(vSQL,imageRM);
+        return image;
+    }
+
+    @Override
     public List<Image> getListImage() {
         String vSQL = "SELECT * FROM image ";
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
@@ -57,7 +75,6 @@ public class ImageDaoImpl extends AbstractDaoImpl implements ImageDao {
         String vSQL = "INSERT INTO image (url, image_de_presentation, topo_id, site_id, compte_id, description)" +
                 " VALUES (:urlImage, :imageDePresentation, :topoId, :siteId, :compteId, :description)";
         NamedParameterJdbcTemplate vJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
-
         BeanPropertySqlParameterSource vParams = new BeanPropertySqlParameterSource(image);
         vParams.registerSqlType("urlImage", Types.VARCHAR);
         vParams.registerSqlType("imageDepresentation", Types.BOOLEAN);
@@ -68,5 +85,37 @@ public class ImageDaoImpl extends AbstractDaoImpl implements ImageDao {
 
         vJdbcTemplate.update(vSQL, vParams);
 
+    }
+
+    @Override
+    public Integer getCountImageSite(Integer siteId) {
+        JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
+        int vNbrVoie = vJdbcTemplate.queryForObject(
+                "SELECT COUNT(*) FROM image WHERE site_id ="+siteId,
+                Integer.class);
+        return  vNbrVoie;
+    }
+
+    @Override
+    public Integer getCountImageTopo(Integer topoId) {
+        JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
+        int vNbrVoie = vJdbcTemplate.queryForObject(
+                "SELECT COUNT(*) FROM image WHERE topo_id ="+topoId,
+                Integer.class);
+        return  vNbrVoie;
+    }
+
+    @Override
+    public void deleteImageSite(Integer siteId) {
+        String vSQL = "DELETE FROM image WHERE site_id = "+siteId;
+        JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
+        vJdbcTemplate.update(vSQL);
+    }
+
+    @Override
+    public void deleteImageTopo(Integer topoId) {
+        String vSQL = "DELETE FROM image WHERE topo_id = "+topoId;
+        JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
+        vJdbcTemplate.update(vSQL);
     }
 }

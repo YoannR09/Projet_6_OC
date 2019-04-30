@@ -125,10 +125,10 @@ public class TopoDaoImpl extends AbstractDaoImpl implements TopoDao {
         vParams.registerSqlType("valide", Types.BOOLEAN);
         vParams.registerSqlType("responsableId", Types.INTEGER);
 
-
         try {
             vJdbcTemplate.update(vSQL, vParams);
-        } catch (DuplicateKeyException vEx) {
+        } catch (Exception vEx) {
+            vEx.printStackTrace();
         }
     }
 
@@ -153,5 +153,12 @@ public class TopoDaoImpl extends AbstractDaoImpl implements TopoDao {
 
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
         vJdbcTemplate.update(vSQL, vParams);
+    }
+
+    @Override
+    public void deleteTopo(Integer topoId) {
+        String vSQL = "DELETE FROM topo WHERE id = "+topoId;
+        JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
+        vJdbcTemplate.update(vSQL);
     }
 }

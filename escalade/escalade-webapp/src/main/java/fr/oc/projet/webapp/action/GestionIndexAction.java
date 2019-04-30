@@ -71,7 +71,6 @@ public class GestionIndexAction extends ActionSupport {
             vResult = "Site";
         }else {
             listTopo = managerFactory.getTopoManager().rechercheTopo(text);
-
             nombre = listTopo.size();
             if(nombre != 0) {
                 Topo topo = listTopo.get(nombre - 1);

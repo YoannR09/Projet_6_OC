@@ -22,7 +22,7 @@
         }
         #cadreImage
         {
-            height: 400px;
+            height: 450px;
 
         }
         #cadre
@@ -41,7 +41,7 @@
         #cadreGauche
         {
             text-align: center;
-            border-color: deepskyblue;
+            border-color: white;
             border-style: solid;
             border-width: 1px 1px 1px 1px;
             border-radius: 15px;
@@ -107,19 +107,44 @@
         </div>
     </div>
 
-    <div class="col-lg-9 col-md-9 col-sm-9" style="color: white; margin-top: 20px;">
+    <div class="col-lg-8 col-md-8 col-sm-8" style="color: white; margin-top: 20px;">
         <div class="col-lg-12 col-md-12 col-sm-12" id="cadreImage" style="background-color:rgba(0,0,0,0.7);padding-top: 10px">
-            <img src="./image/toulon3.jpg"
-                 width="100%" height="100%" id="img" style="border: 1px black solid;" />
+            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner" style="max-height: 380px">
+                    <s:iterator value="listImage" status="list">
+                        <s:if test="%{#list.count == 1}">
+                            <s:property value="%{#list.count}"/>
+                            <div class="carousel-item active" style="width: 100%;height: 100%">
+                                <img class="d-block w-100" src="./image/<s:property value="urlImage"/>"
+                                     alt="First slide">
+                            </div>
+                        </s:if>
+                        <s:else>
+                            <div class="carousel-item" style="width: 100%;height: 100%">
+                                <img class="d-block w-100" src="./image/<s:property value="urlImage"/>"
+                                     alt="Second slide">
+                            </div>
+                        </s:else>
+                    </s:iterator>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
         </div>
         <div class="col-lg-12 col-md-12 col-sm-12" id="cadre" style="background-color:rgba(0,0,0,0.7);display: flex;justify-content: space-around">
             <div class="col-lg-4 col-md-4 col-sm-4 overflow-auto" id="cadreGauche">
-            <em>Liste des sites contenu dans ce topo</em>
-                        <s:iterator value="listSite">
-                            <s:property value="nom"/>
-                            <s:a action="site_detail" class="btn btn-info" style="font-size:0.5em;"><s:param name="idSite" value="id" /> Voir </s:a>
-                        </s:iterator>
-
+                <div class="card-header "><em>Liste des sites contenu dans ce topo</em></div>
+                <div class="card-body"style="text-align: center" >
+                    <s:iterator value="listSite">
+                        <s:a action="site_detail" style="font-size:0.7em;color:white"><s:property value="nom"/><s:param name="idSite" value="id" /></s:a>
+                    </s:iterator>
+                </div>
             </div>
             <div class="col-lg-8 col-md-8 col-sm-8" id="cadreInfos">
                 <h2 id="nomTopo"><s:property value="topo.nom"/></h2>

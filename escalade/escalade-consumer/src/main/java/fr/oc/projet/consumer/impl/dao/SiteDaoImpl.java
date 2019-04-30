@@ -190,5 +190,12 @@ public class SiteDaoImpl extends AbstractDaoImpl implements SiteDao {
         vJdbcTemplate.update(vSQL, vParams);
     }
 
+    @Override
+    public void deleteSite(Integer idSite) {
+        String vSQL = "DELETE FROM site WHERE id = "+idSite;
+        JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
+        vJdbcTemplate.update(vSQL);
+    }
+
 
 }

@@ -14,4 +14,6 @@ public interface VoieManager {
     List<Voie> getListVoieSite(Integer siteId);
 
     void addVoie(Voie voie);
+
+    void deleteVoie(Integer siteId);
 }

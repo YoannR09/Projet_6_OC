@@ -9,6 +9,8 @@ import fr.oc.projet.model.bean.escalade.Site;
 import fr.oc.projet.model.bean.escalade.Voie;
 import fr.oc.projet.model.bean.utilisateur.Commentaire;
 import javassist.NotFoundException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.inject.Inject;
 import java.util.Collections;
@@ -23,6 +25,8 @@ public class GestionSiteAction extends ActionSupport {
 
     @Inject
     private ManagerFactory managerFactory;
+
+    static final Logger logger	= LogManager.getLogger();
 
     private         List<Site>            listSite;
     private         String                nomSite;
@@ -52,8 +56,6 @@ public class GestionSiteAction extends ActionSupport {
 
         listSite = managerFactory.getSiteManager().getListSiteValide();
         nombre = listSite.size();
-        Site site = listSite.get(nombre-1);
-        lastId = site.getId();
         page = 1;
 
         return ActionSupport.SUCCESS;
@@ -66,8 +68,7 @@ public class GestionSiteAction extends ActionSupport {
         Collections.reverse(listSite);
         page = 1;
         nombre = listSite.size();
-        Site site = listSite.get(nombre-1);
-        lastId = site.getId();
+
 
         return ActionSupport.SUCCESS;
     }
@@ -83,8 +84,6 @@ public class GestionSiteAction extends ActionSupport {
         page = 1;
         Collections.sort(listSite, Site.ComparatorCotations);
         nombre = listSite.size();
-        Site site = listSite.get(nombre-1);
-        lastId = site.getId();
 
         return ActionSupport.SUCCESS;
     }
@@ -101,8 +100,6 @@ public class GestionSiteAction extends ActionSupport {
         Collections.sort(listSite, Site.ComparatorNote);
         Collections.reverse(listSite);
         nombre = listSite.size();
-        Site site = listSite.get(nombre-1);
-        lastId = site.getId();
 
         return ActionSupport.SUCCESS;
     }
@@ -115,9 +112,6 @@ public class GestionSiteAction extends ActionSupport {
 
         listSite = managerFactory.getSiteManager().getListSiteValidePageDown(lastId);
         nombre = listSite.size();
-        Site site = listSite.get(nombre-1);
-        lastId = site.getId();
-        page = page-1;
 
         return ActionSupport.SUCCESS;
     }
@@ -130,9 +124,6 @@ public class GestionSiteAction extends ActionSupport {
 
         listSite = managerFactory.getSiteManager().getListSiteValidePageUp(lastId);
         nombre = listSite.size();
-        Site site = listSite.get(nombre-1);
-        lastId = site.getId();
-        page = page +1;
 
         return ActionSupport.SUCCESS;
     }
@@ -166,9 +157,7 @@ public class GestionSiteAction extends ActionSupport {
         if (this.idSecteur == null) {
             this.addActionError("Vous devez indiquer un id de secteur");
         } else {
-
             secteur = managerFactory.getSecteurManager().getSecteur(idSecteur);
-
             listVoie = managerFactory.getVoieManager().getListVoieSecteur(idSecteur);
         }
         return  ActionSupport.SUCCESS;
@@ -191,12 +180,8 @@ public class GestionSiteAction extends ActionSupport {
      */
     public String doRechercheSite(){
 
-
         listSite = managerFactory.getSiteManager().rechercheSite(text);
         nombre = listSite.size();
-        page = 1;
-        Site site = listSite.get(nombre-1);
-        lastId = site.getId();
 
         return ActionSupport.SUCCESS;
     }

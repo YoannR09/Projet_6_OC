@@ -8,6 +8,8 @@ import fr.oc.projet.model.bean.utilisateur.NiveauAcces;
 import javassist.NotFoundException;
 import jdk.jfr.Name;
 import org.apache.commons.io.FileUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.struts2.interceptor.SessionAware;
 
 import javax.inject.Inject;
@@ -26,6 +28,8 @@ public class LoginAction extends ActionSupport implements SessionAware {
 
     @Inject
     private ManagerFactory managerFactory;
+
+    static final Logger logger	= LogManager.getLogger();
 
     // ==================== Attributs ====================
     private        Compte         compte;
@@ -113,8 +117,8 @@ public class LoginAction extends ActionSupport implements SessionAware {
                     compte.setEmail(email);
                     compte.setNumero(numero);
                     compte.setNiveau(1);
-
                     managerFactory.getCompteManager().addCompte(compte);
+                    logger.info("Compte "+compte+" a bien été ajouté à la base de données.");
 
                     vResult = ActionSupport.SUCCESS;
                 }
@@ -145,6 +149,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
             pseudo = (String) ActionContext.getContext().getSession().get("pseudo");
             compte = managerFactory.getCompteManager().getCompteViaPseudo(pseudo);
             compte.setPassword(nouveau);
+            logger.info("Compte "+compte+" a bien été modifié dans la base de données.");
         }
         return ActionSupport.SUCCESS;
     }
@@ -159,6 +164,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
             pseudo = (String) ActionContext.getContext().getSession().get("pseudo");
             compte = managerFactory.getCompteManager().getCompteViaPseudo(pseudo);
             compte.setEmail(nouveau);
+            logger.info("Compte "+compte+" a bien été modifié dans la base de données.");
         }
 
         return ActionSupport.SUCCESS;

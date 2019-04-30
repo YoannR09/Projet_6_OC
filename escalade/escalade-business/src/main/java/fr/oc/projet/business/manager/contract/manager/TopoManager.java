@@ -28,4 +28,6 @@ public interface TopoManager {
     void addTopo(Topo topo);
 
     void update(Topo topo);
+
+    void deleteTopo(Integer topoId);
 }

@@ -8,6 +8,7 @@ import java.util.List;
 
 @Named
 public class ImageManagerImpl extends AbstractManagerImpl implements ImageManager {
+
     @Override
     public Image getImage(Integer pId) {
         return getDaoFactory().getImageDao().getImage(pId);
@@ -31,5 +32,25 @@ public class ImageManagerImpl extends AbstractManagerImpl implements ImageManage
     @Override
     public void addImage(Image image) {
         getDaoFactory().getImageDao().addImage(image);
+    }
+
+    @Override
+    public Integer getCountImageSite(Integer siteId) {
+        return getDaoFactory().getImageDao().getCountImageSite(siteId);
+    }
+
+    @Override
+    public Integer getCountImageTopo(Integer topoId) {
+        return getDaoFactory().getImageDao().getCountImageTopo(topoId);
+    }
+
+    @Override
+    public void deleteImageSite(Integer siteId) {
+        getDaoFactory().getImageDao().deleteImageSite(siteId);
+    }
+
+    @Override
+    public void deleteImageTopo(Integer topoId) {
+        getDaoFactory().getImageDao().deleteImageSite(topoId);
     }
 }

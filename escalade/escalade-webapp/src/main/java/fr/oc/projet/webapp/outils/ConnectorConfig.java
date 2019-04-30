@@ -1,4 +1,4 @@
-package fr.oc.projet.webapp.gestionMail;
+package fr.oc.projet.webapp.outils;
 
 
 import org.apache.catalina.Context;
@@ -13,10 +13,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 
-@Configuration
+//@Configuration
 public class ConnectorConfig{
 
-
+/*
     @Bean
     public ServletWebServerFactory servletContainer() {
         TomcatServletWebServerFactory tomcat =
@@ -43,5 +43,5 @@ public class ConnectorConfig{
         connector.setRedirectPort(8443);
         return connector;
     }
-
+*/
 }
