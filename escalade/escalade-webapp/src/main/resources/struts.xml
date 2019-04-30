@@ -254,6 +254,7 @@
             <result name="success">/jsp/participer/addImageTopo.jsp</result>
         </action>
 
+
         <!-- Affiche la page pour ajouter une image au topo -->
         <action name="addImageTopo"
                 class="fr.oc.projet.webapp.action.GestionParticiper"
@@ -355,6 +356,13 @@
                 class="fr.oc.projet.webapp.action.GestionMessageAction"
                 method="doAddMessage">
             <result name="success">/index.jsp</result>
+        </action>
+
+        <action name="recherche"
+                class="fr.oc.projet.webapp.action.GestionIndexAction"
+                method="doRecherche">
+            <result name="Site">/jsp/site/list.jsp</result>
+            <result name="Topo">/jsp/topo/list.jsp</result>
         </action>
 
     </package>

@@ -173,6 +173,7 @@ public class GestionParticiper extends ActionSupport {
             Image image = new Image();
             image.setSiteId(managerFactory.getSiteManager().getSiteViaNom(site.getNom()).getId());
             image.setDescription("Image de présentation du topo "+nomSite);
+            image.setUrlImage(nomSiteText + "/" + myFileFileName);
             image.setImageDePresentation(true);
             managerFactory.getImageManager().addImage(image);
             logger.info("Image : "+image+" a bien été ajoutée à la base de données.");

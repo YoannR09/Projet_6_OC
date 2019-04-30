@@ -6,6 +6,7 @@
 		Ajouter le script qui se trouve dans le fichier SQL/SCRIPT.sql
 
 		Ajouter la démo de la bdd qui se trouve dans le fichier SQL/INSERT-demo.sql
+		
 
 
 2)Modifier les despaths pour ajouter les images :

@@ -72,8 +72,9 @@
             <div id="listVoie">
 
             </div>
-
+            <div class="col-lg-12 col-md-12 col-sm-12" id="listBoutons" style="display: flex;justify-content: flex-end">
             <s:a action="addImageSite" class="btn btn-info">Suivant <s:param name="nomSite" value="nomSite" /></s:a>
+            </div>
         </div>
         <!--------------------------------- Pop-up ------------------------------------>
 

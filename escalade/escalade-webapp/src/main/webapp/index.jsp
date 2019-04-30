@@ -20,7 +20,7 @@
         }
         em
         {
-            color : white;
+            color : black;
         }
         #carouselExampleSlidesOnly {
             border-color: black;
@@ -77,9 +77,11 @@
 
         <div id="textDescri" class="col-lg-12 col-md-12 col-sm-12"style="background-color:rgba(0,0,0,0.7);padding-top: 10px;text-align: center" >
             <div style="margin: 40px; padding-bottom: 40px;">
-                <span id="nombreSite" style="border-radius: 100%; border: white 1px solid; padding: 30px;margin: 40px;color: black;background-color: lightslategray"></span>
+
                 <span>Ce site d'escalade contient</span>
-                <span id="nombreTopo" style="border-radius: 100%; border: white 1px solid; padding: 30px;margin: 40px;color: black;background-color: lightslategrey"></span>
+                <span id="nombreSite" style="border-radius: 100%; border: white 1px solid; padding: 30px;margin: 40px;background-color: gold"></span>
+
+                <span id="nombreTopo" style="border-radius: 100%; border: white 1px solid; padding: 30px;margin: 40px;background-color: gold"></span>
             </div>
         </div>
     </div>

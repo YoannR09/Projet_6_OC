@@ -63,19 +63,13 @@ public class GestionIndexAction extends ActionSupport {
             listSite = managerFactory.getSiteManager().rechercheSite(text);
 
             nombre = listSite.size();
-            if(nombre != 0) {
-                Site site = listSite.get(nombre - 1);
-                lastId = site.getId();
-            }
+
             firstPage = true;
             vResult = "Site";
         }else {
             listTopo = managerFactory.getTopoManager().rechercheTopo(text);
             nombre = listTopo.size();
-            if(nombre != 0) {
-                Topo topo = listTopo.get(nombre - 1);
-                lastId = topo.getId();
-            }
+          
             firstPage = true;
 
             vResult = "Topo";
