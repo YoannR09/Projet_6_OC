@@ -107,9 +107,7 @@
 
                 var $nombreSite = jQuery("#nombreSite");
                 $nombreSite.empty();
-
-                $nombreSite.append(data+" <em style='color:black'>Sites");
-
+                $nombreSite.append(data+" <em style='color:black'>Site(s)");
             })
             .fail(function () {
                 alert("Erreur !!");
@@ -125,7 +123,7 @@
             function (data) {
                 var $nombreTopo = jQuery("#nombreTopo");
                 $nombreTopo.empty();
-                $nombreTopo.append(data+ " <em style='color:black'>Topos");
+                $nombreTopo.append(data+ " <em style='color:black'>Topo(s)");
             })
             .fail(function () {
                 alert("Erreur !!");

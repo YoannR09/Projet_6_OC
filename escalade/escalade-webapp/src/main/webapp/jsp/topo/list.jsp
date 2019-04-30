@@ -91,7 +91,7 @@
                     </div>
                 </s:form>
                 <br/>
-                <s:a action="topo_valide_list_note" class="btn btn-info" style="width:80%; margin:10px;"><s:param name="idSite" value="id" /> Bien noté </s:a>
+                <s:a action="topo_valide_list_note" class="btn btn-info" style="width:80%; margin:10px;"> Bien noté </s:a>
             </div>
         </div>
     </div>

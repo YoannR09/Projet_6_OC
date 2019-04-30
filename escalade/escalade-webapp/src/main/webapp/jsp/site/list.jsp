@@ -69,11 +69,11 @@
                 </div>
                 </s:form>
                 <br/>
-                <s:a action="site_valide_list_cotaMax" class="btn btn-info" style="width:80%; margin:10px;"><s:param name="idSite" value="id" /> Difficiles </s:a>
+                <s:a action="site_valide_list_cotaMax" class="btn btn-info" style="width:80%; margin:10px;"> Difficiles </s:a>
                 <br/>
-                <s:a action="site_valide_list_cotaMin" class="btn btn-info" style="width:80%; margin:10px;"><s:param name="idSite" value="id" /> Faciles </s:a>
+                <s:a action="site_valide_list_cotaMin" class="btn btn-info" style="width:80%; margin:10px;"> Faciles </s:a>
                 <br/>
-                <s:a action="site_valide_list_note" class="btn btn-info" style="width:80%; margin:10px;"><s:param name="idSite" value="id" /> Bien noté </s:a>
+                <s:a action="site_valide_list_note" class="btn btn-info" style="width:80%; margin:10px;"> Bien noté </s:a>
             </div>
         </div>
     </div>
@@ -101,7 +101,6 @@
                         <div style="margin-top: 30px;">
                             <p id="cotaMax"><em>Max : </em><span class="cota" style="background-color:<s:property value="cotationMax.couleur"/>"><s:property value="cotationMax.valeur"/></span></p>
                         </div>
-
                     </div>
                     <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" id="divCota">
                         <s:a action="site_detail" class="btn btn-info" style="font-size:0.5em;"><s:param name="idSite" value="id" /> Voir </s:a>
@@ -117,10 +116,9 @@
             <s:if test="page != 1">
                 <s:a id ="pageDown" action="topo_valide_list_pageUp" class="btn btn-info"><s:param name="lastId" value="lastId" /> Page précedente </s:a>
             </s:if>
+              -->
         </div>
-        -->
     </div>
-
 </div>
 
 </body>

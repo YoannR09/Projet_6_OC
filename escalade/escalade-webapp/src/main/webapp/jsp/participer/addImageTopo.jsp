@@ -65,7 +65,11 @@
 
 
             <div id="listImage">
-
+                <s:iterator value="listImage">
+                    <img src="./image/<s:property value="urlImage"/>" style="height: 200px;width: 300px;margin: 10px;">
+                    <s:property value="description"/>
+                    <br/>
+                </s:iterator>
             </div>
 
             <s:a action="index" class="btn btn-info">Terminer </s:a>

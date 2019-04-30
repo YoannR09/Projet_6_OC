@@ -57,9 +57,12 @@
         <div class="col-lg-12 col-md-12 col-sm-12" id="cadreSecteur" style="background-color:rgba(0,0,0,0.7);">
             <h5 style="text-align: center">Ajouter des images</h5>
 
-
             <div id="listImage">
-
+                <s:iterator value="listImage">
+                    <img src="./image/<s:property value="urlImage"/>" style="height: 200px;width: 300px;margin: 10px;">
+                    <s:property value="description"/>
+                    <br/>
+                </s:iterator>
             </div>
 
             <s:a action="index" class="btn btn-info">Terminer </s:a>
@@ -77,11 +80,11 @@
                         </button>
                     </div>
                     <div class="modal-body">
-<s:form action="addImageSite" id="formulaire" method="POST" style="margin-left:10%;" enctype="multipart/form-data">
-    <s:file id="fileProfil" name="myFile"  label="Image principale " style="color:white"/>
-    <s:submit value="Ajouter" id="btn" class="btn btn-info"/>
-    <s:textfield value="" name="nomSiteText" id="nomSiteText"/>
-</s:form>
+                        <s:form action="addImageSite" id="formulaire" method="POST" style="margin-left:10%;" enctype="multipart/form-data">
+                            <s:file id="fileProfil" name="myFile"  label="Image principale " style="color:white"/>
+                            <s:submit value="Ajouter" id="btn" class="btn btn-info"/>
+                            <s:textfield value="" name="nomSiteText" id="nomSiteText"/>
+                        </s:form>
                     </div>
                 </div>
             </div>

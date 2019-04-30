@@ -28,6 +28,7 @@ public class GestionParticiper extends ActionSupport {
     private      List<Region>            listRegion;
     private      List<Topo>              listTopo;
     private      List<Secteur>           listSecteur;
+    private      List<Image>             listImage;
     private      String                  nom;
     private      String                  ville;
     private      String                  description;
@@ -109,6 +110,8 @@ public class GestionParticiper extends ActionSupport {
         }else {
             site = managerFactory.getSiteManager().getSiteViaNom(nomSite);
         }
+
+        listImage = managerFactory.getImageManager().getListImageSite(site.getId());
         return vResult;
     }
 
@@ -137,9 +140,9 @@ public class GestionParticiper extends ActionSupport {
                 logger.error(e);
                 return ERROR;
             }
-        }else {
-            topo = managerFactory.getTopoManager().getTopoViaNom(nomTopo);
         }
+        listImage = managerFactory.getImageManager().getListImageTopo(topo.getId());
+
         return vResult;
     }
 
@@ -440,5 +443,13 @@ public class GestionParticiper extends ActionSupport {
 
     public void setNomTopo(String nomTopo) {
         this.nomTopo = nomTopo;
+    }
+
+    public List<Image> getListImage() {
+        return listImage;
+    }
+
+    public void setListImage(List<Image> listImage) {
+        this.listImage = listImage;
     }
 }
