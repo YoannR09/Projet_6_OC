@@ -20,7 +20,7 @@
         }
         em
         {
-            color : black;
+            color : white;
         }
         #carouselExampleSlidesOnly {
             border-color: black;
@@ -79,9 +79,9 @@
             <div style="margin: 40px; padding-bottom: 40px;">
 
                 <span>Ce site d'escalade contient</span>
-                <span id="nombreSite" style="border-radius: 100%; border: white 1px solid; padding: 30px;margin: 40px;background-color: gold"></span>
+                <span id="nombreSite" style="border-radius: 100%; border: black 1px solid; padding: 30px;color:black;margin: 40px;background-color: lightgoldenrodyellow"></span>
 
-                <span id="nombreTopo" style="border-radius: 100%; border: white 1px solid; padding: 30px;margin: 40px;background-color: gold"></span>
+                <span id="nombreTopo" style="border-radius: 100%; border: black 1px solid; padding: 30px;color:black;margin: 40px;background-color: lightgoldenrodyellow"></span>
             </div>
         </div>
     </div>
@@ -108,7 +108,7 @@
                 var $nombreSite = jQuery("#nombreSite");
                 $nombreSite.empty();
 
-                $nombreSite.append(data+" <em>Sites");
+                $nombreSite.append(data+" <em style='color:black'>Sites");
 
             })
             .fail(function () {
@@ -125,7 +125,7 @@
             function (data) {
                 var $nombreTopo = jQuery("#nombreTopo");
                 $nombreTopo.empty();
-                $nombreTopo.append(data+ " <em>Topos");
+                $nombreTopo.append(data+ " <em style='color:black'>Topos");
             })
             .fail(function () {
                 alert("Erreur !!");

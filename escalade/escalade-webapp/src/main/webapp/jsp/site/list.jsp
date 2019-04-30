@@ -110,6 +110,7 @@
             </div>
         </s:iterator>
         <div style="position: absolute; bottom: -50px; justify-content: space-between;display: flex" class="col-lg-12 col-md-12 col-sm-12">
+            <!--
             <s:if test="nombre == 3">
                 <s:a id ="pageUp" action="topo_valide_list_pageUp" class="btn btn-info" ><s:param name="lastId" value="lastId" /> Page suivante </s:a>
             </s:if>
@@ -117,6 +118,7 @@
                 <s:a id ="pageDown" action="topo_valide_list_pageUp" class="btn btn-info"><s:param name="lastId" value="lastId" /> Page précedente </s:a>
             </s:if>
         </div>
+        -->
     </div>
 
 </div>

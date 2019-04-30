@@ -69,7 +69,7 @@ public class GestionIndexAction extends ActionSupport {
         }else {
             listTopo = managerFactory.getTopoManager().rechercheTopo(text);
             nombre = listTopo.size();
-          
+
             firstPage = true;
 
             vResult = "Topo";
