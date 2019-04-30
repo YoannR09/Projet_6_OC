@@ -63,7 +63,8 @@ public class ImageDaoImpl extends AbstractDaoImpl implements ImageDao {
 
     @Override
     public List<Image> getListImageTopo(Integer topoId) {
-        String vSQL = "SELECT * FROM image WHERE topo_id = "+topoId;
+        String vSQL = "SELECT * FROM image WHERE topo_id = "+topoId +"" +
+                " AND image_de_presentation = FALSE";
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
         List<Image> vList = vJdbcTemplate.query(vSQL,imageRM);
         return vList;

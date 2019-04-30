@@ -8,5 +8,8 @@
 		Ajouter la démo de la bdd qui se trouve dans le fichier SQL/INSERT-demo.sql
 
 
-2)Modifier les despaths pour ajouter les images
+2)Modifier les despaths pour ajouter les images :
 	Dans la classe GestionParticiper ligne 89, ligne 120, ligne 169, ligne 213.
+
+3) Se connecter à l'application avec un compte admin :
+		Pseudo : Yocorps		Mot de passe : 123

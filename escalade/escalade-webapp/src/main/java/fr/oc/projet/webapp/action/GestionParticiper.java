@@ -197,7 +197,6 @@ public class GestionParticiper extends ActionSupport {
         // Par défaut, le result est "input"
         String vResult = ActionSupport.INPUT;
 
-
             if(nomTopo != null){
                 Topo topo = new Topo();
                 pseudo = (String) ActionContext.getContext().getSession().get("pseudo");
