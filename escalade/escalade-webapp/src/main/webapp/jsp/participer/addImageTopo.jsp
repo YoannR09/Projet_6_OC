@@ -105,8 +105,6 @@
         $('#nomSiteText').hide();
         $('#nomSiteText').val(text);
     });
-
-
 </script>
 </body>
 </html>

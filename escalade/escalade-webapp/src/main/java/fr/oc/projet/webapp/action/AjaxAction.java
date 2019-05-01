@@ -137,8 +137,8 @@ public class AjaxAction extends ActionSupport {
             voie.setNom(nom);
             voie.setCotationId(cotationId);
             managerFactory.getVoieManager().addVoie(voie);
-            logger.info("Voie : "+voie+" a bien été ajoutée à la base de données");
             listVoie = managerFactory.getVoieManager().getListVoieSite(site.getId());
+            logger.info("Voie : "+voie+" a bien été ajoutée à la base de données");
         }  catch (Exception e) {
             e.printStackTrace();
         }
@@ -380,5 +380,13 @@ public class AjaxAction extends ActionSupport {
 
     public void setCotationId(Integer cotationId) {
         this.cotationId = cotationId;
+    }
+
+    public List<Voie> getListVoie() {
+        return listVoie;
+    }
+
+    public void setListVoie(List<Voie> listVoie) {
+        this.listVoie = listVoie;
     }
 }

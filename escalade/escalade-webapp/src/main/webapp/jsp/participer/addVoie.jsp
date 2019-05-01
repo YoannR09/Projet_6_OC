@@ -73,7 +73,7 @@
 
             </div>
             <div class="col-lg-12 col-md-12 col-sm-12" id="listBoutons" style="display: flex;justify-content: flex-end">
-            <s:a action="addImageSite" class="btn btn-info">Suivant <s:param name="nomSite" value="nomSite" /></s:a>
+                <s:a action="addImageSite" class="btn btn-info">Suivant <s:param name="nomSite" value="nomSite" /></s:a>
             </div>
         </div>
         <!--------------------------------- Pop-up ------------------------------------>
@@ -114,8 +114,9 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
-    $(function() {
 
+    $(function() {
+        $('#nomSec').hide();
     });
 
     /**
@@ -148,17 +149,16 @@
             secteurId:secteurId,
             cotationId:cotationId
         };
-
         // Action AJAX en POST
         jQuery.post(
             url,
             params,
             function (data) { // La méthode qui lit le résultat retourné à la suite de l'envoi de la requêt POST
                 var $listVoie = jQuery("#listVoie"); // OFA : il faut qu'une balise html existe avec cet id="listMessage" pour savoir ou mettre la liste des mesages.
-
                 $listVoie.empty();
-
+                console.log(data);
                 jQuery.each(data, function (key, val) {
+                    getNomSecteur(val.secteurId);
                     $listVoie.append(
                         jQuery("<div style='display:flex;justify-content: space-around'>")
                             .append(jQuery("<span class='badge badge-info' style='width: 200px'>").append(val.nom),
@@ -180,24 +180,26 @@
      * @returns {*}
      */
     function getNomSecteur(idSecteur) {
-
-
         // URL de l'action AJAX
         var url = "<s:url action="ajax_get_secteur"/>";
-
         // Paramètres de la requête AJAX
         var params = {
             idSecteur: idSecteur,
         };
+
+        var nomSecteur = "nomSecteur";
         // Action AJAX en POST
         jQuery.post(
             url,
             params,
             function (data) {
-                var nomSecteur = data;
+                nomSecteur = data;
+            }
+        ).fail(function () {
+            alert("Erreur !!");
+        });
 
-            });
-        return nomSecteur;
+        return nomSecteur;  // Le return se lance avant l'action ajax.
     }
 </script>
 </body>
