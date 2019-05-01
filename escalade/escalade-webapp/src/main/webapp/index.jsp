@@ -54,9 +54,10 @@
                             <option>Site</option>
                             <option>Topo</option>
                         </select>
-
                     </div>
-                    <s:submit value="Rechercher" id="btn" class="btn btn-info"/>
+                    <div>
+                        <button type="submit" value="Rechercher" id="btn" class="btn btn-info">Rechercher</button>
+                    </div>
                 </div>
             </s:form>
         </div>

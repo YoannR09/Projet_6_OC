@@ -83,10 +83,10 @@
             <div class="card-header "><em>Rechercher les topos</em></div>
             <div class="card-body"style="text-align: center" >
                 <s:form action="recherche_topo">
-                    <div class="input-group">
+                    <div class="input-group" style="display: flex;justify-content: space-around">
                         <input type="text" name="text" class="form-control" placeholder="Recherche..." aria-label="Recipient's username" aria-describedby="basic-addon2" required>
                         <div class="input-group-append">
-                            <s:submit id="btn" class="btn btn-outline-info" type="button"><i class="fas fa-search"></i></s:submit>
+                            <button id="btn" class="btn btn-outline-info" type="submit"><i class="fas fa-search"></i></button>
                         </div>
                     </div>
                 </s:form>

@@ -50,7 +50,7 @@
 
 <div id="page">
 
-    <div class="col-lg-8 col-md-8 col-sm-8" id="bloc">
+    <div class="col-lg-7 col-md-7 col-sm-7" id="bloc">
         <div class="col-lg-12 col-md-12 col-sm-12" id="addSite" >
             <h3 style="margin: 15px;">Créer un site d'escalade</h3>
             <div class="form-row"  id="cadreDiv" style="display: flex; justify-content: space-around;">
@@ -64,23 +64,28 @@
                             <label for="textDescri">Description</label>
                         <textarea  name="description" class="form-control" id="textDescri" rows="4" placeholder="Ecrivez votre description..."></textarea>
                         </div>
+                        <div class="form-group">
+                            <label for="inputNom">Ville</label>
+                            <input name="ville" type="text" class="form-control" id="inputVille" placeholder="Ville" required>
+                        </div>
+                    <div>
+                        <div style="text-align: left">
+                    <s:select id="selectType" name="typeId" label="Type de roche"
+                              list="listType" listKey="id" listValue="type"  style="margin:10px;width:200px" />
 
-                    <s:select id="selectType" name="typeId" label="Type de roche "
-                              list="listType" listKey="id" listValue="type" style="margin:10px"/>
                     <s:select id="selectDepartement" name="departementId" label="Departement "
-                              list="listDepartement" listKey="id" listValue="nom" style="margin:10px"/>
-                    <div class="form-group">
-                        <label for="inputNom">Ville</label>
-                        <input name="ville" type="text" class="form-control" id="inputVille" placeholder="Ville" required>
-                    </div>
+                              list="listDepartement" listKey="id" listValue="nom" style="margin:10px;width:200px"/>
+
                     <s:select id="selectTopo" name="topoId" label="Topo "
-                              list="listTopo" listKey="id" listValue="nom" style="margin:10px"/>
-                    <s:file id="fileProfil" name="myFile"  label="Image principale " style="color:white;margin:10px"/>
+                              list="listTopo" listKey="id" listValue="nom" style="margin:10px;width:200px"/>
+                    <s:file id="fileProfil" name="myFile"  label="Image principale " style="color:white;margin:10px;width:300px"/>
+                    </div>
                 </div>
                 <s:submit value="Suivant" id="btn" class="btn btn-info"/>
+
                 </s:form>
             </div>
-
+            </div>
         </div>
     </div>
 

@@ -19,10 +19,6 @@
         {
             height: 100%;
         }
-        #partieDroite
-        {
-            float: right;
-        }
         #divCota
         {
             text-align: left;
@@ -47,7 +43,12 @@
         {
             color : darkgray;
         }
-
+        #page
+        {
+            background-image: url("/image/qbkls.png");
+            display: flex;
+            justify-content: center;
+        }
 
     </style>
 </head>
@@ -55,30 +56,8 @@
 <header>
     <%@ include file="/_include/header.jsp"%>
 </header>
-<div id="page">
-    <div id="partieDroite"  class="col-lg-3 col-md-3 col-sm-3">
-        <div class="card text-white mb-4"  id="recherche" style="background-color:rgba(0,0,0,0.7)">
-            <div class="card-header "><em>Rechercher les sites</em></div>
-            <div class="card-body"style="text-align: center" >
-                <s:form action="recherche_site">
-                <div class="input-group">
-                    <input type="text" name="text" class="form-control" placeholder="Recherche..." aria-label="Recipient's username" aria-describedby="basic-addon2" required>
-                    <div class="input-group-append">
-                        <s:submit id="btn" class="btn btn-outline-info" type="button"><i class="fas fa-search"></i></s:submit>
-                    </div>
-                </div>
-                </s:form>
-                <br/>
-                <s:a action="site_valide_list_cotaMax" class="btn btn-info" style="width:80%; margin:10px;"> Difficiles </s:a>
-                <br/>
-                <s:a action="site_valide_list_cotaMin" class="btn btn-info" style="width:80%; margin:10px;"> Faciles </s:a>
-                <br/>
-                <s:a action="site_valide_list_note" class="btn btn-info" style="width:80%; margin:10px;"> Bien noté </s:a>
-            </div>
-        </div>
-    </div>
-
-    <div id="partieGauche"  class="col-lg-7 col-md-10 col-sm-12">
+<div id="page" class="col-lg-12 col-md-12 col-sm-12">
+    <div id="partieGauche"  class="col-lg-7 col-md-7 col-sm-7">
         <s:iterator value="listSite">
             <div class="card text-white "  id="bloc">
                 <div class="card-header "><s:property value="nom"/><p id="editeur"><em>Editeur : </em><s:property value="editeur.pseudo"/></p></div>
@@ -117,6 +96,27 @@
                 <s:a id ="pageDown" action="topo_valide_list_pageUp" class="btn btn-info"><s:param name="lastId" value="lastId" /> Page précedente </s:a>
             </s:if>
               -->
+        </div>
+    </div>
+    <div id="partieDroite"  class="col-lg-3 col-md-3 col-sm-3" style="margin-top: 20px">
+        <div class="card text-white mb-4"  id="recherche" style="background-color:rgba(0,0,0,0.7)">
+            <div class="card-header "><em>Rechercher les sites</em></div>
+            <div class="card-body"style="text-align: center" >
+                <s:form action="recherche_site">
+                    <div class="input-group" style="display: flex;justify-content: space-around">
+                        <input type="text" name="text" class="form-control" placeholder="Recherche..." aria-label="Recipient's username" aria-describedby="basic-addon2" required>
+                        <div class="input-group-append">
+                            <button id="btn" class="btn btn-outline-info" type="submit"><i class="fas fa-search"></i></button>
+                        </div>
+                    </div>
+                </s:form>
+                <br/>
+                <s:a action="site_valide_list_cotaMax" class="btn btn-info" style="width:80%; margin:10px;"> Difficiles </s:a>
+                <br/>
+                <s:a action="site_valide_list_cotaMin" class="btn btn-info" style="width:80%; margin:10px;"> Faciles </s:a>
+                <br/>
+                <s:a action="site_valide_list_note" class="btn btn-info" style="width:80%; margin:10px;"> Bien noté </s:a>
+            </div>
         </div>
     </div>
 </div>
