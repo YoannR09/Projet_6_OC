@@ -82,13 +82,11 @@
                     </div>
                 </div>
                 <s:submit value="Suivant" id="btn" class="btn btn-info"/>
-
                 </s:form>
             </div>
             </div>
         </div>
     </div>
-
 </div>
 </body>
 </html>

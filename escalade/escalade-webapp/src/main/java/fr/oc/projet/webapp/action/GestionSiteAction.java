@@ -3,16 +3,14 @@ package fr.oc.projet.webapp.action;
 import com.opensymphony.xwork2.ActionSupport;
 import fr.oc.projet.business.manager.contract.ManagerFactory;
 import fr.oc.projet.model.bean.Image;
-import fr.oc.projet.model.bean.escalade.Cotation;
-import fr.oc.projet.model.bean.escalade.Secteur;
-import fr.oc.projet.model.bean.escalade.Site;
-import fr.oc.projet.model.bean.escalade.Voie;
+import fr.oc.projet.model.bean.escalade.*;
 import fr.oc.projet.model.bean.utilisateur.Commentaire;
 import javassist.NotFoundException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.inject.Inject;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -45,6 +43,9 @@ public class GestionSiteAction extends ActionSupport {
     private         Integer               nombre;
     private         Integer               page;
     private         Integer               note;
+    private         Integer               count;
+    private         Integer               max;
+    private         Boolean               endList;
 
     /**
      * Méthode pour afficher la liste des sites qui sont validés par un administrateur.
@@ -54,21 +55,48 @@ public class GestionSiteAction extends ActionSupport {
      */
     public String doListSiteValide() {
 
-        listSite = managerFactory.getSiteManager().getListSiteValide();
-        nombre = listSite.size();
+        List<Site> vList = managerFactory.getSiteManager().getListSiteValide();
         page = 1;
-
+        listSite = new ArrayList<>();
+        count = page*3;
+        if(count>vList.size()){
+            max = vList.size();
+            endList = true;
+        }else {
+            max = count;
+            endList = false;
+        }
+        if(count == vList.size()){
+            endList = true;
+        }
+        for(int i = count-3;i<max;i++){
+            listSite.add(vList.get(i));
+        }
         return ActionSupport.SUCCESS;
     }
 
     public String doListSiteValideCotaMax() {
 
-        listSite = managerFactory.getSiteManager().getListSiteValide();
+        List<Site> vList = managerFactory.getSiteManager().getListSiteValide();
+        page = 1;
+        listSite = new ArrayList<>();
+        count = page*3;
+        if(count>vList.size()){
+            max = vList.size();
+            endList = true;
+        }else {
+            max = count;
+            endList = false;
+        }
+        if(count == vList.size()){
+            endList = true;
+        }
+        for(int i = count-3;i<max;i++){
+            listSite.add(vList.get(i));
+        }
+
         Collections.sort(listSite, Site.ComparatorCotations);
         Collections.reverse(listSite);
-        page = 1;
-        nombre = listSite.size();
-
 
         return ActionSupport.SUCCESS;
     }
@@ -80,10 +108,24 @@ public class GestionSiteAction extends ActionSupport {
      */
     public String doListSiteValideCotaMin() {
 
-        listSite = managerFactory.getSiteManager().getListSiteValide();
+        List<Site> vList = managerFactory.getSiteManager().getListSiteValide();
         page = 1;
+        listSite = new ArrayList<>();
+        count = page*3;
+        if(count>vList.size()){
+            max = vList.size();
+            endList = true;
+        }else {
+            max = count;
+            endList = false;
+        }
+        if(count == vList.size()){
+            endList = true;
+        }
+        for(int i = count-3;i<max;i++){
+            listSite.add(vList.get(i));
+        }
         Collections.sort(listSite, Site.ComparatorCotations);
-        nombre = listSite.size();
 
         return ActionSupport.SUCCESS;
     }
@@ -95,11 +137,25 @@ public class GestionSiteAction extends ActionSupport {
      */
     public String doListSiteNote() {
 
-        listSite = managerFactory.getSiteManager().getListSiteValide();
+        List<Site> vList = managerFactory.getSiteManager().getListSiteValide();
         page = 1;
+        listSite = new ArrayList<>();
+        count = page*3;
+        if(count>vList.size()){
+            max = vList.size();
+            endList = true;
+        }else {
+            max = count;
+            endList = false;
+        }
+        if(count == vList.size()){
+            endList = true;
+        }
+        for(int i = count-3;i<max;i++){
+            listSite.add(vList.get(i));
+        }
         Collections.sort(listSite, Site.ComparatorNote);
         Collections.reverse(listSite);
-        nombre = listSite.size();
 
         return ActionSupport.SUCCESS;
     }
@@ -110,8 +166,23 @@ public class GestionSiteAction extends ActionSupport {
      */
     public String doListSiteValidePageDown() {
 
-        listSite = managerFactory.getSiteManager().getListSiteValidePageDown(lastId);
-        nombre = listSite.size();
+        List<Site> vList = managerFactory.getSiteManager().getListSiteValide();
+        page = page-1;
+        listSite = new ArrayList<>();
+        count = page*3;
+        if(count>vList.size()){
+            max = vList.size();
+            endList = true;
+        }else {
+            max = count;
+            endList = false;
+        }
+        if(count == vList.size()){
+            endList = true;
+        }
+        for(int i = count-3;i<max;i++){
+            listSite.add(vList.get(i));
+        }
 
         return ActionSupport.SUCCESS;
     }
@@ -122,8 +193,23 @@ public class GestionSiteAction extends ActionSupport {
      */
     public String doListSiteValidePageUp() {
 
-        listSite = managerFactory.getSiteManager().getListSiteValidePageUp(lastId);
-        nombre = listSite.size();
+        List<Site> vList = managerFactory.getSiteManager().getListSiteValide();
+        page = page+1;
+        listSite = new ArrayList<>();
+        count = page*3;
+        if(count>vList.size()){
+            max = vList.size();
+            endList = true;
+        }else {
+            max = count;
+            endList = false;
+        }
+        if(count == vList.size()){
+            endList = true;
+        }
+        for(int i = count-3;i<max;i++){
+            listSite.add(vList.get(i));
+        }
 
         return ActionSupport.SUCCESS;
     }
@@ -180,8 +266,23 @@ public class GestionSiteAction extends ActionSupport {
      */
     public String doRechercheSite(){
 
-        listSite = managerFactory.getSiteManager().rechercheSite(text);
-        nombre = listSite.size();
+        List<Site> vList = managerFactory.getSiteManager().rechercheSite(text);
+        page = page+1;
+        listSite = new ArrayList<>();
+        count = page*3;
+        if(count>vList.size()){
+            max = vList.size();
+            endList = true;
+        }else {
+            max = count;
+            endList = false;
+        }
+        if(count == vList.size()){
+            endList = true;
+        }
+        for(int i = count-3;i<max;i++){
+            listSite.add(vList.get(i));
+        }
 
         return ActionSupport.SUCCESS;
     }
@@ -323,5 +424,13 @@ public class GestionSiteAction extends ActionSupport {
 
     public void setPage(Integer page) {
         this.page = page;
+    }
+
+    public Boolean getEndList() {
+        return endList;
+    }
+
+    public void setEndList(Boolean endList) {
+        this.endList = endList;
     }
 }

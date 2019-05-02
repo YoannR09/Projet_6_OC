@@ -10,6 +10,7 @@ import fr.oc.projet.model.bean.utilisateur.Commentaire;
 import fr.oc.projet.model.bean.utilisateur.Reservation;
 
 import javax.inject.Inject;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -34,6 +35,9 @@ public class GestionTopoAction extends ActionSupport {
     private         String                pseudo;
     private         String                text;
     private         Integer               page;
+    private         Integer               count;
+    private         Integer               max;
+    private         Boolean               endList;
 
 
     /**
@@ -68,8 +72,23 @@ public class GestionTopoAction extends ActionSupport {
      */
     public String doListSiteValidePageDown() {
 
-            listTopo = managerFactory.getTopoManager().getListTopoValidePageDown(lastId);
-            nombre = listTopo.size();
+        List<Topo> vList = managerFactory.getTopoManager().getListTopoValide();
+        page = page-1;
+        listTopo = new ArrayList<>();
+        count = page*3;
+        if(count>vList.size()){
+            max = vList.size();
+            endList = true;
+        }else {
+            max = count;
+            endList = false;
+        }
+        if(count == vList.size()){
+            endList = true;
+        }
+        for(int i = count-3;i<max;i++){
+            listTopo.add(vList.get(i));
+        }
 
         return ActionSupport.SUCCESS;
     }
@@ -80,8 +99,23 @@ public class GestionTopoAction extends ActionSupport {
      */
     public String doListSiteValidePageUp() {
 
-        listTopo = managerFactory.getTopoManager().getListTopoValidePageUp(lastId);
-        nombre = listTopo.size();
+        List<Topo> vList = managerFactory.getTopoManager().getListTopoValide();
+        page = page+1;
+        listTopo = new ArrayList<>();
+        count = page*3;
+        if(count>vList.size()){
+            max = vList.size();
+            endList = true;
+        }else {
+            max = count;
+            endList = false;
+        }
+        if(count == vList.size()){
+            endList = true;
+        }
+        for(int i = count-3;i<max;i++){
+            listTopo.add(vList.get(i));
+        }
 
         return ActionSupport.SUCCESS;
     }
@@ -92,20 +126,49 @@ public class GestionTopoAction extends ActionSupport {
      */
     public String doListTopoValide() {
 
-        listTopo = managerFactory.getTopoManager().getListTopoValide();
-        nombre = listTopo.size();
+        List<Topo> vList = managerFactory.getTopoManager().rechercheTopo(text);
+        page = 1;
+        listTopo = new ArrayList<>();
+        count = page*3;
+        if(count>vList.size()){
+            max = vList.size();
+            endList = true;
+        }else {
+            max = count;
+            endList = false;
+        }
+        if(count == vList.size()){
+            endList = true;
+        }
+        for(int i = count-3;i<max;i++){
+            listTopo.add(vList.get(i));
+        }
 
         return ActionSupport.SUCCESS;
     }
 
     public String doListTopoValideNote() {
 
-        listTopo = managerFactory.getTopoManager().getListTopoValide();
+        List<Topo> vList = managerFactory.getTopoManager().getListTopoValide();
+        page = 1;
+        listTopo = new ArrayList<>();
+        count = page*3;
+        if(count>vList.size()){
+            max = vList.size();
+            endList = true;
+        }else {
+            max = count;
+            endList = false;
+        }
+        if(count == vList.size()){
+            endList = true;
+        }
+        for(int i = count-3;i<max;i++){
+            listTopo.add(vList.get(i));
+        }
 
         Collections.sort(listTopo, Topo.ComparatorNote);
         Collections.reverse(listTopo);
-        nombre = listTopo.size();
-
 
         return ActionSupport.SUCCESS;
     }
@@ -116,7 +179,23 @@ public class GestionTopoAction extends ActionSupport {
      */
     public String doRechercheTopo(){
 
-        listTopo = managerFactory.getTopoManager().rechercheTopo(text);
+        List<Topo> vList = managerFactory.getTopoManager().getListTopoValide();
+        page = 1;
+        listTopo = new ArrayList<>();
+        count = page*3;
+        if(count>vList.size()){
+            max = vList.size();
+            endList = true;
+        }else {
+            max = count;
+            endList = false;
+        }
+        if(count == vList.size()){
+            endList = true;
+        }
+        for(int i = count-3;i<max;i++){
+            listTopo.add(vList.get(i));
+        }
 
         return ActionSupport.SUCCESS;
     }
@@ -217,5 +296,13 @@ public class GestionTopoAction extends ActionSupport {
 
     public void setListImage(List<Image> listImage) {
         this.listImage = listImage;
+    }
+
+    public Boolean getEndList() {
+        return endList;
+    }
+
+    public void setEndList(Boolean endList) {
+        this.endList = endList;
     }
 }

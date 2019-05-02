@@ -57,8 +57,7 @@ public class SiteDaoImpl extends AbstractDaoImpl implements SiteDao {
     public List<Site> getListSiteValide() {
         String vSQL = "SELECT * FROM site " +
                 " WHERE valide = TRUE " +
-                " ORDER BY id DESC" +
-                " LIMIT 5 ";
+                " ORDER BY id DESC";
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
         List<Site> vList = vJdbcTemplate.query(vSQL,siteRM);
         return vList;

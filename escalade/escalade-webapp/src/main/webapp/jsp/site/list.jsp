@@ -88,14 +88,19 @@
             </div>
         </s:iterator>
         <div style="position: absolute; bottom: -50px; justify-content: space-between;display: flex" class="col-lg-12 col-md-12 col-sm-12">
-            <!--
-            <s:if test="nombre == 3">
-                <s:a id ="pageUp" action="topo_valide_list_pageUp" class="btn btn-info" ><s:param name="lastId" value="lastId" /> Page suivante </s:a>
-            </s:if>
             <s:if test="page != 1">
-                <s:a id ="pageDown" action="topo_valide_list_pageUp" class="btn btn-info"><s:param name="lastId" value="lastId" /> Page précedente </s:a>
+            <s:a id ="pageDown" action="site_valide_list_pageDown" class="btn btn-info"><s:param name="page" value="page" /> Page précédente </s:a>
             </s:if>
-              -->
+            <s:else>
+                <button type="button" class="btn btn-info"  disabled> Page précédente </button>
+            </s:else>
+            <span id="countPage">Page <s:property value="page"/></span>
+            <s:if test="endList == false">
+            <s:a id ="pageUp" action="site_valide_list_pageUp" class="btn btn-info" ><s:param name="page" value="page" /> Page suivante </s:a>
+            </s:if>
+            <s:else>
+                <button type="button" class="btn btn-info"  disabled> Page suivante </button>
+            </s:else>
         </div>
     </div>
     <div id="partieDroite"  class="col-lg-3 col-md-3 col-sm-3" style="margin-top: 20px">
@@ -120,6 +125,5 @@
         </div>
     </div>
 </div>
-
 </body>
 </html>

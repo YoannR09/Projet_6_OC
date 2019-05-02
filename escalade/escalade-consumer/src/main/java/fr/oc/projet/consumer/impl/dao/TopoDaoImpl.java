@@ -68,7 +68,7 @@ public class TopoDaoImpl extends AbstractDaoImpl implements TopoDao {
     public List<Topo> getListTopoValidePageDown(Integer lastId) {
         String vSQL = "SELECT * FROM topo " +
                 " WHERE valide = true " +
-                " AND id > "+(lastId-3)+
+                " AND id > "+(lastId-6)+
                 " ORDER BY id DESC" +
                 " LIMIT 5";
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
