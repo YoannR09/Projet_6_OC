@@ -160,7 +160,7 @@ public class GestionParticiper extends ActionSupport {
                 vResult = ActionSupport.ERROR;
             }
         }
-        if(!vResult.equals("error")) {
+        if(vResult != ActionSupport.ERROR) {
             Site site = new Site();
             pseudo = (String) ActionContext.getContext().getSession().get("pseudo");
             site.setEditeurId(managerFactory.getCompteManager().getCompteViaPseudo(pseudo).getId());
