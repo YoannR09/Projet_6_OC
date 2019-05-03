@@ -52,7 +52,6 @@
             left: 50%;
             border-radius: 20px;
         }
-
     </style>
 </head>
 <body>
@@ -61,40 +60,56 @@
 </header>
 <div id="page" class="col-lg-12 col-md-12 col-sm-12">
 
-<div id="partieGauche"  class="col-lg-7 col-md-7 col-sm-7" style="display: flex;justify-content: space-around">
+    <div id="partieGauche"  class="col-lg-7 col-md-7 col-sm-7" style="display: flex;justify-content: space-around">
         <s:iterator value="listTopo">
-                <div class="card text-white mb-4" id="bloc" style="background-color:rgba(0,0,0,0.7)">
-                    <div class="card-header " style="text-align: center"><s:property value="nom"/></div>
-                    <div class="card-body" >
-                        <div id="divImage" class="col-lg-12 col-md-12 col-sm-12">
-                            <img src="./image/<s:property value="urlImg"/>"
-                                 width="100%" height="100%" id="img" style="border: 1px black solid;" />
-                        </div>
-                    </div>
-                    <div class="card-footer" style="text-align: center">
-                        <em >Editeur : </em><s:property value="responsable.pseudo"/></p>
-                        <em >Note : </em><s:property value="note"/> / 10
-                    </div>
-                    <div class="card-footer" style="text-align: center">
-                        <s:a action="topo_detail" class="btn btn-info" id="btnVoir" style="width:100%"><s:param name="idTopo" value="id" /> Voir </s:a>
+            <div class="card text-white mb-4" id="bloc" style="background-color:rgba(0,0,0,0.7)">
+                <div class="card-header " style="text-align: center"><s:property value="nom"/></div>
+                <div class="card-body" >
+                    <div id="divImage" class="col-lg-12 col-md-12 col-sm-12">
+                        <img src="./image/<s:property value="urlImg"/>"
+                             width="100%" height="100%" id="img" style="border: 1px black solid;" />
                     </div>
                 </div>
+                <div class="card-footer" style="text-align: center">
+                    <em >Editeur : </em><s:property value="responsable.pseudo"/></p>
+                    <em >Note : </em><s:property value="note"/> / 10
+                </div>
+                <div class="card-footer" style="text-align: center">
+                    <s:a action="topo_detail" class="btn btn-info" id="btnVoir" style="width:100%"><s:param name="idTopo" value="id" /> Voir </s:a>
+                </div>
+            </div>
         </s:iterator>
-    <div id="blocPage">
-        <s:if test="page != 1">
-            <s:a id ="pageDown" action="topo_valide_list_pageDown" class="btn btn-info"><s:param name="page" value="page" /> Page précédente </s:a>
-        </s:if>
-        <s:else>
-            <button type="button" class="btn btn-info"  disabled> Page précédente </button>
-        </s:else>
-        <s:if test="endList == false">
-            <s:a id ="pageUp" action="topo_valide_list_pageUp" class="btn btn-info" ><s:param name="page" value="page" /> Page suivante </s:a>
-        </s:if>
-        <s:else>
-            <button type="button" class="btn btn-info"  disabled> Page suivante </button>
-        </s:else>
+        <div id="blocPage">
+            <s:if test="page != 1">
+                <s:if test="%{#critere=='valide'}">
+                    <s:a id ="pageDown" action="topo_valide_list_pageDown" class="btn btn-info"><s:param name="page" value="page" /> Page précédente </s:a>
+                </s:if>
+                <s:if test="%{#critere=='recherche'}">
+                    <s:a id ="pageUp" action="topo_valide_list_pageDown_recherche" class="btn btn-info" ><s:param name="page" value="page" /><s:param name="text" value="text"/> Page suivante </s:a>
+                </s:if>
+                <s:if test="%{#critere=='note'}">
+                    <s:a id ="pageUp" action="topo_valide_list_pageDown_note" class="btn btn-info" ><s:param name="page" value="page" /> Page suivante </s:a>
+                </s:if>
+            </s:if>
+            <s:else>
+                <button type="button" class="btn btn-info"  disabled> Page précédente </button>
+            </s:else>
+            <s:if test="endList == false">
+                <s:if test="%{#critere=='valide'}">
+                    <s:a id ="pageUp" action="topo_valide_list_pageUp" class="btn btn-info" ><s:param name="page" value="page" /> Page suivante </s:a>
+                </s:if>
+                <s:if test="%{#critere=='recherche'}">
+                    <s:a id ="pageUp" action="topo_valide_list_pageUp_recherche" class="btn btn-info" ><s:param name="page" value="page" /><s:param name="text" value="text"/> Page suivante </s:a>
+                </s:if>
+                <s:if test="%{#critere=='note'}">
+                    <s:a id ="pageUp" action="topo_valide_list_pageUp_note" class="btn btn-info" ><s:param name="page" value="page" /> Page suivante </s:a>
+                </s:if>
+            </s:if>
+            <s:else>
+                <button type="button" class="btn btn-info"  disabled> Page suivante </button>
+            </s:else>
+        </div>
     </div>
-</div>
     <div id="partieDroite"  class="col-lg-3 col-md-3 col-sm-3">
         <div class="card text-white mb-4"  id="recherche" style="background-color:rgba(0,0,0,0.7)">
             <div class="card-header "><em>Rechercher les topos</em></div>

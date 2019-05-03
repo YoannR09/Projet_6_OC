@@ -113,6 +113,12 @@ public class GestionParticiper extends ActionSupport {
         return vResult;
     }
 
+    /**
+     * Méthode pour ajouter une image dans un topo.
+     * On ajoute l'image à la bdd.
+     * On retourne sur la même page pour ajouter un autre image si l'utilisateur le désir.
+     * @return
+     */
     public String doAddImageTopo(){
 
         String vResult = ActionSupport.INPUT;
@@ -130,7 +136,6 @@ public class GestionParticiper extends ActionSupport {
                 image.setImageDePresentation(false);
                 managerFactory.getImageManager().addImage(image);
                 logger.info("Image : "+image+" a bien été ajoutée à la base de données.");
-
                 vResult = ActionSupport.SUCCESS;
 
             } catch (IOException e) {
@@ -208,9 +213,7 @@ public class GestionParticiper extends ActionSupport {
      */
     public String doAddTopo() {
 
-        // Par défaut, le result est "input"
         String vResult = ActionSupport.INPUT;
-
             if(nomTopo != null){
                 listTopo = managerFactory.getTopoManager().getListTopo();
                 for(int i = 0; i<listTopo.size();i++){

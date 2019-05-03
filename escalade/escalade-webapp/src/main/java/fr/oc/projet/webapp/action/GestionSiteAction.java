@@ -26,25 +26,26 @@ public class GestionSiteAction extends ActionSupport {
 
     static final Logger logger	= LogManager.getLogger();
 
-    private         List<Site>            listSite;
-    private         String                nomSite;
-    private         String                text;
     private         Cotation              cotation;
     private         Secteur               secteur;
     private         Voie                  voie;
     private         Site                  site;
-    private         Integer               idSite;
-    private         Integer               idSecteur;
+    private         List<Site>            listSite;
     private         List<Commentaire>     listCommentaire;
     private         List<Secteur>         listSecteur;
     private         List<Voie>            listVoie;
     private         List<Image>           listImage;
+    private         String                nomSite;
+    private         String                text;
+    private         String                critere;
     private         Integer               lastId;
     private         Integer               nombre;
     private         Integer               page;
     private         Integer               note;
     private         Integer               count;
     private         Integer               max;
+    private         Integer               idSite;
+    private         Integer               idSecteur;
     private         Boolean               endList;
 
     /**
@@ -64,10 +65,11 @@ public class GestionSiteAction extends ActionSupport {
     public String doListSiteValideCotaMax() {
 
         List<Site> vList = managerFactory.getSiteManager().getListSiteValide();
+        Collections.sort(vList, Site.ComparatorCotations);
+        Collections.reverse(vList);
         page = 1;
         pagination(vList,page);
-        Collections.sort(listSite, Site.ComparatorCotations);
-        Collections.reverse(listSite);
+        critere = "cotaMax";
 
         return ActionSupport.SUCCESS;
     }
@@ -80,9 +82,10 @@ public class GestionSiteAction extends ActionSupport {
     public String doListSiteValideCotaMin() {
 
         List<Site> vList = managerFactory.getSiteManager().getListSiteValide();
+        Collections.sort(vList, Site.ComparatorCotations);
         page = 1;
         pagination(vList,page);
-        Collections.sort(listSite, Site.ComparatorCotations);
+        critere = "cotaMin";
 
         return ActionSupport.SUCCESS;
     }
@@ -95,10 +98,11 @@ public class GestionSiteAction extends ActionSupport {
     public String doListSiteNote() {
 
         List<Site> vList = managerFactory.getSiteManager().getListSiteValide();
+        Collections.sort(vList, Site.ComparatorNote);
+        Collections.reverse(vList);
         page = 1;
         pagination(vList,page);
-        Collections.sort(listSite, Site.ComparatorNote);
-        Collections.reverse(listSite);
+        critere = "note";
 
         return ActionSupport.SUCCESS;
     }
@@ -112,6 +116,7 @@ public class GestionSiteAction extends ActionSupport {
         List<Site> vList = managerFactory.getSiteManager().getListSiteValide();
         page = page-1;
         pagination(vList,page);
+        critere = "valide";
 
         return ActionSupport.SUCCESS;
     }
@@ -125,6 +130,112 @@ public class GestionSiteAction extends ActionSupport {
         List<Site> vList = managerFactory.getSiteManager().getListSiteValide();
         page = page+1;
         pagination(vList,page);
+        critere = "valide";
+
+        return ActionSupport.SUCCESS;
+    }
+
+    public String doListSiteValidePageDownRecherche() {
+
+        List<Site> vList = managerFactory.getSiteManager().rechercheSite(text);
+        page = page-1;
+        pagination(vList,page);
+        critere = "recherche";
+
+        return ActionSupport.SUCCESS;
+    }
+
+    /**
+     * Méthode pour passer à la page suivante pour la recherche.
+     * @return
+     */
+    public String doListSiteValidePageUpRecherche() {
+
+        List<Site> vList = managerFactory.getSiteManager().rechercheSite(text);
+        page = page+1;
+        pagination(vList,page);
+        critere = "recherche";
+
+        return ActionSupport.SUCCESS;
+    }
+
+    public String doListSiteValidePageDownCotaMin() {
+
+        List<Site> vList = managerFactory.getSiteManager().getListSiteValide();
+        Collections.sort(vList, Site.ComparatorCotations);
+        page = page-1;
+        pagination(vList,page);
+        critere = "cotaMin";
+
+        return ActionSupport.SUCCESS;
+    }
+
+    /**
+     * Méthode pour passer à la page suivante.
+     * @return
+     */
+    public String doListSiteValidePageUpCotaMin() {
+
+        List<Site> vList = managerFactory.getSiteManager().getListSiteValide();
+        Collections.sort(vList, Site.ComparatorCotations);
+        page = page+1;
+        pagination(vList,page);
+        critere = "cotaMin";
+
+        return ActionSupport.SUCCESS;
+    }
+
+    public String doListSiteValidePageDownCotaMax() {
+
+        List<Site> vList = managerFactory.getSiteManager().getListSiteValide();
+        Collections.sort(vList, Site.ComparatorCotations);
+        Collections.reverse(vList);
+        page = page-1;
+        pagination(vList,page);
+        critere = "cotaMax";
+
+        return ActionSupport.SUCCESS;
+    }
+
+    /**
+     * Méthode pour passer à la page suivante.
+     * @return
+     */
+    public String doListSiteValidePageUpCotaMax() {
+
+        List<Site> vList = managerFactory.getSiteManager().getListSiteValide();
+        Collections.sort(vList, Site.ComparatorCotations);
+        Collections.reverse(vList);
+        page = page+1;
+        pagination(vList,page);
+        critere = "cotaMax";
+
+        return ActionSupport.SUCCESS;
+    }
+    public String doListSiteValidePageDownNote() {
+
+        List<Site> vList = managerFactory.getSiteManager().getListSiteValide();
+        Collections.sort(vList, Site.ComparatorNote);
+        Collections.reverse(vList);
+        page = page-1;
+        pagination(vList,page);
+        critere = "note";
+
+        return ActionSupport.SUCCESS;
+    }
+
+    /**
+     * Méthode pour passer à la page suivante.
+     * @return
+     */
+    public String doListSiteValidePageUpNote() {
+
+        List<Site> vList = managerFactory.getSiteManager().getListSiteValide();
+        Collections.sort(vList, Site.ComparatorNote);
+        Collections.reverse(vList);
+        page = page+1;
+        pagination(vList,page);
+        critere = "note";
 
         return ActionSupport.SUCCESS;
     }

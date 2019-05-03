@@ -78,10 +78,10 @@
 
 
         <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered " role="document" style="width: 25%">
+            <div class="modal-dialog modal-dialog-centered " role="document" style="width: 400px">
                 <div class="modal-content bg-dark">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Ajouter un secteur</h5>
+                        <h5 class="modal-title" id="exampleModalLongTitle">Ajouter une image</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>

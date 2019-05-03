@@ -108,6 +108,62 @@
             <result name="success">/jsp/site/list.jsp</result>
         </action>
 
+        <!-- Affiche la page précedente de la liste des sites -->
+        <action name="site_valide_list_pageDown_recherche"
+                class="fr.oc.projet.webapp.action.GestionSiteAction"
+                method="doListSiteValidePageDownRecherche">
+            <result name="success">/jsp/site/list.jsp</result>
+        </action>
+
+        <!-- Affiche la page suivante de la liste des sites -->
+        <action name="site_valide_list_pageUp_recherche"
+                class="fr.oc.projet.webapp.action.GestionSiteAction"
+                method="doListSiteValidePageUpRecherche">
+            <result name="success">/jsp/site/list.jsp</result>
+        </action>
+
+        <!-- Affiche la page précedente de la liste des sites -->
+        <action name="site_valide_list_pageDown_note"
+                class="fr.oc.projet.webapp.action.GestionSiteAction"
+                method="doListSiteValidePageDownNote">
+            <result name="success">/jsp/site/list.jsp</result>
+        </action>
+
+        <!-- Affiche la page suivante de la liste des sites -->
+        <action name="site_valide_list_pageUp_note"
+                class="fr.oc.projet.webapp.action.GestionSiteAction"
+                method="doListSiteValidePageUpNote">
+            <result name="success">/jsp/site/list.jsp</result>
+        </action>
+
+        <!-- Affiche la page précedente de la liste des sites -->
+        <action name="site_valide_list_pageDown_cotaMin"
+                class="fr.oc.projet.webapp.action.GestionSiteAction"
+                method="doListSiteValidePageDownCotaMin">
+            <result name="success">/jsp/site/list.jsp</result>
+        </action>
+
+        <!-- Affiche la page suivante de la liste des sites -->
+        <action name="site_valide_list_pageUp_cotaMin"
+                class="fr.oc.projet.webapp.action.GestionSiteAction"
+                method="doListSiteValidePageUpCotaMin">
+            <result name="success">/jsp/site/list.jsp</result>
+        </action>
+
+        <!-- Affiche la page précedente de la liste des sites -->
+        <action name="site_valide_list_pageDown_cotaMax"
+                class="fr.oc.projet.webapp.action.GestionSiteAction"
+                method="doListSiteValidePageDownCotaMax">
+            <result name="success">/jsp/site/list.jsp</result>
+        </action>
+
+        <!-- Affiche la page suivante de la liste des sites -->
+        <action name="site_valide_list_pageUp_cotaMax"
+                class="fr.oc.projet.webapp.action.GestionSiteAction"
+                method="doListSiteValidePageUp_cotaMax">
+            <result name="success">/jsp/site/list.jsp</result>
+        </action>
+
         <!-- Affiche une liste de site en fonction du mot-clé -->
         <action name="recherche_site"
                 class="fr.oc.projet.webapp.action.GestionSiteAction"
@@ -141,10 +197,38 @@
             <result name="success">/jsp/topo/list.jsp</result>
         </action>
 
-        <!-- Affiche la page suivante de la liste des sites -->
+        <!-- Affiche la page suivante de la liste des topos -->
         <action name="topo_valide_list_pageUp"
                 class="fr.oc.projet.webapp.action.GestionTopoAction"
                 method="doListSiteValidePageUp">
+            <result name="success">/jsp/topo/list.jsp</result>
+        </action>
+
+        <!-- Affiche la page précedente de la liste des topos -->
+        <action name="topo_valide_list_pageDown_recherche"
+                class="fr.oc.projet.webapp.action.GestionTopoAction"
+                method="doListSiteValidePageDownRecherche">
+            <result name="success">/jsp/topo/list.jsp</result>
+        </action>
+
+        <!-- Affiche la page suivante de la liste des topos -->
+        <action name="topo_valide_list_pageUp_recherche"
+                class="fr.oc.projet.webapp.action.GestionTopoAction"
+                method="doListSiteValidePageUpRecherche">
+            <result name="success">/jsp/topo/list.jsp</result>
+        </action>
+
+        <!-- Affiche la page précedente de la liste des topos -->
+        <action name="topo_valide_list_pageDown_note"
+                class="fr.oc.projet.webapp.action.GestionTopoAction"
+                method="doListSiteValidePageDownNote">
+            <result name="success">/jsp/topo/list.jsp</result>
+        </action>
+
+        <!-- Affiche la page suivante de la liste des topos -->
+        <action name="topo_valide_list_pageUp_note"
+                class="fr.oc.projet.webapp.action.GestionTopoAction"
+                method="doListSiteValidePageUpNote">
             <result name="success">/jsp/topo/list.jsp</result>
         </action>
 
@@ -177,6 +261,12 @@
             <result name="success">/jsp/topo/detail.jsp</result>
         </action>
 
+        <action name="recherche"
+                class="fr.oc.projet.webapp.action.GestionIndexAction"
+                method="doRecherche">
+            <result name="Site">/jsp/site/list.jsp</result>
+            <result name="Topo">/jsp/topo/list.jsp</result>
+        </action>
 
 
         <!-- Action pour la classe LoginAction -->
@@ -358,13 +448,6 @@
                 class="fr.oc.projet.webapp.action.GestionMessageAction"
                 method="doAddMessage">
             <result name="success">/index.jsp</result>
-        </action>
-
-        <action name="recherche"
-                class="fr.oc.projet.webapp.action.GestionIndexAction"
-                method="doRecherche">
-            <result name="Site">/jsp/site/list.jsp</result>
-            <result name="Topo">/jsp/topo/list.jsp</result>
         </action>
 
     </package>

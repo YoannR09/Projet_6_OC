@@ -7,6 +7,7 @@ import fr.oc.projet.model.bean.escalade.Site;
 import fr.oc.projet.model.bean.escalade.Topo;
 
 import javax.inject.Inject;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,7 +26,11 @@ public class GestionIndexAction extends ActionSupport {
     private         Integer               nombre;
     private         List<Topo>            listTopo;
     private         List<Site>            listSite;
-    private         Boolean               firstPage;
+    private         Integer               count;
+    private         Integer               max;
+    private         Boolean               endList;
+    private         Integer               page;
+    private         String                critere;
 
 
     /**
@@ -33,9 +38,7 @@ public class GestionIndexAction extends ActionSupport {
      * @return
      */
     public String doGetCountNbreTopoAction(){
-
         nbreTopo = managerFactory.getTopoManager().getCountTopo();
-
         return ActionSupport.SUCCESS;
     }
 
@@ -44,9 +47,7 @@ public class GestionIndexAction extends ActionSupport {
      * @return
      */
     public String doGetCountNbreSiteAction(){
-
         nbreSite = managerFactory.getSiteManager().getCountSite();
-
         return ActionSupport.SUCCESS;
     }
 
@@ -60,21 +61,46 @@ public class GestionIndexAction extends ActionSupport {
         String vResult;
 
         if(select.equals("Site")){
-            listSite = managerFactory.getSiteManager().rechercheSite(text);
-
-            nombre = listSite.size();
-
-            firstPage = true;
+            List<Site> vList = managerFactory.getSiteManager().rechercheSite(text);
+            page = 1;
+            listSite = new ArrayList<>();
+            count = page*3;
+            if(count>vList.size()){
+                max = vList.size();
+                endList = true;
+            }else {
+                max = count;
+                endList = false;
+            }
+            if(count == vList.size()){
+                endList = true;
+            }
+            for(int i = count-3;i<max;i++){
+                listSite.add(vList.get(i));
+            }
+            critere = "recherche";
             vResult = "Site";
         }else {
-            listTopo = managerFactory.getTopoManager().rechercheTopo(text);
-            nombre = listTopo.size();
-
-            firstPage = true;
-
+            List<Topo> vList = managerFactory.getTopoManager().rechercheTopo(text);
+            page = 1;
+            listTopo = new ArrayList<>();
+            count = page*3;
+            if(count>vList.size()){
+                max = vList.size();
+                endList = true;
+            }else {
+                max = count;
+                endList = false;
+            }
+            if(count == vList.size()){
+                endList = true;
+            }
+            for(int i = count-3;i<max;i++){
+                listTopo.add(vList.get(i));
+            }
+            critere = "recherche";
             vResult = "Topo";
         }
-
         return vResult ;
     }
 
@@ -142,11 +168,35 @@ public class GestionIndexAction extends ActionSupport {
         this.listSite = listSite;
     }
 
-    public Boolean getFirstPage() {
-        return firstPage;
+    public Integer getMax() {
+        return max;
     }
 
-    public void setFirstPage(Boolean firstPage) {
-        this.firstPage = firstPage;
+    public void setMax(Integer max) {
+        this.max = max;
+    }
+
+    public Boolean getEndList() {
+        return endList;
+    }
+
+    public void setEndList(Boolean endList) {
+        this.endList = endList;
+    }
+
+    public Integer getPage() {
+        return page;
+    }
+
+    public void setPage(Integer page) {
+        this.page = page;
+    }
+
+    public String getCritere() {
+        return critere;
+    }
+
+    public void setCritere(String critere) {
+        this.critere = critere;
     }
 }

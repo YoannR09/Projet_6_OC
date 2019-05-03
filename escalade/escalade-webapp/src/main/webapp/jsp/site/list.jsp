@@ -102,13 +102,41 @@
         </s:iterator>
         <div id="blocPage">
             <s:if test="page != 1">
+                <s:if test="%{#critere=='valide'}">
             <s:a id ="pageDown" action="site_valide_list_pageDown" class="btn btn-info"><s:param name="page" value="page" /> Page précédente </s:a>
+                </s:if>
+                <s:if test="%{#critere=='recherche'}">
+                    <s:a id ="pageDown" action="site_valide_list_pageDown_recherche" class="btn btn-info"><s:param name="page" value="page" /><s:param name="text" value="text" /> Page précédente </s:a>
+                </s:if>
+                <s:if test="%{#critere=='note'}">
+                    <s:a id ="pageDown" action="site_valide_list_pageDown_note" class="btn btn-info"><s:param name="page" value="page" /> Page précédente </s:a>
+                </s:if>
+                <s:if test="%{#critere=='cotaMin'}">
+                    <s:a id ="pageDown" action="site_valide_list_pageDown_cotaMin" class="btn btn-info"><s:param name="page" value="page" /> Page précédente </s:a>
+                </s:if>
+                <s:if test="%{#critere=='cotaMax'}">
+                    <s:a id ="pageDown" action="site_valide_list_pageDown_cotaMax" class="btn btn-info"><s:param name="page" value="page" /> Page précédente </s:a>
+                </s:if>
             </s:if>
             <s:else>
                 <button type="button" class="btn btn-info"  disabled> Page précédente </button>
             </s:else>
             <s:if test="endList == false">
-            <s:a id ="pageUp" action="site_valide_list_pageUp" class="btn btn-info" ><s:param name="page" value="page" /> Page suivante </s:a>
+                <s:if test="%{#critere=='valide'}">
+                    <s:a id ="pageDown" action="site_valide_list_pageUp" class="btn btn-info"><s:param name="page" value="page" /> Page précédente </s:a>
+                </s:if>
+                <s:if test="%{#critere=='recherche'}">
+                    <s:a id ="pageDown" action="site_valide_list_pageUp_recherche" class="btn btn-info"><s:param name="page" value="page" /><s:param name="text" value="text" /> Page précédente </s:a>
+                </s:if>
+                <s:if test="%{#critere=='note'}">
+                    <s:a id ="pageDown" action="site_valide_list_pageUp_note" class="btn btn-info"><s:param name="page" value="page" /> Page précédente </s:a>
+                </s:if>
+                <s:if test="%{#critere=='cotaMin'}">
+                    <s:a id ="pageDown" action="site_valide_list_pageUp_cotaMin" class="btn btn-info"><s:param name="page" value="page" /> Page précédente </s:a>
+                </s:if>
+                <s:if test="%{#critere=='cotaMax'}">
+                    <s:a id ="pageDown" action="site_valide_list_pageUp_cotaMax" class="btn btn-info"><s:param name="page" value="page" /> Page précédente </s:a>
+                </s:if>
             </s:if>
             <s:else>
                 <button type="button" class="btn btn-info"  disabled> Page suivante </button>

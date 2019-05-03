@@ -38,6 +38,7 @@ public class GestionTopoAction extends ActionSupport {
     private         Integer               count;
     private         Integer               max;
     private         Boolean               endList;
+    private         String                critere;
 
 
     /**
@@ -66,6 +67,49 @@ public class GestionTopoAction extends ActionSupport {
         return  ActionSupport.SUCCESS;
     }
 
+    public String doListSiteValidePageDownRecherche() {
+
+        List<Topo> vList = managerFactory.getTopoManager().rechercheTopo(text);
+        page = page-1;
+        pagination(vList,page);
+        critere = "recherche";
+
+        return ActionSupport.SUCCESS;
+    }
+    public String doListSiteValidePageUpRecherche() {
+
+        List<Topo> vList = managerFactory.getTopoManager().rechercheTopo(text);
+        page = page+1;
+        pagination(vList,page);
+        critere = "recherche";
+
+        return ActionSupport.SUCCESS;
+    }
+
+    public String doListSiteValidePageUpNote() {
+
+        List<Topo> vList = managerFactory.getTopoManager().rechercheTopo(text);
+        Collections.sort(vList, Topo.ComparatorNote);
+        Collections.reverse(vList);
+        page = page+1;
+        pagination(vList,page);
+        critere = "note";
+
+        return ActionSupport.SUCCESS;
+    }
+
+    public String doListSiteValidePageDownNote() {
+
+        List<Topo> vList = managerFactory.getTopoManager().rechercheTopo(text);
+        Collections.sort(vList, Topo.ComparatorNote);
+        Collections.reverse(vList);
+        page = page-1;
+        pagination(vList,page);
+        critere = "note";
+
+        return ActionSupport.SUCCESS;
+    }
+
     /**
      * Méthode pour afficher la page précedente de la liste des topos.
      * @return
@@ -75,6 +119,7 @@ public class GestionTopoAction extends ActionSupport {
         List<Topo> vList = managerFactory.getTopoManager().getListTopoValide();
         page = page-1;
         pagination(vList,page);
+        critere = "valide";
 
         return ActionSupport.SUCCESS;
     }
@@ -88,7 +133,7 @@ public class GestionTopoAction extends ActionSupport {
         List<Topo> vList = managerFactory.getTopoManager().getListTopoValide();
         page = page+1;
         pagination(vList,page);
-
+        critere = "valide";
 
         return ActionSupport.SUCCESS;
     }
@@ -102,6 +147,7 @@ public class GestionTopoAction extends ActionSupport {
         List<Topo> vList = managerFactory.getTopoManager().getListTopoValide();
         page = 1;
         pagination(vList,page);
+        critere = "valide";
 
         return ActionSupport.SUCCESS;
     }
@@ -109,11 +155,11 @@ public class GestionTopoAction extends ActionSupport {
     public String doListTopoValideNote() {
 
         List<Topo> vList = managerFactory.getTopoManager().getListTopoValide();
+        Collections.sort(vList, Topo.ComparatorNote);
+        Collections.reverse(vList);
         page = 1;
         pagination(vList,page);
-
-        Collections.sort(listTopo, Topo.ComparatorNote);
-        Collections.reverse(listTopo);
+        critere = "note";
 
         return ActionSupport.SUCCESS;
     }
@@ -127,6 +173,7 @@ public class GestionTopoAction extends ActionSupport {
         List<Topo> vList = managerFactory.getTopoManager().rechercheTopo(text);
         page = 1;
         pagination(vList,page);
+        critere = "recherche";
 
         return ActionSupport.SUCCESS;
     }
@@ -258,5 +305,21 @@ public class GestionTopoAction extends ActionSupport {
 
     public void setEndList(Boolean endList) {
         this.endList = endList;
+    }
+
+    public Integer getMax() {
+        return max;
+    }
+
+    public void setMax(Integer max) {
+        this.max = max;
+    }
+
+    public String getCritere() {
+        return critere;
+    }
+
+    public void setCritere(String critere) {
+        this.critere = critere;
     }
 }
