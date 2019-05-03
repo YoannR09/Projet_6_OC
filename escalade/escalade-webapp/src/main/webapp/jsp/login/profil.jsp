@@ -30,6 +30,10 @@
         {
             margin-bottom: 10px;
         }
+        label
+        {
+            margin-top: 15px;
+        }
         em
         {
             color : darkgray;
@@ -69,16 +73,19 @@
             <div class="modal-dialog modal-dialog-centered" role="document" style="width: 350px">
                 <div class="modal-content bg-dark" style="color:white;">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Evaluer le site</h5>
+                        <h5 class="modal-title" id="exampleModalLongTitle">Changer de mot de passe</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body" style="display: flex;justify-content: center">
+                    <div class="modal-body" style="display: flex;justify-content: center;text-align: center">
                         <s:form action="update_mdp" >
-                            <input name="verif" type="password" class="form-control" id="inputVerif" placeholder="Mot de passe actuel" required>
-                            <input name="nouveau" type="password" class="form-control" id="inputNew" placeholder="Nouveau mot de passe" required>
-                            <input name="verifNouveau" type="password" class="form-control" id="inputVerifNew" placeholder="Vérification du nouveau mot de passe" required>
+                            <label for="inputVerif">Mot de passe actuel</label>
+                            <input name="verif" type="password" class="form-control" id="inputVerif" required>
+                            <label for="inputNew">Nouveau mot de passe</label>
+                            <input name="nouveau" type="password" class="form-control" id="inputNew"  required>
+                            <label for="inputVerifNew">Vérification du nouveau mot de passe</label>
+                            <input name="verifNouveau" type="password" class="form-control" id="inputVerifNew"  required>
                             <s:submit value="Changer" id="btn" class="btn btn-info"/>
                         </s:form>
                     </div>
@@ -89,15 +96,17 @@
             <div class="modal-dialog modal-dialog-centered" role="document" style="width: 350px">
                 <div class="modal-content bg-dark" style="color:white;">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModal">Evaluer le site</h5>
+                        <h5 class="modal-title" id="exampleModal">Changer d'adresse mail</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body" style="display: flex;justify-content: center">
+                    <div class="modal-body" style="display: flex;justify-content: center;text-align: center">
                         <s:form action="update_mail" >
-                            <input name="nouveau" type="text" class="form-control" id="inputNew" placeholder="Nouveau mail" required>
-                            <input name="verifNouveau" type="text" class="form-control" id="inputVerifNew" placeholder="Vérification du nouveau mail" required>
+                            <label for="inputNewMail">Nouvelle adresse mail</label>
+                            <input name="nouveau" type="text" class="form-control" id="inputNewMail" required>
+                            <label for="inputVerifNewMail">Vérification du nouveau mail</label>
+                            <input name="verifNouveau" type="text" class="form-control" id="inputVerifNewMail" required>
                             <s:submit value="Changer" id="btn" class="btn btn-info"/>
                         </s:form>
                     </div>

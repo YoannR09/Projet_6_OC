@@ -35,9 +35,10 @@
         {
             color : darkgray;
         }
-
-
-
+        span
+        {
+            margin: 5px;
+        }
     </style>
 </head>
 <body>
@@ -57,9 +58,8 @@
                 <span style='width: 100px'>Hauteurs</span>
                 <span style='width: 50px'>Consulter</span>
             </div>
-
             <s:iterator value="listSecteur">
-                <div  id="listResa" style="display: flex;justify-content: space-around">
+                <div  id="listResa" style="display: flex;justify-content: space-around;text-align: center">
                     <span class='badge badge-info' style='width: 200px'> <s:property value="nom"/></span>
                     <span class='badge badge-light' style='width: 100px'><s:property value="cotationMin.valeur"/> à <s:property value="cotationMax.valeur"/></span>
                     <span class='badge badge-light' style='width: 100px'><s:property value="hauteurMin"/> à <s:property value="hauteurMax"/></span>
@@ -68,9 +68,7 @@
                 <div style='width: 100%;height: 5px; border-bottom : 1px solid lightgray; border-radius: 40%'>
                 </div>
             </s:iterator>
-
         </div>
-
     </div>
 </div>
 

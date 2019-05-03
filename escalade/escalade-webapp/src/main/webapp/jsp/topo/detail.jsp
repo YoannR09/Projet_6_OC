@@ -148,7 +148,7 @@
             </div>
             <div class="col-lg-8 col-md-8 col-sm-8" id="cadreInfos">
                 <h2 id="nomTopo"><s:property value="topo.nom"/></h2>
-                <br/><s:property value="topo.description"/>
+                <br/><div style="word-wrap: break-word;"><s:property value="topo.description"/></div>
             </div>
 
         </div>

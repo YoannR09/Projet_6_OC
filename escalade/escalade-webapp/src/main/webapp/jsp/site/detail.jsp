@@ -129,7 +129,7 @@
 
         <div class="col-lg-12 col-md-12 col-sm-12" id="cadreInfos" style="background-color:rgba(0,0,0,0.7);padding-top: 10px">
             <h2 id="nomSite"><s:property value="site.nom"/></h2>
-            <br/><s:property value="site.description"/>
+            <br/><div style="word-wrap: break-word;"><s:property value="site.description"/></div>
 
             <h4><em>Localisation</em></h4>
 
