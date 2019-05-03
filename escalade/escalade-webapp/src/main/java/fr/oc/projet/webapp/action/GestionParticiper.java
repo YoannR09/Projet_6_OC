@@ -215,10 +215,10 @@ public class GestionParticiper extends ActionSupport {
                 listTopo = managerFactory.getTopoManager().getListTopo();
                 for(int i = 0; i<listTopo.size();i++){
                     if (nomTopo.equals(listTopo.get(i).getNom())){
-                        vResult = ERROR;
+                        vResult = ActionSupport.ERROR;
                     }
                 }
-                if (!vResult.equals(ERROR)) {
+                if (vResult != ActionSupport.ERROR) {
                     Topo topo = new Topo();
                     pseudo = (String) ActionContext.getContext().getSession().get("pseudo");
                     topo.setResponsable(managerFactory.getCompteManager().getCompteViaPseudo(pseudo));
@@ -244,7 +244,7 @@ public class GestionParticiper extends ActionSupport {
                     } catch (IOException e) {
                         e.printStackTrace();
                         logger.error(e);
-                        return ERROR;
+                        return ActionSupport.ERROR;
                     }
                 }else {
                     this.addActionMessage("Nom du topo déjà utilisé");
