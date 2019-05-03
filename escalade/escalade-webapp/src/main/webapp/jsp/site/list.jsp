@@ -71,6 +71,13 @@
 </header>
 <div id="page" class="col-lg-12 col-md-12 col-sm-12">
     <div id="partieGauche"  class="col-lg-7 col-md-7 col-sm-7">
+        <s:if test="listSite.empty">
+            <div class="card text-white "  id="bloc">
+                <div class="card-body" style="display: flex;">
+                    <em style="color: white">Aucun site d'escalade</em>
+                </div>
+            </div>
+        </s:if>
         <s:iterator value="listSite">
             <div class="card text-white "  id="bloc">
                 <div class="card-header "><s:property value="nom"/><p id="editeur"><em>Editeur : </em><s:property value="editeur.pseudo"/></p></div>
