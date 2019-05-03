@@ -74,21 +74,7 @@ public class GestionTopoAction extends ActionSupport {
 
         List<Topo> vList = managerFactory.getTopoManager().getListTopoValide();
         page = page-1;
-        listTopo = new ArrayList<>();
-        count = page*3;
-        if(count>vList.size()){
-            max = vList.size();
-            endList = true;
-        }else {
-            max = count;
-            endList = false;
-        }
-        if(count == vList.size()){
-            endList = true;
-        }
-        for(int i = count-3;i<max;i++){
-            listTopo.add(vList.get(i));
-        }
+        pagination(vList,page);
 
         return ActionSupport.SUCCESS;
     }
@@ -101,21 +87,8 @@ public class GestionTopoAction extends ActionSupport {
 
         List<Topo> vList = managerFactory.getTopoManager().getListTopoValide();
         page = page+1;
-        listTopo = new ArrayList<>();
-        count = page*3;
-        if(count>vList.size()){
-            max = vList.size();
-            endList = true;
-        }else {
-            max = count;
-            endList = false;
-        }
-        if(count == vList.size()){
-            endList = true;
-        }
-        for(int i = count-3;i<max;i++){
-            listTopo.add(vList.get(i));
-        }
+        pagination(vList,page);
+
 
         return ActionSupport.SUCCESS;
     }
@@ -126,23 +99,9 @@ public class GestionTopoAction extends ActionSupport {
      */
     public String doListTopoValide() {
 
-        List<Topo> vList = managerFactory.getTopoManager().rechercheTopo(text);
+        List<Topo> vList = managerFactory.getTopoManager().getListTopoValide();
         page = 1;
-        listTopo = new ArrayList<>();
-        count = page*3;
-        if(count>vList.size()){
-            max = vList.size();
-            endList = true;
-        }else {
-            max = count;
-            endList = false;
-        }
-        if(count == vList.size()){
-            endList = true;
-        }
-        for(int i = count-3;i<max;i++){
-            listTopo.add(vList.get(i));
-        }
+        pagination(vList,page);
 
         return ActionSupport.SUCCESS;
     }
@@ -151,21 +110,7 @@ public class GestionTopoAction extends ActionSupport {
 
         List<Topo> vList = managerFactory.getTopoManager().getListTopoValide();
         page = 1;
-        listTopo = new ArrayList<>();
-        count = page*3;
-        if(count>vList.size()){
-            max = vList.size();
-            endList = true;
-        }else {
-            max = count;
-            endList = false;
-        }
-        if(count == vList.size()){
-            endList = true;
-        }
-        for(int i = count-3;i<max;i++){
-            listTopo.add(vList.get(i));
-        }
+        pagination(vList,page);
 
         Collections.sort(listTopo, Topo.ComparatorNote);
         Collections.reverse(listTopo);
@@ -179,8 +124,19 @@ public class GestionTopoAction extends ActionSupport {
      */
     public String doRechercheTopo(){
 
-        List<Topo> vList = managerFactory.getTopoManager().getListTopoValide();
+        List<Topo> vList = managerFactory.getTopoManager().rechercheTopo(text);
         page = 1;
+        pagination(vList,page);
+
+        return ActionSupport.SUCCESS;
+    }
+
+    /**
+     * Méthode pour récupèrer les trois objets de la page
+     * @param vList
+     * @param page
+     */
+    public void pagination(List<Topo> vList,Integer page){
         listTopo = new ArrayList<>();
         count = page*3;
         if(count>vList.size()){
@@ -196,8 +152,6 @@ public class GestionTopoAction extends ActionSupport {
         for(int i = count-3;i<max;i++){
             listTopo.add(vList.get(i));
         }
-
-        return ActionSupport.SUCCESS;
     }
 
     public List<Topo> getListTopo() {

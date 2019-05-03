@@ -53,6 +53,7 @@
     <div class="col-lg-8 col-md-8 col-sm-8" id="bloc">
         <div class="col-lg-12 col-md-12 col-sm-12" id="addSite" >
             <h3 style="margin: 15px;">Créer un topo d'escalade</h3>
+            <em style="color: yellow;"><s:actionmessage/></em>
             <div class="form-row"  id="cadreDiv" style="display: flex; justify-content: space-around;">
                 <div class="form-group " style="color: white">
                     <s:form action="addTopo" id="formulaire" method="POST" enctype="multipart/form-data">

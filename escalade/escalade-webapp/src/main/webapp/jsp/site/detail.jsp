@@ -193,12 +193,11 @@
                     </button>
                 </div>
                 <div class="modal-body" style="display: flex;justify-content: center">
-                    <label for="inputContenu">Message</label>
                     <textarea  name="contenu" class="form-control" id="inputContenu" rows="4" placeholder="Ecrivez votre message..."></textarea>
                 </div>
                 <div class="modal-footer" style="display: flex;justify-content: space-around">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-                    <button type="button" onclick="addCommentaire()"  data-dismiss="modal" class="btn btn-primary">Valider</button>
+                    <button type="button" onclick="addCommentaire()"  data-dismiss="modal" class="btn btn-info">Envoyer</button>
                 </div>
             </div>
         </div>

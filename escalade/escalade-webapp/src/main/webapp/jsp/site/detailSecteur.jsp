@@ -138,7 +138,7 @@
                     </div>
                     <div class="modal-footer" style="display: flex;justify-content: space-around">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-                        <button type="button" class="btn btn-primary" onclick="addCommentaire()"  data-dismiss="modal">Valider</button>
+                        <button type="button" class="btn btn-info" onclick="addCommentaire()"  data-dismiss="modal">Envoyer</button>
                     </div>
                 </div>
             </div>

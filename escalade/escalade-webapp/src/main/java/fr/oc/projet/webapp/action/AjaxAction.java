@@ -32,11 +32,11 @@ public class AjaxAction extends ActionSupport {
     private     List<Image>             listImage;
     private     List<Reservation>       listReservation;
     private     List<Voie>              listVoie;
+    private     List<Secteur>           listSecteur;
     private     Site                    site;
     private     Secteur                 secteur;
     private     Compte                  compte;
     private     Commentaire             commentaire;
-    private     List<Secteur>           listSecteur;
     private     String                  nomSite;
     private     String                  nomSecteur;
     private     String                  nom;
@@ -96,26 +96,6 @@ public class AjaxAction extends ActionSupport {
             topo = managerFactory.getTopoManager().getTopoViaNom(nomTopo);
             listImage = managerFactory.getImageManager()
                     .getListImageTopo(topo.getId());
-        }  catch (Exception e) {
-            e.printStackTrace();
-        }
-        return vResult;
-    }
-
-    /**
-     * Méthode pour ajouter un secteur dans un site en cours de création.
-     * @return
-     */
-    public String doAjaxAddSecteur(){
-        String vResult = ActionSupport.SUCCESS;
-        try {
-            site = managerFactory.getSiteManager().getSiteViaNom(nomSite);
-            Secteur secteur = new Secteur();
-            secteur.setNom(nomSecteur);
-            secteur.setSiteId(site.getId());
-            managerFactory.getSecteurManager().addSecteur(secteur);
-            logger.info("Secteur : "+secteur+" a bien été ajouté à la base de données.");
-            listSecteur = managerFactory.getSecteurManager().getListSecteurSite(site.getId());
         }  catch (Exception e) {
             e.printStackTrace();
         }
@@ -192,25 +172,26 @@ public class AjaxAction extends ActionSupport {
         pseudo = (String) ActionContext.getContext().getSession().get("pseudo");
         compte = managerFactory.getCompteManager().getCompteViaPseudo(pseudo);
         commentaire.setAuteurId(compte.getId());
-
         if(nomTopo != null){
             topo = managerFactory.getTopoManager().getTopoViaNom(nomTopo);
             commentaire.setTopoId(topo.getId());
-            listCommentaire = managerFactory.getCommentaireManager().getListCommentaireTopo(topo.getId());
-
         }else if(nomSite != null){
             site = managerFactory.getSiteManager().getSiteViaNom(nomSite);
             commentaire.setSiteId(site.getId());
-            listCommentaire = managerFactory.getCommentaireManager().getListCommentaireSite(site.getId());
-
         }else if(nomSecteur != null){
             secteur = managerFactory.getSecteurManager().getSecteurViaNom(nomSecteur);
             commentaire.setSecteurId(secteur.getId());
+        }
+        managerFactory.getCommentaireManager().addCommentaire(commentaire);
+        logger.info("Commentaire : "+commentaire+" a bien été ajouté à la base de données.");
+        if(nomTopo != null){
+            listCommentaire = managerFactory.getCommentaireManager().getListCommentaireTopo(topo.getId());
+        }else if(nomSite != null){
+            listCommentaire = managerFactory.getCommentaireManager().getListCommentaireSite(site.getId());
+        }else if(nomSecteur != null){
             listCommentaire = managerFactory.getCommentaireManager().getListCommentaireSecteur(secteur.getId());
         }
 
-        managerFactory.getCommentaireManager().addCommentaire(commentaire);
-        logger.info("Commentaire : "+commentaire+" a bien été ajouté à la base de données.");
         return ActionSupport.SUCCESS;
     }
 

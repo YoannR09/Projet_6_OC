@@ -53,6 +53,7 @@
     <div class="col-lg-7 col-md-7 col-sm-7" id="bloc">
         <div class="col-lg-12 col-md-12 col-sm-12" id="addSite" >
             <h3 style="margin: 15px;">Créer un site d'escalade</h3>
+            <em style="color: yellow"><s:actionmessage/></em>
             <div class="form-row"  id="cadreDiv" style="display: flex; justify-content: space-around;">
                 <div class="form-group " style="color: white">
                     <s:form action="addSite" id="formulaire" method="POST" enctype="multipart/form-data">

@@ -11,6 +11,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.inject.Inject;
+import java.util.List;
 
 /**
  * Classe qui gère les actions en ajax pour les pages des sites d'escalades.
@@ -23,14 +24,15 @@ public class AjaxActionSite extends ActionSupport {
 
     static final Logger logger	= LogManager.getLogger();
 
-    private         Double      note;
-    private         String      nomSite;
-    private         String      pseudo;
-    private         Compte      compte;
-    private         Site        site;
-    private         String      nomSecteur;
-    private         Integer     idSecteur;
-    private         Secteur     secteur;
+    private         Double          note;
+    private         String          nomSite;
+    private         String          pseudo;
+    private         Compte          compte;
+    private         Site            site;
+    private         String          nomSecteur;
+    private         Integer         idSecteur;
+    private         Secteur         secteur;
+    private         List<Secteur>   listSecteur;
 
 
     /**
@@ -60,6 +62,34 @@ public class AjaxActionSite extends ActionSupport {
         nomSecteur = secteur.getNom();
 
         return ActionSupport.SUCCESS;
+    }
+
+    /**
+     * Méthode pour ajouter un secteur dans un site en cours de création.
+     * Si le nom est déjà utilisé on rajoute le nom du site derrière.
+     * @return
+     */
+    public String doAjaxAddSecteur(){
+        String vResult = ActionSupport.SUCCESS;
+        try {
+            site = managerFactory.getSiteManager().getSiteViaNom(nomSite);
+            Secteur secteur = new Secteur();
+            listSecteur = managerFactory.getSecteurManager().getListSecteurSite(site.getId());
+            for(int i = 0;i<listSecteur.size();i++){
+                if (nomSecteur.equals(listSecteur.get(i).getNom())){
+                    nomSecteur = nomSecteur+" "+site.getNom();
+                    break;
+                }
+            }
+            secteur.setNom(nomSecteur);
+            secteur.setSiteId(site.getId());
+            managerFactory.getSecteurManager().addSecteur(secteur);
+            logger.info("Secteur : "+secteur+" a bien été ajouté à la base de données.");
+            listSecteur = managerFactory.getSecteurManager().getListSecteurSite(site.getId());
+        }  catch (Exception e) {
+            e.printStackTrace();
+        }
+        return vResult;
     }
 
     public Double getNote() {
@@ -124,5 +154,13 @@ public class AjaxActionSite extends ActionSupport {
 
     public void setSecteur(Secteur secteur) {
         this.secteur = secteur;
+    }
+
+    public List<Secteur> getListSecteur() {
+        return listSecteur;
+    }
+
+    public void setListSecteur(List<Secteur> listSecteur) {
+        this.listSecteur = listSecteur;
     }
 }

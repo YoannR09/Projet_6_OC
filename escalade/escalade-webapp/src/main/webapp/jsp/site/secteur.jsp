@@ -24,10 +24,6 @@
             border-width: 0px 0px 0px 1px;
 
         }
-        span
-        {
-            margin: 15px;
-        }
         h4
         {
             margin: 20px;
@@ -67,7 +63,7 @@
                     <span class='badge badge-info' style='width: 200px'> <s:property value="nom"/></span>
                     <span class='badge badge-light' style='width: 100px'><s:property value="cotationMin.valeur"/> à <s:property value="cotationMax.valeur"/></span>
                     <span class='badge badge-light' style='width: 100px'><s:property value="hauteurMin"/> à <s:property value="hauteurMax"/></span>
-                    <s:a action="secteur_detail" style="width:50px;padding-top:10px"><s:param name="idSecteur" value="id" /> Voir </s:a>
+                    <s:a action="secteur_detail" style="width:50px"><s:param name="idSecteur" value="id" /> Voir </s:a>
                 </div>
                 <div style='width: 100%;height: 5px; border-bottom : 1px solid lightgray; border-radius: 40%'>
                 </div>

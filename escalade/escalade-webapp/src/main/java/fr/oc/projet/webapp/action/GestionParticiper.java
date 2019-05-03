@@ -99,7 +99,6 @@ public class GestionParticiper extends ActionSupport {
                 image.setImageDePresentation(false);
                 managerFactory.getImageManager().addImage(image);
                 logger.info("Image : "+image+" a bien été ajoutée à la base de données.");
-
                 vResult = ActionSupport.SUCCESS;
 
             } catch (IOException e) {
@@ -110,7 +109,6 @@ public class GestionParticiper extends ActionSupport {
         }else {
             site = managerFactory.getSiteManager().getSiteViaNom(nomSite);
         }
-
         listImage = managerFactory.getImageManager().getListImageSite(site.getId());
         return vResult;
     }
@@ -155,40 +153,52 @@ public class GestionParticiper extends ActionSupport {
      */
     public String doAddSite(){
 
-        Site site = new Site();
-        pseudo = (String) ActionContext.getContext().getSession().get("pseudo");
-        site.setEditeurId(managerFactory.getCompteManager().getCompteViaPseudo(pseudo).getId());
-        site.setNom(nomSite);
-        site.setTypeId(typeId);
-        site.setDepartementId(departementId);
-        site.setValide(false);
-        site.setVille(ville);
-        site.setDescription(description);
-        site.setDate(new Date());
-        site.setTopoId(topoId);
-        managerFactory.getSiteManager().addSite(site);
-        logger.info("Site : "+site+" a bien été ajotué à la base de données.");
-
-        destPath = "C:/Users/El-ra/Documents/Projet_6_OC/escalade/escalade-webapp/src/main/webapp/image/"+nomSite+"/";
-        try {
-            File destFile  = new File(destPath, myFileFileName);
-            FileUtils.copyFile(myFile, destFile);
-            Image image = new Image();
-            image.setSiteId(managerFactory.getSiteManager().getSiteViaNom(site.getNom()).getId());
-            image.setDescription("Image de présentation du topo "+nomSite);
-            image.setUrlImage(nomSite + "/" + myFileFileName);
-            image.setImageDePresentation(true);
-            managerFactory.getImageManager().addImage(image);
-            logger.info("Image : "+image+" a bien été ajoutée à la base de données.");
-
-        } catch(IOException e) {
-            e.printStackTrace();
-            logger.error(e);
-            return ERROR;
+        String vResult = null;
+        List<Site> listSite = managerFactory.getSiteManager().getListSiteValide();
+        for(int i = 0; i<listSite.size();i++){
+            if (nomSite.equals(listSite.get(i).getNom())){
+                vResult = ActionSupport.ERROR;
+            }
         }
-        return ActionSupport.SUCCESS;
+        if(!vResult.equals("error")) {
+            Site site = new Site();
+            pseudo = (String) ActionContext.getContext().getSession().get("pseudo");
+            site.setEditeurId(managerFactory.getCompteManager().getCompteViaPseudo(pseudo).getId());
+            site.setNom(nomSite);
+            site.setTypeId(typeId);
+            site.setDepartementId(departementId);
+            site.setValide(false);
+            site.setVille(ville);
+            site.setDescription(description);
+            site.setDate(new Date());
+            site.setTopoId(topoId);
+            managerFactory.getSiteManager().addSite(site);
+            logger.info("Site : " + site + " a bien été ajotué à la base de données.");
+            destPath = "C:/Users/El-ra/Documents/Projet_6_OC/escalade/escalade-webapp/src/main/webapp/image/" + nomSite + "/";
+            try {
+                File destFile = new File(destPath, myFileFileName);
+                FileUtils.copyFile(myFile, destFile);
+                Image image = new Image();
+                image.setSiteId(managerFactory.getSiteManager().getSiteViaNom(site.getNom()).getId());
+                image.setDescription("Image de présentation du topo " + nomSite);
+                image.setUrlImage(nomSite + "/" + myFileFileName);
+                image.setImageDePresentation(true);
+                managerFactory.getImageManager().addImage(image);
+                logger.info("Image : " + image + " a bien été ajoutée à la base de données.");
+                vResult = ActionSupport.SUCCESS;
+            } catch (IOException e) {
+                e.printStackTrace();
+                logger.error(e);
+                vResult = ActionSupport.ERROR;
+            }
+        }else {
+            this.addActionMessage("Nom de site déjà utilisé");
+            listType = managerFactory.getTypeDeRocheManager().getListTypeDeRoche();
+            listDepartement = managerFactory.getDepartementManager().getListDepartement();
+            listTopo = managerFactory.getTopoManager().getListTopo();
+        }
+        return vResult;
     }
-
 
     /**
      * Méthode pour créer un topo ou un site d'escalade
@@ -202,37 +212,44 @@ public class GestionParticiper extends ActionSupport {
         String vResult = ActionSupport.INPUT;
 
             if(nomTopo != null){
-                Topo topo = new Topo();
-                pseudo = (String) ActionContext.getContext().getSession().get("pseudo");
-                topo.setResponsable(managerFactory.getCompteManager().getCompteViaPseudo(pseudo));
-                topo.setDate(new Date());
-                topo.setValide(false);
-                topo.setNom(nomTopo);
-                topo.setDescription(description);
-                topo.setResponsableId(topo.getResponsable().getId());
-                managerFactory.getTopoManager().addTopo(topo);
-                logger.info("Topo : "+topo+" a bien été ajouté à la base de données.");
-
-                destPath = "C:/Users/El-ra/Documents/Projet_6_OC/escalade/escalade-webapp/src/main/webapp/image/"+topo.getNom()+"/";
-                try {
-                    File destFile  = new File(destPath, myFileFileName);
-                    FileUtils.copyFile(myFile, destFile);
-                    Image image = new Image();
-                    image.setUrlImage(topo.getNom()+"/"+myFileFileName);
-                    image.setImageDePresentation(true);
-                    image.setTopoId(managerFactory.getTopoManager().getTopoViaNom(topo.getNom()).getId());
-                    image.setDescription("Image de présentation du topo "+topo.getNom());
-                    managerFactory.getImageManager().addImage(image);
-                    logger.info("Image : "+image+" a bien été ajoutée à la base de données.");
-
-                    vResult = ActionSupport.SUCCESS;
-                } catch(IOException e) {
-                    e.printStackTrace();
-                    logger.error(e);
-                    return ERROR;
+                listTopo = managerFactory.getTopoManager().getListTopo();
+                for(int i = 0; i<listTopo.size();i++){
+                    if (nomTopo.equals(listTopo.get(i).getNom())){
+                        vResult = ERROR;
+                    }
+                }
+                if (!vResult.equals(ERROR)) {
+                    Topo topo = new Topo();
+                    pseudo = (String) ActionContext.getContext().getSession().get("pseudo");
+                    topo.setResponsable(managerFactory.getCompteManager().getCompteViaPseudo(pseudo));
+                    topo.setDate(new Date());
+                    topo.setValide(false);
+                    topo.setNom(nomTopo);
+                    topo.setDescription(description);
+                    topo.setResponsableId(topo.getResponsable().getId());
+                    managerFactory.getTopoManager().addTopo(topo);
+                    logger.info("Topo : " + topo + " a bien été ajouté à la base de données.");
+                    destPath = "C:/Users/El-ra/Documents/Projet_6_OC/escalade/escalade-webapp/src/main/webapp/image/" + topo.getNom() + "/";
+                    try {
+                        File destFile = new File(destPath, myFileFileName);
+                        FileUtils.copyFile(myFile, destFile);
+                        Image image = new Image();
+                        image.setUrlImage(topo.getNom() + "/" + myFileFileName);
+                        image.setImageDePresentation(true);
+                        image.setTopoId(managerFactory.getTopoManager().getTopoViaNom(topo.getNom()).getId());
+                        image.setDescription("Image de présentation du topo " + topo.getNom());
+                        managerFactory.getImageManager().addImage(image);
+                        logger.info("Image : " + image + " a bien été ajoutée à la base de données.");
+                        vResult = ActionSupport.SUCCESS;
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        logger.error(e);
+                        return ERROR;
+                    }
+                }else {
+                    this.addActionMessage("Nom du topo déjà utilisé");
                 }
             }
-
         return vResult;
     }
 

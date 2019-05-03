@@ -252,6 +252,7 @@
                 class="fr.oc.projet.webapp.action.GestionParticiper"
                 method="doAddTopo">
             <result name="success">/jsp/participer/addImageTopo.jsp</result>
+            <result name="error">/jsp/participer/addTopo.jsp</result>
         </action>
 
 
@@ -269,6 +270,7 @@
                 class="fr.oc.projet.webapp.action.GestionParticiper"
                 method="doAddSite">
             <result name="success">/jsp/participer/addSecteur.jsp</result>
+            <result name="error">/jsp/participer/addSite.jsp</result>
         </action>
 
         <!-- Affiche les détails d'un message d'un utilisateur -->
@@ -392,7 +394,7 @@
 
         <!-- Action pour ajouter un secteur au site pendant sa création -->
         <action name="ajax_addSecteur"
-                class="fr.oc.projet.webapp.action.AjaxAction"
+                class="fr.oc.projet.webapp.action.AjaxActionSite"
                 method="doAjaxAddSecteur">
             <result name="success" type="json">
                 <param name="root">listSecteur</param>

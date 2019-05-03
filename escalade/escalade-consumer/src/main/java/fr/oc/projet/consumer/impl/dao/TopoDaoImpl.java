@@ -34,7 +34,20 @@ public class TopoDaoImpl extends AbstractDaoImpl implements TopoDao {
 
     @Override
     public Topo getTopoViaNom(String nom) {
-        String vSQL = "SELECT * FROM topo WHERE nom = '"+nom+"'";
+        List<Character> listChar = new ArrayList<>();
+        nom.toCharArray();
+        for(int i = 0 ; i < nom.length() ; i++) {
+            listChar.add(nom.charAt(i));
+            char lettre = nom.charAt(i);
+            if(Character.toString(lettre).equals("'")){
+                listChar.add('\'');
+            }
+        }
+        StringBuilder sb = new StringBuilder();
+        for (Character ch: listChar) {
+            sb.append(ch);
+        }
+        String vSQL = "SELECT * FROM topo WHERE nom = '"+sb.toString()+"'";
         JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
         Topo topo = vJdbcTemplate.queryForObject(vSQL,topoRM);
         return topo;
