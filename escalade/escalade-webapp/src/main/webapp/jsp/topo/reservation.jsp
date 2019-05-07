@@ -150,13 +150,11 @@
 
         listResa();
 
-
-
         $('#blocBtn > button').click(function(){
             var x = $(this).attr('id');
+            $('#blocBtn > button').addClass('bg-info');
             listResaMois(x);
         });
-
     });
 
     /**
@@ -165,7 +163,6 @@
     function listResa() {
         // URL de l'action AJAX
         var url = "<s:url action="ajax_listResa"/>";
-
 
         var nomTopo = $("#nomTopo").text();
 

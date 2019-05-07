@@ -198,7 +198,6 @@
         ).fail(function () {
             alert("Erreur !!");
         });
-
         return nomSecteur;  // Le return se lance avant l'action ajax.
     }
 </script>

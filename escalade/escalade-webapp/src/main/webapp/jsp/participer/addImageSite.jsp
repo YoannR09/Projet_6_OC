@@ -51,7 +51,7 @@
                 <h2 id="nomSite" style="padding: 20px"><s:property value="site.nom"/></h2>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6">
-                <button type="button" class="btn btn-outline-info" id="btnSecteur" style="float: right" data-toggle="modal" data-target="#exampleModalCenter">Ajouter un secteur</button>
+                <button type="button" class="btn btn-outline-info" id="btnSecteur" style="float: right" data-toggle="modal" data-target="#exampleModalCenter">Ajouter une image</button>
             </div>
         </div>
         <div class="col-lg-12 col-md-12 col-sm-12" id="cadreSecteur" style="background-color:rgba(0,0,0,0.7);">
@@ -80,7 +80,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <s:form action="addImageSite" id="formulaire" method="POST" style="margin-left:10%;" enctype="multipart/form-data">
+                        <s:form action="addImageSite" id="formulaire" method="POST" enctype="multipart/form-data">
                             <s:file id="fileProfil" name="myFile"  label="Image principale " style="color:white"/>
                             <s:submit value="Ajouter" id="btn" class="btn btn-info"/>
                             <s:textfield value="" name="nomSiteText" id="nomSiteText"/>

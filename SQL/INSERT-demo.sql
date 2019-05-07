@@ -179,10 +179,10 @@ INSERT INTO cotation (niveau, valeur,couleur) VALUES
 (53,'9c','rgb(25,25,25)'),
 (54,'9c+','rgb(0,0,0)');
 
-INSERT INTO compte (id, pseudo, prenom,nom,mot_de_passe,email,numero_de_telephone,niveau_acces_id) VALUES
-(1,'Yocorps','Yoann','ROCHE','123','el-rambo-poto@hotmail.fr','0605097496',2),
-(2,'Esca83','Kevin','Park','123','MonAdresseMail@gmail.com','0634230193',1),
-(3,'Patrice23','Patrice','Delamo','escalade','EscaladePro@gmail.com','0784657325',2);
+INSERT INTO compte (pseudo, prenom,nom,mot_de_passe,email,numero_de_telephone,niveau_acces_id) VALUES
+('Yocorps','Yoann','ROCHE','123','el-rambo-poto@hotmail.fr','0605097496',2),
+('Esca83','Kevin','Park','123','MonAdresseMail@gmail.com','0634230193',1),
+('Patrice23','Patrice','Delamo','escalade','EscaladePro@gmail.com','0784657325',2);
 
 INSERT INTO type_de_roche (id, type) VALUES
 (1,'Calcaire'),
@@ -193,11 +193,11 @@ INSERT INTO type_de_roche (id, type) VALUES
 (6,'Quartzite'),
 (7,'Métaphoriques');
 
-INSERT INTO topo (id, nom, description,date_de_creation,valide,responsable_id) VALUES
-(1,'Topo de la region du var','Voici mon premier topo qui rassemblera plusieurs sites de la region du var ','20/03/2019',TRUE,1);
+INSERT INTO topo (nom, description,date_de_creation,valide,responsable_id) VALUES
+('Topo de la region du var','Voici mon premier topo qui rassemblera plusieurs sites de la region du var ','20/03/2019',TRUE,1);
 
-INSERT INTO site (id, nom, description,topo_id,type_de_roche_id,departement_id,ville,date_de_creation,valide,responsable_id) VALUES
-(1,'Site de grimpe sur Toulon','Bienvenu sur mon premier site d''escalade sur Toulon, il présente le baou et ses secteurs',1,2,84,'Toulon','15/03/2019',TRUE,1);
+INSERT INTO site (nom, description,topo_id,type_de_roche_id,departement_id,ville,date_de_creation,valide,responsable_id) VALUES
+('Site de grimpe sur Toulon','Bienvenu sur mon premier site d''escalade sur Toulon, il présente le baou et ses secteurs',1,2,84,'Toulon','15/03/2019',TRUE,1);
 
 INSERT INTO secteur (nom,site_id) VALUES
 ('Secteur EST',1),

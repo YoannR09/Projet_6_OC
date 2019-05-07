@@ -18,9 +18,11 @@ import java.util.List;
 public class GestionParticiper extends ActionSupport {
 
     @Inject
-    private ManagerFactory managerFactory;
+    private      ManagerFactory          managerFactory;
 
-    static final Logger logger	= LogManager.getLogger();
+    static final Logger                  logger	= LogManager.getLogger();
+
+    private      String                  destPath = "C:/Users/El-ra/Documents/Projet_6_OC/escalade/escalade-webapp/src/main/webapp/image/";
 
     private      List<TypeDeRoche>       listType;
     private      List<Cotation>          listCotation;
@@ -43,7 +45,6 @@ public class GestionParticiper extends ActionSupport {
     private      File                    myFile;
     private      String                  myFileContentType;
     private      String                  myFileFileName;
-    private      String                  destPath;
     private      String                  nomSiteText;
     private      String                  nomTopo;
     private      Integer                 typeId;
@@ -87,9 +88,8 @@ public class GestionParticiper extends ActionSupport {
         String vResult = ActionSupport.INPUT;
 
         if(myFile != null) {
-            destPath = "C:/Users/El-ra/Documents/Projet_6_OC/escalade/escalade-webapp/src/main/webapp/image/" + nomSiteText+ "/";
             try {
-                File destFile = new File(destPath, myFileFileName);
+                File destFile = new File(destPath+nomSiteText+ "/", myFileFileName);
                 FileUtils.copyFile(myFile, destFile);
                 site = managerFactory.getSiteManager().getSiteViaNom(nomSiteText);
                 Image image = new Image();
@@ -124,9 +124,8 @@ public class GestionParticiper extends ActionSupport {
         String vResult = ActionSupport.INPUT;
 
         if(myFile != null) {
-            destPath = "C:/Users/El-ra/Documents/Projet_6_OC/escalade/escalade-webapp/src/main/webapp/image/" + nomSiteText+ "/";
             try {
-                File destFile = new File(destPath, myFileFileName);
+                File destFile = new File(destPath + nomSiteText+ "/", myFileFileName);
                 FileUtils.copyFile(myFile, destFile);
                 topo = managerFactory.getTopoManager().getTopoViaNom(nomSiteText);
                 Image image = new Image();
@@ -179,9 +178,8 @@ public class GestionParticiper extends ActionSupport {
             site.setTopoId(topoId);
             managerFactory.getSiteManager().addSite(site);
             logger.info("Site : " + site + " a bien été ajotué à la base de données.");
-            destPath = "C:/Users/El-ra/Documents/Projet_6_OC/escalade/escalade-webapp/src/main/webapp/image/" + nomSite + "/";
             try {
-                File destFile = new File(destPath, myFileFileName);
+                File destFile = new File(destPath + nomSite + "/", myFileFileName);
                 FileUtils.copyFile(myFile, destFile);
                 Image image = new Image();
                 image.setSiteId(managerFactory.getSiteManager().getSiteViaNom(site.getNom()).getId());
@@ -232,9 +230,8 @@ public class GestionParticiper extends ActionSupport {
                     topo.setResponsableId(topo.getResponsable().getId());
                     managerFactory.getTopoManager().addTopo(topo);
                     logger.info("Topo : " + topo + " a bien été ajouté à la base de données.");
-                    destPath = "C:/Users/El-ra/Documents/Projet_6_OC/escalade/escalade-webapp/src/main/webapp/image/" + topo.getNom() + "/";
                     try {
-                        File destFile = new File(destPath, myFileFileName);
+                        File destFile = new File(destPath + topo.getNom() + "/", myFileFileName);
                         FileUtils.copyFile(myFile, destFile);
                         Image image = new Image();
                         image.setUrlImage(topo.getNom() + "/" + myFileFileName);
