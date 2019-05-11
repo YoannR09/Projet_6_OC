@@ -3,9 +3,9 @@
 ####  1) Créer la base de données :
 
    1. Ajouter le script qui se trouve dans le fichier SQL/SCRIPT.sql.
-   2. Ajouter la démo de la bdd qui se trouve dans le fichier SQL/INSERT-demo.sql.
+   Ou alors ajouter avec le backup dans le fichier SQL/postgreSQL/backup_postgreSQL_structure.sql
  
- ![automated like clockwork](doc/image/1.png)
+   2. Récupèrer le backup de la base de données dans le fichier SQL/postgreSQL/backup_postgreSQL_data.sql
 
 ####   2) Modifier les variables dans le fichier webapp/META-INF/context.xml :
 
