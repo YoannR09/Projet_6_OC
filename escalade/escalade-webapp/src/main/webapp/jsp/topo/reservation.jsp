@@ -68,12 +68,13 @@
             <h2 id="nomTopo"><s:property value="topo.nom"/></h2>
             <h4 style="text-align: left;margin: 15px;"><em>Vous voulez reserver ce topo</em></h4>
 
-            <em id="messageAjax" style="color: yellow;">Créneau déjà réservé</em>
-
+            <div  id="messageAjax" style="padding: 15px">
+            <em style="color: yellow;"><i class="fas fa-exclamation-triangle"></i>  Créneau déjà réservé</em>
+            </div>
                 <div class="form-group row">
                     <label for="example-date-input" class="col-2 col-form-label">Date à reserver : </label>
                     <div class="col-4">
-                        <input id="date" name="date" class="form-control" type="date" value="2019-08-04" id="example-date-input">
+                        <input id="date" name="date" class="form-control" type="date" id="example-date-input">
                     </div>
                     <div class="form-check form-check-inline">
                         <label class="form-check-label">
@@ -145,10 +146,12 @@
 <script>
     $(function() {
 
+
         $('#messageAjax').hide();
         $('#count').hide();
 
         listResa();
+        countResa();
 
         $('#blocBtn > button').click(function(){
             var x = $(this).attr('id');
@@ -279,8 +282,6 @@
 
         countResa();
 
-        var oldNbreResa = $('#count').text();
-
         var nomTopo = $("#nomTopo").text();
 
         var date = $("#date").val();
@@ -312,7 +313,6 @@
                 var $listResa = jQuery("#listResa");
                 var $messageAjax = jQuery("#messageAjax");
                 $listResa.empty();
-                $messageAjax.empty();
                 jQuery.each(data, function (key, val) {
                     var dates = new Date(val.date);
 
@@ -340,19 +340,22 @@
                     );
                 });
 
-                countResa();
                 var nbreResa = $('#count').text();
-                console.log("nbreResa : "+nbreResa);
+                console.log(data.length);
+                console.log(nbreResa);
 
-                if(oldNbreResa == nbreResa){
+                if(data.length == nbreResa){
                     $('#messageAjax').show();
                 }else {
                     $('#messageAjax').hide();
+
                 }
             })
             .fail(function () {
                 alert("Erreur !!");
             });
+
+        countResa();
     }
 
     /**

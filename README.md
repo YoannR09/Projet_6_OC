@@ -17,11 +17,11 @@
   
 ####  3)  Modifier le despath pour ajouter les images
     
-   Dans la classe escalade-webapp/src/main/java/fr.oc.projet.webapp.action.GestionParticiper.
+   > Dans la classe escalade-webapp/src/main/java/fr.oc.projet.webapp.action.GestionParticiper.
    
    ![automated like clockwork](doc/image/3.png)
 
 ####   4) Se connecter à l'application avec un compte admin
     
-   Identifiant : Yocorps <br>
-   Mot de passe : 123
+   > Identifiant : Yocorps <br>
+     Mot de passe : 123

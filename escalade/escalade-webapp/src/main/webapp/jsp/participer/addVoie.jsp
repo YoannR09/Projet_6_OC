@@ -83,14 +83,15 @@
             <div class="modal-dialog modal-dialog-centered " role="document" style="width: 25%">
                 <div class="modal-content bg-dark">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Ajouter un secteur</h5>
+                        <h5 class="modal-title" id="exampleModalLongTitle">Ajouter une voie</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
                         <s:select id="selectSecteur" name="secteurId" label="Secteur "
-                                  list="listSecteur" listKey="id" listValue="nom"/>
+                                  list="listSecteur" listKey="id" listValue="nom" />
+                    </br>
                         <s:select id="selectCotation" name="cotationId" label="Cotation "
                                   list="listCotation" listKey="id" listValue="valeur"/>
                         <div class="form-group">

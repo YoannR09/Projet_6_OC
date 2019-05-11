@@ -83,7 +83,7 @@
             z-index: 1;
             background-color: rgba(255,255,255,0.7);
             padding: 20px;
-            border: 2px deepskyblue solid;
+            border: 1px lightcyan solid;
             border-radius: 25px;
         }
 
@@ -114,15 +114,15 @@
                     <s:iterator value="listImage" status="list">
                         <s:if test="%{#list.count == 1}">
                             <s:property value="%{#list.count}"/>
-                            <div class="carousel-item active" style="width: 100%;height: 100%">
+                            <div class="carousel-item active" style="width: 100%;height: 100%;">
                                 <img class="d-block w-100" src="./image/<s:property value="urlImage"/>"
-                                     alt="First slide">
+                                     alt="First slide" style="height: 400px;">
                             </div>
                         </s:if>
                         <s:else>
-                            <div class="carousel-item" style="width: 100%;height: 100%">
+                            <div class="carousel-item" style="width: 100%;height: 100%;">
                                 <img class="d-block w-100" src="./image/<s:property value="urlImage"/>"
-                                     alt="Second slide">
+                                     alt="Second slide" style="height: 400px;">
                             </div>
                         </s:else>
                     </s:iterator>
@@ -143,6 +143,7 @@
                 <div class="card-body"style="text-align: center" >
                     <s:iterator value="listSite">
                         <s:a action="site_detail" style="font-size:0.7em;color:white"><s:property value="nom"/><s:param name="idSite" value="id" /></s:a>
+                        <br/>
                     </s:iterator>
                 </div>
             </div>
@@ -180,12 +181,12 @@
                         </button>
                     </div>
                     <div class="modal-body" style="display: flex;justify-content: center">
-                        <input type="number" id="tentacles" name="tentacles" style="margin: 5px"
+                        <input type="number" id="tentacles" name="note" style="margin: 5px"
                                min="1" max="10">  <span>/ 10</span>
                     </div>
                     <div class="modal-footer" style="display: flex;justify-content: space-around">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-                        <button type="button" class="btn btn-primary">Valider</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                        <button type="button" class="btn btn-info" onclick="addNote()" data-dismiss="modal">Valider</button>
                     </div>
                 </div>
             </div>
@@ -200,7 +201,6 @@
                         </button>
                     </div>
                     <div class="modal-body" style="display: flex;justify-content: center">
-                        <label for="inputContenu">Message</label>
                         <textarea  name="contenu" class="form-control" id="inputContenu" rows="4" placeholder="Ecrivez votre message..."></textarea>
                     </div>
                     <div class="modal-footer" style="display: flex;justify-content: space-around">
@@ -376,6 +376,25 @@
 
         $("textarea[name=contenu]").val(""); //-- On vide le champ de saisie du nouveau message à chaque tour.*
 
+    }
+    function addNote() {
+        // récupère le message entré par l'utilisateur
+        var note = $("input[name=note]").val();
+        var nomTopo = $("#nomTopo").text();
+        // URL de l'action AJAX
+        var url = "<s:url action="ajax_addNote_topo"/>";
+        // Paramètres de la requête AJAX
+        var params = {
+            note: note,
+            nomTopo: nomTopo
+        };
+        // Action AJAX en POST
+        jQuery.post(
+            url,
+            params,
+            function (data) {
+            })
+        $("input[name=note]").val(""); //-- On vide le champ de saisie du nouveau message à chaque tour.*
     }
 </script>
 </body>

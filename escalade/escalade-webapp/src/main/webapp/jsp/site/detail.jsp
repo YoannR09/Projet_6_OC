@@ -72,7 +72,7 @@
         z-index: 1;
         background-color: rgba(255,255,255,0.7);
         padding: 20px;
-        border: 2px deepskyblue solid;
+        border: 1px lightcyan solid;
         border-radius: 25px;
     }
     #spanCotaMin,#spanCotaMax
@@ -85,7 +85,6 @@
 
 
 <div id="page">
-
     <div id="popInfos">
         Se connecter pour plus de fonctionnalité
         <div style="display: flex;justify-content: space-around">
@@ -93,9 +92,6 @@
             <button type="button" class="btn btn-outline-info" id=btnNon>Non</button>
         </div>
     </div>
-
-
-
     <div class="col-lg-9 col-md-9 col-sm-9" style="color: white; margin-top: 20px;">
         <div class="col-lg-12 col-md-12 col-sm-12" id="cadreImage" style="background-color:rgba(0,0,0,0.7);padding-top: 10px">
             <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
@@ -105,13 +101,13 @@
                             <s:property value="%{#list.count}"/>
                             <div class="carousel-item active" style="width: 100%;height: 100%">
                                 <img class="d-block w-100" src="./image/<s:property value="urlImage"/>"
-                                     alt="First slide">
+                                     alt="First slide" style="height: 400px">
                             </div>
                         </s:if>
                         <s:else>
                             <div class="carousel-item" style="width: 100%;height: 100%">
                                 <img class="d-block w-100" src="./image/<s:property value="urlImage"/>"
-                                     alt="Second slide">
+                                     alt="Second slide" style="height: 400px">
                             </div>
                         </s:else>
                     </s:iterator>
@@ -176,8 +172,8 @@
                                min="1" max="10">  <span>/ 10</span>
                     </div>
                     <div class="modal-footer" style="display: flex;justify-content: space-around">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-                        <button type="button" onclick="addNote()" data-dismiss="modal" class="btn btn-primary">Valider</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                        <button type="button" onclick="addNote()" data-dismiss="modal" class="btn btn-info">Valider</button>
                     </div>
                 </div>
             </div>
@@ -343,7 +339,7 @@
         var note = $("input[name=note]").val();
         var nomSite = $("#nomSite").text();
         // URL de l'action AJAX
-        var url = "<s:url action="ajax_addNote"/>";
+        var url = "<s:url action="ajax_addNote_site"/>";
         // Paramètres de la requête AJAX
         var params = {
             note: note,

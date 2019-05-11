@@ -79,7 +79,6 @@ public class GestionMessageAction  extends ActionSupport {
                         return new PasswordAuthentication(username, password);
                     }
                 });
-
         try {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(email));
@@ -88,7 +87,7 @@ public class GestionMessageAction  extends ActionSupport {
                     InternetAddress.parse("applimail09@gmail.com")
             );
             message.setSubject(objet);
-            message.setText(contenu);
+            message.setText(contenu+"</br></br>"+email);
             Transport.send(message);
 
             logger.info("Message : "+message+" a bien été envoyé vers la boite email de l'application");

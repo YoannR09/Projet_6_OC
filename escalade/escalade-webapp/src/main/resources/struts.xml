@@ -160,7 +160,7 @@
         <!-- Affiche la page suivante de la liste des sites -->
         <action name="site_valide_list_pageUp_cotaMax"
                 class="fr.oc.projet.webapp.action.GestionSiteAction"
-                method="doListSiteValidePageUp_cotaMax">
+                method="doListSiteValidePageUpCotaMax">
             <result name="success">/jsp/site/list.jsp</result>
         </action>
 
@@ -542,7 +542,7 @@
         </action>
 
         <!-- Action pour ajouter un note au site-->
-        <action name="ajax_addNote"
+        <action name="ajax_addNote_site"
                 class="fr.oc.projet.webapp.action.AjaxActionSite"
                 method="doAjaxAddNote">
         </action>
@@ -594,5 +594,10 @@
             </result>
         </action>
 
+        <!-- Action pour ajouter un note au topo-->
+        <action name="ajax_addNote_topo"
+                class="fr.oc.projet.webapp.action.AjaxActionTopo"
+                method="doAjaxAddNote">
+        </action>
     </package>
 </struts>

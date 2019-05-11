@@ -8,8 +8,6 @@ public class Note {
 
     private     Integer     id;
     private     Double      note;
-    private     Site        site;
-    private     Topo        topo;
     private     Integer     siteId;
     private     Integer     topoId;
     private     Integer     compteId;
@@ -25,22 +23,6 @@ public class Note {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Site getSite() {
-        return site;
-    }
-
-    public void setSite(Site site) {
-        this.site = site;
-    }
-
-    public Topo getTopo() {
-        return topo;
-    }
-
-    public void setTopo(Topo topo) {
-        this.topo = topo;
     }
 
     public Compte getEditeur() {

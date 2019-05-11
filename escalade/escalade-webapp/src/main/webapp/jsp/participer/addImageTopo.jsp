@@ -88,7 +88,7 @@
                     </div>
                     <div class="modal-body">
                         <s:form action="addImageTopo" id="formulaire" method="POST" style="margin-left:10%;" enctype="multipart/form-data">
-                            <s:file id="fileProfil" name="myFile"  label="Image principale " style="color:white"/>
+                            <s:file id="fileProfil" name="myFile"  label="Image " style="color:white"/>
                             <s:submit value="Ajouter" id="btn" class="btn btn-info"/>
                             <s:textfield value="" name="nomSiteText" id="nomSiteText"/>
                         </s:form>

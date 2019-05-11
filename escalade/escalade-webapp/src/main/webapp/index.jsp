@@ -80,17 +80,15 @@
             <div style="margin: 40px; padding-bottom: 40px;">
 
                 <span>Ce site d'escalade contient</span>
-                <span id="nombreSite" style="border-radius: 100%; border: black 1px solid; padding: 30px;color:black;margin: 40px;background-color: lightgoldenrodyellow"></span>
+                <span id="nombreSite" style="border-radius: 10px; border: black 1px solid; padding: 10px;color:black;margin: 20px;background-color: lightgoldenrodyellow"></span>
 
-                <span id="nombreTopo" style="border-radius: 100%; border: black 1px solid; padding: 30px;color:black;margin: 40px;background-color: lightgoldenrodyellow"></span>
+                <span id="nombreTopo" style="border-radius: 10px; border: black 1px solid; padding: 10px;color:black;margin: 20px;background-color: lightgoldenrodyellow"></span>
             </div>
         </div>
     </div>
-
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
-
 
     $(function() {
         reloadCountTopo();

@@ -68,16 +68,12 @@
         z-index: 1;
         background-color: rgba(255,255,255,0.7);
         padding: 20px;
-        border: 2px deepskyblue solid;
+        border: 1px lightcyan solid;
         border-radius: 25px;
     }
-
-
 </style>
 
-
 <div id="page">
-
     <div id="popInfos">
         Se connecter pour plus de fonctionnalité
         <div style="display: flex;justify-content: space-around">
@@ -85,18 +81,15 @@
             <button type="button" class="btn btn-outline-info" id=btnNon>Non</button>
         </div>
     </div>
-
     <div class="col-lg-9 col-md-9 col-sm-9" style="color: white; margin-top: 20px;">
         <div class="col-lg-12 col-md-12 col-sm-12" id="cadreInfos" style="background-color:rgba(0,0,0,0.7);">
             <h2 id="nomSecteur" style="padding: 15px"><s:property value="secteur.nom"/></h2>
             <h4 style="padding: 20px;text-align: left"><em>Liste des voies</em></h4>
-
             <div  style="display: flex;justify-content: space-around">
                 <span style='width: 200px'>Nom</span>
                 <span style='width: 100px'>Hauteur</span>
                 <span style='width: 100px'>Cotation</span>
             </div>
-
             <s:iterator value="listVoie">
                 <div  id="listVoie" style="display: flex;justify-content: space-around">
                     <span class='badge badge-info' style='width: 200px'> <s:property value="nom"/></span>
@@ -106,14 +99,10 @@
                 <div style='width: 100%;height: 5px; border-bottom : 1px solid lightgray; border-radius: 40%'>
                 </div>
             </s:iterator>
-
-
         </div>
-
         <div class="col-lg-12 col-md-12 col-sm-12" id="cadreCommentaire" style="background-color:rgba(0,0,0,0.7); padding-top: 30px;">
             <a href="#" class="btn btn-sm btn-info " id="slideTop" style="width: 100% ; margin: auto; border-radius: 10%"></a>
             <div id="listCommentaire">
-
             </div>
         </div>
         <div class="col-lg-12 col-md-12 col-sm-12" id="cadreBouton" style="background-color:rgba(0,0,0,0.7);padding-top: 30px">
@@ -149,16 +138,11 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
     $(function() {
-
-
         $('#popInfos').hide();
-
-
         if($('#pseudo').text() == ""){
             $('#btnCom').attr("disabled", true);
             $('#popInfos').show();
         }
-
         $("#btnNon").click(function() {
             $('#popInfos').hide();
         });
@@ -168,22 +152,16 @@
         $('#cadreCommentaire').hide();
         $('#cadreSecteur').hide();
         $('#btnEnvoyer').hide();
-
         /**
          * Affiche le cadre des commentaires.
          */
         $("#btnCom").click(function() {
 
             $('#cadreBouton').css('border-width','0px 1px 1px 1px');
-
             $("html, body").animate({ scrollTop: $('#page').height() }, 1500);
-
             $('#cadreCommentaire').slideDown(1500);
-
             $('#btnEnvoyer').show();
-
             $('#btnCom').hide();
-
         });
 
         /**
@@ -192,15 +170,10 @@
         $("#slideTop").click(function() {
 
             $('#cadreBouton').css('border-width','0px 1px 1px 1px');
-
             $("html, body").animate({ scrollTop: $('#page').height() }, 1500);
-
             $('#cadreCommentaire').slideUp(1500);
-
             $('#btnEnvoyer').hide();
-
             $('#btnCom').show();
-
         });
     });
 
@@ -210,9 +183,7 @@
     function reloadListCommentaire() {
         // URL de l'action AJAX
         var url = "<s:url action="ajax_getListCommentaire"/>";
-
         var nomSecteur =$("#nomSecteur").text();
-
         var params = {
             nomSecteur: nomSecteur
         };
@@ -235,12 +206,10 @@
                         jQuery("<span class='badge badge-light' style='padding :10px;margin-bottom: 15px;width: 60%;height: 70px;text-align: left'>")
                             .append(val.contenu)
                     );
-
                     $listCommentaire.append(
                         jQuery("<span class='badge badge-light' style='margin-bottom: 15px;'>")
                             .append(dates.getDate(),'/',(dates.getMonth()+1),'/',dates.getFullYear())
                     );
-
                     $listCommentaire.append(
                         jQuery("<div style='width: 100%;height: 5px; border-bottom : 1px solid lightgray; border-radius: 40%'>")
                     );
@@ -261,18 +230,14 @@
 
         // récupère le message entré par l'utilisateur
         var contenu = $("textarea[name=contenu]").val();
-
         var nomSecteur = $("#nomSecteur").text();
-
         // URL de l'action AJAX
         var url = "<s:url action="ajax_addCommentaire"/>";
-
         // Paramètres de la requête AJAX
         var params = {
             contenu: contenu,
             nomSecteur: nomSecteur
         };
-
         // Action AJAX en POST
         jQuery.post(
             url,
@@ -291,20 +256,16 @@
                         jQuery("<span class='badge badge-light' style='padding :10px;margin-bottom: 15px;width: 60%;height: 70px;text-align: left'>")
                             .append(val.contenu)
                     );
-
                     $listCommentaire.append(
                         jQuery("<span class='badge badge-light' style='margin-bottom: 15px;'>")
                             .append(dates.getDate(),'/',(dates.getMonth()+1),'/',dates.getFullYear())
                     );
-
                     $listCommentaire.append(
                         jQuery("<div style='width: 100%;height: 5px; border-bottom : 1px solid lightgray; border-radius: 40%'>")
                     );
                 });
             })
-
         $("textarea[name=contenu]").val(""); //-- On vide le champ de saisie du nouveau message à chaque tour.*
-
     }
 </script>
 </body>

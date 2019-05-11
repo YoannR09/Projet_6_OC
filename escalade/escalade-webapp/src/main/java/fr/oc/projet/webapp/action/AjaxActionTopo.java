@@ -4,6 +4,8 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import fr.oc.projet.business.manager.contract.ManagerFactory;
 import fr.oc.projet.model.bean.escalade.Topo;
+import fr.oc.projet.model.bean.utilisateur.Compte;
+import fr.oc.projet.model.bean.utilisateur.Note;
 import fr.oc.projet.model.bean.utilisateur.Reservation;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -25,6 +27,7 @@ public class AjaxActionTopo extends ActionSupport {
 
     private         List<Reservation>    listReservation;
     private         Topo                 topo;
+    private         Compte               compte;
     private         String               pseudo;
     private         String               nomTopo;
     private         Date                 date;
@@ -32,6 +35,7 @@ public class AjaxActionTopo extends ActionSupport {
     private         Boolean              apresMidi;
     private         Boolean              occupe;
     private         Integer              nbreResa;
+    private         Double               note;
 
 
     /**
@@ -102,8 +106,8 @@ public class AjaxActionTopo extends ActionSupport {
             }
             vResult = ActionSupport.SUCCESS;
         }
-            return vResult;
-        }
+        return vResult;
+    }
 
     /**
      * Méthode pour compter le nombre de réservation du topo.
@@ -112,11 +116,28 @@ public class AjaxActionTopo extends ActionSupport {
      */
     public String doAjaxCountResa(){
 
-            topo = managerFactory.getTopoManager().getTopoViaNom(nomTopo);
-            nbreResa = managerFactory.getReservationManager().getCountResa(topo.getId());
+        topo = managerFactory.getTopoManager().getTopoViaNom(nomTopo);
+        nbreResa = managerFactory.getReservationManager().getCountResa(topo.getId());
 
         return ActionSupport.SUCCESS;
+    }
+
+
+    public String doAjaxAddNote(){
+
+        if(note != null){
+            topo = managerFactory.getTopoManager().getTopoViaNom(nomTopo);
+            Note pNote = new Note();
+            pNote.setSiteId(topo.getId());
+            pNote.setNote(note);
+            pseudo = (String) ActionContext.getContext().getSession().get("pseudo");
+            compte = managerFactory.getCompteManager().getCompteViaPseudo(pseudo);
+            pNote.setCompteId(compte.getId());
+            managerFactory.getNoteManager().addNote(pNote);
+            logger.info("Note : "+note+" a bien été ajoutée à la base de données.");
         }
+        return ActionSupport.SUCCESS;
+    }
 
 
     public List<Reservation> getListReservation() {
@@ -181,6 +202,22 @@ public class AjaxActionTopo extends ActionSupport {
 
     public void setNbreResa(Integer nbreResa) {
         this.nbreResa = nbreResa;
+    }
+
+    public Compte getCompte() {
+        return compte;
+    }
+
+    public void setCompte(Compte compte) {
+        this.compte = compte;
+    }
+
+    public Double getNote() {
+        return note;
+    }
+
+    public void setNote(Double note) {
+        this.note = note;
     }
 }
 
