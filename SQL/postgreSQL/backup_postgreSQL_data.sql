@@ -5,7 +5,7 @@
 -- Dumped from database version 10.4
 -- Dumped by pg_dump version 11.0
 
--- Started on 2019-05-11 15:51:48
+-- Started on 2019-05-12 13:53:50
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -224,6 +224,11 @@ INSERT INTO public.image (id, url, description, image_de_presentation, site_id, 
 INSERT INTO public.image (id, url, description, image_de_presentation, site_id, topo_id, compte_id) VALUES (6, 'Mon site d''escalade/toulon.jpg', 'Image du site : Mon site d''escalade', false, 2, NULL, NULL);
 INSERT INTO public.image (id, url, description, image_de_presentation, site_id, topo_id, compte_id) VALUES (7, 'Mon nouveau site/7.jpg', 'Image de présentation du topo Mon nouveau site', true, 3, NULL, NULL);
 INSERT INTO public.image (id, url, description, image_de_presentation, site_id, topo_id, compte_id) VALUES (8, 'Mon nouveau site/3.jpg', 'Image du site : Mon nouveau site', false, 3, NULL, NULL);
+INSERT INTO public.image (id, url, description, image_de_presentation, site_id, topo_id, compte_id) VALUES (10, 'Nouv/2.jpg', 'Image de présentation du topo Nouv', true, 5, NULL, NULL);
+INSERT INTO public.image (id, url, description, image_de_presentation, site_id, topo_id, compte_id) VALUES (13, 'testSite/6.jpg', 'Image de présentation du topo testSite', true, 9, NULL, NULL);
+INSERT INTO public.image (id, url, description, image_de_presentation, site_id, topo_id, compte_id) VALUES (14, 'afg/3.jpg', 'Image de présentation du topo afg', true, 10, NULL, NULL);
+INSERT INTO public.image (id, url, description, image_de_presentation, site_id, topo_id, compte_id) VALUES (16, 'Mon site sur Ollioule/3.jpg', 'Image de présentation du topo Mon site sur Ollioule', true, 13, NULL, NULL);
+INSERT INTO public.image (id, url, description, image_de_presentation, site_id, topo_id, compte_id) VALUES (17, 'Mon site sur Ollioule/1.jpg', 'Image du site : Mon site sur Ollioule', false, 13, NULL, NULL);
 
 
 --
@@ -300,10 +305,11 @@ INSERT INTO public.reservation (id, date, matin, apres_midi, compte_id, topo_id)
 INSERT INTO public.secteur (id, nom, site_id) VALUES (1, 'Secteur EST', 1);
 INSERT INTO public.secteur (id, nom, site_id) VALUES (2, 'Secteur NORD', 1);
 INSERT INTO public.secteur (id, nom, site_id) VALUES (3, 'Secteur SUD', 1);
-INSERT INTO public.secteur (id, nom, site_id) VALUES (4, 'Secteur EST', 2);
-INSERT INTO public.secteur (id, nom, site_id) VALUES (5, 'Secteur NORD', 2);
-INSERT INTO public.secteur (id, nom, site_id) VALUES (6, 'Secteur EST', 3);
-INSERT INTO public.secteur (id, nom, site_id) VALUES (7, 'Secteur NORD', 3);
+INSERT INTO public.secteur (id, nom, site_id) VALUES (9, 'test', 5);
+INSERT INTO public.secteur (id, nom, site_id) VALUES (11, 'test Nouv', 5);
+INSERT INTO public.secteur (id, nom, site_id) VALUES (13, 'test2', 10);
+INSERT INTO public.secteur (id, nom, site_id) VALUES (15, 'Falaise Nord', 13);
+INSERT INTO public.secteur (id, nom, site_id) VALUES (16, 'pic du diable', 13);
 
 
 --
@@ -315,6 +321,12 @@ INSERT INTO public.secteur (id, nom, site_id) VALUES (7, 'Secteur NORD', 3);
 INSERT INTO public.site (id, nom, description, topo_id, type_de_roche_id, departement_id, ville, date_de_creation, valide, responsable_id) VALUES (1, 'Site de grimpe sur Toulon', 'Bienvenu sur mon premier site d''escalade sur Toulon, il présente le baou et ses secteurs', 1, 2, 84, 'Toulon', '2019-03-15', true, 1);
 INSERT INTO public.site (id, nom, description, topo_id, type_de_roche_id, departement_id, ville, date_de_creation, valide, responsable_id) VALUES (2, 'Mon site d''escalade', 'Bienvenue sur mon nouveau site d''esalade de sanary-sur-mer', 1, 6, 84, 'SANARY SUR MER', '2019-05-04', true, 1);
 INSERT INTO public.site (id, nom, description, topo_id, type_de_roche_id, departement_id, ville, date_de_creation, valide, responsable_id) VALUES (3, 'Mon nouveau site', 'Ce site est un site test !!', 1, 7, 84, 'Sanary', '2019-05-11', false, 1);
+INSERT INTO public.site (id, nom, description, topo_id, type_de_roche_id, departement_id, ville, date_de_creation, valide, responsable_id) VALUES (5, 'Nouv', 'test', 1, 6, 18, 'SANARY SUR MER', '2019-05-12', false, 1);
+INSERT INTO public.site (id, nom, description, topo_id, type_de_roche_id, departement_id, ville, date_de_creation, valide, responsable_id) VALUES (9, 'testSite', 'test', 1, 1, 1, 'SANARY SUR MER', '2019-05-12', false, 1);
+INSERT INTO public.site (id, nom, description, topo_id, type_de_roche_id, departement_id, ville, date_de_creation, valide, responsable_id) VALUES (10, 'afg', 'tes', 1, 1, 1, 'SANARY SUR MER', '2019-05-12', false, 1);
+INSERT INTO public.site (id, nom, description, topo_id, type_de_roche_id, departement_id, ville, date_de_creation, valide, responsable_id) VALUES (11, 'afg', 'tes', 1, 1, 1, 'SANARY SUR MER', '2019-05-12', false, 1);
+INSERT INTO public.site (id, nom, description, topo_id, type_de_roche_id, departement_id, ville, date_de_creation, valide, responsable_id) VALUES (13, 'Mon site sur Ollioule', 'Bienvenue sur mon site d''escalade dédié au gorge de la ville d''Ollioule. Depuis jeune je parcours les gorges pour trouver des coins sympa. J''ai mis dans ce site les différent secteurs et voies accessible à tous
+', 1, 1, 1, 'SANARY SUR MER', '2019-05-12', true, 1);
 
 
 --
@@ -356,11 +368,12 @@ INSERT INTO public.voie (id, nom, hauteur, secteur_id, cotation_id) VALUES (6, '
 INSERT INTO public.voie (id, nom, hauteur, secteur_id, cotation_id) VALUES (7, 'Voie difficile', 30, 2, 35);
 INSERT INTO public.voie (id, nom, hauteur, secteur_id, cotation_id) VALUES (8, NULL, 25, 3, 24);
 INSERT INTO public.voie (id, nom, hauteur, secteur_id, cotation_id) VALUES (9, NULL, 15, 3, 32);
-INSERT INTO public.voie (id, nom, hauteur, secteur_id, cotation_id) VALUES (10, 'voie1', 12, 4, 9);
-INSERT INTO public.voie (id, nom, hauteur, secteur_id, cotation_id) VALUES (11, '', 15, 5, 20);
-INSERT INTO public.voie (id, nom, hauteur, secteur_id, cotation_id) VALUES (12, '', 15, 5, 33);
-INSERT INTO public.voie (id, nom, hauteur, secteur_id, cotation_id) VALUES (13, 'Voie 1', 12, 7, 1);
-INSERT INTO public.voie (id, nom, hauteur, secteur_id, cotation_id) VALUES (14, '', 15, 7, 37);
+INSERT INTO public.voie (id, nom, hauteur, secteur_id, cotation_id) VALUES (23, '', 43, 16, 51);
+INSERT INTO public.voie (id, nom, hauteur, secteur_id, cotation_id) VALUES (24, 'Voie principal', 50, 16, 43);
+INSERT INTO public.voie (id, nom, hauteur, secteur_id, cotation_id) VALUES (25, 'Facile', 35, 16, 30);
+INSERT INTO public.voie (id, nom, hauteur, secteur_id, cotation_id) VALUES (26, 'voie1', 30, 15, 23);
+INSERT INTO public.voie (id, nom, hauteur, secteur_id, cotation_id) VALUES (27, 'voie2', 36, 15, 10);
+INSERT INTO public.voie (id, nom, hauteur, secteur_id, cotation_id) VALUES (28, '', 30, 15, 21);
 
 
 --
@@ -396,7 +409,7 @@ SELECT pg_catalog.setval('public.cotation_id_seq', 54, true);
 -- Name: image_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.image_id_seq', 9, true);
+SELECT pg_catalog.setval('public.image_id_seq', 19, true);
 
 
 --
@@ -450,7 +463,7 @@ SELECT pg_catalog.setval('public.reservation_id_seq', 5, true);
 -- Name: secteur_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.secteur_id_seq', 8, true);
+SELECT pg_catalog.setval('public.secteur_id_seq', 17, true);
 
 
 --
@@ -459,7 +472,7 @@ SELECT pg_catalog.setval('public.secteur_id_seq', 8, true);
 -- Name: site_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.site_id_seq', 4, true);
+SELECT pg_catalog.setval('public.site_id_seq', 14, true);
 
 
 --
@@ -486,10 +499,10 @@ SELECT pg_catalog.setval('public.type_de_roche_id_seq', 1, false);
 -- Name: voie_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.voie_id_seq', 14, true);
+SELECT pg_catalog.setval('public.voie_id_seq', 29, true);
 
 
--- Completed on 2019-05-11 15:51:50
+-- Completed on 2019-05-12 13:53:50
 
 --
 -- PostgreSQL database dump complete
