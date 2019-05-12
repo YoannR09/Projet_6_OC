@@ -126,15 +126,17 @@ public class AjaxActionTopo extends ActionSupport {
     public String doAjaxAddNote(){
 
         if(note != null){
-            topo = managerFactory.getTopoManager().getTopoViaNom(nomTopo);
-            Note pNote = new Note();
-            pNote.setSiteId(topo.getId());
-            pNote.setNote(note);
-            pseudo = (String) ActionContext.getContext().getSession().get("pseudo");
-            compte = managerFactory.getCompteManager().getCompteViaPseudo(pseudo);
-            pNote.setCompteId(compte.getId());
-            managerFactory.getNoteManager().addNote(pNote);
-            logger.info("Note : "+note+" a bien été ajoutée à la base de données.");
+            if(note instanceof Double) {
+                topo = managerFactory.getTopoManager().getTopoViaNom(nomTopo);
+                Note pNote = new Note();
+                pNote.setSiteId(topo.getId());
+                pNote.setNote(note);
+                pseudo = (String) ActionContext.getContext().getSession().get("pseudo");
+                compte = managerFactory.getCompteManager().getCompteViaPseudo(pseudo);
+                pNote.setCompteId(compte.getId());
+                managerFactory.getNoteManager().addNote(pNote);
+                logger.info("Note : " + note + " a bien été ajoutée à la base de données.");
+            }
         }
         return ActionSupport.SUCCESS;
     }

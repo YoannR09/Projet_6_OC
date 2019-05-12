@@ -311,7 +311,6 @@
             params,
             function (data) {
                 var $listResa = jQuery("#listResa");
-                var $messageAjax = jQuery("#messageAjax");
                 $listResa.empty();
                 jQuery.each(data, function (key, val) {
                     var dates = new Date(val.date);
@@ -341,8 +340,6 @@
                 });
 
                 var nbreResa = $('#count').text();
-                console.log(data.length);
-                console.log(nbreResa);
 
                 if(data.length == nbreResa){
                     $('#messageAjax').show();

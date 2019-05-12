@@ -55,6 +55,7 @@
         <div class="col-lg-12 col-md-12 col-sm-12" id="cadreInfos" style="background-color:rgba(0,0,0,0.7);display: flex;justify-content: space-around">
             <div class="col-lg-6 col-md-6 col-sm-6">
                 <h2 id="nomSite" style="padding: 20px"><s:property value="nomSite"/></h2>
+                <p id="count"></p>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6">
                 <button type="button" class="btn btn-outline-info" id="btnSecteur" style="float: right" data-toggle="modal" data-target="#exampleModalCenter">Ajouter un secteur</button>
@@ -62,6 +63,9 @@
         </div>
         <div class="col-lg-12 col-md-12 col-sm-12" id="cadreSecteur" style="background-color:rgba(0,0,0,0.7);">
             <h5>Liste des secteurs du site</h5>
+            <div  id="messageAjax" style="padding: 15px">
+                <em> Nom de secteur déjà utilisé</em>
+            </div>
             <div style="text-align: center" >
                 <span style='padding :10px;margin-bottom: 15px;'>Nom du secteur</span>
             </div>
@@ -90,7 +94,6 @@
                         <input name="nomSecteur" type="text" class="form-control" id="inputObjet" placeholder="Nom" required/>
                         <button id="btn" data-dismiss="modal" onclick="addSecteur()" class="btn btn-info">Créer</button>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -101,6 +104,11 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
 
+    $(function() {
+        $('#messageAjax').hide();
+        $('#count').hide();
+        countSecteur();
+    });
 
     /**
      * Méthode pour ajouter un secteur pendant la création d'un site.
@@ -111,6 +119,8 @@
 
         // récupère le message entré par l'utilisateur
         var nomSecteur = $("input[name=nomSecteur]").val();
+
+        countSecteur();
 
         var nomSite =$("#nomSite").text();
 
@@ -129,21 +139,47 @@
             params,
             function (data) {
                 var $listSecteur = jQuery("#listSecteur");
-
                 $listSecteur.empty();
 
                 jQuery.each(data, function (key, val) {
+                    $
                     $listSecteur.append(
                         jQuery("<div style='width: 100%;'>").append(jQuery("<span class='badge badge-light' style='padding :10px;margin-bottom: 15px;'>").append(val.nom)
                     ));
                 });
+                var nbreSecteur = $('#count').text();
+
+                if(data.length == nbreSecteur){
+                    $('#messageAjax').show();
+                }else {
+                    $('#messageAjax').hide();
+
+                }
             })
             .fail(function () {
                 alert("Erreur");
             });
-
         $("input[name=nomSecteur]").val(""); //-- On vide le champ de saisie du nouveau message à chaque tour.
      }
+
+    function countSecteur() {
+        // URL de l'action AJAX
+        var url = "<s:url action="ajax_count_secteur"/>";
+
+        var nomSite = $("#nomSite").text();
+
+        var params = {
+            nomSite: nomSite,
+        };
+        // Action AJAX en POST
+        jQuery.post(
+            url,
+            params,
+            function (data) {
+                $('#count').empty();
+                $('#count').append(data);
+            });
+    }
 </script>
 </body>
 </html>

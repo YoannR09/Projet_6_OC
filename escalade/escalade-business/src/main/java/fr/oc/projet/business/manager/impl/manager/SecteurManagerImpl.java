@@ -30,6 +30,12 @@ public class SecteurManagerImpl extends AbstractManagerImpl implements SecteurMa
     public List<Secteur> getListSecteurSite(Integer siteId) {
         return getDaoFactory().getSecteurDao().getListSecteurSite(siteId);
     }
+
+    @Override
+    public Integer getCountSecteurSite(Integer siteId) {
+        return getDaoFactory().getSecteurDao().getCountSecteurSite(siteId);
+    }
+
     @Override
     public void addSecteur(Secteur secteur) {
         getDaoFactory().getSecteurDao().addSecteur(secteur);

@@ -25,11 +25,13 @@ public class AjaxActionSite extends ActionSupport {
     static final Logger logger	= LogManager.getLogger();
 
     private         Double          note;
+    private         Integer         nbreSecteur;
     private         String          nomSite;
     private         String          pseudo;
+    private         String          message;
+    private         String          nomSecteur;
     private         Compte          compte;
     private         Site            site;
-    private         String          nomSecteur;
     private         Integer         idSecteur;
     private         Secteur         secteur;
     private         List<Secteur>   listSecteur;
@@ -43,15 +45,17 @@ public class AjaxActionSite extends ActionSupport {
     public String doAjaxAddNote(){
 
         if(note != null){
-            site = managerFactory.getSiteManager().getSiteViaNom(nomSite);
-            Note pNote = new Note();
-            pNote.setSiteId(site.getId());
-            pNote.setNote(note);
-            pseudo = (String) ActionContext.getContext().getSession().get("pseudo");
-            compte = managerFactory.getCompteManager().getCompteViaPseudo(pseudo);
-            pNote.setCompteId(compte.getId());
-            managerFactory.getNoteManager().addNote(pNote);
-            logger.info("Note : "+note+" a bien été ajoutée à la base de données.");
+            if(note instanceof Double) {
+                site = managerFactory.getSiteManager().getSiteViaNom(nomSite);
+                Note pNote = new Note();
+                pNote.setSiteId(site.getId());
+                pNote.setNote(note);
+                pseudo = (String) ActionContext.getContext().getSession().get("pseudo");
+                compte = managerFactory.getCompteManager().getCompteViaPseudo(pseudo);
+                pNote.setCompteId(compte.getId());
+                managerFactory.getNoteManager().addNote(pNote);
+                logger.info("Note : " + note + " a bien été ajoutée à la base de données.");
+            }
         }
         return ActionSupport.SUCCESS;
     }
@@ -73,24 +77,36 @@ public class AjaxActionSite extends ActionSupport {
         String vResult = ActionSupport.SUCCESS;
         try {
             site = managerFactory.getSiteManager().getSiteViaNom(nomSite);
-            Secteur secteur = new Secteur();
-            listSecteur = managerFactory.getSecteurManager().getListSecteurSite(site.getId());
+            listSecteur = managerFactory.getSecteurManager().getListSecteur();
             for(int i = 0;i<listSecteur.size();i++){
                 if (nomSecteur.equals(listSecteur.get(i).getNom())){
-                    nomSecteur = nomSecteur+" "+site.getNom();
+                    vResult = ActionSupport.ERROR;
+                    listSecteur = managerFactory.getSecteurManager().getListSecteurSite(site.getId());
                     break;
                 }
             }
-            secteur.setNom(nomSecteur);
-            secteur.setSiteId(site.getId());
-            managerFactory.getSecteurManager().addSecteur(secteur);
-            logger.info("Secteur : "+secteur+" a bien été ajouté à la base de données.");
-            listSecteur = managerFactory.getSecteurManager().getListSecteurSite(site.getId());
+            if(vResult != ActionSupport.ERROR) {
+                Secteur secteur = new Secteur();
+                secteur.setNom(nomSecteur);
+                secteur.setSiteId(site.getId());
+                managerFactory.getSecteurManager().addSecteur(secteur);
+                logger.info("Secteur : " + secteur + " a bien été ajouté à la base de données.");
+                listSecteur = managerFactory.getSecteurManager().getListSecteurSite(site.getId());
+            }
         }  catch (Exception e) {
             e.printStackTrace();
         }
         return vResult;
     }
+
+    public String doAjaxCountSecteur(){
+
+        site = managerFactory.getSiteManager().getSiteViaNom(nomSite);
+        nbreSecteur = managerFactory.getSecteurManager().getCountSecteurSite(site.getId());
+
+        return ActionSupport.SUCCESS;
+    }
+
 
     public Double getNote() {
         return note;
@@ -162,5 +178,21 @@ public class AjaxActionSite extends ActionSupport {
 
     public void setListSecteur(List<Secteur> listSecteur) {
         this.listSecteur = listSecteur;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public Integer getNbreSecteur() {
+        return nbreSecteur;
+    }
+
+    public void setNbreSecteur(Integer nbreSecteur) {
+        this.nbreSecteur = nbreSecteur;
     }
 }

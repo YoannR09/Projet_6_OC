@@ -48,7 +48,6 @@
 
 </style>
 
-
 <div id="page">
 
     <div class="col-lg-9 col-md-9 col-sm-9" style="color: white; margin-top: 20px;">
@@ -76,8 +75,8 @@
                 <s:a action="addImageSite" class="btn btn-info">Suivant <s:param name="nomSite" value="nomSite" /></s:a>
             </div>
         </div>
-        <!--------------------------------- Pop-up ------------------------------------>
 
+        <!--------------------------------- Pop-up ------------------------------------>
 
         <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered " role="document" style="width: 25%">
@@ -102,10 +101,8 @@
                             <label for="textNom">Hauteur</label>
                             <input name="hauteur" type="text" class="form-control" id="textHauteur" placeholder="Mètres" required>
                         </div>
-
                         <button id="btn" data-dismiss="modal" onclick="addVoie()" class="btn btn-info">Créer</button>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -157,12 +154,17 @@
             function (data) { // La méthode qui lit le résultat retourné à la suite de l'envoi de la requêt POST
                 var $listVoie = jQuery("#listVoie"); // OFA : il faut qu'une balise html existe avec cet id="listMessage" pour savoir ou mettre la liste des mesages.
                 $listVoie.empty();
-                console.log(data);
                 jQuery.each(data, function (key, val) {
+                    if(val.nom == ""){
+                        var nom = " ";
+                        console.log("ici");
+                    }else {
+                        var nom = val.nom;
+                    }
                     getNomSecteur(val.secteurId);
                     $listVoie.append(
                         jQuery("<div style='display:flex;justify-content: space-around'>")
-                            .append(jQuery("<span class='badge badge-info' style='width: 200px'>").append(val.nom),
+                            .append(jQuery("<span class='badge badge-info' style='width: 200px'>").append(nom),
                                 jQuery("<span class='badge badge-light' style='width: 100px'>").append(val.hauteur),
                                 jQuery("<span class='badge badge-light' style='width: 100px'>").append(getNomSecteur(val.secteurId)),
                                 jQuery("<span class='badge badge-light' style='width: 100px'>").append(val.cotation.valeur))

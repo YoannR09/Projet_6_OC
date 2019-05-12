@@ -389,12 +389,16 @@
             nomTopo: nomTopo
         };
         // Action AJAX en POST
-        jQuery.post(
-            url,
-            params,
-            function (data) {
-            })
-        $("input[name=note]").val(""); //-- On vide le champ de saisie du nouveau message à chaque tour.*
+        if(note < 10) {
+            jQuery.post(
+                url,
+                params,
+                function (data) {
+                })
+            $("input[name=note]").val(""); //-- On vide le champ de saisie du nouveau message à chaque tour.*
+        }else {
+            alert("Le note doit être entre 1 et 10")
+        }
     }
 </script>
 </body>

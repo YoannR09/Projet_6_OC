@@ -15,6 +15,8 @@ public interface SecteurManager {
 
     List<Secteur> getListSecteurSite(Integer siteId);
 
+    Integer getCountSecteurSite(Integer siteId);
+
     void addSecteur(Secteur secteur);
 
     void deleteSecteur(Integer siteId);

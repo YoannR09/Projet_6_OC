@@ -50,10 +50,8 @@ public class LoginAction extends ActionSupport implements SessionAware {
     public String doLogin(){
         String vResult = ActionSupport.INPUT;
         if (pseudo != null) {
-
             List<Compte> vList;
             vList = managerFactory.getCompteManager().getListCompte();
-
             for(int i = 0;i<vList.size();i++){
                 if(vList.get(i).getPseudo().equals(pseudo)){
                     compte = managerFactory.getCompteManager().getCompteViaPseudo(pseudo);
@@ -97,23 +95,35 @@ public class LoginAction extends ActionSupport implements SessionAware {
         String vResult = ActionSupport.INPUT;
         // Si pseudo est null c'est qu'on vient d'arriver dans le formulaire.
         if(pseudo != null) {
-            // On regarde si le mot de passe est bien confirmé une deuxième fois
-            if (password.equals(passwordConf)) {
-                // On regarde si l'email est bien confirmé une deuxième fois
-                if (email.equals(emailConf)) {
-
-                    Compte compte = new Compte();
-                    compte.setPseudo(pseudo);
-                    compte.setPrenom(prenom);
-                    compte.setNom(nom);
-                    compte.setPassword(password);
-                    compte.setEmail(email);
-                    compte.setNumero(numero);
-                    compte.setNiveau(1);
-                    managerFactory.getCompteManager().addCompte(compte);
-                    logger.info("Compte "+compte+" a bien été ajouté à la base de données.");
-
-                    vResult = ActionSupport.SUCCESS;
+            List<Compte> vList = managerFactory.getCompteManager().getListCompte();
+            for (int i = 0; i < vList.size(); i++) {
+                if (pseudo.equals(vList.get(i).getPseudo())) {
+                    vResult = ActionSupport.ERROR;
+                    this.addActionMessage(" Pseudo déjà existant");
+                    break;
+                }
+            }
+            if(vResult != ActionSupport.ERROR) {
+                // On regarde si le mot de passe est bien confirmé une deuxième fois
+                if (password.equals(passwordConf)) {
+                    // On regarde si l'email est bien confirmé une deuxième fois
+                    if (email.equals(emailConf)) {
+                        Compte compte = new Compte();
+                        compte.setPseudo(pseudo);
+                        compte.setPrenom(prenom);
+                        compte.setNom(nom);
+                        compte.setPassword(password);
+                        compte.setEmail(email);
+                        compte.setNumero(numero);
+                        compte.setNiveau(1);
+                        managerFactory.getCompteManager().addCompte(compte);
+                        logger.info("Compte " + compte + " a bien été ajouté à la base de données.");
+                        vResult = ActionSupport.SUCCESS;
+                    }else {
+                        this.addActionMessage(" Email différent");
+                    }
+                }else {
+                    this.addActionMessage(" Mot de passe différent");
                 }
             }
         }

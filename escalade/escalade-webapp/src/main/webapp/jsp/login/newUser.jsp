@@ -42,6 +42,7 @@
          id="card">
 
         <div class="card-header"><h3>S'inscrire</h3></div>
+        <s:actionmessage/>
         <div class="card-body" id="mid">
             <s:form action="newUser" method="POST" enctype="multipart/form-data">
                 <div class="form-row"  id="cadreDiv" style="display: flex; justify-content: space-around;">
