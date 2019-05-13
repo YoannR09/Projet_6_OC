@@ -358,6 +358,7 @@
                 function (data) {
                 })
             $("input[name=note]").val(""); //-- On vide le champ de saisie du nouveau message à chaque tour.*
+            $('#btnEva').attr("disabled","disabled");
         }else {
             alert("Le note doit être entre 1 et 10")
         }
