@@ -176,7 +176,7 @@
 
         <!--------------------------------- Pop-up ------------------------------------>
 
-        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="color: black">
+        <div class="modal fade" id="eva" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="color: black">
             <div class="modal-dialog modal-dialog-centered" role="document" style="width: 20%">
                 <div class="modal-content bg-dark" style="color:white;">
                     <div class="modal-header">
@@ -312,12 +312,10 @@
                         jQuery("<span class='badge badge-light' style='padding :10px;margin-bottom: 15px;width: 60%;height: 70px;text-align: left'>")
                             .append(val.contenu)
                     );
-
                     $listCommentaire.append(
                         jQuery("<span class='badge badge-light' style='margin-bottom: 15px;'>")
                             .append(dates.getDate(),'/',(dates.getMonth()+1),'/',dates.getFullYear())
                     );
-
                     $listCommentaire.append(
                         jQuery("<div style='width: 100%;height: 5px; border-bottom : 1px solid lightgray; border-radius: 40%'>")
                     );

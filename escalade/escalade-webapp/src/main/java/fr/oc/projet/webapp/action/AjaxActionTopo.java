@@ -129,7 +129,7 @@ public class AjaxActionTopo extends ActionSupport {
             if(note instanceof Double) {
                 topo = managerFactory.getTopoManager().getTopoViaNom(nomTopo);
                 Note pNote = new Note();
-                pNote.setSiteId(topo.getId());
+                pNote.setTopoId(topo.getId());
                 pNote.setNote(note);
                 pseudo = (String) ActionContext.getContext().getSession().get("pseudo");
                 compte = managerFactory.getCompteManager().getCompteViaPseudo(pseudo);
