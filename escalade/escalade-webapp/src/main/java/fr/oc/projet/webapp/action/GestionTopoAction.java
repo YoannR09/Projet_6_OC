@@ -7,6 +7,7 @@ import fr.oc.projet.model.bean.Image;
 import fr.oc.projet.model.bean.escalade.Site;
 import fr.oc.projet.model.bean.escalade.Topo;
 import fr.oc.projet.model.bean.utilisateur.Commentaire;
+import fr.oc.projet.model.bean.utilisateur.Compte;
 import fr.oc.projet.model.bean.utilisateur.Reservation;
 
 import javax.inject.Inject;
@@ -29,6 +30,7 @@ public class GestionTopoAction extends ActionSupport {
     private         List<Image>           listImage;
     private         List<Site>            listSite;
     private         Topo                  topo;
+    private         Compte                compte;
     private         Integer               idTopo;
     private         Integer               lastId;
     private         Integer               nombre;
@@ -38,6 +40,7 @@ public class GestionTopoAction extends ActionSupport {
     private         Integer               count;
     private         Integer               max;
     private         Boolean               endList;
+    private         Boolean               noted;
     private         String                critere;
 
 
@@ -47,10 +50,17 @@ public class GestionTopoAction extends ActionSupport {
      */
     public String doDetailTopo(){
 
-            topo = managerFactory.getTopoManager().getTopo(idTopo);
-            listCommentaire = managerFactory.getCommentaireManager().getListCommentaireTopo(idTopo);
-            listSite = managerFactory.getSiteManager().getListSiteTopo(topo.getId());
-            listImage = managerFactory.getImageManager().getListImageTopo(topo.getId());
+        topo = managerFactory.getTopoManager().getTopo(idTopo);
+        listCommentaire = managerFactory.getCommentaireManager().getListCommentaireTopo(idTopo);
+        listSite = managerFactory.getSiteManager().getListSiteTopo(topo.getId());
+        listImage = managerFactory.getImageManager().getListImageTopo(topo.getId());
+        pseudo = (String) ActionContext.getContext().getSession().get("pseudo");
+        compte = managerFactory.getCompteManager().getCompteViaPseudo(pseudo);
+        if(managerFactory.getNoteManager().getCheckNoteTopo(compte.getId(),topo.getId()) != 0){
+            noted = true;
+        }else {
+            noted = false;
+        }
 
         return  ActionSupport.SUCCESS;
     }
@@ -321,5 +331,21 @@ public class GestionTopoAction extends ActionSupport {
 
     public void setCritere(String critere) {
         this.critere = critere;
+    }
+
+    public Boolean getNoted() {
+        return noted;
+    }
+
+    public void setNoted(Boolean noted) {
+        this.noted = noted;
+    }
+
+    public Compte getCompte() {
+        return compte;
+    }
+
+    public void setCompte(Compte compte) {
+        this.compte = compte;
     }
 }

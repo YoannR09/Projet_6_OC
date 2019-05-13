@@ -58,6 +58,42 @@ public class NoteDaoImpl extends AbstractDaoImpl implements NoteDao {
         return moyenne;
     }
 
+    /**
+     * Méthode pour consulter si l'utilisateur a déjà noté ce site
+     * @param compteId
+     * @param siteId
+     * @return
+     */
+    @Override
+    public Integer getCheckNoteSite(Integer compteId, Integer siteId) {
+        JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
+        int vNbre = vJdbcTemplate.queryForObject(
+                "SELECT COUNT(*) FROM public.note WHERE site_id = "+siteId +
+                " AND compte_id = "+compteId,
+                Integer.class);
+        return vNbre;
+    }
+
+    /**
+     * Méthode pour consulter si l'utilisateur a déjà noté ce topo
+     * @param compteId
+     * @param topoId
+     * @return
+     */
+    @Override
+    public Integer getCheckNoteTopo(Integer compteId, Integer topoId) {
+        JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
+        int vNbre = vJdbcTemplate.queryForObject(
+                "SELECT COUNT(*) FROM public.note WHERE topo_id = "+topoId +
+                        " AND compte_id = "+compteId,
+                Integer.class);
+        return vNbre;
+    }
+
+    /**
+     * Méthode pour ajouter une note à un site ou topo.
+     * @param note
+     */
     @Override
     public void addNote(Note note) {
         String vSQL = "INSERT INTO note (note, site_id, topo_id, compte_id)" +
@@ -93,6 +129,4 @@ public class NoteDaoImpl extends AbstractDaoImpl implements NoteDao {
         Double moyenne = total / list.size();
         return moyenne;
     }
-
-
 }

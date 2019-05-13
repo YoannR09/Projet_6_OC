@@ -10,5 +10,9 @@ public interface NoteManager {
 
     Double getNoteSite(Integer siteId);
 
+    Integer getCheckNoteSite(Integer compteId, Integer siteId);
+
+    Integer getCheckNoteTopo(Integer compteId, Integer topoId);
+
     void addNote(Note note);
 }

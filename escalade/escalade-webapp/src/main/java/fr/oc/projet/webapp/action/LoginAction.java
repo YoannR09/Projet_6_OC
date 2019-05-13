@@ -121,9 +121,11 @@ public class LoginAction extends ActionSupport implements SessionAware {
                         vResult = ActionSupport.SUCCESS;
                     }else {
                         this.addActionMessage(" Email différent");
+                        vResult = ActionSupport.ERROR;
                     }
                 }else {
                     this.addActionMessage(" Mot de passe différent");
+                    vResult = ActionSupport.ERROR;
                 }
             }
         }

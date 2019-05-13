@@ -104,7 +104,7 @@ public class DAOFactoryImpl implements DAOFactory {
 
     @Override
     public NoteDao getNoteDao() {
-        return null;
+        return this.noteDao;
     }
 
     @Override

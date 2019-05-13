@@ -153,7 +153,12 @@
             <button type="button" class="btn btn-info" id="btnEnvoyer" data-toggle="modal" data-target="#votreCommentaire">Mettre un commentaire</button>
             <button type="button" class="btn btn-outline-info" id="btnCom">Voir les commentaires</button>
             <s:a action="listSecteur" class="btn btn-outline-info"><s:param name="idSite" value="site.id" />Liste des secteurs</s:a>
+            <s:if test="!noted">
             <button type="button" class="btn btn-outline-info" id="btnEva" data-toggle="modal" data-target="#eva">Evaluer ce site</button>
+            </s:if>
+            <s:else>
+                <button type="button" class="btn btn-outline-info"  disabled> Evaluer ce site </button>
+            </s:else>
         </div>
 
         <!--------------------------------- Pop-up ------------------------------------>

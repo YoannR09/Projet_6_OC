@@ -133,7 +133,6 @@
 
         var cotationId = $("select[name=cotationId]").val();
 
-
         var nomSite =$("#nomSite").text();
 
         // URL de l'action AJAX

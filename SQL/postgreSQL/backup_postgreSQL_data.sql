@@ -5,7 +5,7 @@
 -- Dumped from database version 10.4
 -- Dumped by pg_dump version 11.0
 
--- Started on 2019-05-12 13:53:50
+-- Started on 2019-05-12 14:46:10
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -220,8 +220,6 @@ INSERT INTO public.image (id, url, description, image_de_presentation, site_id, 
 INSERT INTO public.image (id, url, description, image_de_presentation, site_id, topo_id, compte_id) VALUES (2, 'Site de grimpe sur Toulon/toulon2.jpg', 'image', false, 1, NULL, NULL);
 INSERT INTO public.image (id, url, description, image_de_presentation, site_id, topo_id, compte_id) VALUES (3, 'Topo de la region du var/topo1.jpg', 'image', true, NULL, 1, NULL);
 INSERT INTO public.image (id, url, description, image_de_presentation, site_id, topo_id, compte_id) VALUES (4, 'Topo de la region du var/4.jpg', 'image', false, NULL, 1, NULL);
-INSERT INTO public.image (id, url, description, image_de_presentation, site_id, topo_id, compte_id) VALUES (5, 'Mon site d''escalade/2.jpg', 'Image de présentation du topo Mon site d''escalade', true, 2, NULL, NULL);
-INSERT INTO public.image (id, url, description, image_de_presentation, site_id, topo_id, compte_id) VALUES (6, 'Mon site d''escalade/toulon.jpg', 'Image du site : Mon site d''escalade', false, 2, NULL, NULL);
 INSERT INTO public.image (id, url, description, image_de_presentation, site_id, topo_id, compte_id) VALUES (7, 'Mon nouveau site/7.jpg', 'Image de présentation du topo Mon nouveau site', true, 3, NULL, NULL);
 INSERT INTO public.image (id, url, description, image_de_presentation, site_id, topo_id, compte_id) VALUES (8, 'Mon nouveau site/3.jpg', 'Image du site : Mon nouveau site', false, 3, NULL, NULL);
 INSERT INTO public.image (id, url, description, image_de_presentation, site_id, topo_id, compte_id) VALUES (10, 'Nouv/2.jpg', 'Image de présentation du topo Nouv', true, 5, NULL, NULL);
@@ -319,7 +317,6 @@ INSERT INTO public.secteur (id, nom, site_id) VALUES (16, 'pic du diable', 13);
 --
 
 INSERT INTO public.site (id, nom, description, topo_id, type_de_roche_id, departement_id, ville, date_de_creation, valide, responsable_id) VALUES (1, 'Site de grimpe sur Toulon', 'Bienvenu sur mon premier site d''escalade sur Toulon, il présente le baou et ses secteurs', 1, 2, 84, 'Toulon', '2019-03-15', true, 1);
-INSERT INTO public.site (id, nom, description, topo_id, type_de_roche_id, departement_id, ville, date_de_creation, valide, responsable_id) VALUES (2, 'Mon site d''escalade', 'Bienvenue sur mon nouveau site d''esalade de sanary-sur-mer', 1, 6, 84, 'SANARY SUR MER', '2019-05-04', true, 1);
 INSERT INTO public.site (id, nom, description, topo_id, type_de_roche_id, departement_id, ville, date_de_creation, valide, responsable_id) VALUES (3, 'Mon nouveau site', 'Ce site est un site test !!', 1, 7, 84, 'Sanary', '2019-05-11', false, 1);
 INSERT INTO public.site (id, nom, description, topo_id, type_de_roche_id, departement_id, ville, date_de_creation, valide, responsable_id) VALUES (5, 'Nouv', 'test', 1, 6, 18, 'SANARY SUR MER', '2019-05-12', false, 1);
 INSERT INTO public.site (id, nom, description, topo_id, type_de_roche_id, departement_id, ville, date_de_creation, valide, responsable_id) VALUES (9, 'testSite', 'test', 1, 1, 1, 'SANARY SUR MER', '2019-05-12', false, 1);
@@ -502,7 +499,7 @@ SELECT pg_catalog.setval('public.type_de_roche_id_seq', 1, false);
 SELECT pg_catalog.setval('public.voie_id_seq', 29, true);
 
 
--- Completed on 2019-05-12 13:53:50
+-- Completed on 2019-05-12 14:46:10
 
 --
 -- PostgreSQL database dump complete

@@ -166,7 +166,12 @@
             <button type="button" class="btn btn-outline-info" id="btnCom">Voir les commentaires</button>
             <button type="button" class="btn btn-outline-info" id="btnFake">Voir les créneaux disponibles</button>
             <s:a action="reservationTopo" class="btn btn-outline-info" id="btnResa"><s:param name="idTopo" value="topo.id" />Voir les créneaux disponibles</s:a>
-            <button type="button" class="btn btn-outline-info" id="btnEva" data-toggle="modal" data-target="#exampleModalCenter">Evaluer ce site</button>
+            <s:if test="!noted">
+                <button type="button" class="btn btn-outline-info" id="btnEva" data-toggle="modal" data-target="#eva">Evaluer ce site</button>
+            </s:if>
+            <s:else>
+                <button type="button" class="btn btn-outline-info"  disabled> Evaluer ce site </button>
+            </s:else>
         </div>
 
         <!--------------------------------- Pop-up ------------------------------------>

@@ -1,10 +1,12 @@
 package fr.oc.projet.webapp.action;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import fr.oc.projet.business.manager.contract.ManagerFactory;
 import fr.oc.projet.model.bean.Image;
 import fr.oc.projet.model.bean.escalade.*;
 import fr.oc.projet.model.bean.utilisateur.Commentaire;
+import fr.oc.projet.model.bean.utilisateur.Compte;
 import javassist.NotFoundException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -30,6 +32,7 @@ public class GestionSiteAction extends ActionSupport {
     private         Secteur               secteur;
     private         Voie                  voie;
     private         Site                  site;
+    private         Compte                compte;
     private         List<Site>            listSite;
     private         List<Commentaire>     listCommentaire;
     private         List<Secteur>         listSecteur;
@@ -38,6 +41,7 @@ public class GestionSiteAction extends ActionSupport {
     private         String                nomSite;
     private         String                text;
     private         String                critere;
+    private         String                pseudo;
     private         Integer               lastId;
     private         Integer               nombre;
     private         Integer               page;
@@ -47,6 +51,7 @@ public class GestionSiteAction extends ActionSupport {
     private         Integer               idSite;
     private         Integer               idSecteur;
     private         Boolean               endList;
+    private         Boolean               noted;
 
     /**
      * Méthode pour afficher la liste des sites qui sont validés par un administrateur.
@@ -255,6 +260,13 @@ public class GestionSiteAction extends ActionSupport {
             site = managerFactory.getSiteManager().getSite(idSite);
             listCommentaire = managerFactory.getCommentaireManager().getListCommentaireSite(idSite);
             listImage = managerFactory.getImageManager().getListImageSite(site.getId());
+            pseudo = (String) ActionContext.getContext().getSession().get("pseudo");
+            compte = managerFactory.getCompteManager().getCompteViaPseudo(pseudo);
+            if(managerFactory.getNoteManager().getCheckNoteSite(compte.getId(),site.getId()) != 0){
+                noted = true;
+            }else {
+                noted = false;
+            }
         }
         return  ActionSupport.SUCCESS;
     }
@@ -467,5 +479,29 @@ public class GestionSiteAction extends ActionSupport {
 
     public void setEndList(Boolean endList) {
         this.endList = endList;
+    }
+
+    public Boolean getNoted() {
+        return noted;
+    }
+
+    public void setNoted(Boolean noted) {
+        this.noted = noted;
+    }
+
+    public Compte getCompte() {
+        return compte;
+    }
+
+    public void setCompte(Compte compte) {
+        this.compte = compte;
+    }
+
+    public String getPseudo() {
+        return pseudo;
+    }
+
+    public void setPseudo(String pseudo) {
+        this.pseudo = pseudo;
     }
 }
