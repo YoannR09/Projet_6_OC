@@ -118,6 +118,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
                         compte.setNiveau(1);
                         managerFactory.getCompteManager().addCompte(compte);
                         logger.info("Compte " + compte + " a bien été ajouté à la base de données.");
+                        this.addActionMessage(" Le compte a bien été ajouté");
                         vResult = ActionSupport.SUCCESS;
                     }else {
                         this.addActionMessage(" Email différent");

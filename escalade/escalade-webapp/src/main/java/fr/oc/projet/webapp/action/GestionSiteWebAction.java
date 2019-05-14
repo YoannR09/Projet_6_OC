@@ -138,12 +138,14 @@ public class GestionSiteWebAction extends ActionSupport {
             managerFactory.getVoieManager().deleteVoie(site.getId());
             managerFactory.getSecteurManager().deleteSecteur(site.getId());
             managerFactory.getSiteManager().deleteSite(site.getId());
+            this.addActionMessage("Le site a bien été effacé.");
             logger.info("Site : "+site+" a bien été supprimé dans la base de données.");
         }else if(idTopo != null){
             topo = managerFactory.getTopoManager().getTopo(idTopo);
             managerFactory.getImageManager().deleteImageTopo(topo.getId());
             managerFactory.getTopoManager().deleteTopo(topo.getId());
             logger.info("Topo : "+topo+" a bien été supprimé dans la base de données.");
+            this.addActionMessage("Le topo a bien été effacé.");
         }
         return ActionSupport.SUCCESS;
     }

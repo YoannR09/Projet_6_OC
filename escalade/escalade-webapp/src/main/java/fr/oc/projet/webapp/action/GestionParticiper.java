@@ -100,7 +100,7 @@ public class GestionParticiper extends ActionSupport {
                 managerFactory.getImageManager().addImage(image);
                 logger.info("Image : "+image+" a bien été ajoutée à la base de données.");
                 vResult = ActionSupport.SUCCESS;
-
+                this.addActionMessage("Le site est maintenant en attente d'être modéré.");
             } catch (IOException e) {
                 e.printStackTrace();
                 logger.error(e);
@@ -136,7 +136,7 @@ public class GestionParticiper extends ActionSupport {
                 managerFactory.getImageManager().addImage(image);
                 logger.info("Image : "+image+" a bien été ajoutée à la base de données.");
                 vResult = ActionSupport.SUCCESS;
-
+                this.addActionMessage("Le topo est maintenant en attente d'être modéré.");
             } catch (IOException e) {
                 e.printStackTrace();
                 logger.error(e);
