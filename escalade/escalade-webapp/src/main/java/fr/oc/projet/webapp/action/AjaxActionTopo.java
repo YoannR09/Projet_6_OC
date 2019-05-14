@@ -35,6 +35,7 @@ public class AjaxActionTopo extends ActionSupport {
     private         Boolean              apresMidi;
     private         Boolean              occupe;
     private         Integer              nbreResa;
+    private         Integer              mois;
     private         Double               note;
 
 
@@ -117,7 +118,15 @@ public class AjaxActionTopo extends ActionSupport {
     public String doAjaxCountResa(){
 
         topo = managerFactory.getTopoManager().getTopoViaNom(nomTopo);
-        nbreResa = managerFactory.getReservationManager().getCountResa(topo.getId());
+        List<Reservation> vList = managerFactory.getReservationManager().getReservationTopo(topo.getId());
+        listReservation = new ArrayList<>();
+
+        for( int i = 0; i<vList.size();i++){
+            if ((mois) == (vList.get(i).getDate().getMonth())){
+                listReservation.add(vList.get(i));
+            }
+        }
+        nbreResa = listReservation.size();
 
         return ActionSupport.SUCCESS;
     }
@@ -220,6 +229,14 @@ public class AjaxActionTopo extends ActionSupport {
 
     public void setNote(Double note) {
         this.note = note;
+    }
+
+    public Integer getMois() {
+        return mois;
+    }
+
+    public void setMois(Integer mois) {
+        this.mois = mois;
     }
 }
 

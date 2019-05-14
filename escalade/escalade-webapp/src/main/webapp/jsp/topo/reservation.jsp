@@ -155,7 +155,6 @@
 
         $('#blocBtn > button').click(function(){
             var x = $(this).attr('id');
-            $('#blocBtn > button').addClass('bg-info');
             listResaMois(x);
         });
     });
@@ -280,11 +279,13 @@
         // URL de l'action AJAX
         var url = "<s:url action="ajax_add_reservation"/>";
 
-        countResa();
-
         var nomTopo = $("#nomTopo").text();
 
         var date = $("#date").val();
+
+        var dates = new Date(date);
+
+        countResa(dates.getMonth());
 
         if( $('input[name=matin]').is(':checked') ){
             var matin = true;
@@ -341,24 +342,25 @@
 
                 var nbreResa = $('#count').text();
 
+                console.log(data.length);
+                console.log(nbreResa);
+
                 if(data.length == nbreResa){
                     $('#messageAjax').show();
                 }else {
                     $('#messageAjax').hide();
-
                 }
             })
             .fail(function () {
                 alert("Erreur !!");
             });
 
-        countResa();
     }
 
     /**
      * Méthode pour compter le nombre de réservations.
      */
-    function countResa() {
+    function countResa(mois) {
         // URL de l'action AJAX
         var url = "<s:url action="ajax_count_resa"/>";
 
@@ -366,6 +368,7 @@
 
         var params = {
             nomTopo: nomTopo,
+            mois:mois,
         };
         // Action AJAX en POST
         jQuery.post(
