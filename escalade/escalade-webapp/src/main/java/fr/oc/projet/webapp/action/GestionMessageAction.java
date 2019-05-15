@@ -87,7 +87,7 @@ public class GestionMessageAction  extends ActionSupport {
                     InternetAddress.parse("applimail09@gmail.com")
             );
             message.setSubject(objet);
-            message.setText(contenu+"</br></br>"+email);
+            message.setText(contenu+"\n \n"+email);
             Transport.send(message);
 
             logger.info("Message : "+message+" a bien été envoyé vers la boite email de l'application");
