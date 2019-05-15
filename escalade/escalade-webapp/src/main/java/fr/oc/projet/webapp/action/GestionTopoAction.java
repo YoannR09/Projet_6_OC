@@ -54,14 +54,15 @@ public class GestionTopoAction extends ActionSupport {
         listCommentaire = managerFactory.getCommentaireManager().getListCommentaireTopo(idTopo);
         listSite = managerFactory.getSiteManager().getListSiteTopo(topo.getId());
         listImage = managerFactory.getImageManager().getListImageTopo(topo.getId());
-        pseudo = (String) ActionContext.getContext().getSession().get("pseudo");
-        compte = managerFactory.getCompteManager().getCompteViaPseudo(pseudo);
-        if(managerFactory.getNoteManager().getCheckNoteTopo(compte.getId(),topo.getId()) != 0){
-            noted = true;
-        }else {
-            noted = false;
+        if(pseudo != null){
+            pseudo = (String) ActionContext.getContext().getSession().get("pseudo");
+            compte = managerFactory.getCompteManager().getCompteViaPseudo(pseudo);
+            if(managerFactory.getNoteManager().getCheckNoteTopo(compte.getId(),topo.getId()) != 0){
+                noted = true;
+            }else {
+                noted = false;
+            }
         }
-
         return  ActionSupport.SUCCESS;
     }
 

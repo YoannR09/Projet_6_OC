@@ -260,12 +260,14 @@ public class GestionSiteAction extends ActionSupport {
             site = managerFactory.getSiteManager().getSite(idSite);
             listCommentaire = managerFactory.getCommentaireManager().getListCommentaireSite(idSite);
             listImage = managerFactory.getImageManager().getListImageSite(site.getId());
-            pseudo = (String) ActionContext.getContext().getSession().get("pseudo");
-            compte = managerFactory.getCompteManager().getCompteViaPseudo(pseudo);
-            if(managerFactory.getNoteManager().getCheckNoteSite(compte.getId(),site.getId()) != 0){
-                noted = true;
-            }else {
-                noted = false;
+            if(pseudo != null){
+                pseudo = (String) ActionContext.getContext().getSession().get("pseudo");
+                compte = managerFactory.getCompteManager().getCompteViaPseudo(pseudo);
+                if(managerFactory.getNoteManager().getCheckNoteSite(compte.getId(),site.getId()) != 0){
+                    noted = true;
+                }else {
+                    noted = false;
+                }
             }
         }
         return  ActionSupport.SUCCESS;
